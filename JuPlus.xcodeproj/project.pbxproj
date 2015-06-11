@@ -8,12 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		9C7C3F531B2958F100D8F29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F521B2958F100D8F29B /* main.m */; };
-		9C7C3F561B2958F100D8F29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F551B2958F100D8F29B /* AppDelegate.m */; };
-		9C7C3F591B2958F100D8F29B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F581B2958F100D8F29B /* ViewController.m */; };
-		9C7C3F5C1B2958F100D8F29B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3F5A1B2958F100D8F29B /* Main.storyboard */; };
 		9C7C3F5E1B2958F100D8F29B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3F5D1B2958F100D8F29B /* Images.xcassets */; };
-		9C7C3F611B2958F100D8F29B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3F5F1B2958F100D8F29B /* LaunchScreen.xib */; };
 		9C7C3F6D1B2958F100D8F29B /* JuPlusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F6C1B2958F100D8F29B /* JuPlusTests.m */; };
+		9C7C3F8B1B29596300D8F29B /* NSString+JuPlisString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F7C1B29596300D8F29B /* NSString+JuPlisString.m */; };
+		9C7C3F8C1B29596300D8F29B /* UIColor+JuPlusColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F7F1B29596300D8F29B /* UIColor+JuPlusColor.m */; };
+		9C7C3F8D1B29596300D8F29B /* UIImage+JuPlusUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F811B29596300D8F29B /* UIImage+JuPlusUIImage.m */; };
+		9C7C3F8E1B29596300D8F29B /* UIView+JuPlusUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F831B29596300D8F29B /* UIView+JuPlusUIView.m */; };
+		9C7C3F8F1B29596300D8F29B /* JuPlusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F881B29596300D8F29B /* JuPlusAppDelegate.m */; };
+		9C7C3F951B295F7100D8F29B /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F941B295F7100D8F29B /* CommonUtil.m */; };
+		9C7C3F981B2961F000D8F29B /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F971B2961F000D8F29B /* GuideViewController.m */; };
+		9C7C3F9E1B29646700D8F29B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F9D1B29646700D8F29B /* BaseViewController.m */; };
+		9C7C3FA11B2966F200D8F29B /* JuPlusTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FA01B2966F200D8F29B /* JuPlusTabBarController.m */; };
+		9C7C3FA41B296BFC00D8F29B /* DiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FA31B296BFC00D8F29B /* DiscoveryViewController.m */; };
+		9C7C3FA71B296C5C00D8F29B /* CollocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FA61B296C5C00D8F29B /* CollocationViewController.m */; };
+		9C7C3FAA1B296CAD00D8F29B /* ClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FA91B296CAD00D8F29B /* ClassificationViewController.m */; };
+		9C7C3FAD1B296CF400D8F29B /* MyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FAC1B296CF400D8F29B /* MyAccountViewController.m */; };
+		9C7C3FB11B296DFB00D8F29B /* JuPlusNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FB01B296DFB00D8F29B /* JuPlusNavigationController.m */; };
+		9C7C3FB61B29745500D8F29B /* icons_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3FB21B29745500D8F29B /* icons_2.png */; };
+		9C7C3FB71B29745500D8F29B /* icons_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3FB31B29745500D8F29B /* icons_3.png */; };
+		9C7C3FB81B29745500D8F29B /* icons_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3FB41B29745500D8F29B /* icons_4.png */; };
+		9C7C3FB91B29745500D8F29B /* icons_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3FB51B29745500D8F29B /* icons_5.png */; };
+		9C968BFB1B297DE00070B220 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C968BF81B297DE00070B220 /* Default.png */; };
+		9C968BFC1B297DE00070B220 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C968BF91B297DE00070B220 /* Default@2x.png */; };
+		9C968BFD1B297DE00070B220 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C968BFA1B297DE00070B220 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,16 +47,49 @@
 		9C7C3F4D1B2958F100D8F29B /* JuPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7C3F511B2958F100D8F29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C7C3F521B2958F100D8F29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9C7C3F541B2958F100D8F29B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9C7C3F551B2958F100D8F29B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9C7C3F571B2958F100D8F29B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9C7C3F581B2958F100D8F29B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9C7C3F5B1B2958F100D8F29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C7C3F5D1B2958F100D8F29B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9C7C3F601B2958F100D8F29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9C7C3F661B2958F100D8F29B /* JuPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JuPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7C3F6B1B2958F100D8F29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C7C3F6C1B2958F100D8F29B /* JuPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JuPlusTests.m; sourceTree = "<group>"; };
+		9C7C3F781B29596300D8F29B /* JuPlusConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusConstant.h; sourceTree = "<group>"; };
+		9C7C3F791B29596300D8F29B /* JuPlusEnvironmentConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusEnvironmentConfig.h; sourceTree = "<group>"; };
+		9C7C3F7C1B29596300D8F29B /* NSString+JuPlisString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JuPlisString.m"; sourceTree = "<group>"; };
+		9C7C3F7D1B29596300D8F29B /* NSString+JuPlusString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JuPlusString.h"; sourceTree = "<group>"; };
+		9C7C3F7E1B29596300D8F29B /* UIColor+JuPlusColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JuPlusColor.h"; sourceTree = "<group>"; };
+		9C7C3F7F1B29596300D8F29B /* UIColor+JuPlusColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JuPlusColor.m"; sourceTree = "<group>"; };
+		9C7C3F801B29596300D8F29B /* UIImage+JuPlusUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JuPlusUIImage.h"; sourceTree = "<group>"; };
+		9C7C3F811B29596300D8F29B /* UIImage+JuPlusUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JuPlusUIImage.m"; sourceTree = "<group>"; };
+		9C7C3F821B29596300D8F29B /* UIView+JuPlusUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JuPlusUIView.h"; sourceTree = "<group>"; };
+		9C7C3F831B29596300D8F29B /* UIView+JuPlusUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JuPlusUIView.m"; sourceTree = "<group>"; };
+		9C7C3F871B29596300D8F29B /* JuPlusAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusAppDelegate.h; sourceTree = "<group>"; };
+		9C7C3F881B29596300D8F29B /* JuPlusAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuPlusAppDelegate.m; sourceTree = "<group>"; };
+		9C7C3F901B295BD800D8F29B /* JuPlusReleaseConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JuPlusReleaseConfig.h; sourceTree = "<group>"; };
+		9C7C3F911B295CF000D8F29B /* JuPlusGlobalNSUserDefault.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JuPlusGlobalNSUserDefault.h; sourceTree = "<group>"; };
+		9C7C3F931B295F7100D8F29B /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
+		9C7C3F941B295F7100D8F29B /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
+		9C7C3F961B2961F000D8F29B /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		9C7C3F971B2961F000D8F29B /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
+		9C7C3F9C1B29646700D8F29B /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = ../HomePage/BaseViewController.h; sourceTree = "<group>"; };
+		9C7C3F9D1B29646700D8F29B /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = ../HomePage/BaseViewController.m; sourceTree = "<group>"; };
+		9C7C3F9F1B2966F200D8F29B /* JuPlusTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JuPlusTabBarController.h; path = ../HomePage/JuPlusTabBarController.h; sourceTree = "<group>"; };
+		9C7C3FA01B2966F200D8F29B /* JuPlusTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JuPlusTabBarController.m; path = ../HomePage/JuPlusTabBarController.m; sourceTree = "<group>"; };
+		9C7C3FA21B296BFC00D8F29B /* DiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryViewController.h; sourceTree = "<group>"; };
+		9C7C3FA31B296BFC00D8F29B /* DiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryViewController.m; sourceTree = "<group>"; };
+		9C7C3FA51B296C5C00D8F29B /* CollocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollocationViewController.h; sourceTree = "<group>"; };
+		9C7C3FA61B296C5C00D8F29B /* CollocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollocationViewController.m; sourceTree = "<group>"; };
+		9C7C3FA81B296CAD00D8F29B /* ClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationViewController.h; sourceTree = "<group>"; };
+		9C7C3FA91B296CAD00D8F29B /* ClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationViewController.m; sourceTree = "<group>"; };
+		9C7C3FAB1B296CF400D8F29B /* MyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountViewController.h; sourceTree = "<group>"; };
+		9C7C3FAC1B296CF400D8F29B /* MyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountViewController.m; sourceTree = "<group>"; };
+		9C7C3FAF1B296DFB00D8F29B /* JuPlusNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusNavigationController.h; sourceTree = "<group>"; };
+		9C7C3FB01B296DFB00D8F29B /* JuPlusNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuPlusNavigationController.m; sourceTree = "<group>"; };
+		9C7C3FB21B29745500D8F29B /* icons_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icons_2.png; sourceTree = "<group>"; };
+		9C7C3FB31B29745500D8F29B /* icons_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icons_3.png; sourceTree = "<group>"; };
+		9C7C3FB41B29745500D8F29B /* icons_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icons_4.png; sourceTree = "<group>"; };
+		9C7C3FB51B29745500D8F29B /* icons_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icons_5.png; sourceTree = "<group>"; };
+		9C968BF81B297DE00070B220 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9C968BF91B297DE00070B220 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		9C968BFA1B297DE00070B220 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +131,14 @@
 		9C7C3F4F1B2958F100D8F29B /* JuPlus */ = {
 			isa = PBXGroup;
 			children = (
-				9C7C3F541B2958F100D8F29B /* AppDelegate.h */,
-				9C7C3F551B2958F100D8F29B /* AppDelegate.m */,
-				9C7C3F571B2958F100D8F29B /* ViewController.h */,
-				9C7C3F581B2958F100D8F29B /* ViewController.m */,
-				9C7C3F5A1B2958F100D8F29B /* Main.storyboard */,
+				9C7C3F871B29596300D8F29B /* JuPlusAppDelegate.h */,
+				9C7C3F881B29596300D8F29B /* JuPlusAppDelegate.m */,
+				9C7C3F761B29596300D8F29B /* BasicFrame */,
+				9C7C3F841B29596300D8F29B /* CustomizedView */,
+				9C7C3F851B29596300D8F29B /* HttpConnections */,
+				9C7C3F861B29596300D8F29B /* Images */,
+				9C7C3F891B29596300D8F29B /* ViewControllers */,
 				9C7C3F5D1B2958F100D8F29B /* Images.xcassets */,
-				9C7C3F5F1B2958F100D8F29B /* LaunchScreen.xib */,
 				9C7C3F501B2958F100D8F29B /* Supporting Files */,
 			);
 			path = JuPlus;
@@ -117,6 +168,126 @@
 				9C7C3F6B1B2958F100D8F29B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9C7C3F761B29596300D8F29B /* BasicFrame */ = {
+			isa = PBXGroup;
+			children = (
+				9C7C3F921B295F2800D8F29B /* CommonUtility */,
+				9C7C3F771B29596300D8F29B /* Constants */,
+				9C7C3F7A1B29596300D8F29B /* GlobalData */,
+				9C7C3F7B1B29596300D8F29B /* UICustomView */,
+			);
+			path = BasicFrame;
+			sourceTree = "<group>";
+		};
+		9C7C3F771B29596300D8F29B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				9C7C3F781B29596300D8F29B /* JuPlusConstant.h */,
+				9C7C3F791B29596300D8F29B /* JuPlusEnvironmentConfig.h */,
+				9C7C3F901B295BD800D8F29B /* JuPlusReleaseConfig.h */,
+				9C7C3F911B295CF000D8F29B /* JuPlusGlobalNSUserDefault.h */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		9C7C3F7A1B29596300D8F29B /* GlobalData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GlobalData;
+			sourceTree = "<group>";
+		};
+		9C7C3F7B1B29596300D8F29B /* UICustomView */ = {
+			isa = PBXGroup;
+			children = (
+				9C7C3F7C1B29596300D8F29B /* NSString+JuPlisString.m */,
+				9C7C3F7D1B29596300D8F29B /* NSString+JuPlusString.h */,
+				9C7C3F7E1B29596300D8F29B /* UIColor+JuPlusColor.h */,
+				9C7C3F7F1B29596300D8F29B /* UIColor+JuPlusColor.m */,
+				9C7C3F801B29596300D8F29B /* UIImage+JuPlusUIImage.h */,
+				9C7C3F811B29596300D8F29B /* UIImage+JuPlusUIImage.m */,
+				9C7C3F821B29596300D8F29B /* UIView+JuPlusUIView.h */,
+				9C7C3F831B29596300D8F29B /* UIView+JuPlusUIView.m */,
+			);
+			path = UICustomView;
+			sourceTree = "<group>";
+		};
+		9C7C3F841B29596300D8F29B /* CustomizedView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomizedView;
+			sourceTree = "<group>";
+		};
+		9C7C3F851B29596300D8F29B /* HttpConnections */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HttpConnections;
+			sourceTree = "<group>";
+		};
+		9C7C3F861B29596300D8F29B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9C7C3FB21B29745500D8F29B /* icons_2.png */,
+				9C7C3FB31B29745500D8F29B /* icons_3.png */,
+				9C7C3FB41B29745500D8F29B /* icons_4.png */,
+				9C7C3FB51B29745500D8F29B /* icons_5.png */,
+				9C968BF81B297DE00070B220 /* Default.png */,
+				9C968BF91B297DE00070B220 /* Default@2x.png */,
+				9C968BFA1B297DE00070B220 /* Default-568h@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		9C7C3F891B29596300D8F29B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9C7C3FAE1B296DCC00D8F29B /* BaseControl */,
+				9C7C3F8A1B29596300D8F29B /* HomePage */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9C7C3F8A1B29596300D8F29B /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				9C7C3F961B2961F000D8F29B /* GuideViewController.h */,
+				9C7C3F971B2961F000D8F29B /* GuideViewController.m */,
+				9C7C3FA21B296BFC00D8F29B /* DiscoveryViewController.h */,
+				9C7C3FA31B296BFC00D8F29B /* DiscoveryViewController.m */,
+				9C7C3FA51B296C5C00D8F29B /* CollocationViewController.h */,
+				9C7C3FA61B296C5C00D8F29B /* CollocationViewController.m */,
+				9C7C3FA81B296CAD00D8F29B /* ClassificationViewController.h */,
+				9C7C3FA91B296CAD00D8F29B /* ClassificationViewController.m */,
+				9C7C3FAB1B296CF400D8F29B /* MyAccountViewController.h */,
+				9C7C3FAC1B296CF400D8F29B /* MyAccountViewController.m */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		9C7C3F921B295F2800D8F29B /* CommonUtility */ = {
+			isa = PBXGroup;
+			children = (
+				9C7C3F931B295F7100D8F29B /* CommonUtil.h */,
+				9C7C3F941B295F7100D8F29B /* CommonUtil.m */,
+			);
+			path = CommonUtility;
+			sourceTree = "<group>";
+		};
+		9C7C3FAE1B296DCC00D8F29B /* BaseControl */ = {
+			isa = PBXGroup;
+			children = (
+				9C7C3F9C1B29646700D8F29B /* BaseViewController.h */,
+				9C7C3F9D1B29646700D8F29B /* BaseViewController.m */,
+				9C7C3F9F1B2966F200D8F29B /* JuPlusTabBarController.h */,
+				9C7C3FA01B2966F200D8F29B /* JuPlusTabBarController.m */,
+				9C7C3FAF1B296DFB00D8F29B /* JuPlusNavigationController.h */,
+				9C7C3FB01B296DFB00D8F29B /* JuPlusNavigationController.m */,
+			);
+			path = BaseControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,9 +370,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C7C3F5C1B2958F100D8F29B /* Main.storyboard in Resources */,
-				9C7C3F611B2958F100D8F29B /* LaunchScreen.xib in Resources */,
+				9C7C3FB91B29745500D8F29B /* icons_5.png in Resources */,
+				9C968BFB1B297DE00070B220 /* Default.png in Resources */,
+				9C7C3FB71B29745500D8F29B /* icons_3.png in Resources */,
+				9C7C3FB81B29745500D8F29B /* icons_4.png in Resources */,
 				9C7C3F5E1B2958F100D8F29B /* Images.xcassets in Resources */,
+				9C968BFD1B297DE00070B220 /* Default-568h@2x.png in Resources */,
+				9C968BFC1B297DE00070B220 /* Default@2x.png in Resources */,
+				9C7C3FB61B29745500D8F29B /* icons_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +395,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C7C3F591B2958F100D8F29B /* ViewController.m in Sources */,
-				9C7C3F561B2958F100D8F29B /* AppDelegate.m in Sources */,
+				9C7C3FAA1B296CAD00D8F29B /* ClassificationViewController.m in Sources */,
+				9C7C3F8F1B29596300D8F29B /* JuPlusAppDelegate.m in Sources */,
+				9C7C3F9E1B29646700D8F29B /* BaseViewController.m in Sources */,
+				9C7C3FA11B2966F200D8F29B /* JuPlusTabBarController.m in Sources */,
+				9C7C3FA41B296BFC00D8F29B /* DiscoveryViewController.m in Sources */,
+				9C7C3F8E1B29596300D8F29B /* UIView+JuPlusUIView.m in Sources */,
+				9C7C3F8B1B29596300D8F29B /* NSString+JuPlisString.m in Sources */,
+				9C7C3F8D1B29596300D8F29B /* UIImage+JuPlusUIImage.m in Sources */,
+				9C7C3F8C1B29596300D8F29B /* UIColor+JuPlusColor.m in Sources */,
+				9C7C3F951B295F7100D8F29B /* CommonUtil.m in Sources */,
+				9C7C3FA71B296C5C00D8F29B /* CollocationViewController.m in Sources */,
 				9C7C3F531B2958F100D8F29B /* main.m in Sources */,
+				9C7C3F981B2961F000D8F29B /* GuideViewController.m in Sources */,
+				9C7C3FB11B296DFB00D8F29B /* JuPlusNavigationController.m in Sources */,
+				9C7C3FAD1B296CF400D8F29B /* MyAccountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,25 +430,6 @@
 			targetProxy = 9C7C3F671B2958F100D8F29B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		9C7C3F5A1B2958F100D8F29B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C7C3F5B1B2958F100D8F29B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9C7C3F5F1B2958F100D8F29B /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C7C3F601B2958F100D8F29B /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9C7C3F6E1B2958F100D8F29B /* Debug */ = {
@@ -297,7 +466,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -332,7 +501,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -344,6 +513,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JuPlus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -354,6 +524,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JuPlus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -412,6 +583,7 @@
 				9C7C3F721B2958F100D8F29B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C7C3F731B2958F100D8F29B /* Build configuration list for PBXNativeTarget "JuPlusTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +592,7 @@
 				9C7C3F751B2958F100D8F29B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,28 @@
+//
+//  UIImage+FurnHUIImage.h
+//  ImageTips
+//
+//  Created by 詹文豹 on 15/6/5.
+//  Copyright (c) 2015年 居+. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIImage (JuPlusUIImage)
++ (UIImage *)noCachegetImageFromBundle:(NSString *)imageName;
+
++ (UIImage *)stregetImageFromBundle:(NSString *)imageName;
++ (UIImage *)stregetImageFromBundle:(NSString *)imageName capX:(CGFloat)x capY:(CGFloat)y;
++ (UIImage *)imageWithColor:(UIColor *)color;
+
+- (UIImage *)stretched;
+- (UIImage *)grayscale;
+
+
+- (UIColor *)patternColor;
+
+
+- (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
+
+
+@end
