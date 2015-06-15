@@ -21,19 +21,14 @@
             
             [view removeFromSuperview];
         }
-        self.tabBar.backgroundImage = [UIImage imageNamed:@"navbg"];
+        //self.tabBar.backgroundImage = [UIImage imageNamed:@"navbg"];
         //(3)创建按钮
         CGFloat width = SCREEN_WIDTH;
-        
         //每一个按钮的宽度
-        
         CGFloat w = width/4;
         for (int i=0; i<4; i++) {
-            
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            
             NSString *imageName = [NSString stringWithFormat:@"icons_%d",i+2];
-            
             [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateSelected];
             //设置frame

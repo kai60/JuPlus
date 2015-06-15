@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C5B24A31B2E7E4C0024C936 /* ScrollRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5B249E1B2E7E4C0024C936 /* ScrollRefreshView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C5B24A41B2E7E4C0024C936 /* ScrollRefreshViewFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5B24A01B2E7E4C0024C936 /* ScrollRefreshViewFooter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9C5B24A51B2E7E4C0024C936 /* ScrollRefreshViewHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5B24A21B2E7E4C0024C936 /* ScrollRefreshViewHead.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9C7C3F531B2958F100D8F29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F521B2958F100D8F29B /* main.m */; };
 		9C7C3F5E1B2958F100D8F29B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3F5D1B2958F100D8F29B /* Images.xcassets */; };
 		9C7C3F6D1B2958F100D8F29B /* JuPlusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F6C1B2958F100D8F29B /* JuPlusTests.m */; };
@@ -44,6 +47,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C5B249D1B2E7E4C0024C936 /* ScrollRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollRefreshView.h; sourceTree = "<group>"; };
+		9C5B249E1B2E7E4C0024C936 /* ScrollRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollRefreshView.m; sourceTree = "<group>"; };
+		9C5B249F1B2E7E4C0024C936 /* ScrollRefreshViewFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollRefreshViewFooter.h; sourceTree = "<group>"; };
+		9C5B24A01B2E7E4C0024C936 /* ScrollRefreshViewFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollRefreshViewFooter.m; sourceTree = "<group>"; };
+		9C5B24A11B2E7E4C0024C936 /* ScrollRefreshViewHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollRefreshViewHead.h; sourceTree = "<group>"; };
+		9C5B24A21B2E7E4C0024C936 /* ScrollRefreshViewHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollRefreshViewHead.m; sourceTree = "<group>"; };
+		9C5B24A61B2E7E6F0024C936 /* JuPlusRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JuPlusRefresh.h; sourceTree = "<group>"; };
 		9C7C3F4D1B2958F100D8F29B /* JuPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7C3F511B2958F100D8F29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C7C3F521B2958F100D8F29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -110,6 +120,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C5B249C1B2E7E3C0024C936 /* RefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				9C5B249D1B2E7E4C0024C936 /* ScrollRefreshView.h */,
+				9C5B249E1B2E7E4C0024C936 /* ScrollRefreshView.m */,
+				9C5B249F1B2E7E4C0024C936 /* ScrollRefreshViewFooter.h */,
+				9C5B24A01B2E7E4C0024C936 /* ScrollRefreshViewFooter.m */,
+				9C5B24A11B2E7E4C0024C936 /* ScrollRefreshViewHead.h */,
+				9C5B24A21B2E7E4C0024C936 /* ScrollRefreshViewHead.m */,
+				9C5B24A61B2E7E6F0024C936 /* JuPlusRefresh.h */,
+			);
+			path = RefreshView;
+			sourceTree = "<group>";
+		};
 		9C7C3F441B2958F100D8F29B = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +241,7 @@
 		9C7C3F841B29596300D8F29B /* CustomizedView */ = {
 			isa = PBXGroup;
 			children = (
+				9C5B249C1B2E7E3C0024C936 /* RefreshView */,
 			);
 			path = CustomizedView;
 			sourceTree = "<group>";
@@ -399,11 +424,14 @@
 				9C7C3F8F1B29596300D8F29B /* JuPlusAppDelegate.m in Sources */,
 				9C7C3F9E1B29646700D8F29B /* BaseViewController.m in Sources */,
 				9C7C3FA11B2966F200D8F29B /* JuPlusTabBarController.m in Sources */,
+				9C5B24A41B2E7E4C0024C936 /* ScrollRefreshViewFooter.m in Sources */,
 				9C7C3FA41B296BFC00D8F29B /* DiscoveryViewController.m in Sources */,
 				9C7C3F8E1B29596300D8F29B /* UIView+JuPlusUIView.m in Sources */,
 				9C7C3F8B1B29596300D8F29B /* NSString+JuPlisString.m in Sources */,
+				9C5B24A31B2E7E4C0024C936 /* ScrollRefreshView.m in Sources */,
 				9C7C3F8D1B29596300D8F29B /* UIImage+JuPlusUIImage.m in Sources */,
 				9C7C3F8C1B29596300D8F29B /* UIColor+JuPlusColor.m in Sources */,
+				9C5B24A51B2E7E4C0024C936 /* ScrollRefreshViewHead.m in Sources */,
 				9C7C3F951B295F7100D8F29B /* CommonUtil.m in Sources */,
 				9C7C3FA71B296C5C00D8F29B /* CollocationViewController.m in Sources */,
 				9C7C3F531B2958F100D8F29B /* main.m in Sources */,

@@ -19,6 +19,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.navView];
     [self.navView addSubview: self.titleLabel];
+    [self.view addSubview:self.viewBack];
     
     // Do any additional setup after loading the view.
 }
@@ -46,7 +47,15 @@
     return _titleLabel;
     
 }
-
+-(UIView *)viewBack
+{
+    if(!_viewBack)
+    {
+        _viewBack = [[UIView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, SCREEN_HEIGHT - nav_height)];
+        _viewBack.backgroundColor = RGBCOLOR(111, 111, 111);
+    }
+    return _viewBack;
+}
 //提示信息显示
 - (void)showAlertView:(NSString *)msg withTag:(int)tag
 {

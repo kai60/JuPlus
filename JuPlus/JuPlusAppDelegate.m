@@ -60,8 +60,6 @@
         BaseViewController *viewCtrl = viewCtrls[i];
         //创建导航控制器
         JuPlusNavigationController *navCtrl = [[JuPlusNavigationController alloc] initWithRootViewController:viewCtrl];
-        navCtrl.titleLabel.text = @"搜索";
-       // [navCtrl.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_bg_normal"] forBarMetrics:UIBarMetricsDefault];
         [navCtrls addObject:navCtrl];
     }
     tab.viewControllers = viewCtrls;
