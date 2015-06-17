@@ -46,25 +46,26 @@
 }
 -(void)runNormalMethod
 {
-    JuPlusTabBarController *tab = [[JuPlusTabBarController alloc]init];
-    
-    DiscoveryViewController *dis = [[DiscoveryViewController alloc]init];
-    CollocationViewController *collocation = [[CollocationViewController alloc]init];
-    ClassificationViewController *class = [[ClassificationViewController alloc]init];
-    MyAccountViewController *myacc = [[MyAccountViewController alloc]init];
-    NSArray *viewCtrls = @[dis,collocation,class,myacc];
-    NSMutableArray *navCtrls = [[NSMutableArray alloc] init];
-    
-    for(int i=0; i<4 ; i++) {
-        //取得视图控制器
-        BaseViewController *viewCtrl = viewCtrls[i];
-        //创建导航控制器
-        JuPlusNavigationController *navCtrl = [[JuPlusNavigationController alloc] initWithRootViewController:viewCtrl];
-        [navCtrls addObject:navCtrl];
-    }
-    tab.viewControllers = viewCtrls;
-    
-    self.window.rootViewController = tab;
+//    JuPlusTabBarController *tab = [[JuPlusTabBarController alloc]init];
+//    
+//    DiscoveryViewController *dis = [[DiscoveryViewController alloc]init];
+//    CollocationViewController *collocation = [[CollocationViewController alloc]init];
+//    ClassificationViewController *class = [[ClassificationViewController alloc]init];
+//    MyAccountViewController *myacc = [[MyAccountViewController alloc]init];
+//    NSArray *viewCtrls = @[dis,collocation,class,myacc];
+//    NSMutableArray *navCtrls = [[NSMutableArray alloc] init];
+//    
+//    for(int i=0; i<4 ; i++) {
+//        //取得视图控制器
+//        BaseViewController *viewCtrl = viewCtrls[i];
+//        //创建导航控制器
+//        JuPlusNavigationController *navCtrl = [[JuPlusNavigationController alloc] initWithRootViewController:viewCtrl];
+//        [navCtrls addObject:navCtrl];
+//    }
+//    tab.viewControllers = viewCtrls;
+        DiscoveryViewController *dis = [[DiscoveryViewController alloc]init];
+
+    self.window.rootViewController = dis;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
