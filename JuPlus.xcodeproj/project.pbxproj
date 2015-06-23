@@ -34,6 +34,11 @@
 		9C968BFB1B297DE00070B220 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C968BF81B297DE00070B220 /* Default.png */; };
 		9C968BFC1B297DE00070B220 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C968BF91B297DE00070B220 /* Default@2x.png */; };
 		9C968BFD1B297DE00070B220 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C968BFA1B297DE00070B220 /* Default-568h@2x.png */; };
+		9CA276311B340525005D53BC /* HomeFurnishingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA276301B340525005D53BC /* HomeFurnishingViewController.m */; };
+		9CABB3D51B329786006AD405 /* ClassifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABB3D41B329786006AD405 /* ClassifyView.m */; };
+		9CABB3D91B329BD2006AD405 /* JuPlusUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABB3D81B329BD2006AD405 /* JuPlusUIView.m */; };
+		9CABB3DB1B32A61F006AD405 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CABB3DA1B32A61F006AD405 /* 2.jpg */; };
+		9CABB3DE1B32A97A006AD405 /* HobbyItemBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABB3DD1B32A97A006AD405 /* HobbyItemBtn.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +105,16 @@
 		9C968BF81B297DE00070B220 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9C968BF91B297DE00070B220 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9C968BFA1B297DE00070B220 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9CA2762F1B340525005D53BC /* HomeFurnishingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFurnishingViewController.h; sourceTree = "<group>"; };
+		9CA276301B340525005D53BC /* HomeFurnishingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFurnishingViewController.m; sourceTree = "<group>"; };
+		9CABB3D31B329786006AD405 /* ClassifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyView.h; sourceTree = "<group>"; };
+		9CABB3D41B329786006AD405 /* ClassifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyView.m; sourceTree = "<group>"; };
+		9CABB3D61B329AE5006AD405 /* JuPlusCustomMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JuPlusCustomMethod.h; sourceTree = "<group>"; };
+		9CABB3D71B329BD2006AD405 /* JuPlusUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusUIView.h; sourceTree = "<group>"; };
+		9CABB3D81B329BD2006AD405 /* JuPlusUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuPlusUIView.m; sourceTree = "<group>"; };
+		9CABB3DA1B32A61F006AD405 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		9CABB3DC1B32A97A006AD405 /* HobbyItemBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HobbyItemBtn.h; sourceTree = "<group>"; };
+		9CABB3DD1B32A97A006AD405 /* HobbyItemBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HobbyItemBtn.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +249,9 @@
 				9C7C3F811B29596300D8F29B /* UIImage+JuPlusUIImage.m */,
 				9C7C3F821B29596300D8F29B /* UIView+JuPlusUIView.h */,
 				9C7C3F831B29596300D8F29B /* UIView+JuPlusUIView.m */,
+				9CABB3D61B329AE5006AD405 /* JuPlusCustomMethod.h */,
+				9CABB3D71B329BD2006AD405 /* JuPlusUIView.h */,
+				9CABB3D81B329BD2006AD405 /* JuPlusUIView.m */,
 			);
 			path = UICustomView;
 			sourceTree = "<group>";
@@ -259,6 +277,7 @@
 				9C7C3FB21B29745500D8F29B /* icons_2.png */,
 				9C7C3FB31B29745500D8F29B /* icons_3.png */,
 				9C7C3FB41B29745500D8F29B /* icons_4.png */,
+				9CABB3DA1B32A61F006AD405 /* 2.jpg */,
 				9C7C3FB51B29745500D8F29B /* icons_5.png */,
 				9C968BF81B297DE00070B220 /* Default.png */,
 				9C968BF91B297DE00070B220 /* Default@2x.png */,
@@ -270,6 +289,7 @@
 		9C7C3F891B29596300D8F29B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9CABB3D21B32974F006AD405 /* views */,
 				9C7C3FAE1B296DCC00D8F29B /* BaseControl */,
 				9C7C3F8A1B29596300D8F29B /* HomePage */,
 			);
@@ -289,6 +309,8 @@
 				9C7C3FA91B296CAD00D8F29B /* ClassificationViewController.m */,
 				9C7C3FAB1B296CF400D8F29B /* MyAccountViewController.h */,
 				9C7C3FAC1B296CF400D8F29B /* MyAccountViewController.m */,
+				9CA2762F1B340525005D53BC /* HomeFurnishingViewController.h */,
+				9CA276301B340525005D53BC /* HomeFurnishingViewController.m */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -313,6 +335,17 @@
 				9C7C3FB01B296DFB00D8F29B /* JuPlusNavigationController.m */,
 			);
 			path = BaseControl;
+			sourceTree = "<group>";
+		};
+		9CABB3D21B32974F006AD405 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				9CABB3D31B329786006AD405 /* ClassifyView.h */,
+				9CABB3D41B329786006AD405 /* ClassifyView.m */,
+				9CABB3DC1B32A97A006AD405 /* HobbyItemBtn.h */,
+				9CABB3DD1B32A97A006AD405 /* HobbyItemBtn.m */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,6 +431,7 @@
 				9C7C3FB91B29745500D8F29B /* icons_5.png in Resources */,
 				9C968BFB1B297DE00070B220 /* Default.png in Resources */,
 				9C7C3FB71B29745500D8F29B /* icons_3.png in Resources */,
+				9CABB3DB1B32A61F006AD405 /* 2.jpg in Resources */,
 				9C7C3FB81B29745500D8F29B /* icons_4.png in Resources */,
 				9C7C3F5E1B2958F100D8F29B /* Images.xcassets in Resources */,
 				9C968BFD1B297DE00070B220 /* Default-568h@2x.png in Resources */,
@@ -424,17 +458,21 @@
 				9C7C3F8F1B29596300D8F29B /* JuPlusAppDelegate.m in Sources */,
 				9C7C3F9E1B29646700D8F29B /* BaseViewController.m in Sources */,
 				9C7C3FA11B2966F200D8F29B /* JuPlusTabBarController.m in Sources */,
+				9CABB3D51B329786006AD405 /* ClassifyView.m in Sources */,
+				9CABB3D91B329BD2006AD405 /* JuPlusUIView.m in Sources */,
 				9C5B24A41B2E7E4C0024C936 /* ScrollRefreshViewFooter.m in Sources */,
 				9C7C3FA41B296BFC00D8F29B /* DiscoveryViewController.m in Sources */,
 				9C7C3F8E1B29596300D8F29B /* UIView+JuPlusUIView.m in Sources */,
 				9C7C3F8B1B29596300D8F29B /* NSString+JuPlisString.m in Sources */,
 				9C5B24A31B2E7E4C0024C936 /* ScrollRefreshView.m in Sources */,
 				9C7C3F8D1B29596300D8F29B /* UIImage+JuPlusUIImage.m in Sources */,
+				9CA276311B340525005D53BC /* HomeFurnishingViewController.m in Sources */,
 				9C7C3F8C1B29596300D8F29B /* UIColor+JuPlusColor.m in Sources */,
 				9C5B24A51B2E7E4C0024C936 /* ScrollRefreshViewHead.m in Sources */,
 				9C7C3F951B295F7100D8F29B /* CommonUtil.m in Sources */,
 				9C7C3FA71B296C5C00D8F29B /* CollocationViewController.m in Sources */,
 				9C7C3F531B2958F100D8F29B /* main.m in Sources */,
+				9CABB3DE1B32A97A006AD405 /* HobbyItemBtn.m in Sources */,
 				9C7C3F981B2961F000D8F29B /* GuideViewController.m in Sources */,
 				9C7C3FB11B296DFB00D8F29B /* JuPlusNavigationController.m in Sources */,
 				9C7C3FAD1B296CF400D8F29B /* MyAccountViewController.m in Sources */,

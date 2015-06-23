@@ -14,7 +14,8 @@
 + (UIImage *)stregetImageFromBundle:(NSString *)imageName;
 + (UIImage *)stregetImageFromBundle:(NSString *)imageName capX:(CGFloat)x capY:(CGFloat)y;
 + (UIImage *)imageWithColor:(UIColor *)color;
-
+//得到高斯模糊
++ (UIImage *)filterImage:(UIImage *)image;
 - (UIImage *)stretched;
 - (UIImage *)grayscale;
 

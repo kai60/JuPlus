@@ -7,7 +7,8 @@
 //所有视图控制器的基类
 
 #import <UIKit/UIKit.h>
-
+#import "JuPlusEnvironmentConfig.h"
+#import "JuPlusCustomMethod.h"
 @interface BaseViewController : UIViewController
 @property(nonatomic,strong)UIView *navView;
 @property(nonatomic,strong)UILabel *titleLabel;

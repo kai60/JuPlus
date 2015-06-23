@@ -122,5 +122,20 @@ CGFloat RadiansToDegrees(CGFloat radians)
     UIGraphicsEndImageContext();
     return newImage;
 }
-
+//得到高斯模糊的图片
++ (UIImage *)filterImage:(UIImage *)image
+{
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *inputImage = [[CIImage alloc] initWithImage:image];
+    // create gaussian blur filter
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    [filter setValue:[NSNumber numberWithFloat:10.0] forKey:@"inputRadius"];
+    // blur image
+    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    CGImageRef cgImage = [context createCGImage:result fromRect:[result extent]];
+    UIImage *newImage = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    return newImage;
+}
 @end

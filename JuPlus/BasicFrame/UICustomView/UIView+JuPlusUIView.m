@@ -223,6 +223,25 @@
     }
     return superVc;
 }
+//设置view高斯模糊显示
+-(void)setVisualEffect
+{
+    UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    visualEffectView.frame =CGRectMake(0.0f, 0.0f, self.width, self.height);
+    visualEffectView.tag = VisualEffectTag;
+    [self addSubview:visualEffectView];
+}
+//取消高斯模糊
+-(void)removeVisualEffect
+{
+    UIView *visual = [self viewWithTag:VisualEffectTag];
+    if(visual!=nil)
+    {
+    [visual removeFromSuperview];
+    visual = nil;
+    }
+}
 //一级界面推到下级界面动画
 -(CATransition *)getPushTransition
 {

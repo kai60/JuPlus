@@ -49,7 +49,7 @@
 //    JuPlusTabBarController *tab = [[JuPlusTabBarController alloc]init];
 //    
 //    DiscoveryViewController *dis = [[DiscoveryViewController alloc]init];
-//    CollocationViewController *collocation = [[CollocationViewController alloc]init];
+    CollocationViewController *collocation = [[CollocationViewController alloc]init];
 //    ClassificationViewController *class = [[ClassificationViewController alloc]init];
 //    MyAccountViewController *myacc = [[MyAccountViewController alloc]init];
 //    NSArray *viewCtrls = @[dis,collocation,class,myacc];
@@ -63,9 +63,9 @@
 //        [navCtrls addObject:navCtrl];
 //    }
 //    tab.viewControllers = viewCtrls;
-        DiscoveryViewController *dis = [[DiscoveryViewController alloc]init];
+//        DiscoveryViewController *dis = [[DiscoveryViewController alloc]init];
 
-    self.window.rootViewController = dis;
+    self.window.rootViewController = collocation;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

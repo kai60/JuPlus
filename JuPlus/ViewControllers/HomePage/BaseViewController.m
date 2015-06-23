@@ -7,11 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "UIView+JuPlusUIView.h"
-#import "UIColor+JuPlusColor.h"
-#import "UIImage+JuPlusUIImage.h"
-#import "NSString+JuPlusString.h"
-#import "JuPlusEnvironmentConfig.h"
+
 @implementation BaseViewController
 
 - (void)viewDidLoad {

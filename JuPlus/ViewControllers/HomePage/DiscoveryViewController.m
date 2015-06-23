@@ -7,7 +7,6 @@
 //
 
 #import "DiscoveryViewController.h"
-
 @implementation DiscoveryViewController
 -(void)viewDidLoad
 {

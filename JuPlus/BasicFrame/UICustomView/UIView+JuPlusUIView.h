@@ -10,6 +10,8 @@
 #undef L
 #define L(key) \
 [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
+//view的高斯模糊对应的tag，别处禁用
+#define VisualEffectTag 1001
 
 @interface UIView (JuPlusUIView)
 @property(nonatomic) CGFloat left;
@@ -35,7 +37,10 @@
 
 - (void)removeAllSubviews;
 - (UIViewController *)viewController;
-
+//设置view高斯模糊显示
+-(void)setVisualEffect;
+//取消高斯模糊显示
+-(void)removeVisualEffect;
 //like airbnb
 - (void)setAnchorPoint:(CGPoint)point;
 -(UIViewController *)getSuperViewController;
