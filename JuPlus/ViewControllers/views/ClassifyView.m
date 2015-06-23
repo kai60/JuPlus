@@ -10,8 +10,12 @@
 #import "JuPlusEnvironmentConfig.h"
 #import "HobbyItemBtn.h"
 @implementation ClassifyView
--(id)initWithFrame:(CGRect)frame
 {
+    UIView *superView;
+}
+-(id)initWithFrame:(CGRect)frame andView:(UIView *)superV
+{
+    superView = superV;
     self = [super initWithFrame:frame];
     if(self)
     {
@@ -112,5 +116,10 @@
 -(void)surePress:(UIButton *)sender
 {
     NSLog(@"selArr = %@",self.selectArr);
+    [UIView animateWithDuration:0.3 animations:^{
+        [superView removeVisualEffect];
+    } completion:^(BOOL finished) {
+    [self removeFromSuperview];
+    }];
 }
 @end

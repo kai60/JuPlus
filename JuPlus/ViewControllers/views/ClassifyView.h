@@ -18,5 +18,5 @@
 @property (nonatomic,strong)UIButton *sureBtn;
 //被选中的标签数组
 @property (nonatomic,strong)NSMutableArray *selectArr;
--(id)initWithFrame:(CGRect)frame;
+-(id)initWithFrame:(CGRect)frame andView:(UIView *)superV;
 @end

@@ -15,7 +15,9 @@
 #define VERSION_INT 1
 //APP更新地址
 #define APP_URL @""
+#pragma globalConfig
 #define nav_height 64.0f
+#define view_height [UIScreen mainScreen].bounds.size.height - 64.0f
 
 //屏幕宽、高（用于适配不同机型）
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
