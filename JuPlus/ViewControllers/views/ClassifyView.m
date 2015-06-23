@@ -55,7 +55,7 @@
         {
             [((HobbyItemBtn *)sup).selectedImage setHidden:NO];
         }
-        [self.selectArr addObject:[NSString stringWithFormat:@"%d",sender.tag]];
+        [self.selectArr addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
     }
     else
     {
@@ -65,7 +65,7 @@
         {
             [((HobbyItemBtn *)sup).selectedImage setHidden:YES];
         }
-        [self.selectArr removeObject:[NSString stringWithFormat:@"%d",sender.tag]];
+        [self.selectArr removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
     }
 }
 #pragma uifig
@@ -116,10 +116,7 @@
 -(void)surePress:(UIButton *)sender
 {
     NSLog(@"selArr = %@",self.selectArr);
-    [UIView animateWithDuration:0.3 animations:^{
-        [superView removeVisualEffect];
-    } completion:^(BOOL finished) {
     [self removeFromSuperview];
-    }];
-}
+    [superView removeVisualEffect];
+   }
 @end

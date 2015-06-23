@@ -238,8 +238,11 @@
     UIView *visual = [self viewWithTag:VisualEffectTag];
     if(visual!=nil)
     {
-    [visual removeFromSuperview];
-    visual = nil;
+        [UIView animateWithDuration:1.0f animations:^{
+        visual.alpha = 0;
+        } completion:^(BOOL finished) {
+        [visual removeFromSuperview];
+        }];
     }
 }
 //一级界面推到下级界面动画

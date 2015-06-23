@@ -41,7 +41,7 @@ CGFloat space = 10.0f;
     {
         _descripL = [[UILabel alloc]initWithFrame:CGRectMake(space, self.topV.bottom, self.topV.width, 20.0f)];
         _descripL.text = @"测试描述";
-        [_descripL setFont:FontType(16.0f)];
+        [_descripL setFont:FontType(12.0f)];
     }
     return _descripL;
 }
@@ -49,7 +49,7 @@ CGFloat space = 10.0f;
 {
     if(!_showImgV)
     {
-        _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(space, self.descripL.bottom, self.topV.width, 200.0f)];
+        _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(space, self.descripL.bottom, self.topV.width, 300.0f)];
         [_showImgV sd_setImageWithURL:[NSURL URLWithString:@"http://h.hiphotos.baidu.com/image/pic/item/b3fb43166d224f4a6ffeae120bf790529822d148.jpg"] placeholderImage:[UIImage imageNamed:@"2.jpg"]];
     }
     return _showImgV;
@@ -57,8 +57,8 @@ CGFloat space = 10.0f;
 -(void)setTipsWithArray:(NSArray *)tipsArray
 {
     NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:@"125",@"orignX",@"110",@"orignY", nil];
-    NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:@"320",@"orignX",@"20",@"orignY", nil];
-    NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:@"25",@"orignX",@"310",@"orignY", nil];
+    NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:@"120",@"orignX",@"20",@"orignY", nil];
+    NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:@"25",@"orignX",@"210",@"orignY", nil];
     //CGFloat Percentage = self.bomImage.image.size.width/320.0f;
     CGFloat Percentage = 1;
     

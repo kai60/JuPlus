@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		847C5EFF1B395B0D00706638 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847C5EFE1B395B0D00706638 /* LoginViewController.m */; };
+		847C5F021B395CE600706638 /* JuPlusTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 847C5F011B395CE600706638 /* JuPlusTextField.m */; };
 		9C5863AF1B392F53008BB5AD /* PackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5863AE1B392F53008BB5AD /* PackageCell.m */; };
 		9C5863B21B3931EA008BB5AD /* PortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5863B11B3931EA008BB5AD /* PortraitView.m */; };
 		9C5863D61B3933C7008BB5AD /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5863B61B3933C7008BB5AD /* MKAnnotationView+WebCache.m */; };
@@ -71,6 +73,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		847C5EFD1B395B0D00706638 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		847C5EFE1B395B0D00706638 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		847C5F001B395CE600706638 /* JuPlusTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusTextField.h; sourceTree = "<group>"; };
+		847C5F011B395CE600706638 /* JuPlusTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuPlusTextField.m; sourceTree = "<group>"; };
 		9C5863AD1B392F53008BB5AD /* PackageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageCell.h; sourceTree = "<group>"; };
 		9C5863AE1B392F53008BB5AD /* PackageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageCell.m; sourceTree = "<group>"; };
 		9C5863B01B3931EA008BB5AD /* PortraitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortraitView.h; sourceTree = "<group>"; };
@@ -429,6 +435,8 @@
 				9C7C3FAC1B296CF400D8F29B /* MyAccountViewController.m */,
 				9CA2762F1B340525005D53BC /* HomeFurnishingViewController.h */,
 				9CA276301B340525005D53BC /* HomeFurnishingViewController.m */,
+				847C5EFD1B395B0D00706638 /* LoginViewController.h */,
+				847C5EFE1B395B0D00706638 /* LoginViewController.m */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -466,6 +474,8 @@
 				9C5863B11B3931EA008BB5AD /* PortraitView.m */,
 				9C5863E61B393EB9008BB5AD /* MarkedLabelView.h */,
 				9C5863E71B393EB9008BB5AD /* MarkedLabelView.m */,
+				847C5F001B395CE600706638 /* JuPlusTextField.h */,
+				847C5F011B395CE600706638 /* JuPlusTextField.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -579,6 +589,7 @@
 				9C5863AF1B392F53008BB5AD /* PackageCell.m in Sources */,
 				9C5863E81B393EB9008BB5AD /* MarkedLabelView.m in Sources */,
 				9C5863DF1B3933C7008BB5AD /* UIButton+WebCache.m in Sources */,
+				847C5F021B395CE600706638 /* JuPlusTextField.m in Sources */,
 				9C5863DD1B3933C7008BB5AD /* SDWebImageManager.m in Sources */,
 				9C7C3FAA1B296CAD00D8F29B /* ClassificationViewController.m in Sources */,
 				9C7C3F8F1B29596300D8F29B /* JuPlusAppDelegate.m in Sources */,
@@ -608,6 +619,7 @@
 				9C7C3F951B295F7100D8F29B /* CommonUtil.m in Sources */,
 				9C5863B21B3931EA008BB5AD /* PortraitView.m in Sources */,
 				9C7C3FA71B296C5C00D8F29B /* CollocationViewController.m in Sources */,
+				847C5EFF1B395B0D00706638 /* LoginViewController.m in Sources */,
 				9C5863DA1B3933C7008BB5AD /* SDWebImageDecoder.m in Sources */,
 				9C7C3F531B2958F100D8F29B /* main.m in Sources */,
 				9CABB3DE1B32A97A006AD405 /* HobbyItemBtn.m in Sources */,

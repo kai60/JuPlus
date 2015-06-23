@@ -8,24 +8,37 @@
 
 #import "HomeFurnishingViewController.h"
 @implementation HomeFurnishingViewController
+{
+    JuPlusUIView *backV;
+}
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+   
     [self UIConfig];
 }
 -(void)UIConfig
 {
-
-    [self.view addSubview:self.listTab];
-  //  UIWindow*  Hywindow = [[[UIApplication sharedApplication] delegate] window];
-  //  [Hywindow addSubview:self.classifyV];
-    //[self.view setVisualEffect];
+    
+    backV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.width, self.view.height)];
+    [self.view addSubview:backV];
+    [backV addSubview:self.listTab];
+    //判断是否需要添加标签页
+    [self checkSections];
+}
+-(void)checkSections
+{
+    if(1)
+    {
+        [self.view addSubview:self.classifyV];
+        [backV setVisualEffect];
+    }
 }
 -(ClassifyView *)classifyV
 {
     if(!_classifyV)
     {
-        _classifyV = [[ClassifyView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, SCREEN_HEIGHT - nav_height) andView:self.view];
+        _classifyV = [[ClassifyView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, SCREEN_HEIGHT - nav_height) andView:backV];
     }
     return _classifyV;
 }
@@ -41,7 +54,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 300.0f;
+    return 360.0f;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -55,8 +68,13 @@
     {
         cell = [[PackageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell setTipsWithArray:[NSArray array]];
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 @end
