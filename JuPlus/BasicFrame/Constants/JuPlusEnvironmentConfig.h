@@ -34,6 +34,13 @@
 //常用字体大小
 #define FontSize 14.0f
 
+// 连接超时时间，秒
+#define CONNECT_TIMEOUT 30
+
+// 数据等待超时时间，秒
+#define READ_TIMEOUT 10
+
+
 //测试环境
 #ifdef kDevTest
 //网络请求IP地址

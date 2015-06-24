@@ -9,6 +9,7 @@
 #import "ClassifyView.h"
 #import "JuPlusEnvironmentConfig.h"
 #import "HobbyItemBtn.h"
+#import <AFNetworking/AFNetworking.h>
 @implementation ClassifyView
 {
     UIView *superView;
@@ -26,12 +27,12 @@
 -(void)fileData
 {
     CGFloat spaceX = 10.0f;
-    CGFloat spaceY = 20.0f;
+    CGFloat spaceY = 40.0f;
     CGFloat btnW = (self.width - spaceX *4)/3;
     CGFloat btnH = 30.0f;
     for(int i=0;i<10;i++)
     {
-        HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX+self.width*(i/9)+(spaceX+btnW)*(i%3),spaceY+ (spaceY+btnH)*((i/3)%3), btnW, btnH)];
+        HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX+self.width*(i/9)+(spaceX+btnW)*(i%3),100.0f+spaceY+ (spaceY+btnH)*((i/3)%3), btnW, btnH)];
         [btn.iconBtn setTitle:[NSString stringWithFormat:@"标签%d",i] forState:UIControlStateNormal];
         btn.iconBtn.tag = i;
         [btn.iconBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
