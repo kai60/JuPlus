@@ -60,6 +60,7 @@
 		9CABB3D91B329BD2006AD405 /* JuPlusUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABB3D81B329BD2006AD405 /* JuPlusUIView.m */; };
 		9CABB3DB1B32A61F006AD405 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CABB3DA1B32A61F006AD405 /* 2.jpg */; };
 		9CABB3DE1B32A97A006AD405 /* HobbyItemBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABB3DD1B32A97A006AD405 /* HobbyItemBtn.m */; };
+		C8D7669286761CD7A30B8AD4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B411C81AB0721482D2EC17 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,10 +74,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41B411C81AB0721482D2EC17 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		847C5EFD1B395B0D00706638 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		847C5EFE1B395B0D00706638 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		847C5F001B395CE600706638 /* JuPlusTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusTextField.h; sourceTree = "<group>"; };
 		847C5F011B395CE600706638 /* JuPlusTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuPlusTextField.m; sourceTree = "<group>"; };
+		84D4D3F31B3A4A5D00674601 /* JuPlus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JuPlus-Prefix.pch"; sourceTree = "<group>"; };
 		9C5863AD1B392F53008BB5AD /* PackageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageCell.h; sourceTree = "<group>"; };
 		9C5863AE1B392F53008BB5AD /* PackageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageCell.m; sourceTree = "<group>"; };
 		9C5863B01B3931EA008BB5AD /* PortraitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortraitView.h; sourceTree = "<group>"; };
@@ -179,6 +182,8 @@
 		9CABB3DA1B32A61F006AD405 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		9CABB3DC1B32A97A006AD405 /* HobbyItemBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HobbyItemBtn.h; sourceTree = "<group>"; };
 		9CABB3DD1B32A97A006AD405 /* HobbyItemBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HobbyItemBtn.m; sourceTree = "<group>"; };
+		D7C5DA73B5B9477AD5A090BD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E62F0845A09F94CB285CAC40 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D7669286761CD7A30B8AD4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +205,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6FB8F60F36C0EB648810EA39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E62F0845A09F94CB285CAC40 /* Pods.debug.xcconfig */,
+				D7C5DA73B5B9477AD5A090BD /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9C5863AC1B392F19008BB5AD /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +292,8 @@
 				9C7C3F4F1B2958F100D8F29B /* JuPlus */,
 				9C7C3F691B2958F100D8F29B /* JuPlusTests */,
 				9C7C3F4E1B2958F100D8F29B /* Products */,
+				6FB8F60F36C0EB648810EA39 /* Pods */,
+				E73E3BE362588C83AF8352D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -311,6 +328,7 @@
 			children = (
 				9C7C3F511B2958F100D8F29B /* Info.plist */,
 				9C7C3F521B2958F100D8F29B /* main.m */,
+				84D4D3F31B3A4A5D00674601 /* JuPlus-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -480,6 +498,14 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		E73E3BE362588C83AF8352D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41B411C81AB0721482D2EC17 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -487,9 +513,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C7C3F701B2958F100D8F29B /* Build configuration list for PBXNativeTarget "JuPlus" */;
 			buildPhases = (
+				B89FA128F442F3B36D014F07 /* Check Pods Manifest.lock */,
 				9C7C3F491B2958F100D8F29B /* Sources */,
 				9C7C3F4A1B2958F100D8F29B /* Frameworks */,
 				9C7C3F4B1B2958F100D8F29B /* Resources */,
+				1D8DD454FBA8DCB2BB77787C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -580,6 +608,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D8DD454FBA8DCB2BB77787C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B89FA128F442F3B36D014F07 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9C7C3F491B2958F100D8F29B /* Sources */ = {
@@ -673,7 +734,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus/JuPlus-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -714,6 +778,9 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus/JuPlus-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -729,6 +796,7 @@
 		};
 		9C7C3F711B2958F100D8F29B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E62F0845A09F94CB285CAC40 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JuPlus/Info.plist;
@@ -740,6 +808,7 @@
 		};
 		9C7C3F721B2958F100D8F29B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7C5DA73B5B9477AD5A090BD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JuPlus/Info.plist;

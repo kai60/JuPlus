@@ -39,7 +39,7 @@
     if(!_nikeNameL)
     {
         _nikeNameL = [[UILabel alloc]initWithFrame:CGRectMake(self.portraitImgV.right+10.0f, self.height/4, self.width - self.portraitImgV.width - 20.0f, self.height/2)];
-        [_nikeNameL setFont:FontType(14.0f)];
+        [_nikeNameL setFont:FontType(12.0f)];
     }
     return _nikeNameL;
 }
