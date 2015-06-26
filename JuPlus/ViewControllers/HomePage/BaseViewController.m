@@ -15,9 +15,30 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.navView];
     [self.navView addSubview: self.titleLabel];
+    [self.navView addSubview:self.leftBtn];
+    [self.leftBtn setHidden:YES];
     [self.view addSubview:self.viewBack];
-    
+    [self loadBaseUI];
     // Do any additional setup after loading the view.
+}
+//需要重写的init方法
+-(void)loadBaseUI
+{
+    
+}
+-(UIButton *)leftBtn
+{
+    if(!_leftBtn)
+    {
+        _leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _leftBtn.frame = CGRectMake(10.0f, 16.0f, 30.0f, 30.0f);
+        [_leftBtn addTarget:self action:@selector(backPress) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _leftBtn;
+}
+-(void)backPress
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(UIView *)navView
 {

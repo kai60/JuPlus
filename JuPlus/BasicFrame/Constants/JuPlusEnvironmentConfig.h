@@ -24,6 +24,7 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 //系统版本
 #define  VERSION [[UIDevice currentDevice].systemVersion doubleValue]
+#define PICTURE_HEIGHT 210.0f
 //用于下拉加载更多的每页数据数
 #define PAGESIZE 10
 

@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (JuPlusString)
+//字符串转化为三位分割显示
+- (NSString *)toFormatNumberString;
 
 @end

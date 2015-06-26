@@ -19,6 +19,11 @@
 		84D4D4251B3A90A000674601 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D4D4241B3A90A000674601 /* Default-568h@2x.png */; };
 		84D4D43B1B3A9FCA00674601 /* JuPlusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4D43A1B3A9FCA00674601 /* JuPlusRequest.m */; };
 		84D4D43E1B3AAE2000674601 /* ClassifyLabelsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4D43D1B3AAE2000674601 /* ClassifyLabelsRequest.m */; };
+		9C0017441B3D247D0018A9BF /* SingleDetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0017431B3D247D0018A9BF /* SingleDetialViewController.m */; };
+		9C0017481B3D2B750018A9BF /* HomePageInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0017471B3D2B750018A9BF /* HomePageInfoDTO.m */; };
+		9C00174B1B3D2C840018A9BF /* LabelDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C00174A1B3D2C840018A9BF /* LabelDTO.m */; };
+		9C00174E1B3D2EAC0018A9BF /* BaseDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C00174D1B3D2EAC0018A9BF /* BaseDTO.m */; };
+		9C0017511B3D32A00018A9BF /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0017501B3D32A00018A9BF /* PriceView.m */; };
 		9C5863AF1B392F53008BB5AD /* PackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5863AE1B392F53008BB5AD /* PackageCell.m */; };
 		9C5863B21B3931EA008BB5AD /* PortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5863B11B3931EA008BB5AD /* PortraitView.m */; };
 		9C5863D61B3933C7008BB5AD /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5863B61B3933C7008BB5AD /* MKAnnotationView+WebCache.m */; };
@@ -104,6 +109,16 @@
 		84D4D43A1B3A9FCA00674601 /* JuPlusRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JuPlusRequest.m; path = JuPlus/ThirdFrameWorks/HttpCommications/Exceptions/JuPlusRequest.m; sourceTree = SOURCE_ROOT; };
 		84D4D43C1B3AAE2000674601 /* ClassifyLabelsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClassifyLabelsRequest.h; path = JuPlus/ThirdFrameWorks/HttpCommications/ClassifyLabelsRequest.h; sourceTree = SOURCE_ROOT; };
 		84D4D43D1B3AAE2000674601 /* ClassifyLabelsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClassifyLabelsRequest.m; path = JuPlus/ThirdFrameWorks/HttpCommications/ClassifyLabelsRequest.m; sourceTree = SOURCE_ROOT; };
+		9C0017421B3D247D0018A9BF /* SingleDetialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleDetialViewController.h; sourceTree = "<group>"; };
+		9C0017431B3D247D0018A9BF /* SingleDetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleDetialViewController.m; sourceTree = "<group>"; };
+		9C0017461B3D2B750018A9BF /* HomePageInfoDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageInfoDTO.h; sourceTree = "<group>"; };
+		9C0017471B3D2B750018A9BF /* HomePageInfoDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageInfoDTO.m; sourceTree = "<group>"; };
+		9C0017491B3D2C840018A9BF /* LabelDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelDTO.h; sourceTree = "<group>"; };
+		9C00174A1B3D2C840018A9BF /* LabelDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelDTO.m; sourceTree = "<group>"; };
+		9C00174C1B3D2EAC0018A9BF /* BaseDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDTO.h; sourceTree = "<group>"; };
+		9C00174D1B3D2EAC0018A9BF /* BaseDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDTO.m; sourceTree = "<group>"; };
+		9C00174F1B3D32A00018A9BF /* PriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceView.h; sourceTree = "<group>"; };
+		9C0017501B3D32A00018A9BF /* PriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceView.m; sourceTree = "<group>"; };
 		9C5863AD1B392F53008BB5AD /* PackageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageCell.h; sourceTree = "<group>"; };
 		9C5863AE1B392F53008BB5AD /* PackageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageCell.m; sourceTree = "<group>"; };
 		9C5863B01B3931EA008BB5AD /* PortraitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortraitView.h; sourceTree = "<group>"; };
@@ -270,6 +285,28 @@
 				84D4D43D1B3AAE2000674601 /* ClassifyLabelsRequest.m */,
 			);
 			path = BaseReqAndRespon;
+			sourceTree = "<group>";
+		};
+		9C0017411B3D244A0018A9BF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9C0017421B3D247D0018A9BF /* SingleDetialViewController.h */,
+				9C0017431B3D247D0018A9BF /* SingleDetialViewController.m */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		9C0017451B3D2B480018A9BF /* JuPlusDTO */ = {
+			isa = PBXGroup;
+			children = (
+				9C0017461B3D2B750018A9BF /* HomePageInfoDTO.h */,
+				9C0017471B3D2B750018A9BF /* HomePageInfoDTO.m */,
+				9C0017491B3D2C840018A9BF /* LabelDTO.h */,
+				9C00174A1B3D2C840018A9BF /* LabelDTO.m */,
+				9C00174C1B3D2EAC0018A9BF /* BaseDTO.h */,
+				9C00174D1B3D2EAC0018A9BF /* BaseDTO.m */,
+			);
+			path = JuPlusDTO;
 			sourceTree = "<group>";
 		};
 		9C5863AC1B392F19008BB5AD /* CustomCells */ = {
@@ -481,6 +518,7 @@
 		9C7C3F891B29596300D8F29B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9C0017411B3D244A0018A9BF /* Detail */,
 				9CABB3D21B32974F006AD405 /* views */,
 				9C7C3FAE1B296DCC00D8F29B /* BaseControl */,
 				9C7C3F8A1B29596300D8F29B /* HomePage */,
@@ -491,6 +529,7 @@
 		9C7C3F8A1B29596300D8F29B /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				9C0017451B3D2B480018A9BF /* JuPlusDTO */,
 				9C5863AC1B392F19008BB5AD /* CustomCells */,
 				9C7C3F961B2961F000D8F29B /* GuideViewController.h */,
 				9C7C3F971B2961F000D8F29B /* GuideViewController.m */,
@@ -545,6 +584,8 @@
 				9C5863E71B393EB9008BB5AD /* MarkedLabelView.m */,
 				847C5F001B395CE600706638 /* JuPlusTextField.h */,
 				847C5F011B395CE600706638 /* JuPlusTextField.m */,
+				9C00174F1B3D32A00018A9BF /* PriceView.h */,
+				9C0017501B3D32A00018A9BF /* PriceView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -608,6 +649,7 @@
 				TargetAttributes = {
 					9C7C3F4C1B2958F100D8F29B = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = Q792YXFN33;
 					};
 					9C7C3F651B2958F100D8F29B = {
 						CreatedOnToolsVersion = 6.2;
@@ -713,8 +755,10 @@
 				9CABB3D51B329786006AD405 /* ClassifyView.m in Sources */,
 				9CABB3D91B329BD2006AD405 /* JuPlusUIView.m in Sources */,
 				9C5B24A41B2E7E4C0024C936 /* ScrollRefreshViewFooter.m in Sources */,
+				9C0017511B3D32A00018A9BF /* PriceView.m in Sources */,
 				9C5863E51B3933C7008BB5AD /* UIView+WebCacheOperation.m in Sources */,
 				84D4D4231B3A8E3400674601 /* TimeoutException.m in Sources */,
+				9C0017481B3D2B750018A9BF /* HomePageInfoDTO.m in Sources */,
 				9C7C3FA41B296BFC00D8F29B /* DiscoveryViewController.m in Sources */,
 				9C7C3F8E1B29596300D8F29B /* UIView+JuPlusUIView.m in Sources */,
 				9C5863E41B3933C7008BB5AD /* UIImageView+WebCache.m in Sources */,
@@ -724,6 +768,7 @@
 				9C7C3F8B1B29596300D8F29B /* NSString+JuPlisString.m in Sources */,
 				9C5863E11B3933C7008BB5AD /* UIImage+MultiFormat.m in Sources */,
 				9C5863DC1B3933C7008BB5AD /* SDWebImageDownloaderOperation.m in Sources */,
+				9C0017441B3D247D0018A9BF /* SingleDetialViewController.m in Sources */,
 				9C5B24A31B2E7E4C0024C936 /* ScrollRefreshView.m in Sources */,
 				9C5863E31B3933C7008BB5AD /* UIImageView+HighlightedWebCache.m in Sources */,
 				9C7C3F8D1B29596300D8F29B /* UIImage+JuPlusUIImage.m in Sources */,
@@ -740,6 +785,7 @@
 				9C5863DA1B3933C7008BB5AD /* SDWebImageDecoder.m in Sources */,
 				9C7C3F531B2958F100D8F29B /* main.m in Sources */,
 				9CABB3DE1B32A97A006AD405 /* HobbyItemBtn.m in Sources */,
+				9C00174B1B3D2C840018A9BF /* LabelDTO.m in Sources */,
 				84D4D4221B3A8E3400674601 /* PackException.m in Sources */,
 				9C7C3F981B2961F000D8F29B /* GuideViewController.m in Sources */,
 				9C7C3FB11B296DFB00D8F29B /* JuPlusNavigationController.m in Sources */,
@@ -747,6 +793,7 @@
 				9C5863DE1B3933C7008BB5AD /* SDWebImagePrefetcher.m in Sources */,
 				9C5863D61B3933C7008BB5AD /* MKAnnotationView+WebCache.m in Sources */,
 				9C5863E01B3933C7008BB5AD /* UIImage+GIF.m in Sources */,
+				9C00174E1B3D2EAC0018A9BF /* BaseDTO.m in Sources */,
 				9C7C3FAD1B296CF400D8F29B /* MyAccountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -857,6 +904,7 @@
 			baseConfigurationReference = E62F0845A09F94CB285CAC40 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus";
 				INFOPLIST_FILE = JuPlus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -869,6 +917,7 @@
 			baseConfigurationReference = D7C5DA73B5B9477AD5A090BD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus";
 				INFOPLIST_FILE = JuPlus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -22,4 +22,22 @@
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
 }
+#pragma sizeFont
++(CGSize)getLabelSizeWithString:(NSString *)Str andLabelWidth:(CGFloat)width  andFont:(UIFont *)font
+{
+    NSDictionary *attribute = @{ NSFontAttributeName: font};
+    //NSStringDrawingUsesLineFragmentOrigin获得label的长度和宽度
+    CGSize size = [Str boundingRectWithSize:CGSizeMake(width, 999.0f) options: NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil].size;
+    return size;
+    
+}
++(CGSize)getLabelSizeWithString:(NSString *)Str andLabelHeight:(CGFloat)height  andFont:(UIFont *)font
+{
+        NSDictionary *attribute = @{ NSFontAttributeName: font};
+        //NSStringDrawingUsesLineFragmentOrigin获得label的长度和宽度
+        CGSize size = [Str boundingRectWithSize:CGSizeMake(640.0f, height) options: NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil].size;
+        //  NSLog(@"size.width:%f",size.width);
+        return size;
+}
+
 @end

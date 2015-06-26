@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JuPlusCustomMethod.h"
 #import "JuPlusEnvironmentConfig.h"
+#import "CommonUtil.h"
 @interface JuPlusUIView : UIView
 
 @end

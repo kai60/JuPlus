@@ -45,6 +45,14 @@ CGFloat space = 10.0f;
     }
     return _descripL;
 }
+-(PriceView *)priceV
+{
+    if(!_priceV)
+    {
+        _priceV = [[PriceView alloc]initWithFrame:CGRectMake(100.0f, PICTURE_HEIGHT - 30.0f, 200.0f, 30.0f)];
+    }
+    return _priceV;
+}
 -(UIImageView *)showImgV
 {
     if(!_showImgV)
@@ -53,6 +61,11 @@ CGFloat space = 10.0f;
         [_showImgV sd_setImageWithURL:[NSURL URLWithString:@"http://h.hiphotos.baidu.com/image/pic/item/b3fb43166d224f4a6ffeae120bf790529822d148.jpg"] placeholderImage:[UIImage imageNamed:@"2.jpg"]];
     }
     return _showImgV;
+}
+//cell数据加载
+-(void)loadCellInfo:(HomePageInfoDTO *)homepageDTO
+{
+    
 }
 -(void)setTipsWithArray:(NSArray *)tipsArray
 {
@@ -72,13 +85,7 @@ CGFloat space = 10.0f;
         MarkedLabelView *btn = [[MarkedLabelView alloc]initWithFrame:CGRectMake(orignX, orignY, 80, 30)];
         btn.labelText.text = [NSString stringWithFormat:@"标签%d",i];
         btn.tag = i;
-        [btn.touchBtn addTarget:self action:@selector(senderPress:) forControlEvents:UIControlEventTouchUpInside];
         [self.showImgV addSubview:btn];
     }
-
-}
--(void)senderPress:(UIButton *)sender
-{
-    
 }
 @end

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PortraitView.h"
+#import "HomePageInfoDTO.h"
+#import "PriceView.h"
+
 @interface PackageCell : UITableViewCell
 //头像信息
 @property(nonatomic,strong)PortraitView *topV;
@@ -15,6 +18,11 @@
 @property(nonatomic,strong)UILabel *descripL;
 //套餐图层
 @property(nonatomic,strong)UIImageView *showImgV;
-@property(nonatomic,strong)UIView *priceV;
+//价格
+@property(nonatomic,strong)PriceView *priceV;
+
 -(void)setTipsWithArray:(NSArray *)tipsArray;
+-(void)loadCellInfo:(HomePageInfoDTO *)homepageDTO;
+
+
 @end

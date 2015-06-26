@@ -8,6 +8,7 @@
 
 #import "MarkedLabelView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SingleDetialViewController.h"
 #define space 5.0f
 @implementation MarkedLabelView
 -(id)initWithFrame:(CGRect)frame
@@ -159,8 +160,15 @@
         _touchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _touchBtn.backgroundColor = [UIColor clearColor];
         _touchBtn.frame = CGRectMake(self.labelRight.left, 0.0f, self.labelRight.width, self.labelRight.height);
+        [_touchBtn addTarget:self action:@selector(senderPress:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _touchBtn;
+}
+-(void)senderPress:(UIButton *)sender
+{
+    SingleDetialViewController *sing = [[SingleDetialViewController alloc]init];
+    sing.singleId = [NSString stringWithFormat:@"%ld",(long)sender.tag];
+    [[self getSuperViewController].navigationController pushViewController:sing animated:YES];
 }
 /*
 // Only override drawRect: if you perform custom drawing.
