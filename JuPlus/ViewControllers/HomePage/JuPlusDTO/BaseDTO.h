@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface BaseDTO : NSObject
--(void)loadDTO:(NSDictionary *)dict
+-(void)loadDTO:(NSDictionary *)dict;
+
+
 @end

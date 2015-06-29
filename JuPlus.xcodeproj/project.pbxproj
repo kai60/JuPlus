@@ -19,6 +19,7 @@
 		84D4D4251B3A90A000674601 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D4D4241B3A90A000674601 /* Default-568h@2x.png */; };
 		84D4D43B1B3A9FCA00674601 /* JuPlusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4D43A1B3A9FCA00674601 /* JuPlusRequest.m */; };
 		84D4D43E1B3AAE2000674601 /* ClassifyLabelsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4D43D1B3AAE2000674601 /* ClassifyLabelsRequest.m */; };
+		84E80D5D1B40E20D006D9804 /* PlaceOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E80D5C1B40E20D006D9804 /* PlaceOrderViewController.m */; };
 		9C0017441B3D247D0018A9BF /* SingleDetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0017431B3D247D0018A9BF /* SingleDetialViewController.m */; };
 		9C0017481B3D2B750018A9BF /* HomePageInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0017471B3D2B750018A9BF /* HomePageInfoDTO.m */; };
 		9C00174B1B3D2C840018A9BF /* LabelDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C00174A1B3D2C840018A9BF /* LabelDTO.m */; };
@@ -109,6 +110,8 @@
 		84D4D43A1B3A9FCA00674601 /* JuPlusRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JuPlusRequest.m; path = JuPlus/ThirdFrameWorks/HttpCommications/Exceptions/JuPlusRequest.m; sourceTree = SOURCE_ROOT; };
 		84D4D43C1B3AAE2000674601 /* ClassifyLabelsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClassifyLabelsRequest.h; path = JuPlus/ThirdFrameWorks/HttpCommications/ClassifyLabelsRequest.h; sourceTree = SOURCE_ROOT; };
 		84D4D43D1B3AAE2000674601 /* ClassifyLabelsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClassifyLabelsRequest.m; path = JuPlus/ThirdFrameWorks/HttpCommications/ClassifyLabelsRequest.m; sourceTree = SOURCE_ROOT; };
+		84E80D5B1B40E20D006D9804 /* PlaceOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOrderViewController.h; sourceTree = "<group>"; };
+		84E80D5C1B40E20D006D9804 /* PlaceOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceOrderViewController.m; sourceTree = "<group>"; };
 		9C0017421B3D247D0018A9BF /* SingleDetialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleDetialViewController.h; sourceTree = "<group>"; };
 		9C0017431B3D247D0018A9BF /* SingleDetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleDetialViewController.m; sourceTree = "<group>"; };
 		9C0017461B3D2B750018A9BF /* HomePageInfoDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageInfoDTO.h; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 			children = (
 				9C0017421B3D247D0018A9BF /* SingleDetialViewController.h */,
 				9C0017431B3D247D0018A9BF /* SingleDetialViewController.m */,
+				84E80D5B1B40E20D006D9804 /* PlaceOrderViewController.h */,
+				84E80D5C1B40E20D006D9804 /* PlaceOrderViewController.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -785,6 +790,7 @@
 				9C5863DA1B3933C7008BB5AD /* SDWebImageDecoder.m in Sources */,
 				9C7C3F531B2958F100D8F29B /* main.m in Sources */,
 				9CABB3DE1B32A97A006AD405 /* HobbyItemBtn.m in Sources */,
+				84E80D5D1B40E20D006D9804 /* PlaceOrderViewController.m in Sources */,
 				9C00174B1B3D2C840018A9BF /* LabelDTO.m in Sources */,
 				84D4D4221B3A8E3400674601 /* PackException.m in Sources */,
 				9C7C3F981B2961F000D8F29B /* GuideViewController.m in Sources */,
@@ -904,7 +910,8 @@
 			baseConfigurationReference = E62F0845A09F94CB285CAC40 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus/JuPlus-Prefix.pch";
 				INFOPLIST_FILE = JuPlus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -917,7 +924,8 @@
 			baseConfigurationReference = D7C5DA73B5B9477AD5A090BD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus/JuPlus-Prefix.pch";
 				INFOPLIST_FILE = JuPlus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
