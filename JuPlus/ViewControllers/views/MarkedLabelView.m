@@ -17,7 +17,7 @@
     if(self)
     {
         self.userInteractionEnabled = YES;
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         [self uifig];
     }
     return self;
@@ -63,19 +63,19 @@
         self.tipsImage.frame = nextFrame1;
         self.tipsImage.center = tipsCenter;
     } completion:^(BOOL finished) {
-        NSLog(@"1");
+       // NSLog(@"1");
     }];
     [UIView animateKeyframesWithDuration:0.3f delay:0.3 options:0 animations:^{
         self.tipsImage.frame = nextFrame2;
         self.tipsImage.center = tipsCenter;
     } completion:^(BOOL finished) {
-        NSLog(@"2");
+       // NSLog(@"2");
     }];
     [UIView animateKeyframesWithDuration:0.3f delay:0.6 options:0 animations:^{
         self.tipsImage.frame = orignFrame;
         self.tipsImage.center = tipsCenter;
     } completion:^(BOOL finished) {
-        NSLog(@"3");
+       // NSLog(@"3");
 
     }];
     [UIView animateKeyframesWithDuration:0.5f delay:1.0f options:0 animations:^{
@@ -86,7 +86,7 @@
         self.alphaImage.frame = orignAlpha;
         self.alphaImage.alpha = 1;
         self.alphaImage.center = alphaCenter;
-        NSLog(@"4");
+       // NSLog(@"4");
         [UIView animateKeyframesWithDuration:0.5f delay:0 options:0 animations:^{
             self.alphaImage.frame = alpha1;
             self.alphaImage.alpha = 0;
@@ -96,7 +96,7 @@
             self.alphaImage.alpha = 1;
             self.alphaImage.center = alphaCenter;
             
-            NSLog(@"5");
+          //  NSLog(@"5");
             
         }];
     }];
@@ -106,11 +106,11 @@
 {
     if(!_tipsImage)
     {
-        CGFloat tipRact = 10.0f;
+        CGFloat tipRact = 6.5f;
         _tipsImage = [[UIImageView alloc]initWithFrame:CGRectMake(space, (self.height - tipRact)/2, tipRact, tipRact)];
         _tipsImage.layer.cornerRadius = tipRact/2;
         _tipsImage.layer.masksToBounds = YES;
-        [_tipsImage setImage:[UIImage imageNamed:@"icons_2"]];
+        [_tipsImage setImage:[UIImage imageNamed:@"tag_point"]];
     }
     return _tipsImage;
 }
@@ -118,7 +118,7 @@
 {
     if(!_alphaImage)
     {
-        CGFloat tipRact = 10.0f;
+        CGFloat tipRact = 6.5f;
         _alphaImage = [[UIImageView alloc]initWithFrame:CGRectMake(space, (self.height - tipRact)/2, tipRact, tipRact)];
         _alphaImage.layer.cornerRadius = tipRact/2;
         _alphaImage.layer.masksToBounds = YES;
@@ -140,7 +140,7 @@
     if(!_labelRight)
     {
         _labelRight = [[UIImageView alloc]initWithFrame:CGRectMake(self.tipsImage.right+space*2, 0, self.width - self.tipsImage.width+space, self.height)];
-        [_labelRight setImage:[UIImage imageNamed:@"3"]];
+        [_labelRight setImage:[UIImage imageNamed:@"tag_label"]];
     }
     return _labelRight;
 }
@@ -148,7 +148,9 @@
 {
     if(!_labelText)
     {
-        _labelText = [[UILabel alloc]initWithFrame:CGRectMake(space, 0, self.labelRight.width - space*2, self.labelRight.height)];
+        _labelText = [[UILabel alloc]initWithFrame:CGRectMake(space*2, 0, self.labelRight.width - space*2, self.labelRight.height)];
+        [_labelText setTextColor:[UIColor whiteColor]];
+        [_labelText setFont:FontType(14.0f)];
         _labelText.text = @"测试";
     }
     return _labelText;
@@ -168,7 +170,10 @@
 {
     SingleDetialViewController *sing = [[SingleDetialViewController alloc]init];
     sing.singleId = [NSString stringWithFormat:@"%ld",(long)sender.tag];
-    [[self getSuperViewController].navigationController pushViewController:sing animated:YES];
+    UIViewController *vc = [self getSuperViewController];
+    [vc.navigationController.view.layer addAnimation:[self getPushTransition] forKey:nil];
+    [vc.navigationController pushViewController:sing animated:NO];
+
 }
 /*
 // Only override drawRect: if you perform custom drawing.

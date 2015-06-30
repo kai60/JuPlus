@@ -45,7 +45,12 @@
 //测试环境
 #ifdef kDevTest
 //网络请求IP地址
-#define FRONT_SERVER_URL @""
+//#define FRONT_SERVER_URL @"http://115.29.233.175:7064"
+//#define FRONT_SERVER_URL @"https://api.app.net:8080"
+#define FRONT_SERVER_URL @"http://ip.taobao.com"
+
+
+
 //H5界面前缀地址
 #define FRONT_WEB_URL @""
 //图片的前置地址

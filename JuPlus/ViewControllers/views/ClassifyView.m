@@ -10,6 +10,7 @@
 #import "JuPlusEnvironmentConfig.h"
 #import "HobbyItemBtn.h"
 #import <AFNetworking/AFNetworking.h>
+#import "ClassifyLabelsRequest.h"
 @implementation ClassifyView
 {
     UIView *superView;
@@ -44,6 +45,14 @@
 //后台下发标签列表，统计用户的兴趣内容
 -(void)startRequest
 {
+    ClassifyLabelsRequest *req = [[ClassifyLabelsRequest alloc]init];
+//    [req setField:@"86697824" forKey:@"carNo"];
+//    [req setField:@"0" forKey:@"token"];
+    [HttpCommunication request:req getResponse:nil Success:^(JuPlusResponse *response) {
+        
+    } failed:^(NSString *errorCode, NSString *errorMsg) {
+        
+    } showProgressView:YES with:self];
     [self fileData];
 }
 -(void)btnClick:(UIButton *)sender

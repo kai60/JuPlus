@@ -10,6 +10,7 @@
 #import "JuPlusCustomMethod.h"
 #import "JuPlusEnvironmentConfig.h"
 #import "CommonUtil.h"
+#import "HttpCommunication.h"
 @interface JuPlusUIView : UIView
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JuPlusEnvironmentConfig.h"
 #import "JuPlusCustomMethod.h"
+#import "JuPlusUIView.h"
 @interface BaseViewController : UIViewController
 @property(nonatomic,strong)UIView *navView;
 @property(nonatomic,strong)UILabel *titleLabel;
@@ -19,4 +20,6 @@
 //一些系统的弹出处理,例如强制更新，登录失败
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 -(void)loadBaseUI;
+//数据加载
+-(void)startRequest;
 @end

@@ -58,6 +58,7 @@ CGFloat space = 10.0f;
     if(!_showImgV)
     {
         _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(space, self.descripL.bottom, self.topV.width, 300.0f)];
+        _showImgV.userInteractionEnabled = YES;
         [_showImgV sd_setImageWithURL:[NSURL URLWithString:@"http://h.hiphotos.baidu.com/image/pic/item/b3fb43166d224f4a6ffeae120bf790529822d148.jpg"] placeholderImage:[UIImage imageNamed:@"2.jpg"]];
     }
     return _showImgV;
@@ -82,9 +83,10 @@ CGFloat space = 10.0f;
         CGFloat orignX = [[dic objectForKey:@"orignX"] floatValue]/Percentage;
         CGFloat orignY = [[dic objectForKey:@"orignY"] floatValue]/Percentage;
         
-        MarkedLabelView *btn = [[MarkedLabelView alloc]initWithFrame:CGRectMake(orignX, orignY, 80, 30)];
+        MarkedLabelView *btn = [[MarkedLabelView alloc]initWithFrame:CGRectMake(orignX, orignY, 72, 33)];
         btn.labelText.text = [NSString stringWithFormat:@"标签%d",i];
         btn.tag = i;
+        
         [self.showImgV addSubview:btn];
     }
 }

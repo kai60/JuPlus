@@ -9,5 +9,5 @@
 #import "JuPlusRequest.h"
 
 @interface ClassifyLabelsRequest : JuPlusRequest
-
+-(id)init;
 @end

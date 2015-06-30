@@ -10,6 +10,6 @@
 #define FurnHouse_JuPlusConstant_h
 
 #import "JuPlusGlobalNSUserDefault.h"
-#import "JuPlusEnvironmentConfig.h"
 #import "JuPlusReleaseConfig.h"
+#import "JuPlusEnvironmentConfig.h"
 #endif

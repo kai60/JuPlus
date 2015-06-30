@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "HttpCommunication.h"
 @implementation BaseViewController
 
 - (void)viewDidLoad {
@@ -19,10 +19,16 @@
     [self.leftBtn setHidden:YES];
     [self.view addSubview:self.viewBack];
     [self loadBaseUI];
+    [self startRequest];
     // Do any additional setup after loading the view.
 }
 //需要重写的init方法
 -(void)loadBaseUI
+{
+    
+}
+//网络请求
+-(void)startRequest
 {
     
 }
@@ -84,5 +90,9 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 @end
