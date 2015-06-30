@@ -20,8 +20,9 @@ CGFloat space = 20.0f;
     //滚动展示图层
     [self.viewBack addSubview:self.imageScroll];
     [self.imageScroll addSubview:self.pageControll];
-    [self.viewBack addSubview:self.descripLabel];
     [self.viewBack addSubview:self.bottomV];
+    [self.bottomV addSubview:self.descripLabel];
+
     //信息展示
     [self.bottomV addSubview:self.basisView];
     [self.basisView addSubview:self.basisLabel];
@@ -74,7 +75,7 @@ CGFloat space = 20.0f;
 {
     if(!_descripLabel)
     {
-        _descripLabel = [[RTLabel alloc]initWithFrame:CGRectMake(0.0f, self.imageScroll.bottom, SCREEN_WIDTH, 100.0f)];
+        _descripLabel = [[RTLabel alloc]initWithFrame:CGRectMake(0.0f,0.0f, SCREEN_WIDTH, 100.0f)];
         
     }
     return _descripLabel;
