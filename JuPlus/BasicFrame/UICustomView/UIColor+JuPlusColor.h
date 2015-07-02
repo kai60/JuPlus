@@ -18,6 +18,8 @@
 #undef	HEX_RGB
 #define HEX_RGB(V)		[UIColor colorWithRGBHex:V]
 
+#define Color_Basic RGBCOLOR(172, 120, 39)
+#define Color_Gray_lines RGBACOLOR(111,111,111,0.3)
 @interface UIColor (JuPlusColor)
 
 + (UIColor *)colorWithRGBHex:(UInt32)hex;

@@ -18,7 +18,7 @@
 
 #pragma mark - Block functions Block 相关
 
-///block 声明
+///block 声明(网络加载结果处理)
 #ifdef NS_BLOCKS_AVAILABLE
 typedef void (^JuPlusBlock)(void);
 typedef void (^JuPlusOperationCallBackBlock)(BOOL isSuccess, NSString *errorMsg);
@@ -26,7 +26,7 @@ typedef void (^JuPlusCallBackBlockWithResult)(BOOL isSuccess, NSString *errorCod
 typedef void (^JuPlusArrayBlock)(NSArray *list);
 
 typedef void (^JuPlusCallBackSuccess)(JuPlusResponse *response);
-typedef void (^JuPlusCallBackFailed)(NSString *errorCode,NSString *errorMsg);
+typedef void (^JuPlusCallBackFailed)(NSDictionary *errorDTO);
 
 
 #endif

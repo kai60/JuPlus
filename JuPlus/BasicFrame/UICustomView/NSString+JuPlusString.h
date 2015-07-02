@@ -11,5 +11,5 @@
 @interface NSString (JuPlusString)
 //字符串转化为三位分割显示
 - (NSString *)toFormatNumberString;
-
+//字符串处理
 @end

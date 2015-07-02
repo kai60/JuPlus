@@ -39,7 +39,7 @@ CGFloat space = 10.0f;
 {
     if(!_descripL)
     {
-        _descripL = [[UILabel alloc]initWithFrame:CGRectMake(space, self.topV.bottom, self.topV.width, 20.0f)];
+        _descripL = [[UILabel alloc]initWithFrame:CGRectMake(space, self.topV.bottom+space, self.topV.width, 20.0f)];
         _descripL.text = @"测试描述";
         [_descripL setFont:FontType(12.0f)];
     }
@@ -57,7 +57,7 @@ CGFloat space = 10.0f;
 {
     if(!_showImgV)
     {
-        _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(space, self.descripL.bottom, self.topV.width, 300.0f)];
+        _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.descripL.bottom+space, self.contentView.width, PICTURE_HEIGHT)];
         _showImgV.userInteractionEnabled = YES;
         [_showImgV sd_setImageWithURL:[NSURL URLWithString:@"http://h.hiphotos.baidu.com/image/pic/item/b3fb43166d224f4a6ffeae120bf790529822d148.jpg"] placeholderImage:[UIImage imageNamed:@"2.jpg"]];
     }

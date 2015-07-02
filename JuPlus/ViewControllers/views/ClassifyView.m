@@ -11,6 +11,8 @@
 #import "HobbyItemBtn.h"
 #import <AFNetworking/AFNetworking.h>
 #import "ClassifyLabelsRequest.h"
+#import "ClassifyRespon.h"
+#import "ClassifyTagsDTO.h"
 @implementation ClassifyView
 {
     UIView *superView;
@@ -31,29 +33,29 @@
     CGFloat spaceY = 40.0f;
     CGFloat btnW = (self.width - spaceX *4)/3;
     CGFloat btnH = 30.0f;
-    for(int i=0;i<10;i++)
+    for(int i=0;i<[self.dataArray count];i++)
     {
+        ClassifyTagsDTO *tagDTO = [self.dataArray objectAtIndex:i];
         HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX+self.width*(i/9)+(spaceX+btnW)*(i%3),100.0f+spaceY+ (spaceY+btnH)*((i/3)%3), btnW, btnH)];
-        [btn.iconBtn setTitle:[NSString stringWithFormat:@"标签%d",i] forState:UIControlStateNormal];
-        btn.iconBtn.tag = i;
+        [btn.iconBtn setTitle:tagDTO.name forState:UIControlStateNormal];
+        btn.iconBtn.tag = [tagDTO.regNo integerValue];
         [btn.iconBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.itemsScroll addSubview:btn];
     }
-    self.itemsScroll.contentSize = CGSizeMake(SCREEN_WIDTH*(9/9+1), self.itemsScroll.width);
+    self.itemsScroll.contentSize = CGSizeMake(SCREEN_WIDTH*(([self.dataArray count] -1)/9+1), self.itemsScroll.width);
 
 }
 //后台下发标签列表，统计用户的兴趣内容
 -(void)startRequest
 {
     ClassifyLabelsRequest *req = [[ClassifyLabelsRequest alloc]init];
-//    [req setField:@"86697824" forKey:@"carNo"];
-//    [req setField:@"0" forKey:@"token"];
-    [HttpCommunication request:req getResponse:nil Success:^(JuPlusResponse *response) {
-        
-    } failed:^(NSString *errorCode, NSString *errorMsg) {
-        
+    ClassifyRespon *respon = [[ClassifyRespon alloc]init];
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        [self.dataArray addObjectsFromArray:respon.tagsArray];
+        [self fileData];
+    } failed:^(NSDictionary *errorDTO) {
+        [self errorExp:errorDTO];
     } showProgressView:YES with:self];
-    [self fileData];
 }
 -(void)btnClick:(UIButton *)sender
 {
@@ -96,6 +98,7 @@
         _sureBtn.frame=CGRectMake(0, self.height-44, SCREEN_WIDTH, 44);
         _sureBtn.titleLabel.font=[UIFont fontWithName:FONTSTYLE size:20.0];
         [_sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [_sureBtn setBackgroundColor:Color_Basic];
         [_sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sureBtn addTarget:self action:@selector(surePress:) forControlEvents:UIControlEventTouchUpInside];
     }

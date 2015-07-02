@@ -7,8 +7,8 @@
 //
 
 #import "SingleDetialViewController.h"
-CGFloat space = 20.0f;
 @implementation SingleDetialViewController
+#define space 20.0f
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -20,6 +20,7 @@ CGFloat space = 20.0f;
     //滚动展示图层
     [self.viewBack addSubview:self.imageScroll];
     [self.imageScroll addSubview:self.pageControll];
+    //需要出层级显示效果的view
     [self.viewBack addSubview:self.bottomV];
     [self.bottomV addSubview:self.descripLabel];
 
@@ -27,16 +28,25 @@ CGFloat space = 20.0f;
     [self.bottomV addSubview:self.basisView];
     [self.basisView addSubview:self.basisLabel];
     [self.basisView addSubview:self.basisScroll];
+    [self.viewBack addSubview:self.placeOrderBtn];
     
 }
 -(void)startRequest
 {
+    //请求成功之后 处理
+    //图片数据
+    [self fileImageData];
+    //描述文字
     CGSize optimumSize = [self.descripLabel optimumSize];
     CGRect frame = [self.descripLabel frame];
     frame.size.height = (int)optimumSize.height+5; // +5 to fix height issue, this should be automatically fixed in iOS5
     [self.descripLabel setFrame:frame];
     [self layoutSubviews];
 
+}
+-(void)fileImageData
+{
+    
 }
 -(void)layoutSubviews
 {
@@ -110,6 +120,8 @@ CGFloat space = 20.0f;
         _placeOrderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _placeOrderBtn.frame = CGRectMake(0.0f, view_height - 44.0f, SCREEN_WIDTH, 44.0f);
         [_placeOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_placeOrderBtn setTitle:@"单品购买" forState:UIControlStateNormal];
+        [_placeOrderBtn setBackgroundColor:Color_Basic];
         [_placeOrderBtn addTarget:self action:@selector(payPress) forControlEvents:UIControlEventTouchUpInside];
     }
     return _placeOrderBtn;

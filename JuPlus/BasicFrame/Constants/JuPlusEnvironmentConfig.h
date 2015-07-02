@@ -24,7 +24,7 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 //系统版本
 #define  VERSION [[UIDevice currentDevice].systemVersion doubleValue]
-#define PICTURE_HEIGHT 210.0f
+#define PICTURE_HEIGHT 300.0f
 //用于下拉加载更多的每页数据数
 #define PAGESIZE 10
 
@@ -47,7 +47,7 @@
 //网络请求IP地址
 //#define FRONT_SERVER_URL @"http://115.29.233.175:7064"
 //#define FRONT_SERVER_URL @"https://api.app.net:8080"
-#define FRONT_SERVER_URL @"http://ip.taobao.com"
+#define FRONT_SERVER_URL @"http://192.168.0.113"
 
 
 

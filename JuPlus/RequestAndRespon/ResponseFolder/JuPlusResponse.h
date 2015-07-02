@@ -10,6 +10,8 @@
 #define RESPONSE_CODE @"resCode"
 #define RESPONSE_MESSAGE @"resMsg"
 #define RESPONSE_DATA @"data"
+#define RESPONSE_OK @"000000" //服务器返回的数据成功信息
+#define RESPONSE_FAIL @"111111" //可能用于强制升级等状态吗
 //加密类型
 typedef enum{
     EncryptionType_NO,      //不加密
@@ -33,7 +35,7 @@ typedef enum{
 @property(nonatomic,assign) BOOL signState;
 @property(nonatomic,assign) EncryptionType encryptionState;
 
--(void)parseResponse:(NSData *) response encryptionType:(EncryptionType)encryptionType signType:(BOOL) sign;
+-(void)parseResponse:(NSDictionary *) response encryptionType:(EncryptionType)encryptionType signType:(BOOL) sign;
 
 -(void)unPackJsonValue:(NSDictionary *)dict;
 

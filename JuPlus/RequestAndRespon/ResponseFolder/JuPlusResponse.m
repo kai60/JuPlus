@@ -25,17 +25,17 @@
     return self;
 }
 //网络连接成功时候的数据处理
--(void)parseResponse:(NSData *) response encryptionType:(EncryptionType)encryptionType signType:(BOOL) sign
+-(void)parseResponse:(NSDictionary *) response encryptionType:(EncryptionType)encryptionType signType:(BOOL) sign
 {
-    NSError *jsonError = nil;
-    NSDictionary * responseDic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&jsonError];
-    if (jsonError) {
-        
+   // NSError *jsonError = nil;
+    NSDictionary * responseDic = nil;
+    if(![response isKindOfClass:[NSDictionary class]])
+    {    
         @throw [UnPackException exception:@"Json数据格式错误"];
     }
     else
     {
-        
+        responseDic = (NSDictionary *)response;
         id json = [responseDic objectForKey:RESPONSE_DATA];
         // NSLog(@"json = %@",json);
         

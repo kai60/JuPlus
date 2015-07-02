@@ -11,6 +11,18 @@
 #import "SingleDetialViewController.h"
 #define space 5.0f
 @implementation MarkedLabelView
+{
+    CGPoint tipsCenter ;
+    CGPoint alphaCenter ;
+    //先缩小后放大
+    CGRect nextFrame1 ;
+    CGRect nextFrame2 ;
+    CGRect orignFrame ;
+    
+    CGRect alpha1  ;
+    CGRect orignAlpha ;
+
+}
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -30,6 +42,26 @@
     [self.labelRight addSubview:self.labelText];
     [self addSubview:self.touchBtn];
     
+    CGFloat tipsW = self.tipsImage.width;
+    //背景view的转变
+    CGFloat scale = 3.5f;
+    CGFloat changeSpace = tipsW*(scale - 1);
+    
+    CGFloat scale1 = 0.8f;
+    CGFloat scale2 = 1.2f;
+    CGFloat changeSpace1 = tipsW*(1.0f - scale1);
+    CGFloat changeSpace2 = tipsW*(scale2 - 1.0f);
+    
+     tipsCenter = self.tipsImage.center;
+     alphaCenter = self.alphaImage.center;
+    //先缩小后放大
+     nextFrame1 = CGRectMake(self.tipsImage.left + changeSpace1, self.tipsImage.top + changeSpace1, tipsW*scale1, tipsW*scale1);
+     nextFrame2 = CGRectMake(self.tipsImage.left - changeSpace2, self.tipsImage.top - changeSpace2, tipsW*scale2, tipsW*scale2);
+     orignFrame = self.tipsImage.frame;
+    
+     alpha1 = CGRectMake(self.alphaImage.left - changeSpace, self.alphaImage.top-changeSpace, tipsW*scale, tipsW*scale);
+     orignAlpha = self.alphaImage.frame;
+
     
     [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(setAnimation) userInfo:nil repeats:YES];    //使用timer定时，每4秒触发一次，然后就是写selector了。
     
@@ -38,26 +70,6 @@
 }
 -(void)setAnimation
 {
-    CGFloat tipsW = self.tipsImage.width;
-    //背景view的转变
-    CGFloat scale = 3.5f;
-    CGFloat changeSpace = tipsW*(scale - 1);
-
-    CGFloat scale1 = 0.8f;
-    CGFloat scale2 = 1.2f;
-    CGFloat changeSpace1 = tipsW*(1.0f - scale1);
-    CGFloat changeSpace2 = tipsW*(scale2 - 1.0f);
-
-    CGPoint tipsCenter = self.tipsImage.center;
-    CGPoint alphaCenter = self.alphaImage.center;
-    //先缩小后放大
-    CGRect nextFrame1 = CGRectMake(self.tipsImage.left + changeSpace1, self.tipsImage.top + changeSpace1, tipsW*scale1, tipsW*scale1);
-    CGRect nextFrame2 = CGRectMake(self.tipsImage.left - changeSpace2, self.tipsImage.top - changeSpace2, tipsW*scale2, tipsW*scale2);
-    CGRect orignFrame = self.tipsImage.frame;
-
-    CGRect alpha1 = CGRectMake(self.alphaImage.left - changeSpace, self.alphaImage.top-changeSpace, tipsW*scale, tipsW*scale);
-    CGRect orignAlpha = self.alphaImage.frame;
-
     
     [UIView animateKeyframesWithDuration:0.3f delay:0 options:0 animations:^{
         self.tipsImage.frame = nextFrame1;
@@ -122,7 +134,7 @@
         _alphaImage = [[UIImageView alloc]initWithFrame:CGRectMake(space, (self.height - tipRact)/2, tipRact, tipRact)];
         _alphaImage.layer.cornerRadius = tipRact/2;
         _alphaImage.layer.masksToBounds = YES;
-        _alphaImage.alpha = 1;
+        _alphaImage.alpha = 0;
         [_alphaImage setImage:[UIImage imageWithColor:[UIColor blackColor]]];
     }
     return _alphaImage;

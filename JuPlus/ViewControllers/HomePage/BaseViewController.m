@@ -20,6 +20,7 @@
     [self.view addSubview:self.viewBack];
     [self loadBaseUI];
     [self startRequest];
+    self.navigationController.navigationBarHidden = YES;
     // Do any additional setup after loading the view.
 }
 //需要重写的init方法
@@ -37,7 +38,7 @@
     if(!_leftBtn)
     {
         _leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _leftBtn.frame = CGRectMake(10.0f, 16.0f, 30.0f, 30.0f);
+        _leftBtn.frame = CGRectMake(10.0f, 7.0f, 30.0f, 30.0f);
         [_leftBtn addTarget:self action:@selector(backPress) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftBtn;
@@ -50,8 +51,8 @@
 {
     if(!_navView)
     {
-        _navView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 64.0f)];
-        [_navView setBackgroundColor:RGBCOLOR(248, 134, 9)];
+        _navView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 20.0f, SCREEN_WIDTH, 44.0f)];
+        [_navView setBackgroundColor:RGBCOLOR(239, 239, 239)];
     }
     return _navView;
 }
@@ -61,7 +62,7 @@
     CGFloat titleWidth = 120.0f;
     if(!_titleLabel)
     {
-        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.width - titleWidth)/2, 20.0f, titleWidth, 44.0f)];
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.width - titleWidth)/2, 0.0f, titleWidth, 44.0f)];
         _titleLabel.backgroundColor = [UIColor clearColor];
         [_titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
         [_titleLabel setTextColor:[UIColor whiteColor]];
@@ -74,7 +75,7 @@
 {
     if(!_viewBack)
     {
-        _viewBack = [[UIView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, SCREEN_HEIGHT - nav_height)];
+        _viewBack = [[UIView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
         _viewBack.backgroundColor = RGBCOLOR(111, 111, 111);
     }
     return _viewBack;
@@ -85,6 +86,11 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     alert.tag=tag;
     [alert show];
+}
+//返回数据后台提示的错误信息处理
+-(void)errorExp:(NSDictionary *)exp
+{
+    NSLog(@"%@",exp);
 }
 //一些系统的弹出处理,例如强制更新，登录失败
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

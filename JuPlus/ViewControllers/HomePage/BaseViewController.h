@@ -15,6 +15,7 @@
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)UIView *viewBack;
 @property(nonatomic,strong)UIButton *leftBtn;
+-(void)errorExp:(NSDictionary *)exp;
 //提示的错误消息
 - (void)showAlertView:(NSString *)msg withTag:(int)tag;
 //一些系统的弹出处理,例如强制更新，登录失败

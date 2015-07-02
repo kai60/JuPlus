@@ -25,6 +25,7 @@
         
         self.responseSerializer = [AFJSONResponseSerializer serializer];
         self.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
+        self.requestSerializer = [AFJSONRequestSerializer serializer];
     }
     return self;
 }

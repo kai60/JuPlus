@@ -1,20 +1,20 @@
 //
-//  ClassifyLabelsRequest.m
+//  RegisterReq.m
 //  JuPlus
 //
-//  Created by admin on 15/6/24.
+//  Created by admin on 15/6/30.
 //  Copyright (c) 2015年 居+. All rights reserved.
-//
+//获取验证码
 
-#import "ClassifyLabelsRequest.h"
+#import "VerificationReq.h"
 
-@implementation ClassifyLabelsRequest
+@implementation VerificationReq
 -(id)init{
     self = [super init];
     if (self)
     {
         self.urlSeq = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",nil];
-        self.requestMethod = RequestMethod_GET;
+        self.requestMethod = RequestMethod_POST;
         self.validParams = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",nil];
         self.packDic = [[NSMutableDictionary alloc] initWithCapacity:0];
         self.path = [[NSString alloc] init];
@@ -25,8 +25,9 @@
 
 -(void)setPath{
     
-    [self setField:@"service" forKey:@"ModuleName"];
-    [self setField:@"getIpInfo.php?ip=63.223.108.42" forKey:@"FunctionName"];
+    [self setField:@"mem" forKey:@"ModuleName"];
+    [self setField:@"sendRegMsg" forKey:@"FunctionName"];
 }
+
 
 @end

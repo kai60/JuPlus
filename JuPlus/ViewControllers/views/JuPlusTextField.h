@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface JuPlusTextField : UITextField<UITextFieldDelegate>
+@interface JuPlusTextField : UIView<UITextFieldDelegate>
 @property(nonatomic,strong)UILabel *headTitleLa;//标题
 @property(nonatomic,strong)UITextField *contentField;//field
 

@@ -7,7 +7,7 @@
 //
 
 #import "JuPlusUIView.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+JuPlusUIImageView.h"
 @interface PortraitView : JuPlusUIView
 //头像
 @property(nonatomic,strong)UIImageView *portraitImgV;

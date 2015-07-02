@@ -7,7 +7,9 @@
 //
 
 #import "JuPlusTextField.h"
-#import "JuPlusEnvironmentConfig.h"
+#import "JuPlusCustomMethod.h"
+#import "UIImage+JuPlusUIImage.h"
+#import "UIView+JuPlusUIView.h"
 @implementation JuPlusTextField
 -(id)initWithFrame:(CGRect)frame
 {
@@ -18,19 +20,19 @@
         self.userInteractionEnabled=YES;
         
         //标题
-        _headTitleLa=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 50, y)];
+        _headTitleLa=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, y)];
         _headTitleLa.backgroundColor=[UIColor clearColor];
         _headTitleLa.textAlignment=NSTextAlignmentLeft;
         _headTitleLa.font= FontType(16.0f);
-       // _headTitleLa.textColor=Upload_Gray_title;
+        _headTitleLa.textColor=[UIColor grayColor];
         [self addSubview:_headTitleLa];
         
         //field
-        _contentField=[[UITextField alloc]initWithFrame:CGRectMake(60, 2, 240, y)];
+        _contentField=[[UITextField alloc]initWithFrame:CGRectMake(75, 2, self.width - 75, y)];
         [_contentField setBorderStyle:UITextBorderStyleNone];
         _contentField.secureTextEntry=NO;
-    //  _contentField.textColor=Upload_Gray_title;
-        _contentField.font=[UIFont fontWithName:FONTSTYLE size:16.0];
+        _contentField.textColor=[UIColor grayColor];
+        _contentField.font=FontType(16.0f);
         _contentField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;//自适应字体
         _contentField.keyboardType=UIKeyboardTypeNumbersAndPunctuation;
         _contentField.delegate=self;
@@ -38,6 +40,9 @@
         _contentField.clearButtonMode = UITextFieldViewModeWhileEditing;
         [self addSubview:_contentField];
         
+        UIImageView *line = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f,self.height -1.0f, self.width, 1.0f)];
+        [line setImage:[UIImage imageWithColor:Color_Gray_lines]];
+        [self addSubview:line];
         return self;
         
         

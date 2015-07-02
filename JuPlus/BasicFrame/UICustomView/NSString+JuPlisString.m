@@ -8,7 +8,9 @@
 
 #import "NSString+JuPlusString.h"
 //字符串转换
-@implementation NSString(ExtMethod)
+@implementation NSString (JuPlusString)
+
+//@implementation NSString(ExtMethod)
 
 - (NSString *)toFormatNumberString
 {
@@ -54,8 +56,8 @@
     {}
     
 }
-@end
-
-@implementation NSString (JuPlusString)
 
 @end
+
+
+//@end

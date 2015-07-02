@@ -20,4 +20,5 @@
         failed:(JuPlusCallBackFailed)failedBlock
         showProgressView:(BOOL)showProgressBar
           with:(UIView *)view;
+
 @end

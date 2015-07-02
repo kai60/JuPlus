@@ -23,7 +23,7 @@
     [self loadBaseUI];
     
     self.registerBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.registerBtn.frame=CGRectMake(20, 110, 80, 30);
+    self.registerBtn.frame=CGRectMake(20, 210, 80, 30);
     [self.registerBtn setTitle:@"快速注册" forState:UIControlStateNormal];
     [self.registerBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
     //[self.registerBtn setTitleColor:Upload_Gray_title forState:UIControlStateNormal];
@@ -31,7 +31,7 @@
     [self.registerBtn addTarget:self action:@selector(regPress:) forControlEvents:UIControlEventTouchUpInside];
     
     self.forgetBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.forgetBtn.frame=CGRectMake(220, 110, 80, 30);
+    self.forgetBtn.frame=CGRectMake(220, 210, 80, 30);
     [self.forgetBtn setTitle:@"忘记密码？" forState:UIControlStateNormal];
     [self.forgetBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
     //[self.forgetBtn setTitleColor:Upload_Gray_title forState:UIControlStateNormal];
@@ -66,7 +66,7 @@
     backView.backgroundColor=[UIColor whiteColor];
     backView.layer.masksToBounds=YES;
     backView.layer.cornerRadius=5;
-    [self.view addSubview:backView];
+    [self.viewBack addSubview:backView];
     
     NSArray *array1=[NSArray arrayWithObjects:@"手机",@"密码", nil];
     NSArray *array2=[NSArray arrayWithObjects:@"请输入手机",@"请输入密码",nil];

@@ -1,0 +1,20 @@
+//
+//  SingleDetailRespon.h
+//  JuPlus
+//
+//  Created by admin on 15/6/30.
+//  Copyright (c) 2015年 居+. All rights reserved.
+//
+
+#import "JuPlusResponse.h"
+
+@interface SingleDetailRespon : JuPlusResponse
+//单品展示图层数组
+@property(nonatomic,strong)NSArray *imageArray;
+//单品描述H5文字段
+@property(nonatomic,strong)NSString *htmlString;
+//主要成分对应的图层数组展示
+@property(nonatomic,strong)NSArray *basisArray;
+//单品编号
+@property(nonatomic,strong)NSString *singleNo;
+@end
