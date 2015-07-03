@@ -13,7 +13,7 @@
     self = [super init];
     if (self)
     {
-        self.urlSeq = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",nil];
+        self.urlSeq = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",@"productNo",nil];
         self.requestMethod = RequestMethod_GET;
         self.validParams = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",nil];
         self.packDic = [[NSMutableDictionary alloc] initWithCapacity:0];
@@ -22,11 +22,10 @@
     [self setPath];
     return self;
 }
-
 -(void)setPath{
     
-    [self setField:@"tag" forKey:@"ModuleName"];
-    [self setField:@"list" forKey:@"FunctionName"];
+    [self setField:@"product" forKey:@"ModuleName"];
+    [self setField:@"detail" forKey:@"FunctionName"];
 }
 
 @end

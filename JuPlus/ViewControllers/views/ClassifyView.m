@@ -13,6 +13,7 @@
 #import "ClassifyLabelsRequest.h"
 #import "ClassifyRespon.h"
 #import "ClassifyTagsDTO.h"
+#import "SCGIFImageView.h"
 @implementation ClassifyView
 {
     UIView *superView;
@@ -57,6 +58,7 @@
         [self errorExp:errorDTO];
     } showProgressView:YES with:self];
 }
+//允许多重选择的点击以及加载事件
 -(void)btnClick:(UIButton *)sender
 {
     if(!sender.selected)
@@ -65,7 +67,10 @@
         UIView *sup =  sender.superview;
         if([sup isKindOfClass:[HobbyItemBtn class]])
         {
-            [((HobbyItemBtn *)sup).selectedImage setHidden:NO];
+            NSString* filePath = [[NSBundle mainBundle] pathForResource:@"checkmark" ofType:@"gif"];
+          SCGIFImageView * selectedImage = [[SCGIFImageView alloc]initWithGIFFile:filePath withSeconds:0.5];
+            selectedImage.frame = CGRectMake(sup.width - 16.0f, (sup.height - 16.0f)/2, 16.0f, 16.0f);
+            [sup addSubview:selectedImage];
         }
         [self.selectArr addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
     }
@@ -75,9 +80,30 @@
         UIView *sup =  sender.superview;
         if([sup isKindOfClass:[HobbyItemBtn class]])
         {
-            [((HobbyItemBtn *)sup).selectedImage setHidden:YES];
+            for(UIView *v in sup.subviews)
+            {
+                if([v isKindOfClass:[SCGIFImageView class]])
+                {
+                    [v removeFromSuperview];
+                }
+            }
         }
         [self.selectArr removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+    }
+}
+//确认按钮
+-(void)surePress:(UIButton *)sender
+{
+    NSLog(@"selArr = %@",self.selectArr);
+    [self removeFromSuperview];
+    [superView removeVisualEffect];
+}
+//只可单选的点击事件以及提交按钮
+-(void)btnClick1:(UIButton *)sender
+{
+    if(!sender.selected)
+    {
+        sender.selected = YES;
     }
 }
 #pragma uifig
@@ -122,14 +148,10 @@
 }
 -(void)uifig
 {
+
     [self addSubview:self.itemsScroll];
     [self addSubview:self.sureBtn];
     [self startRequest];
 }
--(void)surePress:(UIButton *)sender
-{
-    NSLog(@"selArr = %@",self.selectArr);
-    [self removeFromSuperview];
-    [superView removeVisualEffect];
-   }
+
 @end

@@ -11,9 +11,12 @@
 @implementation SingleDetailRespon
 -(void)unPackJsonValue:(NSDictionary *)dict
 {
-    self.imageArray = [NSArray arrayWithArray:[dict objectForKey:@""]];
-    self.htmlString = [NSString stringWithFormat:@"%@",[dict objectForKey:@""]];
-    self.basisArray = [NSArray arrayWithArray:[dict objectForKey:@""]];
-    self.singleNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@""]];
+    self.imageArray = [NSArray arrayWithArray:[dict objectForKey:@"imgList"]];
+    self.htmlString = [NSString stringWithFormat:@"%@",[dict objectForKey:@"explain"]];
+    self.basisArray = [NSArray arrayWithArray:[dict objectForKey:@"componentList"]];
+    self.regNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"regNo"]];
+    self.proName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"name"]];
+    self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"price"]];
+
 }
 @end

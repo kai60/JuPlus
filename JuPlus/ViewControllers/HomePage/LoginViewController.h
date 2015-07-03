@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-@interface LoginViewController :BaseViewController
+#import "KeyBoardTopBar.h"
+@interface LoginViewController :BaseViewController<keyBoardTopBarDelegate>
+{
+    KeyBoardTopBar *keyboardTopBar;
+    //界面向上弹出的高度
+    int movementDistance;
+
+}
+@property(nonatomic,strong)UIImageView *iconImg;
 //登陆
 @property (nonatomic,strong)UIButton *loginBtn;
 //快速注册

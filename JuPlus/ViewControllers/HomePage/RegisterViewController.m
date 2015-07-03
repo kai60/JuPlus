@@ -67,7 +67,7 @@
     [self loadBaseUI];
   
     UIButton *loginButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    loginButton.frame=CGRectMake(30.0f, 400.0f, SCREEN_WIDTH-60.0f, 30);
+    loginButton.frame=CGRectMake(30.0f, 420.0f, SCREEN_WIDTH-60.0f, 44);
     [loginButton setTitle:@"注册" forState:UIControlStateNormal];
         [loginButton setBackgroundColor:Color_Basic];
     [loginButton.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:16.0]];
@@ -92,32 +92,36 @@
 
     
 }
+-(UIImageView *)iconImg
+{
+    if(!_iconImg)
+    {
+        CGFloat iconW = 66.0f;
+        CGFloat iconH = 54.0f;
+        _iconImg = [[UIImageView alloc]initWithFrame:CGRectMake((self.view.width - iconW)/2, 80.0f, iconW, iconH)];
+        [_iconImg setImage:[UIImage imageNamed:@"logo"]];
+    }
+    return _iconImg;
+}
 #pragma mark ---加载UI
 -(void)loadBaseUI
 {
     self.titleLabel.text=@"注册";
     [self.leftBtn setHidden:NO];
-    self.viewBack.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     backView=[[UIScrollView alloc]initWithFrame:CGRectMake(0.0f,nav_height,SCREEN_WIDTH ,view_height)];
     backView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:backView];
     
+    [backView addSubview:self.iconImg];
     NSArray *array1=[NSArray arrayWithObjects:@"手机号",@"验证码",@"昵称",@"密码",@"确认密码", nil];
     fieldArray=[[NSMutableArray alloc]initWithCapacity:array1.count];
     for (int i=0; i<array1.count; i++) {
-        JuPlusTextField *rlView=[[JuPlusTextField alloc]initWithFrame:CGRectMake(30.0f,160.0f+ i*45, SCREEN_WIDTH-60.0f, 45)];
+        JuPlusTextField *rlView=[[JuPlusTextField alloc]initWithFrame:CGRectMake(30.0f,140.0f+ i*50, SCREEN_WIDTH-60.0f, 50)];
         rlView.contentField.tag=i;
         rlView.headTitleLa.text=[array1 objectAtIndex:i];
         rlView.contentField.delegate=self;
-        if(i==1)
-        {
-        rlView.contentField.frame = CGRectMake(75.0f, 0, rlView.width - 75.0f -100.0f, rlView.height);
-        }
-        else
-        {
-        rlView.contentField.frame = CGRectMake(75.0f, 0, rlView.width - 75.0f, rlView.height);
-        }
-        [backView addSubview:rlView];
+                [backView addSubview:rlView];
         [fieldArray addObject:rlView.contentField];
         if (i==0) {
             rlView.contentField.keyboardType=UIKeyboardTypePhonePad;
@@ -127,7 +131,7 @@
         }
         if (i==3){
             rlView.contentField.secureTextEntry=YES;
-            rlView.contentField.placeholder=@"可包含数字、英文字母、下划线";
+            rlView.contentField.placeholder=@"可包含数字、英文字母";
         }
         if (i==4) {
             rlView.contentField.placeholder=@"请确保两次输入内容一致";
@@ -137,12 +141,12 @@
     
     //验证码
     identifyButtom=[TimerButton buttonWithType:UIButtonTypeCustom];
-    identifyButtom.frame=CGRectMake(208, 205, 100, 45.0f);
+    identifyButtom.frame=CGRectMake(208, 200, 100, 45.0f);
     [identifyButtom addTarget:self action:@selector(identifyPress:) forControlEvents:UIControlEventTouchUpInside];
    
     [identifyButtom.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
-    [identifyButtom setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [identifyButtom setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [identifyButtom setTitleColor:Color_FieldText forState:UIControlStateNormal];
+    [identifyButtom setTitle:@"验证码" forState:UIControlStateNormal];
     [backView addSubview:identifyButtom];
 }
 
@@ -259,7 +263,7 @@
         JuPlusResponse *response = [[JuPlusResponse alloc]init];
         [regisReq setField:((UITextField *)[fieldArray objectAtIndex:0]).text forKey:@"mobile"];
         [HttpCommunication request:regisReq getResponse:response Success:^(JuPlusResponse *response) {
-            
+            [identifyButtom useTimerButton];
         } failed:^(NSDictionary *er) {
             [self errorExp:er];
         } showProgressView:YES with:self.view];
@@ -326,35 +330,21 @@
 
 -(void)animateTextField:(UITextField *)textField withTag:(int)tag up:(BOOL)up
 {
-    if (self.view.frame.origin.y==0 &&up==NO) {
+    if (backView.top==nav_height&&up==NO) {
         //界面处于正常状态，界面不下弹
     }
     else
     {
         CGFloat upHeight = 50.0f;
         //界面向上弹出的高度
-        if (tag==0) {
-            movementDistance =60-upHeight;
-        }
-        if (tag==1) {
-            movementDistance =105-upHeight;
-        }
-        if (tag==2) {
-            movementDistance =150-upHeight;
-        }
-        if (tag==3) {
-            movementDistance =195-upHeight;
-        }
-        if (tag==4) {
-            movementDistance =240-upHeight;
-        }
+        movementDistance = tag*upHeight+10.0f;
         
         const float movementDuration = 0.3f;
         int movement = (up?-movementDistance:movementDistance);
         [UIView beginAnimations:@"anim" context:nil];
         [UIView setAnimationBeginsFromCurrentState:YES];
         [UIView setAnimationDuration:movementDuration];
-        self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+        backView.frame = CGRectOffset(backView.frame, 0, movement);
         [UIView commitAnimations];
     }
     

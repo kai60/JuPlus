@@ -12,13 +12,19 @@
 
 -(void)loadDTO:(NSDictionary *)dict
 {
-    NSMutableArray *mutab = [[NSMutableArray alloc]initWithCapacity:0];
-   for(NSDictionary *tip in [dict objectForKey:@"tipsArray"])
-   {
-       LabelDTO *dto = [[LabelDTO alloc]init];
-       [dto loadDTO:tip];
-       [mutab addObject:dto];
-   }
-    self.tipsArray = mutab;
+    self.memNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"memberNo"]];
+    self.uploadTime = [NSString stringWithFormat:@"%@",[dict objectForKey:@"uploadTime"]];
+    self.portrait = [NSString stringWithFormat:@"%@",[dict objectForKey:@"portraitPath"]];
+    self.nikename = [NSString stringWithFormat:@"%@",[dict objectForKey:@"nickname"]];
+    self.descripTxt = [NSString stringWithFormat:@"%@",[dict objectForKey:@"explain"]];
+    self.collectionPic = [NSString stringWithFormat:@"%@",[dict objectForKey:@"coverUrl"]];
+    self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"totalPrice"]];
+    NSArray *arr = [dict objectForKey:@"productList"];
+    self.labelArray = [[NSMutableArray alloc]init];
+    for (int i=0; i<[arr count]; i++) {
+        LabelDTO *dto = [[LabelDTO alloc]init];
+        [dto loadDTO:[arr objectAtIndex:i]];
+        [self.labelArray addObject:dto];
+    }
 }
 @end

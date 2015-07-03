@@ -7,7 +7,8 @@
 //
 
 #import "HobbyItemBtn.h"
-
+#import "UIImage+GIF.h"
+#import "SCGIFImageView.h"
 @implementation HobbyItemBtn
 -(id)initWithFrame:(CGRect)frame
 {
@@ -16,7 +17,7 @@
     {
         self.userInteractionEnabled = YES;
         [self addSubview:self.iconBtn];
-        [self addSubview:self.selectedImage];
+       // [self addSubview:self.selectedImage];
     }
     return self;
 }
@@ -25,6 +26,7 @@
     if(!_iconBtn)
     {
         _iconBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_iconBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
         _iconBtn.frame = CGRectMake(0.0f, 0.0f, self.width, self.height);
     }
     return _iconBtn;
@@ -33,9 +35,10 @@
 {
     if(!_selectedImage)
     {
-        _selectedImage = [[UIImageView alloc]initWithFrame:CGRectMake(20.0f, 0.0f, self.width - 20.0f, self.height)];
-        [_selectedImage setImage:[UIImage imageNamed:@"icons_2"]];
-        [_selectedImage setHidden:YES];
+       // _selectedImage = [[UIImageView alloc]initWithFrame:CGRectMake(self.width - 16.0f, (self.height - 16.0f)/2, 16.0f, 16.0f)];
+        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"checkmark.gif" ofType:nil];
+        _selectedImage = [[SCGIFImageView alloc]initWithGIFFile:filePath withSeconds:0.5];
+        _selectedImage.frame = CGRectMake(self.width - 16.0f, (self.height - 16.0f)/2, 16.0f, 16.0f);
     }
     return _selectedImage;
     

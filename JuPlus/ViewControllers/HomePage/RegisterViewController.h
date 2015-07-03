@@ -18,8 +18,8 @@
     int movementDistance;
     
     UILabel *statusLabel;
-    BOOL agree;
 
 }
+@property(nonatomic,strong)UIImageView *iconImg;
 
 @end

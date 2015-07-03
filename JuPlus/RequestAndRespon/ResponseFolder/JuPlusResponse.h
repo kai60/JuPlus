@@ -12,6 +12,7 @@
 #define RESPONSE_DATA @"data"
 #define RESPONSE_OK @"000000" //服务器返回的数据成功信息
 #define RESPONSE_FAIL @"111111" //可能用于强制升级等状态吗
+#import "NSString+JuPlusString.h"
 //加密类型
 typedef enum{
     EncryptionType_NO,      //不加密

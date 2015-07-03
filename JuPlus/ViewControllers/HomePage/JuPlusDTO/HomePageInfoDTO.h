@@ -9,18 +9,22 @@
 #import "BaseDTO.h"
 #import "LabelDTO.h"
 @interface HomePageInfoDTO : BaseDTO
-//标签数组
-@property(nonatomic,strong)NSArray *tipsArray;
-//图像
-@property(nonatomic,strong)NSString *imageUrl;
-//价格
-@property(nonatomic,strong)NSString *price;
-//作者昵称
-@property(nonatomic,strong)NSString *nikeName;
-//头像
-@property(nonatomic,strong)NSString *portraitUrl;
+//会员号
+@property(nonatomic,strong)NSString *memNo;
 //上传时间
 @property(nonatomic,strong)NSString *uploadTime;
+//头像
+@property(nonatomic,strong)NSString *portrait;
+//昵称
+@property(nonatomic,strong)NSString *nikename;
+//描述文字
+@property(nonatomic,strong)NSString *descripTxt;
+//家居布景大图
+@property(nonatomic,strong)NSString *collectionPic;
+//价格
+@property(nonatomic,strong)NSString *price;
+//标签组
+@property(nonatomic,strong)NSMutableArray *labelArray;
 
 
 @end

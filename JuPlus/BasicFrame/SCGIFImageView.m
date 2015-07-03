@@ -196,7 +196,7 @@
 	}
 	UIGraphicsEndImageContext();
 	
-	[self setImage:[overlayArray objectAtIndex:0]];
+	[self setImage:[overlayArray objectAtIndex:[overlayArray count] -1]];
 	[self setAnimationImages:overlayArray];
 	
 	[overlayArray release];
@@ -210,10 +210,11 @@
 	
 	// GIFs store the delays as 1/100th of a second,
 	// UIImageViews want it in seconds.
-	[self setAnimationDuration:total/_seconds];
-	
+	//[self setAnimationDuration:total/_seconds];
+    [self setAnimationDuration:_seconds];
+
 	// Repeat infinite
-	[self setAnimationRepeatCount:0];
+	[self setAnimationRepeatCount:1];
 	
 	[self startAnimating];
 }

@@ -10,4 +10,6 @@
 #define JuPlus_JuPlusGlobalNSUserDefault_h
 
 #define GetAppVerson @"getAppVerson"
+#pragma mark --NSSTRING
+#define TOKEN @"token"
 #endif

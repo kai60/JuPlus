@@ -8,6 +8,7 @@
 
 #import "PackageCell.h"
 #import "MarkedLabelView.h"
+#import "LabelDTO.h"
 CGFloat space = 10.0f;
 @implementation PackageCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -23,6 +24,7 @@ CGFloat space = 10.0f;
 -(void)uifig
 {
     [self.contentView addSubview:self.topV];
+    [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.descripL];
     [self.contentView addSubview:self.showImgV];
     [self.showImgV addSubview:self.priceV];
@@ -35,12 +37,23 @@ CGFloat space = 10.0f;
     }
     return _topV;
 }
+-(JuPlusUILabel *)timeLabel
+{
+    if(!_timeLabel)
+    {
+        _timeLabel = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.contentView.width - 80.0f, space*2, 60.0f, 20.0f)];
+        [_timeLabel setFont:FontType(12.0f)];
+        [_timeLabel setTextColor:Color_Gray_lines];
+    }
+    return _timeLabel;
+}
 -(UILabel *)descripL
 {
     if(!_descripL)
     {
         _descripL = [[UILabel alloc]initWithFrame:CGRectMake(space, self.topV.bottom+space, self.topV.width, 20.0f)];
         _descripL.text = @"测试描述";
+        _descripL.textColor = [UIColor grayColor];
         [_descripL setFont:FontType(12.0f)];
     }
     return _descripL;
@@ -66,26 +79,27 @@ CGFloat space = 10.0f;
 //cell数据加载
 -(void)loadCellInfo:(HomePageInfoDTO *)homepageDTO
 {
+    [self.topV.portraitImgV setimageUrl:homepageDTO.portrait placeholderImage:@"2.jpg"];
+    [self.topV.nikeNameL setText:homepageDTO.nikename];
+    [self.timeLabel setText:homepageDTO.uploadTime];
+    [self.descripL setText:homepageDTO.descripTxt];
+    [self.showImgV setimageUrl:homepageDTO.collectionPic placeholderImage:@""];
+    [self.priceV setPriceText:homepageDTO.price];
+    [self setTipsWithArray:homepageDTO.labelArray];
     
 }
 -(void)setTipsWithArray:(NSArray *)tipsArray
 {
-    NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:@"125",@"orignX",@"110",@"orignY", nil];
-    NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:@"120",@"orignX",@"20",@"orignY", nil];
-    NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:@"25",@"orignX",@"210",@"orignY", nil];
-    //CGFloat Percentage = self.bomImage.image.size.width/320.0f;
-    CGFloat Percentage = 1;
-    
-    NSArray *dataArr = [NSArray arrayWithObjects:dict1,dict2,dict3, nil];
-    for(int i=0;i<[dataArr count];i++)
+
+       for(int i=0;i<[tipsArray count];i++)
     {
-        NSDictionary *dic  = [dataArr objectAtIndex:i];
-        CGFloat orignX = [[dic objectForKey:@"orignX"] floatValue]/Percentage;
-        CGFloat orignY = [[dic objectForKey:@"orignY"] floatValue]/Percentage;
+        LabelDTO *dto = [tipsArray objectAtIndex:i];
+        CGFloat orignX = (dto.locX/100)*self.showImgV.width;
+        CGFloat orignY = (dto.locY/100)*self.showImgV.height;
         
-        MarkedLabelView *btn = [[MarkedLabelView alloc]initWithFrame:CGRectMake(orignX, orignY, 72, 33)];
-        btn.labelText.text = [NSString stringWithFormat:@"标签%d",i];
-        btn.tag = i;
+        MarkedLabelView *btn = [[MarkedLabelView alloc]initWithFrame:CGRectMake(orignX, orignY, 55, 25)];
+        btn.labelText.text = dto.productName;
+        btn.touchBtn.tag = [dto.productNo intValue];
         
         [self.showImgV addSubview:btn];
     }

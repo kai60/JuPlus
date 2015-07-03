@@ -7,10 +7,10 @@
 //兴趣自定义view
 
 #import "JuPlusUIView.h"
-
+#import "SCGIFImageView.h"
 @interface HobbyItemBtn : JuPlusUIView
 @property(nonatomic,strong)UIButton *iconBtn;
 //打钩按钮
-@property(nonatomic,strong)UIImageView *selectedImage;
+@property(nonatomic,strong)SCGIFImageView *selectedImage;
 -(id)initWithFrame:(CGRect)frame;
 @end

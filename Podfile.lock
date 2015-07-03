@@ -20,11 +20,19 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - DSActivityIndicatorSDWebImage (1.0):
+    - SDWebImage
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
+  - DSActivityIndicatorSDWebImage (~> 1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  DSActivityIndicatorSDWebImage: c248844f9c6b3bd4d7598cf62a4de7ab7a409da1
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
 
 COCOAPODS: 0.37.2

@@ -7,7 +7,16 @@
 //
 
 #import "SingleDetialViewController.h"
+#import "SingleDetailReq.h"
+#import "SingleDetailRespon.h"
+#import "SingleDetailDTO.h"
+//#import "UIButton+WebCache.h"
+#import "PlaceOrderViewController.h"
 @implementation SingleDetialViewController
+{
+    SingleDetailReq *detailReq;
+    SingleDetailRespon *detailRespon;
+}
 #define space 20.0f
 -(void)viewDidLoad
 {
@@ -18,35 +27,73 @@
 -(void)loadBaseUI
 {
     //滚动展示图层
-    [self.viewBack addSubview:self.imageScroll];
+    [self.view addSubview:self.imageScroll];
     [self.imageScroll addSubview:self.pageControll];
     //需要出层级显示效果的view
-    [self.viewBack addSubview:self.bottomV];
+    [self.view addSubview:self.bottomV];
     [self.bottomV addSubview:self.descripLabel];
 
     //信息展示
     [self.bottomV addSubview:self.basisView];
     [self.basisView addSubview:self.basisLabel];
     [self.basisView addSubview:self.basisScroll];
-    [self.viewBack addSubview:self.placeOrderBtn];
+    [self.view addSubview:self.placeOrderBtn];
     
 }
+#pragma mark --Reqeust
 -(void)startRequest
 {
-    //请求成功之后 处理
-    //图片数据
-    [self fileImageData];
+    detailReq = [[SingleDetailReq alloc]init];
+    [detailReq setField:self.singleId forKey:@"productNo"];
+    detailRespon = [[SingleDetailRespon alloc]init];
+    [HttpCommunication request:detailReq getResponse:detailRespon Success:^(JuPlusResponse *response) {
+        //请求成功之后 处理
+        //图片数据
+        [self fileImageData];
+        //加载描述
+        [self fileExplainTxt];
+        //加载主要成分
+        [self fileBasisScroll];
+        //重置布局
+        [self layoutSubviews];
+
+    } failed:^(NSDictionary *errorDTO) {
+        
+    } showProgressView:YES with:self.view];
+    
+}
+-(void)fileImageData
+{
+    for(int i=0;i<[detailRespon.imageArray count];i++)
+    {
+        NSDictionary *dic = [detailRespon.imageArray objectAtIndex:i];
+        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH, 0.0f, self.imageScroll.width, self.imageScroll.height)];
+        [img setimageUrl:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]] placeholderImage:nil];
+        [self.imageScroll addSubview:img];
+    }
+    self.imageScroll.contentSize = CGSizeMake(SCREEN_WIDTH*[detailRespon.imageArray count], self.imageScroll.height);
+}
+-(void)fileExplainTxt
+{
     //描述文字
+    [self.descripLabel setText:detailRespon.htmlString];
     CGSize optimumSize = [self.descripLabel optimumSize];
     CGRect frame = [self.descripLabel frame];
     frame.size.height = (int)optimumSize.height+5; // +5 to fix height issue, this should be automatically fixed in iOS5
     [self.descripLabel setFrame:frame];
-    [self layoutSubviews];
 
 }
--(void)fileImageData
+-(void)fileBasisScroll
 {
-    
+    for(int i=0;i<[detailRespon.basisArray count];i++)
+    {
+        NSDictionary *dic = [detailRespon.imageArray objectAtIndex:i];
+        UIButton *imgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        imgBtn.frame = CGRectMake(i*(40.0f+space), space,40.0f, 40.0f);
+        [imgBtn setimageUrl:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]] placeholderImage:nil];
+    }
+    self.imageScroll.contentSize = CGSizeMake(SCREEN_WIDTH*[detailRespon.imageArray count], self.imageScroll.height);
+
 }
 -(void)layoutSubviews
 {
@@ -58,7 +105,7 @@
 {
     if(!_imageScroll)
     {
-        _imageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
+        _imageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, DETAIL_HEIGHT)];
         _imageScroll.pagingEnabled = YES;
         _imageScroll.delegate = self;
     }
@@ -85,7 +132,7 @@
 {
     if(!_descripLabel)
     {
-        _descripLabel = [[RTLabel alloc]initWithFrame:CGRectMake(0.0f,0.0f, SCREEN_WIDTH, 100.0f)];
+        _descripLabel = [[RTLabel alloc]initWithFrame:CGRectMake(space,space, SCREEN_WIDTH - space*2, 100.0f)];
         
     }
     return _descripLabel;
@@ -94,7 +141,7 @@
 {
     if(!_basisView)
     {
-        _basisView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.imageScroll.bottom, SCREEN_WIDTH, 100.0f)];
+        _basisView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.descripLabel.bottom+space, SCREEN_WIDTH, 100.0f)];
     }
     return _basisView;
 }
@@ -102,6 +149,8 @@
 {
     if (!_basisLabel) {
         _basisLabel = [[UILabel alloc]initWithFrame:CGRectMake(space, space, 120.0f, 20.0f)];
+        _basisLabel.textColor = [UIColor grayColor];
+        [_basisLabel setFont:FontType(16.0f)];
     }
     return _basisLabel;
 }
@@ -118,7 +167,7 @@
     if(!_placeOrderBtn)
     {
         _placeOrderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _placeOrderBtn.frame = CGRectMake(0.0f, view_height - 44.0f, SCREEN_WIDTH, 44.0f);
+        _placeOrderBtn.frame = CGRectMake(0.0f, SCREEN_HEIGHT - 44.0f, SCREEN_WIDTH, 44.0f);
         [_placeOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_placeOrderBtn setTitle:@"单品购买" forState:UIControlStateNormal];
         [_placeOrderBtn setBackgroundColor:Color_Basic];
@@ -130,6 +179,8 @@
 //点击购买
 -(void)payPress
 {
-    
+    PlaceOrderViewController *order = [[PlaceOrderViewController alloc]init];
+    order.regNo = self.singleId;
+    [self.navigationController pushViewController:order animated:YES];
 }
 @end

@@ -8,9 +8,16 @@
 
 #import "HomeFurnishingViewController.h"
 #import "RegisterViewController.h"
+#import "HomePageInfoDTO.h"
+#import "CollocationReq.h"
+#import "CollectionRespon.h"
+#import "LoginViewController.h"
 @implementation HomeFurnishingViewController
 {
     JuPlusUIView *backV;
+    CollocationReq *collReq;
+    CollectionRespon *collRespon;
+    NSMutableArray *dataArray;
 }
 -(void)viewDidLoad
 {
@@ -20,11 +27,20 @@
 }
 -(void)rightPress
 {
-    RegisterViewController *log = [[RegisterViewController alloc]init];
-    [self.navigationController pushViewController:log animated:YES];
+   if([CommonUtil isLogin])
+   {
+   
+   }
+    else
+    {
+        LoginViewController *log = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:log animated:YES];
+
+    }
 }
 -(void)UIConfig
 {
+    dataArray = [[NSMutableArray alloc]init];
     self.titleLabel.text = @"搭配";
         //如果此处直接用self.view则上层的标签选择页面也会随之变化，因此在self.view上加层透明view放置原来置于self.view层的内容，以方便处理高斯模糊效果
     backV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f,0.0f, self.view.width, self.view.height)];
@@ -36,12 +52,16 @@
 }
 -(void)addRightBtn
 {
+    [self.leftBtn setHidden:YES];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(backV.width - 50.0f, 27.0f, 40.0f, 30.0f);
+    btn.frame = CGRectMake(backV.width - 54.0f, 20, 44.0f, 44.0f);
     [btn addTarget:self action:@selector(rightPress) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"个人" forState:UIControlStateNormal];
-    [btn.titleLabel setFont:FontType(12.0f)];
+    [btn.titleLabel setFont:FontType(14.0f)];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    UIView *black = [[UIView alloc]initWithFrame:CGRectMake((btn.width - 15.0f)/2, 42.0f, 15.0f, 2.0f)];
+    [black setBackgroundColor:[UIColor blackColor]];
+    [btn addSubview:black];
     [backV addSubview:btn];
 }
 -(void)checkSections
@@ -74,7 +94,14 @@
 #pragma mark --request
 -(void)startRequest
 {
-    
+    collReq = [[CollocationReq alloc]init];
+    collRespon = [[CollectionRespon alloc]init];
+    [HttpCommunication request:collReq getResponse:collRespon Success:^(JuPlusResponse *response) {
+        [dataArray addObjectsFromArray:collRespon.listArray];
+        [self.listTab reloadData];
+    } failed:^(NSDictionary *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:YES with:self.view];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -82,7 +109,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [dataArray count];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -93,8 +120,8 @@
         cell = [[PackageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell setTipsWithArray:[NSArray array]];
-    
+    HomePageInfoDTO *homePage = [dataArray objectAtIndex:indexPath.row];
+    [cell loadCellInfo:homePage];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -20,20 +20,20 @@
         self.userInteractionEnabled=YES;
         
         //标题
-        _headTitleLa=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, y)];
+        _headTitleLa=[[UILabel alloc]initWithFrame:CGRectMake(0, y -30.0f, 65, 30.0f)];
         _headTitleLa.backgroundColor=[UIColor clearColor];
         _headTitleLa.textAlignment=NSTextAlignmentLeft;
         _headTitleLa.font= FontType(16.0f);
-        _headTitleLa.textColor=[UIColor grayColor];
+        _headTitleLa.textColor=Color_Black;
         [self addSubview:_headTitleLa];
         
         //field
-        _contentField=[[UITextField alloc]initWithFrame:CGRectMake(75, 2, self.width - 75, y)];
+        _contentField=[[UITextField alloc]initWithFrame:CGRectMake(65, y - 30.0f, self.width - 65.0f, 30.0f)];
         [_contentField setBorderStyle:UITextBorderStyleNone];
         _contentField.secureTextEntry=NO;
-        _contentField.textColor=[UIColor grayColor];
-        _contentField.font=FontType(16.0f);
-        _contentField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;//自适应字体
+        _contentField.textColor=Color_FieldText;
+        _contentField.font=FontType(15.0f);
+      //  _contentField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;//自适应字体
         _contentField.keyboardType=UIKeyboardTypeNumbersAndPunctuation;
         _contentField.delegate=self;
         _contentField.returnKeyType= UIReturnKeyDone;

@@ -21,6 +21,8 @@
     
     CGRect alpha1  ;
     CGRect orignAlpha ;
+    
+    NSTimer *timer;
 
 }
 -(id)initWithFrame:(CGRect)frame
@@ -63,8 +65,7 @@
      orignAlpha = self.alphaImage.frame;
 
     
-    [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(setAnimation) userInfo:nil repeats:YES];    //使用timer定时，每4秒触发一次，然后就是写selector了。
-    
+    timer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(setAnimation) userInfo:nil repeats:YES];    //使用timer定时，每4秒触发一次，然后就是写selector了。
     [self setAnimation];
     
 }
@@ -87,7 +88,7 @@
         self.tipsImage.frame = orignFrame;
         self.tipsImage.center = tipsCenter;
     } completion:^(BOOL finished) {
-       // NSLog(@"3");
+        //  NSLog(@"3");
 
     }];
     [UIView animateKeyframesWithDuration:0.5f delay:1.0f options:0 animations:^{
@@ -151,7 +152,7 @@
 {
     if(!_labelRight)
     {
-        _labelRight = [[UIImageView alloc]initWithFrame:CGRectMake(self.tipsImage.right+space*2, 0, self.width - self.tipsImage.width+space, self.height)];
+        _labelRight = [[UIImageView alloc]initWithFrame:CGRectMake(self.tipsImage.right+space*2, 0.0f, self.width - self.tipsImage.width+space, self.height)];
         [_labelRight setImage:[UIImage imageNamed:@"tag_label"]];
     }
     return _labelRight;
@@ -161,9 +162,9 @@
     if(!_labelText)
     {
         _labelText = [[UILabel alloc]initWithFrame:CGRectMake(space*2, 0, self.labelRight.width - space*2, self.labelRight.height)];
+        _labelText.textAlignment = NSTextAlignmentCenter;
         [_labelText setTextColor:[UIColor whiteColor]];
-        [_labelText setFont:FontType(14.0f)];
-        _labelText.text = @"测试";
+        [_labelText setFont:FontType(13.0f)];
     }
     return _labelText;
 }

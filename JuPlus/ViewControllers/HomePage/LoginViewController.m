@@ -8,8 +8,16 @@
 
 #import "LoginViewController.h"
 #import "JuPlusTextField.h"
+#import "RegisterViewController.h"
+#import "LoginReq.h"
+#import "LoginRespon.h"
 @interface LoginViewController ()<UITextFieldDelegate>
-
+{
+    LoginReq *req;
+    LoginRespon *respon;
+    
+    UIView *backView;
+}
 @end
 
 @implementation LoginViewController
@@ -18,39 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text=@"登录";
-    
-    //加载UI
-    [self loadBaseUI];
-    
-    self.registerBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.registerBtn.frame=CGRectMake(20, 210, 80, 30);
-    [self.registerBtn setTitle:@"快速注册" forState:UIControlStateNormal];
-    [self.registerBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
-    //[self.registerBtn setTitleColor:Upload_Gray_title forState:UIControlStateNormal];
-    [self.view addSubview:self.registerBtn];
-    [self.registerBtn addTarget:self action:@selector(regPress:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.forgetBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.forgetBtn.frame=CGRectMake(220, 210, 80, 30);
-    [self.forgetBtn setTitle:@"忘记密码？" forState:UIControlStateNormal];
-    [self.forgetBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
-    //[self.forgetBtn setTitleColor:Upload_Gray_title forState:UIControlStateNormal];
-    [self.view addSubview:self.forgetBtn];
-    [self.forgetBtn addTarget:self action:@selector(passWordPress:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.loginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.loginBtn.frame=CGRectMake(10, 160, SCREEN_WIDTH-20, 44);
-    [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    self.loginBtn.tag=11;
-    self.loginBtn.layer.cornerRadius=5.0;
-    self.loginBtn.layer.masksToBounds=YES;
-    //[self.loginBtn setBackgroundColor:Color_Green];
-    [self.loginBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:18.0]];
-    [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.view addSubview:self.loginBtn];
-    [self.loginBtn addTarget:self action:@selector(comPress:) forControlEvents:UIControlEventTouchUpInside];
-    
-}
+  }
 #pragma mark ---加载UI
 -(NSMutableArray *)fieldArray
 {
@@ -60,19 +36,31 @@
     }
     return _fieldArray;
 }
+-(UIImageView *)iconImg
+{
+    if(!_iconImg)
+    {
+        CGFloat iconW = 66.0f;
+        CGFloat iconH = 54.0f;
+        _iconImg = [[UIImageView alloc]initWithFrame:CGRectMake((self.view.width - iconW)/2, 80.0f, iconW, iconH)];
+        [_iconImg setImage:[UIImage imageNamed:@"logo"]];
+    }
+    return _iconImg;
+}
 -(void)loadBaseUI
 {
-    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(10, 10,SCREEN_WIDTH-20 , 90)];
+    [self.leftBtn setHidden:NO];
+    backView=[[UIView alloc]initWithFrame:CGRectMake(0, nav_height,SCREEN_WIDTH, view_height )];
     backView.backgroundColor=[UIColor whiteColor];
-    backView.layer.masksToBounds=YES;
-    backView.layer.cornerRadius=5;
-    [self.viewBack addSubview:backView];
+    [self.view addSubview:backView];
+    
+    [backView addSubview:self.iconImg];
     
     NSArray *array1=[NSArray arrayWithObjects:@"手机",@"密码", nil];
     NSArray *array2=[NSArray arrayWithObjects:@"请输入手机",@"请输入密码",nil];
     self.fieldArray=[[NSMutableArray alloc]initWithCapacity:array1.count];
     for (int i=0; i<array1.count; i++) {
-        JuPlusTextField *rlView=[[JuPlusTextField alloc]initWithFrame:CGRectMake(0, i*45, SCREEN_WIDTH-20, 45)];
+        JuPlusTextField *rlView=[[JuPlusTextField alloc]initWithFrame:CGRectMake(30.0f,160.0f+ i*50.0f, SCREEN_WIDTH-60.0f, 50.0f)];
         rlView.contentField.tag=i;
         rlView.headTitleLa.text=[array1 objectAtIndex:i];
         rlView.contentField.placeholder=[array2 objectAtIndex:i];
@@ -86,18 +74,37 @@
             
         }
         else{
-//            //账号
-//            if ([CommonUtil getUserDefaultsValue:@"loginName"]!=nil) {
-//                rlView.contentField.text=[CommonUtil getUserDefaultsValue:@"loginName"];
-//            }
+            //账号
+            if ([CommonUtil getUserDefaultsValueWithKey:@"loginName"]!=nil) {
+                rlView.contentField.text=[CommonUtil getUserDefaultsValueWithKey:@"loginName"];
+            }
             rlView.contentField.keyboardType=UIKeyboardTypePhonePad;
         }
         
     }
-    //画线
-    UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 46, SCREEN_WIDTH-20, 1)];
-    //lineView.backgroundColor=Upload_Gray_lines;
-    [backView addSubview:lineView];
+    
+    
+    [self.rightBtn setHidden:NO];
+    [self.rightBtn setTitle:@"注册" forState:UIControlStateNormal];
+        [self.rightBtn addTarget:self action:@selector(regPress:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.forgetBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.forgetBtn.frame=CGRectMake(220, 270, 80, 30);
+    [self.forgetBtn setTitle:@"忘记密码？" forState:UIControlStateNormal];
+    [self.forgetBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
+    [self.forgetBtn setTitleColor:Color_Gray forState:UIControlStateNormal];
+    [backView addSubview:self.forgetBtn];
+    [self.forgetBtn addTarget:self action:@selector(passWordPress:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.loginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.loginBtn.frame=CGRectMake(30, 310, SCREEN_WIDTH-60, 44);
+    [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    self.loginBtn.tag=11;
+    [self.loginBtn setBackgroundColor:Color_Basic];
+    [self.loginBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:17.0]];
+    [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backView addSubview:self.loginBtn];
+    [self.loginBtn addTarget:self action:@selector(comPress:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -110,13 +117,15 @@
 -(void)comPress:(UIButton *)sender
 {
     int count=2;
-//    for(UITextField *obj in self.fieldArray)
-//    {
-//
-//    }
+    for(UITextField *obj in self.fieldArray)
+    {
+        if (IsStrEmpty(obj.text)) {
+            count--;
+        }
+    }
     if (count==2){
-        //获取加密时间
-       // [self getServerTime];
+        //提交登陆信息
+        [self loginPost];
     }
     else{
         UIAlertView *alt=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"请输入手机号和密码" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
@@ -127,21 +136,47 @@
 //注册
 -(void)regPress:(UIButton *)sender
 {
+    RegisterViewController *reg = [[RegisterViewController alloc]init];
+    [self.navigationController pushViewController:reg animated:YES];
 }
-
--(void)loginPost:(NSString*)serverTime
+-(void)loginPost
 {
+    req = [[LoginReq alloc]init];
+    respon = [[LoginRespon alloc]init];
+    
+    for(UITextField *obj in self.fieldArray)
+    {
+        if (obj.tag==0) {
+            [req setField:obj.text forKey:@"mobile"];
+        }
+        else{
+            [req setField:obj.text forKey:@"loginPwd"];
+        }
+        [obj resignFirstResponder];
+    }
+    
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        [self fileLoginInfo];
+    } failed:^(NSDictionary *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:YES with:self.view];
 }
+-(void)fileLoginInfo
+{
+    for(UITextField *obj in self.fieldArray)
+    {
+        if (obj.tag==0) {
+            [CommonUtil setUserDefaultsValue:obj.text forKey:@"loginName"];
+        }
+    }
+    [CommonUtil setUserDefaultsValue:respon.token forKey:TOKEN];
+    
 
+}
 #pragma mark nextPress
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    return YES;
-}
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
     [textField resignFirstResponder];
     return YES;
 }
@@ -160,6 +195,54 @@
     }
     
     return YES;
+}
+//重载键盘弹出时的方法,界面上弹的方法
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //解决键盘不能输入问题
+    if (!textField.window.isKeyWindow) {
+        [textField.window makeKeyAndVisible];
+    }
+    //界面向上弹出
+    [self animateTextField:textField withTag:textField.tag up:YES];
+    
+    
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [keyboardTopBar ShowBar:textField];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self animateTextField:textField withTag:textField.tag up:NO];
+}
+
+-(void)animateTextField:(UITextField *)textField withTag:(int)tag up:(BOOL)up
+{
+    if (backView.top == nav_height &&up==NO) {
+        //界面处于正常状态，界面不下弹
+    }
+    else
+    {
+        CGFloat upHeight = 50.0f;
+        //界面向上弹出的高度
+        movementDistance = tag*upHeight+10.0f;
+        const float movementDuration = 0.3f;
+        int movement = (up?-movementDistance:movementDistance);
+        [UIView beginAnimations:@"anim" context:nil];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:movementDuration];
+        backView.frame = CGRectOffset(backView.frame, 0, movement);
+        [UIView commitAnimations];
+    }
+    
+}
+
+-(void)keyBoardTopBarConfirmClicked:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {

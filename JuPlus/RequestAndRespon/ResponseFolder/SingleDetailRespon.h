@@ -16,5 +16,9 @@
 //主要成分对应的图层数组展示
 @property(nonatomic,strong)NSArray *basisArray;
 //单品编号
-@property(nonatomic,strong)NSString *singleNo;
+@property(nonatomic,strong)NSString *regNo;
+//单品名称
+@property(nonatomic,strong)NSString *proName;
+//价格
+@property(nonatomic,strong)NSString *price;
 @end

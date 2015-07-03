@@ -7,9 +7,15 @@
 //
 
 #import "NSString+JuPlusString.h"
-//字符串转换
 @implementation NSString (JuPlusString)
 
+
++(NSString *)getStringValue:(int)intValue
+{
+
+    return [NSString stringWithFormat:@"%d",intValue];
+}
+//长数字转化为带有都好的数字显示格式
 //@implementation NSString(ExtMethod)
 
 - (NSString *)toFormatNumberString

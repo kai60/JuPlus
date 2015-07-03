@@ -11,9 +11,9 @@
 @implementation LabelDTO
 -(void)loadDTO:(NSDictionary *)dict
 {
-    self.labelTxt = [NSString stringWithFormat:@"%@",[dict objectForKey:@""]];
-    self.singleId = [NSString stringWithFormat:@"%@",[dict objectForKey:@""]];
-    self.locX = [[NSString stringWithFormat:@"%@",[dict objectForKey:@""]] floatValue];
-    self.locY = [[NSString stringWithFormat:@"%@",[dict objectForKey:@""]] floatValue];
+    self.productName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productName"]];
+    self.productNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productNo"]];
+    self.locX = [[NSString stringWithFormat:@"%@",[dict objectForKey:@"positionX"]] floatValue];
+    self.locY = [[NSString stringWithFormat:@"%@",[dict objectForKey:@"positionX"]] floatValue];
 }
 @end

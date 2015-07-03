@@ -36,8 +36,9 @@
     else
     {
         responseDic = (NSDictionary *)response;
+        //下发的状态码为200 此时json为返回的data所有内容（包括resCode、resMsg、data）
         id json = [responseDic objectForKey:RESPONSE_DATA];
-        // NSLog(@"json = %@",json);
+        NSLog(@"json = %@",json);
         
         if ([json isKindOfClass:[NSDictionary class]]) {
             [self validateJsonValue:json ParamsArray:unpackParams Optional:NO];
@@ -49,8 +50,8 @@
         else
         {
             if ([json isKindOfClass:[NSDictionary class]]){
+                
                 [self unPackJsonValue:[responseDic objectForKey:RESPONSE_DATA]];
-                // NSLog(@"%@",json);
             }
             else
             {

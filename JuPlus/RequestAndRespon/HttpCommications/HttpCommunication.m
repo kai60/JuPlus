@@ -212,6 +212,8 @@
 +(void)errorExp:(NSError *)error
 {
     NSLog(@"%@",error);
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
 }
 + (UIView *)showWaitingView:(UIView *)view withTitle:(NSString *)string
 {

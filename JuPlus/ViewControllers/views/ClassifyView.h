@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JuPlusUIView.h"
+#import "UIImage+GIF.h"
 
 @interface ClassifyView :JuPlusUIView <UIScrollViewDelegate>
 //可扩展的类容分布

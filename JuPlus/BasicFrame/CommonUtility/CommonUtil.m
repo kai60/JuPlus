@@ -10,6 +10,8 @@
 
 @implementation CommonUtil
 
+//================================================================================================
+
 +(id )getUserDefaultsValueWithKey:(NSString *) key
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
@@ -22,6 +24,7 @@
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
 }
+//----------------------------------------------------------------------------------------------
 #pragma sizeFont
 +(CGSize)getLabelSizeWithString:(NSString *)Str andLabelWidth:(CGFloat)width  andFont:(UIFont *)font
 {
@@ -39,5 +42,16 @@
         //  NSLog(@"size.width:%f",size.width);
         return size;
 }
-
+//----------------------------------------------------------------------------------------------
+#pragma mark --token
+//判断是否登录成功
++(BOOL)isLogin
+{
+    return !IsStrEmpty([self getUserDefaultsValueWithKey:@"token"]);
+}
+//得到token值
++(NSString *)getToken
+{
+    return [self getUserDefaultsValueWithKey:@"token"];
+}
 @end

@@ -9,9 +9,9 @@
 #import "BaseDTO.h"
 @interface LabelDTO : BaseDTO
 //单品类型
-@property (nonatomic,strong)NSString *labelTxt;
+@property (nonatomic,strong)NSString *productName;
 //单品对应id
-@property (nonatomic,strong)NSString *singleId;
+@property (nonatomic,strong)NSString *productNo;
 //距离左边距距离
 @property (nonatomic,assign)float locX;
 //距离上边距距离
