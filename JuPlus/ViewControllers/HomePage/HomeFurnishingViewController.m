@@ -8,45 +8,41 @@
 
 #import "HomeFurnishingViewController.h"
 #import "RegisterViewController.h"
-#import "HomePageInfoDTO.h"
-#import "CollocationReq.h"
-#import "CollectionRespon.h"
 #import "LoginViewController.h"
 @implementation HomeFurnishingViewController
 {
     JuPlusUIView *backV;
-    CollocationReq *collReq;
-    CollectionRespon *collRespon;
-    NSMutableArray *dataArray;
 }
 -(void)viewDidLoad
 {
     [super viewDidLoad];
    
+    self.viewArray = [[NSMutableArray alloc]init];
     [self UIConfig];
 }
 -(void)rightPress
 {
-   if([CommonUtil isLogin])
-   {
-   
-   }
-    else
-    {
-        LoginViewController *log = [[LoginViewController alloc]init];
-        [self.navigationController pushViewController:log animated:YES];
 
-    }
 }
 -(void)UIConfig
 {
-    dataArray = [[NSMutableArray alloc]init];
-    self.titleLabel.text = @"搭配";
-        //如果此处直接用self.view则上层的标签选择页面也会随之变化，因此在self.view上加层透明view放置原来置于self.view层的内容，以方便处理高斯模糊效果
+    [self.navView setHidden:YES];
+    //如果此处直接用self.view则上层的标签选择页面也会随之变化，因此在self.view上加层透明view放置原来置于self.view层的内容，以方便处理高斯模糊效果
     backV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f,0.0f, self.view.width, self.view.height)];
     [self.view addSubview:backV];
-    [self addRightBtn];
-    [backV addSubview:self.listTab];
+    
+    [backV addSubview:self.collectionV];
+    
+    [backV addSubview:self.centerV];
+    
+    [self.viewArray addObject:self.collectionV];
+    [self.viewArray addObject:self.centerV];
+
+    [self.view addSubview:self.tabBarV];
+
+    //原定筛选按钮
+    [self.collectionV.rightBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tabBarV.personBtn addTarget:self action:@selector(personBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     //判断是否需要添加标签页
     [self checkSections];
 }
@@ -56,7 +52,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(backV.width - 54.0f, 20, 44.0f, 44.0f);
     [btn addTarget:self action:@selector(rightPress) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@"个人" forState:UIControlStateNormal];
+    [btn setTitle:@"筛选" forState:UIControlStateNormal];
     [btn.titleLabel setFont:FontType(14.0f)];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     UIView *black = [[UIView alloc]initWithFrame:CGRectMake((btn.width - 15.0f)/2, 42.0f, 15.0f, 2.0f)];
@@ -69,9 +65,10 @@
     if(1)
     {
         [self.view addSubview:self.classifyV];
-        [backV setVisualEffect];
+        //[backV setVisualEffect];
     }
 }
+//标签选择界面
 -(ClassifyView *)classifyV
 {
     if(!_classifyV)
@@ -80,52 +77,97 @@
     }
     return _classifyV;
 }
--(UITableView *)listTab
+//搭配界面（默认）
+-(CollectionView *)collectionV
 {
-    if(!_listTab)
+    if(!_collectionV)
     {
-        _listTab = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height) style:UITableViewStylePlain];
-        _listTab.dataSource = self;
-        _listTab.delegate = self;
-        _listTab.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _collectionV = [[CollectionView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT - TABBAR_HEIGHT)];
+        
     }
-    return _listTab;
+    return _collectionV;
 }
-#pragma mark --request
--(void)startRequest
+//个人中心
+-(PersonCenterView *)centerV
 {
-    collReq = [[CollocationReq alloc]init];
-    collRespon = [[CollectionRespon alloc]init];
-    [HttpCommunication request:collReq getResponse:collRespon Success:^(JuPlusResponse *response) {
-        [dataArray addObjectsFromArray:collRespon.listArray];
-        [self.listTab reloadData];
-    } failed:^(NSDictionary *errorDTO) {
-        [self errorExp:errorDTO];
-    } showProgressView:YES with:self.view];
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return PICTURE_HEIGHT+90.0f;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [dataArray count];
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *str = @"indexPath";
-    PackageCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
-    if(cell==nil)
+    if(!_centerV)
     {
-        cell = [[PackageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
+        _centerV = [[PersonCenterView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT - TABBAR_HEIGHT)];
+        
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    HomePageInfoDTO *homePage = [dataArray objectAtIndex:indexPath.row];
-    [cell loadCellInfo:homePage];
-    return cell;
+    return _centerV;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(JuPlusTabBarView *)tabBarV
+{
+    if(!_tabBarV)
+    {
+        _tabBarV = [[JuPlusTabBarView alloc]initWithFrame:CGRectMake(0.0f, SCREEN_HEIGHT - 44.0f, SCREEN_WIDTH, 44.0f)
+                    ];
+        _tabBarV.delegate = self;
+        _tabBarV.backgroundColor = [UIColor whiteColor];
+    }
+    return _tabBarV;
+}
+#pragma mark --ClickMethod
+//筛选按钮点击
+-(void)selectClick:(UIButton *)sender
+{
+   
+}
+#pragma mark 视图切换
+-(void)showCurrentView:(JuPlusUIView *)view
+{
+    [UIView animateWithDuration:ANIMATION animations:^{
+        [backV bringSubviewToFront:view];
+        view.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH,view.height);
+    } completion:^(BOOL finished) {
+        for (JuPlusUIView *vi in self.viewArray) {
+            if(vi!=view)
+            {
+                vi.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, vi.height);
+            }
+        }
+    }];
+}
+-(void)personBtnClick:(UIButton *)sender
+{
+    if([CommonUtil isLogin])
+    {
+        [self.tabBarV resetButtonArray];
+        [self.tabBarV.personBtn setSelected:YES];
+        [self showCurrentView:self.centerV];
+    }
+    else
+    {
+        LoginViewController *log = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:log animated:YES];
+    }
+
+}
+#pragma mark --tabBarDelegate
+-(void)changeTo:(NSInteger)tag
+{
+    if(tag==0)
+    {
+        [self showCurrentView:self.collectionV];
+    }
+
+}
+#pragma mark --切换tabBar的显示效果
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [UIView animateWithDuration:ANIMATION animations:^{
+        self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT - TABBAR_HEIGHT, SCREEN_WIDTH, TABBAR_HEIGHT);
+    }];
+}
+-(void)viewWillDisappear:(BOOL)animated
 {
     
+    [UIView animateWithDuration:ANIMATION animations:^{
+        self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT, SCREEN_WIDTH, TABBAR_HEIGHT);
+    }];
+    [super viewWillDisappear:animated];
 }
+
 @end

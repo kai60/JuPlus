@@ -15,5 +15,6 @@
     self.productNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productNo"]];
     self.locX = [[NSString stringWithFormat:@"%@",[dict objectForKey:@"positionX"]] floatValue];
     self.locY = [[NSString stringWithFormat:@"%@",[dict objectForKey:@"positionX"]] floatValue];
+    self.direction = [NSString stringWithFormat:@"%@",[dict objectForKey:@"direction"]];
 }
 @end

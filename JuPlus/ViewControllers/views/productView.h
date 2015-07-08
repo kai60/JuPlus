@@ -10,6 +10,7 @@
 #import "JuPlusUILabel.h"
 #import "CountView.h"
 @interface productView : JuPlusUIView
+//图标
 @property(nonatomic,strong)UIImageView *iconImgV;
 //标题
 @property(nonatomic,strong)JuPlusUILabel *titleL;
@@ -17,4 +18,6 @@
 @property(nonatomic,strong)JuPlusUILabel *priceL;
 //增删器
 @property(nonatomic,strong)CountView *countV;
+
+-(void)loadData:(NSDictionary *)dict;
 @end

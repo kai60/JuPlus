@@ -8,14 +8,20 @@
 
 #import "BaseViewController.h"
 #import "RTLabel.h"
+#import "PriceView.h"
 @interface SingleDetialViewController : BaseViewController<UIScrollViewDelegate>
 //单品对应id值
 @property (nonatomic,strong)NSString *singleId;
+
+@property (nonatomic,strong)JuPlusUIView *topView;
+
+@property (nonatomic,strong)UIButton *favBtn;
 //单品图层展示
 @property (nonatomic,strong)UIScrollView *imageScroll;
 //
 @property (nonatomic,strong)UIPageControl *pageControll;
 
+@property (nonatomic,strong)PriceView *priceV;
 //用于展示交互效果的下层图片
 @property (nonatomic,strong)JuPlusUIView *bottomV;
 //描述

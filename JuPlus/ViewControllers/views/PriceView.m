@@ -25,7 +25,7 @@
     if(!_backImage)
     {
         _backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.width, self.height)];
-        [_backImage setImage:[UIImage imageNamed:@""]];
+        [_backImage setImage:[UIImage imageNamed:@"price_bg"]];
     }
     return _backImage;
 }
@@ -35,7 +35,7 @@
     {
         _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, self.height)];
         [_textLabel setTextColor:[UIColor whiteColor]];
-        [_textLabel setFont:FontType(18.0f)];
+        [_textLabel setFont:FontType(17.0f)];
     }
     return _textLabel;
 }

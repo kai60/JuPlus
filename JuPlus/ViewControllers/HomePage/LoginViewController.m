@@ -11,6 +11,7 @@
 #import "RegisterViewController.h"
 #import "LoginReq.h"
 #import "LoginRespon.h"
+#import "HomeFurnishingViewController.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 {
     LoginReq *req;
@@ -163,6 +164,7 @@
 }
 -(void)fileLoginInfo
 {
+    //登陆成功之后
     for(UITextField *obj in self.fieldArray)
     {
         if (obj.tag==0) {
@@ -171,7 +173,14 @@
     }
     [CommonUtil setUserDefaultsValue:respon.token forKey:TOKEN];
     
-
+    NSArray *vcArr = [self.navigationController viewControllers];
+    for (UIViewController *vc in vcArr) {
+        if([vc isKindOfClass:[HomeFurnishingViewController class]])
+        {
+            [self.navigationController popToViewController:vc animated:YES];
+            return;
+        }
+    }
 }
 #pragma mark nextPress
 

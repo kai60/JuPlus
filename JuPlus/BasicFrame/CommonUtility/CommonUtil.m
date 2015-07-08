@@ -25,6 +25,12 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
 }
 //----------------------------------------------------------------------------------------------
+#pragma mark Nsnotificationcenter
++(void)postNotification:(NSString *)name Object:(id)obj
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:name object:obj];
+}
+//----------------------------------------------------------------------------------------------
 #pragma sizeFont
 +(CGSize)getLabelSizeWithString:(NSString *)Str andLabelWidth:(CGFloat)width  andFont:(UIFont *)font
 {
@@ -47,11 +53,11 @@
 //判断是否登录成功
 +(BOOL)isLogin
 {
-    return !IsStrEmpty([self getUserDefaultsValueWithKey:@"token"]);
+    return !IsStrEmpty([self getUserDefaultsValueWithKey:TOKEN]);
 }
 //得到token值
 +(NSString *)getToken
 {
-    return [self getUserDefaultsValueWithKey:@"token"];
+    return [self getUserDefaultsValueWithKey:TOKEN];
 }
 @end

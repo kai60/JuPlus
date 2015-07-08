@@ -20,7 +20,7 @@
     [self.navView addSubview: self.titleLabel];
     [self.navView addSubview:self.leftBtn];
     [self.navView addSubview:self.rightBtn];
-    [self.view addSubview:self.viewBack];
+    //[self.view addSubview:self.viewBack];
     [self loadBaseUI];
     [self startRequest];
     [self.view bringSubviewToFront:self.navView];
@@ -89,16 +89,6 @@
     }
     return _titleLabel;
     
-}
--(UIView *)viewBack
-{
-    if(!_viewBack)
-    {
-        _viewBack = [[UIView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
-        _viewBack.backgroundColor = RGBCOLOR(111, 111, 111);
-        [_viewBack setHidden:YES];
-    }
-    return _viewBack;
 }
 //提示信息显示
 - (void)showAlertView:(NSString *)msg withTag:(int)tag

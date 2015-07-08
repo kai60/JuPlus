@@ -7,7 +7,7 @@
 //
 
 #import "PackageCell.h"
-#import "MarkedLabelView.h"
+#import "LabelView.h"
 #import "LabelDTO.h"
 CGFloat space = 10.0f;
 @implementation PackageCell
@@ -42,8 +42,9 @@ CGFloat space = 10.0f;
     if(!_timeLabel)
     {
         _timeLabel = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.contentView.width - 80.0f, space*2, 60.0f, 20.0f)];
+        [_timeLabel setTextAlignment:NSTextAlignmentRight];
         [_timeLabel setFont:FontType(12.0f)];
-        [_timeLabel setTextColor:Color_Gray_lines];
+        [_timeLabel setTextColor:Color_Gray];
     }
     return _timeLabel;
 }
@@ -62,7 +63,7 @@ CGFloat space = 10.0f;
 {
     if(!_priceV)
     {
-        _priceV = [[PriceView alloc]initWithFrame:CGRectMake(100.0f, PICTURE_HEIGHT - 30.0f, 200.0f, 30.0f)];
+        _priceV = [[PriceView alloc]initWithFrame:CGRectMake(100.0f, PICTURE_HEIGHT - 30.0f, 220.0f, 30.0f)];
     }
     return _priceV;
 }
@@ -81,7 +82,8 @@ CGFloat space = 10.0f;
 {
     [self.topV.portraitImgV setimageUrl:homepageDTO.portrait placeholderImage:@"2.jpg"];
     [self.topV.nikeNameL setText:homepageDTO.nikename];
-    [self.timeLabel setText:homepageDTO.uploadTime];
+//    [self.timeLabel setText:homepageDTO.uploadTime];
+    [self.timeLabel setText:@"1小时前"];
     [self.descripL setText:homepageDTO.descripTxt];
     [self.showImgV setimageUrl:homepageDTO.collectionPic placeholderImage:@""];
     [self.priceV setPriceText:homepageDTO.price];
@@ -90,18 +92,34 @@ CGFloat space = 10.0f;
 }
 -(void)setTipsWithArray:(NSArray *)tipsArray
 {
-
+    for(UIView *vi in [self.showImgV subviews])
+    {
+        if([vi isKindOfClass:[LabelView class]])
+        {
+            [((LabelView *)vi).timer invalidate];
+            [vi removeFromSuperview];
+        }
+    }
        for(int i=0;i<[tipsArray count];i++)
     {
         LabelDTO *dto = [tipsArray objectAtIndex:i];
         CGFloat orignX = (dto.locX/100)*self.showImgV.width;
         CGFloat orignY = (dto.locY/100)*self.showImgV.height;
         
-        MarkedLabelView *btn = [[MarkedLabelView alloc]initWithFrame:CGRectMake(orignX, orignY, 55, 25)];
-        btn.labelText.text = dto.productName;
-        btn.touchBtn.tag = [dto.productNo intValue];
-        
-        [self.showImgV addSubview:btn];
+        CGSize size = [CommonUtil getLabelSizeWithString:dto.productName andLabelHeight:20.0f andFont:FontType(12.0f)];
+        LabelView *la;
+        if ([dto.direction floatValue]==1) {
+             la = [[LabelView alloc]initWithFrame:CGRectMake(orignX, orignY, size.width +15.0f, 50.0f) andDirect:dto.direction];
+        }
+        else
+        {
+            la = [[LabelView alloc]initWithFrame:CGRectMake(orignX - size.width - 15.0f, orignY, size.width +15.0f, 50.0f) andDirect:dto.direction];
+
+        }
+       
+        la.touchBtn.tag = [dto.productNo intValue];
+        [la showText:dto.productName];
+        [self.showImgV addSubview:la];
     }
 }
 @end

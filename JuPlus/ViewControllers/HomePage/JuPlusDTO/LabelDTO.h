@@ -16,5 +16,7 @@
 @property (nonatomic,assign)float locX;
 //距离上边距距离
 @property (nonatomic,assign)float locY;
+//朝向
+@property (nonatomic,strong)NSString *direction;
 
 @end

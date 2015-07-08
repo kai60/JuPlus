@@ -10,6 +10,9 @@
 #import "VerificationReq.h"
 #import "RegisterRespon.h"
 #import "RegisterRequest.h"
+#import "LoginReq.h"
+#import "LoginRespon.h"
+#import "HomeFurnishingViewController.h"
 @interface RegisterViewController ()
 {
     UIScrollView *backView;
@@ -21,6 +24,12 @@
     //倒计时结束之后出现的view
     UIView *identifyView;
     NSMutableArray *fieldArray;
+    
+    LoginReq *req;
+    LoginRespon *respon;
+    
+
+
 }
 
 @end
@@ -54,10 +63,42 @@
     }
     registerRespon = [[RegisterRespon alloc]init];
     [HttpCommunication request:registerReq getResponse:registerRespon Success:^(JuPlusResponse *response) {
-      //  <#code#>
+        //注册成功之后，返回登陆的用户名和密码，自己再做一遍登陆
+        [self login];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
+}
+-(void)login
+{
+    req = [[LoginReq alloc]init];
+    respon = [[LoginRespon alloc]init];
+    
+   
+    [req setField:registerRespon.mobileNo forKey:@"mobile"];
+    
+    [req setField:registerRespon.passWord forKey:@"loginPwd"];
+    
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        [self fileLoginInfo];
+    } failed:^(NSDictionary *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:YES with:self.view];
+
+}
+-(void)fileLoginInfo
+{
+    [CommonUtil setUserDefaultsValue:registerRespon.mobileNo forKey:@"loginName"];
+    [CommonUtil setUserDefaultsValue:respon.token forKey:TOKEN];
+    
+    NSArray *vcArr = [self.navigationController viewControllers];
+    for (UIViewController *vc in vcArr) {
+        if([vc isKindOfClass:[HomeFurnishingViewController class]])
+        {
+            [self.navigationController popToViewController:vc animated:YES];
+            return;
+        }
+    }    
 }
 - (void)viewDidLoad
 {

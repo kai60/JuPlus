@@ -30,6 +30,11 @@
 
 +(void)removeUserDefaultsValue:(NSString *) key;
 //----------------------------------------------------------------------------------------------
+#pragma mark NSNotificationCenter
++(void)postNotification:(NSString *)name Object:(id)obj;
+
+//----------------------------------------------------------------------------------------------
+
 #pragma mark --token
 //判断是否登录成功
 +(BOOL)isLogin;

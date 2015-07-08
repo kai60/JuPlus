@@ -11,6 +11,10 @@
 @implementation LoginRespon
 -(void)unPackJsonValue:(NSDictionary *)dict
 {
-    self.token = [NSString stringWithFormat:@"%@",[dict objectForKey:@"token"]];
+    NSDictionary *memInfo = [dict objectForKey:@"memInfo"];
+    self.token = [NSString stringWithFormat:@"%@",[memInfo objectForKey:@"token"]];
+    self.portraitPath = [NSString stringWithFormat:@"%@",[memInfo objectForKey:@"portraitPath"]];
+    self.nickname = [NSString stringWithFormat:@"%@",[memInfo objectForKey:@"nickname"]];
+
 }
 @end

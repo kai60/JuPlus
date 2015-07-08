@@ -9,8 +9,19 @@
 #import "BaseViewController.h"
 #import "PackageCell.h"
 #import "ClassifyView.h"
-@interface HomeFurnishingViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+#import "JuPlusTabBarView.h"
+#import "CollectionView.h"
+#import "PersonCenterView.h"
+@interface HomeFurnishingViewController : BaseViewController<TabBarViewDelegate>
 @property (nonatomic,strong)UITableView *listTab;
+//分类界面
 @property (nonatomic,strong)ClassifyView *classifyV;
-
+//个人中心界面
+@property (nonatomic,strong)PersonCenterView *centerV;
+//搭配界面
+@property (nonatomic,strong)CollectionView *collectionV;
+//底部标签栏
+@property(nonatomic,strong)JuPlusTabBarView *tabBarV;
+//分类信息控制，显示主界面隐藏其余
+@property(nonatomic,strong)NSMutableArray *viewArray;
 @end

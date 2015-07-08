@@ -7,8 +7,68 @@
 //
 
 #import "JuPlusUIView.h"
-
+#define statusY 20.0f
 @implementation JuPlusUIView
+-(id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if(self)
+    {
+        [self addSubview:self.navView];
+        [self.navView addSubview: self.titleLabel];
+        [self.navView addSubview:self.leftBtn];
+        [self.navView addSubview:self.rightBtn];
+    }
+    return self;
+}
+-(UIView *)navView
+{
+    if(!_navView)
+    {
+        _navView = [[UIView alloc]initWithFrame:CGRectMake(0.0f,20.0f - statusY, SCREEN_WIDTH, 44.0f+statusY)];
+        [_navView setBackgroundColor:RGBCOLOR(239, 239, 239)];
+        [_navView setHidden:YES];
+    }
+    return _navView;
+}
+//标题
+-(UILabel *)titleLabel
+{
+    CGFloat titleWidth = 120.0f;
+    if(!_titleLabel)
+    {
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.width - titleWidth)/2, 20.0f, titleWidth, 44.0f)];
+        _titleLabel.backgroundColor = [UIColor clearColor];
+        [_titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _titleLabel;
+    
+}
+-(UIButton *)leftBtn
+{
+    if(!_leftBtn)
+    {
+        _leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _leftBtn.frame = CGRectMake(0.0f, statusY, 44.0f, 44.0f);
+    }
+    return _leftBtn;
+}
+-(UIButton *)rightBtn
+{
+    if(!_rightBtn)
+    {
+        _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rightBtn.frame = CGRectMake(self.navView.width - 54.0f, statusY, 44.0f, 44.0f);
+        [_rightBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
+        [_rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        UIView *black = [[UIView alloc]initWithFrame:CGRectMake((_rightBtn.width - 15.0f)/2, 42.0f, 15.0f, 2.0f)];
+        [black setBackgroundColor:[UIColor blackColor]];
+        [_rightBtn addSubview:black];
+    }
+    return _rightBtn;
+}
+
 //提示信息显示
 - (void)showAlertView:(NSString *)msg withTag:(int)tag
 {

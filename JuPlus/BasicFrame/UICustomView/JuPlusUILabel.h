@@ -10,4 +10,5 @@
 
 @interface JuPlusUILabel : UILabel
 -(id)initWithFrame:(CGRect)frame;
+-(void)setPriceText:(NSString *)price;
 @end

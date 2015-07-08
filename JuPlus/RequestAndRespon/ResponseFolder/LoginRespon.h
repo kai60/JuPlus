@@ -10,4 +10,8 @@
 
 @interface LoginRespon : JuPlusResponse
 @property(nonatomic,strong)NSString *token;
+//昵称
+@property(nonatomic,strong)NSString *nickname;
+//头像
+@property(nonatomic,strong)NSString *portraitPath;
 @end

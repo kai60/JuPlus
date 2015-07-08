@@ -18,6 +18,12 @@
     }
     return self;
 }
+-(void)setPriceText:(NSString *)price
+{
+    CGFloat priceTxt = [price floatValue];
+    NSString *txt = [NSString stringWithFormat:@"¥%.2f",priceTxt];
+    [self setText:txt];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

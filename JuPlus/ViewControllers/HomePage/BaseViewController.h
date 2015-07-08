@@ -11,9 +11,11 @@
 #import "JuPlusCustomMethod.h"
 #import "JuPlusUIView.h"
 @interface BaseViewController : UIViewController
+//导航栏
 @property(nonatomic,strong)UIView *navView;
+//标题栏
 @property(nonatomic,strong)UILabel *titleLabel;
-@property(nonatomic,strong)UIView *viewBack;
+//@property(nonatomic,strong)UIView *viewBack;
 @property(nonatomic,strong)UIButton *leftBtn;
 @property(nonatomic,strong)UIButton *rightBtn;
 -(void)errorExp:(NSDictionary *)exp;

@@ -13,7 +13,6 @@
 #import "DiscoveryViewController.h"
 #import "CollocationViewController.h"
 #import "ClassificationViewController.h"
-#import "MyAccountViewController.h"
 #import "JuPlusNavigationController.h"
 #import "HomeFurnishingViewController.h"
 @interface JuPlusAppDelegate ()
@@ -48,7 +47,7 @@
 -(void)runNormalMethod
 {
 //    JuPlusTabBarController *tab = [[JuPlusTabBarController alloc]init];
-//    
+////    
 //    DiscoveryViewController *dis = [[DiscoveryViewController alloc]init];
 //    CollocationViewController *collocation = [[CollocationViewController alloc]init];
 //    ClassificationViewController *class = [[ClassificationViewController alloc]init];
@@ -64,7 +63,6 @@
 //        [navCtrls addObject:navCtrl];
 //    }
 //    tab.viewControllers = viewCtrls;
-//        DiscoveryViewController *dis = [[DiscoveryViewController alloc]init];
     HomeFurnishingViewController *home = [[HomeFurnishingViewController alloc]init];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:home];
     self.window.rootViewController = nav;

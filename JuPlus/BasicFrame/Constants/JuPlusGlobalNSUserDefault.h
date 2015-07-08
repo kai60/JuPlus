@@ -12,4 +12,5 @@
 #define GetAppVerson @"getAppVerson"
 #pragma mark --NSSTRING
 #define TOKEN @"token"
+#define ResetPrice @"resetPrice"
 #endif

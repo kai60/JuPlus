@@ -8,10 +8,13 @@
 
 #import "UIImageView+JuPlusUIImageView.h"
 #import "UIView+JuPlusUIView.h"
+#import "NSString+JuPlusString.h"
 @implementation UIImageView (JuPlusUIImageView)
 //加载网络图片
 -(void)setimageUrl:(NSString *)url placeholderImage:(NSString *)defalutImage
 {
+    if(defalutImage==nil)
+        defalutImage = @"";
     [self sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,url]] placeholderImage:[UIImage imageNamed:defalutImage]];
 }
 //设置圆形图片

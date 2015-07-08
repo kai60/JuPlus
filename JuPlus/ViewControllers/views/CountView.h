@@ -19,7 +19,7 @@
 //计数器
 @property(nonatomic,strong)UILabel *countL;
 //得到最终值
--(NSString *)getCountNum;
+-(int )getCountNum;
 //初始化的时候必须调用此方法设定初始值
 //设定初始值
 -(void)setCountNum:(int)count;

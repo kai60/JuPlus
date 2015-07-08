@@ -11,6 +11,12 @@
 @interface PlaceOrderViewController : BaseViewController
 //单品编号
 @property(nonatomic,strong)NSString *regNo;
+
+@property(nonatomic,strong)NSString *imgUrl;
+
+@property(nonatomic,strong)NSString *name;
+
+@property(nonatomic,strong)NSString *price;
 //是单品还是套餐
 @property(nonatomic,assign)BOOL isSingle;
 @end

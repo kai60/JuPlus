@@ -9,5 +9,7 @@
 #import "JuPlusResponse.h"
 
 @interface CollectionRespon : JuPlusResponse
+
+@property(nonatomic,strong)NSString *count;
 @property(nonatomic,strong)NSMutableArray *listArray;
 @end

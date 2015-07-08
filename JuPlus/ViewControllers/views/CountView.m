@@ -18,7 +18,7 @@
     self = [super initWithFrame:frame];
     if(self)
     {
-        height = frame.size.width/4;
+        height = 22.0f;
         [self addSubview:self.backImg];
         [self addSubview:self.subtractBtn];
         [self addSubview:self.addBtn];
@@ -43,6 +43,7 @@
     {
         countNum -= 1;
         self.countL.text = [NSString stringWithFormat:@"%d",countNum];
+        [[NSNotificationCenter defaultCenter] postNotificationName:ResetPrice object:nil];
     }
 }
 //加法
@@ -56,6 +57,7 @@
     {
         countNum += 1;
         self.countL.text = [NSString stringWithFormat:@"%d",countNum];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"resetPrice" object:nil];
     }
 }
 #pragma mark --UI
@@ -93,7 +95,7 @@
 {
     if(!_countL)
     {
-        _countL = [[UILabel alloc]initWithFrame:CGRectMake(height, 0.0f, height*2, height)];
+        _countL = [[UILabel alloc]initWithFrame:CGRectMake(height, 0.0f,self.width - height*2, height)];
         [_countL setFont:FontType(14.0f)];
         _countL.textAlignment = NSTextAlignmentCenter;
         _countL.text =[NSString getStringValue:countNum];
@@ -102,8 +104,9 @@
     return _countL;
 }
 //得到运算之后的数值
--(NSString *)getCountNum
+-(int)getCountNum
 {
-    return self.countL.text;
+    
+    return [self.countL.text intValue];
 }
 @end

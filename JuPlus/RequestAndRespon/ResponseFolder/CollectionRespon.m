@@ -12,7 +12,9 @@
 -(void)unPackJsonValue:(NSDictionary *)dict
 {
     self.listArray = [[NSMutableArray alloc]init];
-    NSArray *listArr = [NSArray arrayWithArray:[dict objectForKey:RESPONSE_DATA]];
+    self.count = [NSString stringWithFormat:@"%@",[dict objectForKey:@"count"]];
+    NSArray *listArr = [NSArray arrayWithArray:[dict objectForKey:@"list"]];
+    
     for(int i=0;i<[listArr count];i++)
     {
     HomePageInfoDTO *dto = [[HomePageInfoDTO alloc]init];

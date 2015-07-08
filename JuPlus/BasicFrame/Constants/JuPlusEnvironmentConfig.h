@@ -27,8 +27,11 @@
 #define PICTURE_HEIGHT 336.0f
 #define DETAIL_HEIGHT 230.0f
 //用于下拉加载更多的每页数据数
-#define PAGESIZE 10
+#define PAGESIZE @"10"
 
+#define ANIMATION 0.3
+
+#define TABBAR_HEIGHT 44.0f
 ////字体样式
 #define FONTSTYLE @"Heiti SC"
 //基于给定字体样式的字体设置
@@ -48,7 +51,7 @@
 //网络请求IP地址
 //#define FRONT_SERVER_URL @"http://115.29.233.175:7064"
 //#define FRONT_SERVER_URL @"https://api.app.net:8080"
-#define FRONT_SERVER_URL @"http://192.168.0.109"
+#define FRONT_SERVER_URL @"http://192.168.0.113"
 
 
 

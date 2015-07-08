@@ -13,7 +13,7 @@
 -(void)loadDTO:(NSDictionary *)dict
 {
     self.name = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"name"]];
-    self.regNo = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"regNo"]];
+    self.regNo = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"id"]];
     
 }
 @end

@@ -11,7 +11,14 @@
 #import "JuPlusEnvironmentConfig.h"
 #import "CommonUtil.h"
 #import "HttpCommunication.h"
+#import "JuPlusUILabel.h"
 @interface JuPlusUIView : UIView
+@property(nonatomic,strong)UIView *navView;
+@property(nonatomic,strong)UILabel *titleLabel;
+@property(nonatomic,strong)UIView *viewBack;
+@property(nonatomic,strong)UIButton *leftBtn;
+@property(nonatomic,strong)UIButton *rightBtn;
+
 -(void)errorExp:(NSDictionary *)exp;
 //提示的错误消息
 - (void)showAlertView:(NSString *)msg withTag:(int)tag;
