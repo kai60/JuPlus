@@ -210,11 +210,12 @@
 	
 	// GIFs store the delays as 1/100th of a second,
 	// UIImageViews want it in seconds.
-	//[self setAnimationDuration:total/_seconds];
+   	//[self setAnimationDuration:total/_seconds];
     [self setAnimationDuration:_seconds];
 
 	// Repeat infinite
 	[self setAnimationRepeatCount:1];
+    
 	
 	[self startAnimating];
 }

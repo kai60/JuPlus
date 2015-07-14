@@ -12,6 +12,7 @@
 #import "ReceiveMessageView.h"
 #import "productView.h"
 #import "productOrderDTO.h"
+#import "AddressDTO.h"
 #define space 20.0f
 @interface OrderDetailViewController ()
 {
@@ -53,19 +54,11 @@
     
     [self.listScrollV addSubview:self.packageV];
     
-    UIView *middle1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.packageV.bottom, SCREEN_WIDTH, 20.0f)];
-    [middle1 setBackgroundColor:RGBCOLOR(239, 239, 239)];
-    [self.listScrollV addSubview:middle1];
     
     [self.listScrollV addSubview:self.receivedAddressV];
     
-    UIView *middle2 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.receivedAddressV.bottom, SCREEN_WIDTH, self.listScrollV.height - self.receivedAddressV.bottom)];
-    [middle2 setBackgroundColor:RGBCOLOR(239, 239, 239)];
-    [self.listScrollV addSubview:middle2];
-    
-    
     [self.view addSubview:self.placeOrderV];
-    [self fileData];
+    
 }
 //暂时无购物车，数据从上界面返回
 #pragma mark --request
@@ -89,15 +82,19 @@
     {
         productOrderDTO *dto = [getRespon.productArr objectAtIndex:i];
         productView *pro = [[productView alloc]initWithFrame:CGRectMake(0.0f, 100.0f*i, _packageV.width, 100.0f)];
+        pro.userInteractionEnabled = NO;
         [pro loadData:dto];
         [_packageV addSubview:pro];
         [productArr addObject:pro];
     }
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:getRespon.receictName,@"name",getRespon.receictMobile,@"mobile",getRespon.receictAddress,@"address", nil];
-    [self.receivedAddressV setAddressInfo:dic];
+    AddressDTO *dto = [[AddressDTO alloc]init];
+    dto.addName = getRespon.receictName;
+    dto.addAddress = getRespon.receictAddress;
+    dto.addMobile = getRespon.receictMobile;
+    [self.receivedAddressV setAddressInfo:dto];
     
     [self resetFrames];
-    [self.placeOrderV setText:[NSString stringWithFormat:@"总价：%@",getRespon.totalAmt]];
+    [self.placeOrderV setText:[NSString stringWithFormat:@"总价：%.2f",[getRespon.totalAmt floatValue]]];
 }
 -(void)resetFrames
 {
@@ -105,7 +102,16 @@
     frame.size.height = 100.0f*[getRespon.productArr count];
     self.packageV.frame = frame;
     
+    UIView *middle1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.packageV.bottom, SCREEN_WIDTH, 20.0f)];
+    [middle1 setBackgroundColor:RGBCOLOR(239, 239, 239)];
+    [self.listScrollV addSubview:middle1];
+
     self.receivedAddressV.frame = CGRectMake(0.0f, self.packageV.bottom+20.0f, SCREEN_WIDTH, 100.0f);
+    
+    UIView *middle2 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.receivedAddressV.bottom, SCREEN_WIDTH, self.listScrollV.height - self.receivedAddressV.bottom)];
+    [middle2 setBackgroundColor:RGBCOLOR(239, 239, 239)];
+    [self.listScrollV addSubview:middle2];
+
     [self.listScrollV setContentSize:CGSizeMake(self.listScrollV.width, self.receivedAddressV.bottom+10.0f)];
 }
 
@@ -127,7 +133,7 @@
         [right setText:@"发件数量"];
         right.textAlignment = NSTextAlignmentRight;
         [_sectionTitleV addSubview:right];
-        JuPlusUIView *line = [[JuPlusUIView alloc]initWithFrame:CGRectMake(space, _sectionTitleV.bottom -1.0f, _sectionTitleV.width, 1.0f)];
+        JuPlusUIView *line = [[JuPlusUIView alloc]initWithFrame:CGRectMake(left.left, _sectionTitleV.bottom -1.0f, _sectionTitleV.width, 1.0f)];
         [line setBackgroundColor:Color_Gray_lines];
         [_sectionTitleV addSubview:line];
     }

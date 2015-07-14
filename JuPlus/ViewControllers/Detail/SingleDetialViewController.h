@@ -16,7 +16,7 @@
 //该单品对应的套餐(即从哪个套餐过来的)
 @property (nonatomic,strong)NSString *regNo;
 @property (nonatomic,strong)ImageScrollView *topView;
-
+@property (nonatomic,strong)UIScrollView *backScroll;
 //用于展示交互效果的下层图片
 @property (nonatomic,strong)JuPlusUIView *bottomV;
 //描述

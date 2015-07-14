@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JuPlus/ViewControllers/Detail/PackageViewController.m"
-            timestampString = "458471890.228477"
+            timestampString = "458564899.229709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
             landmarkName = "-payPress"
             landmarkType = "5">
          </BreakpointContent>

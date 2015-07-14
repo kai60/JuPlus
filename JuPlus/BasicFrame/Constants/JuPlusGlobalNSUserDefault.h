@@ -15,4 +15,6 @@
 #define PageSize @"pageSize"
 #define PageNum @"pageNum"
 #define ResetPrice @"resetPrice"
+//刷新地址
+#define ReloadAddress @"reloadAddress"
 #endif

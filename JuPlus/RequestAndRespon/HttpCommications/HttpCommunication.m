@@ -24,8 +24,9 @@
 {
     if(showProgressBar)
     {
-        [self showWaitingView:view withTitle:nil];
+      //  [self showWaitingView:view withTitle:nil];
     }
+    
     //组包验证信息
     [request validatePackValue:[request getJsonDict] ParamsArray:[request getValidArray] Optional:NO];
     NSString *path = [request getUrlString:[request getUrlArray]];

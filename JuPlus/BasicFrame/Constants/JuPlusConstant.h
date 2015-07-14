@@ -12,4 +12,8 @@
 #import "JuPlusGlobalNSUserDefault.h"
 #import "JuPlusReleaseConfig.h"
 #import "JuPlusEnvironmentConfig.h"
+
+//常用固定文字=========================================================================
+#define Remind_Title @"温馨提示"
+
 #endif

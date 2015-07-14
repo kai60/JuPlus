@@ -7,6 +7,7 @@
 //收货信息展示
 
 #import "JuPlusUIView.h"
+#import "AddressDTO.h"
 
 @interface ReceiveMessageView : JuPlusUIView
 -(id)initWithFrame:(CGRect)frame;
@@ -19,5 +20,5 @@
 //箭头
 @property(nonatomic,strong)UIButton *rightArrow;
 //信息填充
--(void)setAddressInfo:(NSDictionary *)dict;
+-(void)setAddressInfo:(AddressDTO *)dto;
 @end

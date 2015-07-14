@@ -1,15 +1,14 @@
 //
-//  PostFaverReq.m
+//  AddAddressReq.m
 //  JuPlus
 //
-//  Created by admin on 15/7/8.
+//  Created by admin on 15/7/14.
 //  Copyright (c) 2015年 居+. All rights reserved.
 //
 
-#import "PostFaverReq.h"
+#import "AddAddressReq.h"
 
-@implementation PostFaverReq
-
+@implementation AddAddressReq
 -(id)init{
     self = [super init];
     if (self)
@@ -27,7 +26,7 @@
 
 -(void)setPath{
     
-    [self setField:@"favourite" forKey:@"ModuleName"];
+    [self setField:@"address" forKey:@"ModuleName"];
     [self setField:@"add" forKey:@"FunctionName"];
 }
 

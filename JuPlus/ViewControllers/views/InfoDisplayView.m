@@ -35,6 +35,7 @@
     if(!_textL)
     {
         _textL = [[RTLabel alloc]initWithFrame:CGRectMake(10.0f, self.headerL.bottom+10.0f, self.width -20.0f, 30.0f)];
+        _textL.textAlignment = RTTextAlignmentCenter;
         [_textL setFont:FontType(FontSize)];
         [_textL setTextColor:Color_Gray];
     }

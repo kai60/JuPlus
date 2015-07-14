@@ -1,20 +1,20 @@
 //
-//  PostFavReq.m
+//  SetDefAddressReq.m
 //  JuPlus
 //
-//  Created by admin on 15/7/9.
+//  Created by admin on 15/7/14.
 //  Copyright (c) 2015年 居+. All rights reserved.
-//添加收藏
+//
 
-#import "PostFavReq.h"
+#import "SetDefAddressReq.h"
 
-@implementation PostFavReq
+@implementation SetDefAddressReq
 -(id)init{
     self = [super init];
     if (self)
     {
-        self.urlSeq = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",nil];
-        self.requestMethod = RequestMethod_POST;
+        self.urlSeq = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",@"addressId",TOKEN,nil];
+        self.requestMethod = RequestMethod_GET;
         self.validParams = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",nil];
         self.packDic = [[NSMutableDictionary alloc] initWithCapacity:0];
         self.path = [[NSString alloc] init];
@@ -26,8 +26,8 @@
 
 -(void)setPath{
     
-    [self setField:@"favourite" forKey:@"ModuleName"];
-    [self setField:@"add" forKey:@"FunctionName"];
+    [self setField:@"address" forKey:@"ModuleName"];
+    [self setField:@"default" forKey:@"FunctionName"];
 }
 
 @end

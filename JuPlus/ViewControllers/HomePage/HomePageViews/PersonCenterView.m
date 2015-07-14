@@ -25,7 +25,9 @@
         [self.navView setHidden:NO];
         self.listArr = [[NSMutableArray alloc]init];
         self.titleLabel.text = @"我的主页";
-       // [self.rightBtn setTitle:@"设置" forState:UIControlStateNormal];
+        [self.rightBtn setHidden:YES];
+//        [self.rightBtn setTitle:@"登出" forState:UIControlStateNormal];
+//        [self.rightBtn addTarget:self action:@selector(logoutPress:) forControlEvents:UIControlEventTouchUpInside];
         [self uifig];
     }return self;
 }
@@ -121,6 +123,11 @@
 
     }
     return _nickLabel;
+}
+#pragma mark --btnClick
+-(void)logoutPress:(UIButton *)sender
+{
+    
 }
 -(void)btnClick:(UIButton *)sender
 {

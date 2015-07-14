@@ -7,7 +7,6 @@
 //
 
 #import "ReceiveMessageView.h"
-
 @implementation ReceiveMessageView
 {
     CGFloat space;
@@ -83,11 +82,12 @@
     }
     return _rightArrow;
 }
--(void)setAddressInfo:(NSDictionary *)dict
+-(void)setAddressInfo:(AddressDTO *)dto
 {
-    [self.nameL setText:[dict objectForKey:@"name"]];
-    [self.mobileL setText:[dict objectForKey:@"mobile"]];
-    [self.addressL setText:[dict objectForKey:@"address"]];
+    [self.nameL setText:dto.addName];
+    [self.mobileL setText:dto.addMobile];
+    [self.addressL setText:dto.addAddress];
+    self.tag = [dto.addId intValue];
 
 }
 @end

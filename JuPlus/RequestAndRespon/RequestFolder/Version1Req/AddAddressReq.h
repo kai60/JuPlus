@@ -1,13 +1,13 @@
 //
-//  PostFavReq.h
+//  AddAddressReq.h
 //  JuPlus
 //
-//  Created by admin on 15/7/9.
+//  Created by admin on 15/7/14.
 //  Copyright (c) 2015年 居+. All rights reserved.
-//添加收藏
+//
 
 #import "JuPlusRequest.h"
 
-@interface PostFavReq : JuPlusRequest
+@interface AddAddressReq : JuPlusRequest
 -(id)init;
 @end

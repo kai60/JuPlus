@@ -7,9 +7,9 @@
 //
 
 #import "AutoyolProgressView.h"
-#import "SCGIFImageView.h"
 #import <QuartzCore/QuartzCore.h>
-#define Progress_tag 2014
+#import "SCGIFImageView.h"
+#import "UIImage+GIF.h"
 @implementation AutoyolProgressView
 - (id)initWithFrame:(CGRect)frame
 {
@@ -25,7 +25,7 @@
 {
     [self setBackgroundColor:[UIColor colorWithRed:0 green:.0 blue:0 alpha:0.6]];
     UIView *view = [self viewWithTag:Progress_tag];
-    CGFloat imageWidth = 82.0f;
+    CGFloat imageWidth = 40;
         self.frame = CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height);
      if(frame.origin.y ==0)
     {
@@ -39,9 +39,11 @@
 }
 -(void)uifig
 {
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"checkmark.gif" ofType:nil];
-    SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath withSeconds:2];
-    CGFloat imgSize = 82.0f;
+   // NSString* filePath = [[NSBundle mainBundle] pathForResource:@"checkmark.gif" ofType:nil];
+    UIImageView *gifImageView = [[UIImageView alloc]init];
+    [gifImageView setImage:[UIImage sd_animatedGIFNamed:@"1.gif"]];
+//    SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath withSeconds:2];
+    CGFloat imgSize = 40.0f;
     gifImageView.frame = CGRectMake((self.frame.size.width-imgSize)/2, (self.frame.size.height-imgSize)/2,imgSize, imgSize);
     gifImageView.autoresizingMask = YES;
     gifImageView.tag = Progress_tag;

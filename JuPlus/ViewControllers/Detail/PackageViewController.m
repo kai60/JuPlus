@@ -60,10 +60,12 @@
     self.titleLabel.text = @"套餐介绍";
     rectW1 = (SCREEN_WIDTH - space*3)/2;
     rectW2 = (SCREEN_WIDTH - space*4)/3;
-    [self.view addSubview:self.packageImageV];
+
+    [self.view addSubview:self.backScroll];
+    [self.backScroll addSubview:self.packageImageV];
     [self.packageImageV addSubview:self.favBtn];
     [self.packageImageV addSubview:self.priceLabel];
-    [self.view addSubview:self.backScroll];
+
     [self.backScroll addSubview:self.secBackScroll];
     [self.view addSubview:self.designIcon];
     [self.secBackScroll addSubview:self.nameLabel];
@@ -94,7 +96,7 @@
 {
     if(!_packageImageV)
     {
-        _packageImageV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, PICTURE_HEIGHT)];
+        _packageImageV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
         _packageImageV.userInteractionEnabled = YES;
     }
     return _packageImageV;
@@ -149,8 +151,8 @@
 {
     if(!_nameLabel)
     {
-        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(space, 0.0f, self.backScroll.width - space*2, 30.0f)];
-        [_nameLabel setFont:FontType(16.0f)];
+        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(space, 0.0f, self.backScroll.width - space*2, 40.0f)];
+        [_nameLabel setFont:FontType(14.0f)];
         [_nameLabel setTextColor:Color_Basic];
         _nameLabel.textAlignment = NSTextAlignmentCenter;
         
@@ -166,6 +168,8 @@
     {
         CGFloat imgW = 50.0f;
         _designIcon = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.width - 60.0f,nav_height + PICTURE_HEIGHT -imgW/2, imgW, imgW)];
+        _designIcon.layer.borderColor = [Color_White CGColor];
+        _designIcon.layer.borderWidth = 1.0f;
         _designIcon.layer.cornerRadius = imgW/2;
         _designIcon.layer.masksToBounds =YES;
     }
@@ -177,7 +181,6 @@
     {
         _addressView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, self.nameLabel.bottom, self.backScroll.width, 80.0f)];
         _addressView.headerL.text = @"线下体验店";
-
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, _addressView.width, _addressView.height);
         [_addressView addSubview:btn];
@@ -271,7 +274,6 @@
     [self.addressView.textL setText:respon.address];
     //简介
     [self fileContent:respon.content];
-    [self.displayView.textL setText:respon.content];
     
     if([respon.labelArray count]<=1)
     {
@@ -333,11 +335,13 @@
 {
     //描述文字
     [self.displayView.textL setText:str];
+
     CGSize optimumSize = [self.displayView.textL optimumSize];
+    
     CGRect frame = [self.displayView.textL frame];
     frame.size.height = (int)optimumSize.height+5; // +5 to fix height issue, this should be automatically fixed in iOS5
     [self.displayView.textL setFrame:frame];
-
+    
 }
 
 //填充单品详情内容
@@ -402,11 +406,15 @@
         else
             [self.view bringSubviewToFront:self.packageImageV];
         [self.view bringSubviewToFront:self.designIcon];
-        CGFloat iconY = nav_height+PICTURE_HEIGHT - 25.0f - orignY/2;
+        [self.view bringSubviewToFront:self.navView];
+        CGFloat backY =  2*orignY/3;
+        CGFloat iconY = nav_height+PICTURE_HEIGHT - 25.0f - orignY;
         if(iconY<nav_height)
             iconY = nav_height;
         self.designIcon.frame = CGRectMake(self.designIcon.left, iconY, self.designIcon.width, self.designIcon.height);
         
+        self.packageImageV.frame = CGRectMake(self.packageImageV.left, backY, self.packageImageV.width, self.packageImageV.height);
+
     }
 }
 #pragma mark --buttonPress
