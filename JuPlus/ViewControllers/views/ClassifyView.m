@@ -102,7 +102,7 @@
 -(void)surePress:(UIButton *)sender
 {
     NSLog(@"selArr = %@",self.selectArr);
-    [self removeFromSuperview];
+    [self setHidden:YES];
     //[superView removeVisualEffect];
 }
 //只可单选的点击事件以及提交按钮

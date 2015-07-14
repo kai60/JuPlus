@@ -8,7 +8,7 @@
 
 #import "JuPlusUIView.h"
 
-@interface CollectionView : JuPlusUIView<UITableViewDataSource,UITableViewDelegate>
+@interface CollectionView : JuPlusUIView<UITableViewDataSource,UITableViewDelegate,ScrollRefreshViewDegegate>
 @property (nonatomic,strong)UITableView *listTab;
 
 @end

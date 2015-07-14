@@ -12,6 +12,7 @@
 #import "CommonUtil.h"
 #import "HttpCommunication.h"
 #import "JuPlusUILabel.h"
+#import "JuPlusRefreshView.h"
 @interface JuPlusUIView : UIView
 @property(nonatomic,strong)UIView *navView;
 @property(nonatomic,strong)UILabel *titleLabel;
@@ -24,4 +25,5 @@
 - (void)showAlertView:(NSString *)msg withTag:(int)tag;
 //一些系统的弹出处理,例如强制更新，登录失败
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+-(void)startHomePageRequest;
 @end

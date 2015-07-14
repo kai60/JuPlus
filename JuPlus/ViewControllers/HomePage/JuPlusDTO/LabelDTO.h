@@ -19,4 +19,8 @@
 //朝向
 @property (nonatomic,strong)NSString *direction;
 
+@property (nonatomic,strong)NSString *coverUrl;
+
+@property (nonatomic,strong)NSString *price;
+
 @end

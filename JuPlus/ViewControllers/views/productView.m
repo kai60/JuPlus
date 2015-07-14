@@ -65,12 +65,12 @@
     }
     return _countV;
 }
--(void)loadData:(NSDictionary *)dict
+-(void)loadData:(productOrderDTO *)dto
 {
-    [self.countV setCountNum:1];
-    [self.iconImgV setimageUrl:[dict objectForKey:@"imgUrl"] placeholderImage:nil];
-    [self.titleL setText:[dict objectForKey:@"productName"]];
-    [self.priceL setText:[NSString stringWithFormat:@"¥%@",[dict objectForKey:@"productName"]]];
+    [self.iconImgV setimageUrl:dto.imgUrl placeholderImage:nil];
+    [self.titleL setText:dto.productName];
+    [self.priceL setText:[NSString stringWithFormat:@"¥%.2f",[dto.price floatValue]]];
+    [self.countV setCountNum:[dto.countNum intValue]];
 
 }
 @end

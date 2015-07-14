@@ -7,22 +7,18 @@
 //
 
 #import "OrderListRespon.h"
-
+#import "OrderListDTO.h"
 @implementation OrderListRespon
 -(void)unPackJsonValue:(NSDictionary *)dict
 {
-    self.productArray = [[NSMutableArray alloc]init];
-    self.orderNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"orderNo"]];
-    self.orderTime = [NSString stringWithFormat:@"%@",[dict objectForKey:@"orderTime"]];
-    self.totalPrice = [NSString stringWithFormat:@"%@",[dict objectForKey:@"orderNo"]];
-    NSArray *proList = [dict objectForKey:@"productList"];
-    for(NSDictionary *pro in proList)
-    {
-        productOrderDTO *dto =  [[productOrderDTO alloc]init];
-        [dto loadDTO:pro];
-        [self.productArray addObject:dto];
+    self.totalCount = [NSString stringWithFormat:
+                       @"%@",[dict objectForKey:@"count"]];
+    self.orderListArray = [[NSMutableArray alloc]init];
+    NSArray *arr = [NSArray arrayWithArray:[dict objectForKey:@"list"]];
+    for (int i=0; i<[arr count]; i++) {
+        OrderListDTO *dto = [[OrderListDTO alloc]init];
+        [dto loadDTO:[arr objectAtIndex:i]];
+        [self.orderListArray addObject:dto];
     }
-    self.totalCount = [self.productArray count];
-
 }
 @end

@@ -174,13 +174,25 @@
     [CommonUtil setUserDefaultsValue:respon.token forKey:TOKEN];
     
     NSArray *vcArr = [self.navigationController viewControllers];
-    for (UIViewController *vc in vcArr) {
-        if([vc isKindOfClass:[HomeFurnishingViewController class]])
+    //此段意为pop回进入登陆界面的上一层界面
+    for(int i=0;i<[vcArr count];i++)
+    {
+        UIViewController *vc  = [vcArr objectAtIndex:i];
+        if([vc isKindOfClass:[LoginViewController class]])
         {
-            [self.navigationController popToViewController:vc animated:YES];
+            [self.navigationController popToViewController:[vcArr objectAtIndex:i-1] animated:YES];
             return;
+
         }
     }
+//    for (UIViewController *vc in vcArr) {
+//        if([vc isKindOfClass:[LoginViewController class]])
+//        {
+//            
+//            [self.navigationController popToViewController:vc animated:YES];
+//            return;
+//        }
+//    }
 }
 #pragma mark nextPress
 

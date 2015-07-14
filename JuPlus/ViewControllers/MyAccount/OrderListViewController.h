@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface OrderListViewController : BaseViewController
-
+@interface OrderListViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic,strong)UITableView *orderListTab;
 @end

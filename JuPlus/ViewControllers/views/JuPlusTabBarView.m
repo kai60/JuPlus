@@ -41,9 +41,9 @@
 }
 -(void)loadUI
 {
-    NSArray *nameArr = [NSArray arrayWithObjects:@"搭配",@"分类", nil];
-    NSArray *imgArrNormal = [NSArray arrayWithObjects:@"collect_unsel",@"collect_unsel", nil];
-    NSArray *imgArrSel = [NSArray arrayWithObjects:@"collect_sel",@"collect_sel", nil];
+    NSArray *nameArr = [NSArray arrayWithObjects:@"搭配", nil];
+    NSArray *imgArrNormal = [NSArray arrayWithObjects:@"collect_unsel", nil];
+    NSArray *imgArrSel = [NSArray arrayWithObjects:@"collect_sel", nil];
     for (int i=0; i<[nameArr count]; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(50*i, 0.0f, normalW, normalW);
@@ -60,6 +60,13 @@
         [self addSubview:btn];
         
     }
+    [self setFirstRespon];
+}
+-(void)setFirstRespon
+{
+    UIButton *btn = ((UIButton *)[buttonArr firstObject]);
+    [btn setSelected:YES];
+     btn.frame = CGRectMake(btn.left, btn.top, selectedW, btn.height);
 }
 -(void)buttonPressed:(UIButton *)sender
 {
@@ -67,6 +74,7 @@
     {
         self.selectedBtn.selected = NO;
         sender.selected = YES;
+        [self.personBtn setSelected:NO];
         for(int i=0;i<[buttonArr count];i++)
         {
             UIButton *btn = [buttonArr objectAtIndex:i];

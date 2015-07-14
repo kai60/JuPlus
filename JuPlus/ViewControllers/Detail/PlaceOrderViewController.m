@@ -13,6 +13,7 @@
 #import "ReceiveMessageView.h"
 #import "PostOrderReq.h"
 #import "PostOrderRespon.h"
+#import "OrderDetailViewController.h"
 #define space 20.0f
 @interface PlaceOrderViewController ()
 {
@@ -78,7 +79,6 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"导演",@"name",@"15902180128",@"mobile",@"普陀区云岭东路651号304",@"address", nil];
     [self.receivedAddressV setAddressInfo:dic];
     
-    [self.totalPriceL setText:[NSString stringWithFormat:@"总价：¥%.2f",[self.price floatValue]]];
     [self fileData];
     //添加通知中心，观察总价的变化
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetTotalPrice) name:ResetPrice object:nil];
@@ -103,27 +103,39 @@
 {
     
    // for(int i=0;i<[getRespon.productArr count];i++)
-    for(int i=0;i<1;i++)
+    for(int i=0;i<[self.regArray count];i++)
     {
-        
-        productView *pro = [[productView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _packageV.width, _packageV.height)];
-        [pro.iconImgV setimageUrl:self.imgUrl placeholderImage:nil];
-        [pro.titleL setText:self.name];
-        [pro.priceL setText:[NSString stringWithFormat:@"¥%.2f",[self.price floatValue]]];
-        [pro.countV setCountNum:1];
-        
-        //[pro loadData:[NSDictionary dictionary]];
-        [_packageV addSubview:pro];
+        productOrderDTO *dto = [self.regArray objectAtIndex:i];
+        productView *pro = [[productView alloc]initWithFrame:CGRectMake(0.0f, 100.0f*i, self.packageV.width, 100.0f)];
+        [pro loadData:dto];
+        [self.packageV addSubview:pro];
         [productArr addObject:pro];
     }
-
+    //重置frame
+    [self resetFrames];
+    [self resetTotalPrice];
+}
+-(void)resetFrames
+{
+    CGRect frame = self.packageV.frame;
+    frame.size.height = 100.0f*[self.regArray count];
+    self.packageV.frame = frame;
+    
+    self.receivedAddressV.frame = CGRectMake(0.0f, self.packageV.bottom+20.0f, SCREEN_WIDTH, 100.0f);
+    [self.listScrollV setContentSize:CGSizeMake(self.listScrollV.width, self.receivedAddressV.bottom+10.0f)];
 }
 #pragma mark changePrice
+//计算总价
 -(void)resetTotalPrice
 {
-    productView *pro = [productArr lastObject];
+    CGFloat total = 0;
+    for(int i =0;i<[self.regArray count];i++)
+    {
+        productView *pro = [productArr objectAtIndex:i];
+        productOrderDTO *dto = [self.regArray objectAtIndex:i];
+        total+= [dto.price floatValue]*[pro.countV getCountNum];
+    }
     
-    CGFloat total = [self.price floatValue]*[pro.countV getCountNum];
     [self.totalPriceL setText:[NSString stringWithFormat:@"总价：%.2f",total]];
 }
 #pragma mark --UI
@@ -154,7 +166,7 @@
 -(UIScrollView *)listScrollV
 {
     if (!_listScrollV) {
-        _listScrollV = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH , view_height - 44.0f)];
+        _listScrollV = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH , view_height - TABBAR_HEIGHT)];
         _listScrollV.backgroundColor = Color_White;
     }
     
@@ -227,7 +239,10 @@
     [postReq setField:[self getPostList] forKey:@"productList"];
     
     [HttpCommunication request:postReq getResponse:postRespon Success:^(JuPlusResponse *response) {
-        [self showAlertView:@"订单提交成功" withTag:0];
+        OrderDetailViewController *detail = [[OrderDetailViewController alloc]init];
+        detail.orderNo = postRespon.orderNo;
+        [self.navigationController pushViewController:detail animated:YES];
+       // [self showAlertView:@"订单提交成功" withTag:0];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
@@ -238,8 +253,10 @@
     for(int i=0;i<[productArr count];i++)
     {
         productView *pro = [productArr objectAtIndex:i];
+        productOrderDTO *dto = [self.regArray objectAtIndex:i];
         NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-        [dict setObject:self.regNo forKey:@"productNo"];
+        [dict setObject:dto.productNo forKey:@"productNo"];
+        [dict setObject:dto.regNo forKey:@"collocatePicNo"];
         [dict setObject:[NSString stringWithFormat:@"%d",[pro.countV getCountNum]] forKey:@"productNum"];
         [arr addObject:dict];
     }

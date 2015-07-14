@@ -27,8 +27,8 @@
 
 -(void)setPath{
     
-    [self setField:@"info" forKey:@"ModuleName"];
-    [self setField:@"login" forKey:@"FunctionName"];
+    [self setField:@"product" forKey:@"ModuleName"];
+    [self setField:@"favourite" forKey:@"FunctionName"];
 }
 
 @end

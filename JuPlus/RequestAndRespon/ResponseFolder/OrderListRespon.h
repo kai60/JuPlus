@@ -9,13 +9,7 @@
 #import "JuPlusResponse.h"
 #import "productOrderDTO.h"
 @interface OrderListRespon : JuPlusResponse
-@property(nonatomic,strong)NSString *orderNo;
+@property(nonatomic,strong)NSMutableArray *orderListArray;
 
-@property(nonatomic,strong)NSString *orderTime;
-
-@property(nonatomic,assign)int totalCount;
-
-@property(nonatomic,strong)NSString *totalPrice;
-
-@property(nonatomic,strong)NSMutableArray *productArray;
+@property(nonatomic,strong)NSString *totalCount;
 @end

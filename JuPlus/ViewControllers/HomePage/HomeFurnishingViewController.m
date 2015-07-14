@@ -112,13 +112,14 @@
 //筛选按钮点击
 -(void)selectClick:(UIButton *)sender
 {
-   
+    [self.classifyV setHidden:NO];
 }
 #pragma mark 视图切换
 -(void)showCurrentView:(JuPlusUIView *)view
 {
     [UIView animateWithDuration:ANIMATION animations:^{
         [backV bringSubviewToFront:view];
+        [view startHomePageRequest];
         view.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH,view.height);
     } completion:^(BOOL finished) {
         for (JuPlusUIView *vi in self.viewArray) {

@@ -12,9 +12,10 @@
 //个人信息展示
 @property(nonatomic,strong)JuPlusUIView *topView;
 
-@property(nonatomic,strong)UIImageView *portrait;
+@property(nonatomic,strong)UIButton *portrait;
 
 @property(nonatomic,strong)JuPlusUILabel *nickLabel;
 //存储作品数/买入/收藏
 @property(nonatomic,strong)NSMutableArray *listArr;
+
 @end

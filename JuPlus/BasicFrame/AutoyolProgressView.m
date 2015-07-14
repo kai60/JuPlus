@@ -26,16 +26,8 @@
     [self setBackgroundColor:[UIColor colorWithRed:0 green:.0 blue:0 alpha:0.6]];
     UIView *view = [self viewWithTag:Progress_tag];
     CGFloat imageWidth = 82.0f;
-//    if (vieTag==viewTag) {
-//        self.frame = CGRectMake(0.0f, nav_height, frame.size.width, frame.size.height);
-//    }
-//    else
-//    {
         self.frame = CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height);
- //   }
-    
-
-    if(frame.origin.y ==0)
+     if(frame.origin.y ==0)
     {
         view.frame = CGRectMake(frame.size.width/2-imageWidth/2, (frame.size.height-imageWidth)/2-64.0f, imageWidth, imageWidth);
     }
@@ -47,8 +39,8 @@
 }
 -(void)uifig
 {
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"Comp-0106.gif" ofType:nil];
-    SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath withSeconds:100];
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"checkmark.gif" ofType:nil];
+    SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath withSeconds:2];
     CGFloat imgSize = 82.0f;
     gifImageView.frame = CGRectMake((self.frame.size.width-imgSize)/2, (self.frame.size.height-imgSize)/2,imgSize, imgSize);
     gifImageView.autoresizingMask = YES;

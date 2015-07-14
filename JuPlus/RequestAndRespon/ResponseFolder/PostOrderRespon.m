@@ -9,5 +9,8 @@
 #import "PostOrderRespon.h"
 
 @implementation PostOrderRespon
-
+-(void)unPackJsonValue:(NSDictionary *)dict
+{
+    self.orderNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"orderNo"]];
+}
 @end

@@ -169,7 +169,7 @@
         else
         {
             _dropImg.frame = CGRectMake(self.width - 10.5f, self.height - 15.5f, 8.0f, 13.0f);
-            [_dropImg setImage:[UIImage imageNamed:@"lineRight"]];
+            [_dropImg setImage:[UIImage imageNamed:@"lineLeft"]];
         }
         
 
@@ -182,7 +182,7 @@
     {
         _labelText = [[UILabel alloc]init];
         if(self.isLeft)
-        _labelText.frame = CGRectMake(self.dropImg.left,self.dropImg.top - 20.0f,100.0f,20.0f);
+        _labelText.frame = CGRectMake(self.dropImg.right,self.dropImg.top - 20.0f,100.0f,20.0f);
         else
         {
         _labelText.frame = CGRectMake(self.dropImg.left - 100.0f,self.dropImg.top - 20.0f,100.0f,20.0f);
@@ -222,6 +222,7 @@
 -(void)senderPress:(UIButton *)sender
 {
     SingleDetialViewController *sing = [[SingleDetialViewController alloc]init];
+    sing.regNo =[NSString stringWithFormat:@"%ld", (long)self.superview.superview.tag];
     sing.singleId = [NSString stringWithFormat:@"%ld",(long)sender.tag];
     UIViewController *vc = [self getSuperViewController];
     [vc.navigationController.view.layer addAnimation:[self getPushTransition] forKey:nil];

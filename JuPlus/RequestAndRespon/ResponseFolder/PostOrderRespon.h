@@ -9,5 +9,5 @@
 #import "JuPlusResponse.h"
 
 @interface PostOrderRespon : JuPlusResponse
-
+@property(nonatomic,strong)NSString *orderNo;
 @end

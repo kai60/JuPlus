@@ -14,7 +14,8 @@
 -(void)setimageUrl:(NSString *)url placeholderImage:(NSString *)defalutImage
 {
     if(defalutImage==nil)
-        defalutImage = @"";
+        defalutImage = @"null";
+    //url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [self sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,url]] placeholderImage:[UIImage imageNamed:defalutImage]];
 }
 //设置圆形图片

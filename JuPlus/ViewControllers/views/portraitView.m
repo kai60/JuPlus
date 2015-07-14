@@ -21,15 +21,17 @@
     return self;
 }
 //icon
--(UIImageView *)portraitImgV
+-(UIButton *)portraitImgV
 {
     if(!_portraitImgV)
     {
         CGFloat imageW = self.height;
-        _portraitImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, imageW, imageW)];
+        _portraitImgV = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        _portraitImgV.frame = CGRectMake(0.0f, 0.0f, imageW, imageW);
         _portraitImgV.layer.cornerRadius = imageW/2;
         _portraitImgV.layer.masksToBounds = YES;
-        [_portraitImgV setimageUrl:@"http://h.hiphotos.baidu.com/image/pic/item/b3fb43166d224f4a6ffeae120bf790529822d148.jpg" placeholderImage:@"icons_2.png"];
+      //  [_portraitImgV setimageUrl:@"http://h.hiphotos.baidu.com/image/pic/item/b3fb43166d224f4a6ffeae120bf790529822d148.jpg" placeholderImage:@"icons_2.png"];
     }
     return _portraitImgV;
 }

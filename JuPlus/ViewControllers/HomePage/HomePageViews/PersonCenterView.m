@@ -9,6 +9,8 @@
 #import "PersonCenterView.h"
 #import "PersonCenterReq.h"
 #import "PersonCenterRespon.h"
+#import "OrderListViewController.h"
+#import "DesignerDetailViewController.h"
 @implementation PersonCenterView
 {
     PersonCenterReq *centerReq;
@@ -23,7 +25,7 @@
         [self.navView setHidden:NO];
         self.listArr = [[NSMutableArray alloc]init];
         self.titleLabel.text = @"我的主页";
-        [self.rightBtn setTitle:@"设置" forState:UIControlStateNormal];
+       // [self.rightBtn setTitle:@"设置" forState:UIControlStateNormal];
         [self uifig];
     }return self;
 }
@@ -59,10 +61,10 @@
         btn.tag = i;
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-    [self startRequest];
+   // [self startRequest];
 
 }
--(void)startRequest
+-(void)startHomePageRequest
 {
     centerReq = [[PersonCenterReq alloc]init];
     [centerReq setField:[CommonUtil getToken] forKey:TOKEN];
@@ -82,6 +84,10 @@
         [((JuPlusUILabel *)[self.listArr objectAtIndex:i]) setText:[arr objectAtIndex:i]];
     }
 }
+-(void)goDesign
+{
+  
+}
 #pragma mark --UIfig
 -(JuPlusUIView *)topView
 {
@@ -91,13 +97,16 @@
     }
     return _topView;
 }
--(UIImageView *)portrait
+-(UIButton *)portrait
 {
     if(!_portrait)
     {
-        self.portrait =[[UIImageView alloc]initWithFrame:CGRectMake(140,20, 40, 40)];
+        self.portrait = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        self.portrait.frame = CGRectMake(130,10, 60, 60);
         self.portrait.layer.masksToBounds=YES;
-        self.portrait.layer.cornerRadius=40;
+        self.portrait.layer.cornerRadius=30;
+        [self.portrait addTarget:self action:@selector(goDesign) forControlEvents:UIControlEventTouchUpInside];
     }
     return _portrait;
 }
@@ -115,7 +124,27 @@
 }
 -(void)btnClick:(UIButton *)sender
 {
-
+    switch (sender.tag) {
+        case 0:
+        {
+        
+        }
+            break;
+        case 1:
+        {
+            OrderListViewController *order = [[OrderListViewController alloc]init];
+            [[self getSuperViewController].navigationController pushViewController:order animated:YES];
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
     
 }
 @end

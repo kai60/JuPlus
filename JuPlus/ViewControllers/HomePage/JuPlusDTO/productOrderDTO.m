@@ -11,9 +11,11 @@
 @implementation productOrderDTO
 -(void)loadDTO:(NSDictionary *)dict
 {
-    self.imgUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"imgUrl"]];
+    self.imgUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productImg"]];
     self.productName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productName"]];
-    self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"price"]];
-    self.countNum = [NSString stringWithFormat:@"%@",[dict objectForKey:@"countNum"]];
+    self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productPrice"]];
+    self.countNum = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productNum"]];
+    self.productNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productNo"]];
+
 }
 @end

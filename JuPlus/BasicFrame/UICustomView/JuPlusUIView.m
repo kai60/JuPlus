@@ -68,7 +68,10 @@
     }
     return _rightBtn;
 }
-
+-(void)startHomePageRequest
+{
+    
+}
 //提示信息显示
 - (void)showAlertView:(NSString *)msg withTag:(int)tag
 {

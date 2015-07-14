@@ -9,7 +9,9 @@
 #import "BaseDTO.h"
 #import "LabelDTO.h"
 @interface HomePageInfoDTO : BaseDTO
-//会员号
+//注册号
+@property(nonatomic,strong)NSString *regNo;
+//上传者会员号
 @property(nonatomic,strong)NSString *memNo;
 //上传时间
 @property(nonatomic,strong)NSString *uploadTime;

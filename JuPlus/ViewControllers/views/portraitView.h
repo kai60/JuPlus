@@ -10,7 +10,7 @@
 #import "UIImageView+JuPlusUIImageView.h"
 @interface PortraitView : JuPlusUIView
 //头像
-@property(nonatomic,strong)UIImageView *portraitImgV;
+@property(nonatomic,strong)UIButton *portraitImgV;
 //昵称
 @property(nonatomic,strong)UILabel *nikeNameL;
 -(id)initWithFrame:(CGRect)frame;

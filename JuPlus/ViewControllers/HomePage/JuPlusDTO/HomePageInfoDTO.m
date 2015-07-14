@@ -17,6 +17,8 @@
     self.portrait = [NSString stringWithFormat:@"%@",[dict objectForKey:@"portraitPath"]];
     self.nikename = [NSString stringWithFormat:@"%@",[dict objectForKey:@"nickname"]];
     self.descripTxt = [NSString stringWithFormat:@"%@",[dict objectForKey:@"explain"]];
+    self.regNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"regNo"]];
+
     self.collectionPic = [NSString stringWithFormat:@"%@",[dict objectForKey:@"coverUrl"]];
     self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"totalPrice"]];
     NSArray *arr = [dict objectForKey:@"productList"];

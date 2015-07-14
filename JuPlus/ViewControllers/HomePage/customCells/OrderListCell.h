@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OrderListRespon.h"
+#import "OrderListDTO.h"
 @interface OrderListCell : UITableViewCell
 //订单号
 @property (nonatomic,strong)JuPlusUILabel *orderNoL;
@@ -23,7 +23,9 @@
 @property (nonatomic,strong)JuPlusUILabel *totalCountL;
 //实付金额
 @property (nonatomic,strong)JuPlusUILabel *totalPayL;
+//添加
+@property (nonatomic,strong)JuPlusUIView *bomAddV;
 //是否显示全部内容
 @property (nonatomic,assign)BOOL isShowAll;
--(void)fileCell:(OrderListRespon *)respon;
+-(void)fileCell:(OrderListDTO *)listDto;
 @end

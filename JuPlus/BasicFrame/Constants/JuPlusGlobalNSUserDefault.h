@@ -12,5 +12,7 @@
 #define GetAppVerson @"getAppVerson"
 #pragma mark --NSSTRING
 #define TOKEN @"token"
+#define PageSize @"pageSize"
+#define PageNum @"pageNum"
 #define ResetPrice @"resetPrice"
 #endif

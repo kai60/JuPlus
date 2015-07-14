@@ -17,6 +17,7 @@
     self.regNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"regNo"]];
     self.proName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"name"]];
     self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"price"]];
+    self.isFav = [NSString stringWithFormat:@"%@",[dict objectForKey:@"isFavourite"]];
 
 }
 @end

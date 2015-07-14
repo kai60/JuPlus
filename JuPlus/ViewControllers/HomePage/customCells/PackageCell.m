@@ -9,6 +9,7 @@
 #import "PackageCell.h"
 #import "LabelView.h"
 #import "LabelDTO.h"
+#import "DesignerDetailViewController.h"
 CGFloat space = 10.0f;
 @implementation PackageCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -27,7 +28,7 @@ CGFloat space = 10.0f;
     [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.descripL];
     [self.contentView addSubview:self.showImgV];
-    [self.showImgV addSubview:self.priceV];
+   // [self.showImgV addSubview:self.priceV];
 }
 -(PortraitView *)topV
 {
@@ -53,19 +54,10 @@ CGFloat space = 10.0f;
     if(!_descripL)
     {
         _descripL = [[UILabel alloc]initWithFrame:CGRectMake(space, self.topV.bottom+space, self.topV.width, 20.0f)];
-        _descripL.text = @"测试描述";
         _descripL.textColor = [UIColor grayColor];
         [_descripL setFont:FontType(12.0f)];
     }
     return _descripL;
-}
--(PriceView *)priceV
-{
-    if(!_priceV)
-    {
-        _priceV = [[PriceView alloc]initWithFrame:CGRectMake(100.0f, PICTURE_HEIGHT - 30.0f, 220.0f, 30.0f)];
-    }
-    return _priceV;
 }
 -(UIImageView *)showImgV
 {
@@ -73,21 +65,30 @@ CGFloat space = 10.0f;
     {
         _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.descripL.bottom+space, self.contentView.width, PICTURE_HEIGHT)];
         _showImgV.userInteractionEnabled = YES;
-        [_showImgV sd_setImageWithURL:[NSURL URLWithString:@"http://h.hiphotos.baidu.com/image/pic/item/b3fb43166d224f4a6ffeae120bf790529822d148.jpg"] placeholderImage:[UIImage imageNamed:@"2.jpg"]];
     }
     return _showImgV;
 }
 //cell数据加载
 -(void)loadCellInfo:(HomePageInfoDTO *)homepageDTO
 {
-    [self.topV.portraitImgV setimageUrl:homepageDTO.portrait placeholderImage:@"2.jpg"];
+    [self.topV.portraitImgV setimageUrl:homepageDTO.portrait  placeholderImage:@"2.jpg"];
     [self.topV.nikeNameL setText:homepageDTO.nikename];
 //    [self.timeLabel setText:homepageDTO.uploadTime];
     [self.timeLabel setText:@"1小时前"];
     [self.descripL setText:homepageDTO.descripTxt];
-    [self.showImgV setimageUrl:homepageDTO.collectionPic placeholderImage:@""];
+    [self.showImgV setimageUrl:homepageDTO.collectionPic  placeholderImage:@""];
+    self.showImgV.tag = [homepageDTO.regNo intValue];
+    [self.topV.portraitImgV addTarget:self action:@selector(portraitImgVPress:) forControlEvents:UIControlEventTouchUpInside];
     [self.priceV setPriceText:homepageDTO.price];
     [self setTipsWithArray:homepageDTO.labelArray];
+    
+}
+-(void)portraitImgVPress:(UIButton *)sender
+{
+    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
+    UIViewController *vc = [self getSuperViewController];
+    [vc.navigationController.view.layer addAnimation:[self getPushTransition] forKey:nil];
+    [vc.navigationController pushViewController:design animated:NO];
     
 }
 -(void)setTipsWithArray:(NSArray *)tipsArray

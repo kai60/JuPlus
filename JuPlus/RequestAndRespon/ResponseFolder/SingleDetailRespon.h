@@ -21,4 +21,6 @@
 @property(nonatomic,strong)NSString *proName;
 //价格
 @property(nonatomic,strong)NSString *price;
+//是否收藏过
+@property(nonatomic,strong)NSString *isFav;
 @end

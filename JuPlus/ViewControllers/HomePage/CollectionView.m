@@ -11,12 +11,18 @@
 #import "CollocationReq.h"
 #import "CollectionRespon.h"
 #import "PackageCell.h"
+#import "PackageViewController.h"
 @implementation CollectionView
 {
     NSMutableArray *dataArray;
     CollocationReq *collReq;
     CollectionRespon *collRespon;
-    NSInteger pageNum;
+    ScrollRefreshViewHead *header;
+    ScrollRefreshViewFooter * footer;
+    ScrollRefreshView *selectView;
+    int pageNum;
+    //数据总数
+    int totalCount;
 
 }
 -(id)initWithFrame:(CGRect)frame
@@ -26,10 +32,19 @@
     {
         dataArray = [[NSMutableArray alloc]init];
         [self addSubview:self.listTab];
+        pageNum = 1;
+        header = [ScrollRefreshViewHead header];
+        header.delegate = self;
+        header.scrollView =  self.listTab;
+        
+        footer = [ScrollRefreshViewFooter footer];
+        footer.delegate = self;
+        footer.scrollView = self.listTab;
+        
         self.titleLabel.text = @"搭配";
         [self.rightBtn setTitle:@"筛选" forState:UIControlStateNormal];
         [self.navView setHidden:NO];
-        [self startRequest];
+        [self startHomePageRequest];
     }
     return self;
 }
@@ -44,20 +59,54 @@
     }
     return _listTab;
 }
+#pragma mark --refresh
+-(void)refreshViewBeginRefreshing:(ScrollRefreshView *)refreshView
+{
+    selectView = refreshView;
+    //下拉刷新
+    if(refreshView.viewType == RefreshViewTypeHeader)
+    {
+        pageNum = 1;
+        //下拉刷新则重载上拉加载更多选项
+        [footer setState:RefreshStateNormal withAnimate:NO];
+    }
+    //上拉加载更多
+    else
+    {
+       if([dataArray count]>=totalCount)
+       {
+           //显示无更多内容
+           [refreshView setState:RefreshStateALL withAnimate:YES];
+           return;
+       }
+        pageNum++;
+    }
+    [self startHomePageRequest];
+}
 #pragma mark --request
--(void)startRequest
+-(void)startHomePageRequest
 {
     collReq = [[CollocationReq alloc]init];
     collRespon = [[CollectionRespon alloc]init];
-    [collReq setField:@"1" forKey:@"pageNum"];
+    [collReq setField:[NSString stringWithFormat:@"%d",pageNum] forKey:@"pageNum"];
     [collReq setField:PAGESIZE forKey:@"pageSize"];
 
     [HttpCommunication request:collReq getResponse:collRespon Success:^(JuPlusResponse *response) {
+        totalCount = [collRespon.count intValue];
+        if (pageNum==1) {
+            [dataArray removeAllObjects];
+        }
         [dataArray addObjectsFromArray:collRespon.listArray];
         [self.listTab reloadData];
+        [self stopReresh];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
+        [selectView endRefreshing];
     } showProgressView:YES with:self];
+}
+-(void)stopReresh
+{
+    [selectView endRefreshing];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -82,7 +131,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    PackageViewController *pack = [[PackageViewController alloc]init];
+    HomePageInfoDTO *homePage = [dataArray objectAtIndex:indexPath.row];
+    pack.regNo = homePage.regNo;
+    [[self getSuperViewController].navigationController pushViewController:pack animated:YES];
 }
 
 @end

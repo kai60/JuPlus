@@ -9,5 +9,5 @@
 #import "JuPlusRequest.h"
 
 @interface OrderListReq : JuPlusRequest
-
+-(id)init;
 @end

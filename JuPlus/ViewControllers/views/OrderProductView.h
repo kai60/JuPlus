@@ -7,7 +7,7 @@
 //
 
 #import "JuPlusUIView.h"
-
+#import "productOrderDTO.h"
 @interface OrderProductView : JuPlusUIView
 //图标
 @property(nonatomic,strong)UIImageView *iconImgV;
@@ -18,6 +18,6 @@
 //数量
 @property(nonatomic,strong)JuPlusUILabel *countL;
 
--(void)loadData:(NSDictionary *)dict;
+-(void)loadData:(productOrderDTO *)dto;
 
 @end

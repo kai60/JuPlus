@@ -24,7 +24,7 @@
 {
     if(showProgressBar)
     {
-        
+        [self showWaitingView:view withTitle:nil];
     }
     //组包验证信息
     [request validatePackValue:[request getJsonDict] ParamsArray:[request getValidArray] Optional:NO];
@@ -33,6 +33,7 @@
     {
        return [[AFNetWorkClient sharedClient] GET:path  parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
             //如果返回状态码为200，则为成功，可以解析data数据
+           [HttpCommunication dismissWaitingView:view];
            //解析response内容
            if([JSON isKindOfClass:[NSDictionary class]])
            {
@@ -65,6 +66,7 @@
            }
 
         } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+            [HttpCommunication dismissWaitingView:view];
             //反馈错误信息（网络连接失败等信息）
             [self errorExp:error];
         }];
@@ -75,6 +77,7 @@
 
        NSData *data = [LFCGzipUtillity gzipData:[self dictToJSONData:dic]];
        return  [[AFNetWorkClient sharedClient] POST:path parameters:data success:^(NSURLSessionDataTask * __unused task, id JSON) {
+           [HttpCommunication dismissWaitingView:view];
            //解析response内容
            if([JSON isKindOfClass:[NSDictionary class]])
            {
@@ -107,6 +110,8 @@
                @throw [UnPackException exception:@"Json数据格式错误"];
            }
         } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+            [HttpCommunication dismissWaitingView:view];
+
             //反馈错误信息（网络连接失败等信息）
             [self errorExp:error];
         }];
@@ -115,7 +120,8 @@
     else if([[request getrequestMethodString] isEqualToString:@"DELETE"])
     {
        return  [[AFNetWorkClient sharedClient] DELETE:path parameters:request.validParams  success:^(NSURLSessionDataTask * __unused task, id JSON) {
-            
+           [HttpCommunication dismissWaitingView:view];
+
            //解析response内容
            if([JSON isKindOfClass:[NSDictionary class]])
            {
@@ -147,6 +153,8 @@
            }
            
         } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+            [HttpCommunication dismissWaitingView:view];
+
             //反馈错误信息（网络连接失败等信息）
             [self errorExp:error];
         }];
@@ -155,6 +163,8 @@
     else if([[request getrequestMethodString] isEqualToString:@"PUT"])
     {
        return  [[AFNetWorkClient sharedClient] PUT:path parameters:request.validParams success:^(NSURLSessionDataTask * __unused task, id JSON) {
+           [HttpCommunication dismissWaitingView:view];
+
            //解析response内容
            if([JSON isKindOfClass:[NSDictionary class]])
            {
@@ -186,7 +196,8 @@
            }
         } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
             //反馈错误信息（网络连接失败等信息）
-            
+            [HttpCommunication dismissWaitingView:view];
+
             [self errorExp:error];
         }];
         

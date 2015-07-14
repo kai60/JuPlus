@@ -23,6 +23,9 @@
 #define Color_Gray [UIColor grayColor]
 #define Color_Black RGBCOLOR(0, 0, 0)
 #define Color_White RGBCOLOR(255, 255, 255)
+//灰色背景
+#define Color_Bottom RGBCOLOR(239, 239, 239)
+//输入框文字颜色
 #define Color_FieldText RGBCOLOR(128, 128, 128)
 @interface UIColor (JuPlusColor)
 

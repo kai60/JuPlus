@@ -13,9 +13,11 @@
 -(void)setimageUrl:(NSString *)url placeholderImage:(NSString *)defalutImage
 {
     if (defalutImage==nil) {
-        defalutImage = @"";
+        defalutImage = @"null";
     }
-    [self sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,url]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:defalutImage]];
+  //  url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [self sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,url] ] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:defalutImage]];
+     [self sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,url]] forState:UIControlStateHighlighted placeholderImage:[UIImage imageNamed:defalutImage]];
 }
 
 @end

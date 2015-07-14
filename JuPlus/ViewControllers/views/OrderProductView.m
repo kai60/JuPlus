@@ -41,7 +41,7 @@
 {
     if(!_titleL)
     {
-        _titleL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.iconImgV.right +space/2, space, 100.0f, 30.0f)];
+        _titleL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.iconImgV.right +space/2, space/2, 150.0f, 30.0f)];
         [_titleL setFont:FontType(14.0f)];
         _titleL.textColor = Color_Black;
     }
@@ -51,9 +51,10 @@
 {
     if(!_priceL)
     {
-        _priceL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.titleL.right, self.titleL.top, self.width - self.titleL.right, 30.0f)];
-        [_priceL setFont:FontType(16.0f)];
-        _priceL.textColor = Color_Gray;
+        _priceL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.titleL.right, self.titleL.top, self.width - self.titleL.right - space/2, 30.0f)];
+        [_priceL setFont:FontType(14.0f)];
+        _priceL.textAlignment = NSTextAlignmentRight;
+        _priceL.textColor = Color_Black;
     }
     return _priceL;
 }
@@ -64,16 +65,18 @@
     {
         _countL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.priceL.right - 50.0f , self.priceL.bottom, 50.0f, 30.0f)];
         [_countL setFont:FontType(14.0f)];
+        _countL.textAlignment = NSTextAlignmentRight;
         [_countL setTextColor:Color_Gray];
     }
     return _countL;
 }
--(void)loadData:(NSDictionary *)dict
+-(void)loadData:(productOrderDTO *)dto
 {
     
-    [self.iconImgV setimageUrl:[dict objectForKey:@"imgUrl"] placeholderImage:nil];
-    [self.titleL setText:[dict objectForKey:@"productName"]];
-    [self.priceL setText:[NSString stringWithFormat:@"¥%@",[dict objectForKey:@"productName"]]];
+    [self.iconImgV setimageUrl:dto.imgUrl placeholderImage:nil];
+    [self.titleL setText:dto.productName];
+    [self.priceL setPriceText:dto.price];
+    [self.countL setText:[NSString stringWithFormat:@"X%@",dto.countNum]];
     
 }
 

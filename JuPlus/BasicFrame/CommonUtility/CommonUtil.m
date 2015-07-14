@@ -58,6 +58,11 @@
 //得到token值
 +(NSString *)getToken
 {
+    if(IsNilOrNull([self getUserDefaultsValueWithKey:TOKEN]))
+    {
+        return @"0";
+    }
+    else
     return [self getUserDefaultsValueWithKey:TOKEN];
 }
 @end

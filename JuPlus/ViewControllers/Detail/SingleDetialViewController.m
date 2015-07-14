@@ -10,8 +10,12 @@
 #import "SingleDetailReq.h"
 #import "SingleDetailRespon.h"
 #import "SingleDetailDTO.h"
+#import "PostFaverReq.h"
+#import "DeleteFavReq.h"
 //#import "UIButton+WebCache.h"
 #import "PlaceOrderViewController.h"
+#import "LoginViewController.h"
+#import "productOrderDTO.h"
 @implementation SingleDetialViewController
 {
     SingleDetailReq *detailReq;
@@ -28,11 +32,7 @@
 {
     //滚动展示图层
     [self.view addSubview:self.topView];
-    [self.topView addSubview:self.imageScroll];
-    [self.topView addSubview:self.favBtn];
-    [self.topView addSubview:self.priceV];
-    [self.topView addSubview:self.pageControll];
-    //需要出层级显示效果的view
+        //需要出层级显示效果的view
     [self.view addSubview:self.bottomV];
     [self.bottomV addSubview:self.descripLabel];
 
@@ -48,6 +48,7 @@
 {
     detailReq = [[SingleDetailReq alloc]init];
     [detailReq setField:self.singleId forKey:@"productNo"];
+    [detailReq setField:[CommonUtil getToken] forKey:TOKEN];
     detailRespon = [[SingleDetailRespon alloc]init];
     [HttpCommunication request:detailReq getResponse:detailRespon Success:^(JuPlusResponse *response) {
         //请求成功之后 处理
@@ -68,16 +69,21 @@
 #pragma mark --fileData
 -(void)fileImageData
 {
+    [self.topView.favBtn addTarget:self action:@selector(favBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    if ([detailRespon.isFav intValue]==1) {
+        [self.topView.favBtn setSelected:YES];
+    }
     for(int i=0;i<[detailRespon.imageArray count];i++)
     {
         NSDictionary *dic = [detailRespon.imageArray objectAtIndex:i];
-        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH, 0.0f, self.imageScroll.width, self.imageScroll.height)];
+        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH, 0.0f, self.topView.imageScroll.width, self.topView.imageScroll.height)];
         [img setimageUrl:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]] placeholderImage:nil];
-        [self.imageScroll addSubview:img];
+        [self.topView.imageScroll addSubview:img];
     }
-    self.imageScroll.contentSize = CGSizeMake(SCREEN_WIDTH*[detailRespon.imageArray count], self.imageScroll.height);
+    self.topView.imageScroll.contentSize = CGSizeMake(SCREEN_WIDTH*[detailRespon.imageArray count], self.topView.imageScroll.height);
     
-    [self.priceV setPriceText:detailRespon.price];
+    [self.topView.priceLabel setPriceTxt:detailRespon.price];
 }
 -(void)fileExplainTxt
 {
@@ -102,9 +108,7 @@
         [imgBtn setimageUrl:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]] placeholderImage:nil];
         [self.basisScroll addSubview:imgBtn];
     }
-    self.basisLabel.text = [NSString stringWithFormat:@"主要成分(%lu)",(unsigned long)[detailRespon.basisArray count]];
     self.basisScroll.contentSize = CGSizeMake(60*[detailRespon.basisArray count], self.basisScroll.height);
-
 }
 -(void)layoutSubviews
 {
@@ -112,61 +116,19 @@
     
 }
 #pragma mark --loadUI
--(JuPlusUIView *)topView
+-(ImageScrollView *)topView
 {
     if(!_topView)
     {
-        _topView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, DETAIL_HEIGHT)];
+        _topView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, DETAIL_HEIGHT)];
     }
     return _topView;
-}
--(UIScrollView *)imageScroll
-{
-    if(!_imageScroll)
-    {
-        _imageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, DETAIL_HEIGHT)];
-        _imageScroll.pagingEnabled = YES;
-        _imageScroll.delegate = self;
-    }
-    return _imageScroll;
-
-}
--(UIButton *)favBtn
-{
-    if(!_favBtn)
-    {
-        CGFloat btnR = 25.0f;
-        _favBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_favBtn setImage:[UIImage imageNamed:@"fav_unsel"] forState:UIControlStateNormal];
-        [_favBtn setImage:[UIImage imageNamed:@"fav_sel"] forState:UIControlStateSelected];
-        _favBtn.frame = CGRectMake(self.topView.width - btnR - space/2, space, btnR, btnR);
-        [_favBtn addTarget:self action:@selector(favBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    return _favBtn;
-}
--(PriceView *)priceV
-{
-    if(!_priceV)
-    {
-        _priceV = [[PriceView alloc]initWithFrame:CGRectMake(100.0f, DETAIL_HEIGHT - 30.0f, 220.0f, 30.0f)];
-    }
-    return _priceV;
-}
-//页码控制器
--(UIPageControl *)pageControll
-{
-    if(!_pageControll)
-    {
-        _pageControll = [[UIPageControl alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 200.0f)/2, DETAIL_HEIGHT - 60.0f, 200.0f, 30.0f)];
-    }
-    return _pageControll;
 }
 -(JuPlusUIView *)bottomV
 {
     if(!_bottomV)
     {
-        _bottomV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.topView.bottom, SCREEN_WIDTH, view_height - self.imageScroll.top)];
+        _bottomV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.topView.bottom, SCREEN_WIDTH, view_height - self.topView.top)];
     }
     return _bottomV;
 }
@@ -174,7 +136,13 @@
 {
     if(!_descripLabel)
     {
-        _descripLabel = [[RTLabel alloc]initWithFrame:CGRectMake(space,space, SCREEN_WIDTH - space*2, 100.0f)];
+        UILabel *titleL = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, space, self.bottomV.width, 20.0f)];
+        titleL.textAlignment = NSTextAlignmentCenter;
+        titleL.textColor = Color_Basic;
+        titleL.text = @"单品详情";
+        [titleL setFont:FontType(16.0f)];
+        [self.bottomV addSubview:titleL];
+        _descripLabel = [[RTLabel alloc]initWithFrame:CGRectMake(space,titleL.bottom+space, SCREEN_WIDTH - space*2, 100.0f)];
         
     }
     return _descripLabel;
@@ -183,11 +151,7 @@
 {
     if(!_basisView)
     {
-        _basisView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.descripLabel.bottom+space, SCREEN_WIDTH, 130.0f)];
-        UIView *top = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH  , 2.0f)];
-        [top setBackgroundColor:Color_Gray];
-        [_basisView addSubview:top];
-
+        _basisView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.descripLabel.bottom+space, SCREEN_WIDTH, 120.0f)];
     }
     return _basisView;
 }
@@ -195,8 +159,11 @@
 {
     if (!_basisLabel) {
         
-        _basisLabel = [[UILabel alloc]initWithFrame:CGRectMake(space, space, 120.0f, 20.0f)];
-        _basisLabel.textColor = [UIColor grayColor];
+        _basisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, space, self.basisView.width, 20.0f)];
+        _basisLabel.textAlignment = NSTextAlignmentCenter;
+        _basisLabel.textColor = Color_Basic;
+        self.basisLabel.text = @"主要成分";
+
         [_basisLabel setFont:FontType(16.0f)];
         
     }
@@ -227,16 +194,77 @@
 //收藏、取消收藏
 -(void)favBtnClick:(UIButton *)sender
 {
-    
+    if([CommonUtil isLogin])
+    {
+        if(sender.selected==YES)
+        {
+            [self cancelFav];
+        }
+        else
+        {
+            [self postFav];
+        }
+    }
+    else
+    {
+        [self login];
+    }
+}
+//取消收藏
+-(void)cancelFav
+{
+    DeleteFavReq *req = [[DeleteFavReq alloc]init];
+    JuPlusResponse *respon =[[JuPlusResponse alloc]init];
+    [req setField:[CommonUtil getToken] forKey:TOKEN];
+    [req setField:self.singleId forKey:@"objNo"];
+    [req setField:@"1" forKey:@"objType"];
+
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        [self.topView.favBtn setSelected:NO];
+    } failed:^(NSDictionary *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:YES with:self.view];
+
+}
+//添加收藏
+-(void)postFav
+{
+    PostFaverReq *req = [[PostFaverReq alloc]init];
+    [req setField:[CommonUtil getToken] forKey:TOKEN];
+    [req setField:self.singleId forKey:@"objNo"];
+    [req setField:@"1" forKey:@"objType"];
+
+    JuPlusResponse *respon =[[JuPlusResponse alloc]init];
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        [self.topView  .favBtn setSelected:YES];
+    } failed:^(NSDictionary *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:YES with:self.view];
 }
 //点击购买
 -(void)payPress
 {
+    if([CommonUtil isLogin])
+    {
     PlaceOrderViewController *order = [[PlaceOrderViewController alloc]init];
-    order.regNo = self.singleId;
-    order.imgUrl = [[detailRespon.imageArray firstObject] objectForKey:@"imgUrl"];
-    order.name = detailRespon.proName;
-    order.price = detailRespon.price;
-    [self.navigationController pushViewController:order animated:YES];
+        productOrderDTO *singleDTO = [[productOrderDTO alloc]init];
+        singleDTO.productNo = self.singleId;
+        singleDTO.regNo = self.regNo;
+        singleDTO.imgUrl = [[detailRespon.imageArray firstObject] objectForKey:@"imgUrl"];
+        singleDTO.price = detailRespon.price;
+        singleDTO.productName = detailRespon.proName;
+        singleDTO.countNum = @"1";
+        order.regArray = [NSArray arrayWithObjects:singleDTO, nil];
+      [self.navigationController pushViewController:order animated:YES];
+    }
+    else
+    {
+        [self login];
+    }
+}
+-(void)login
+{
+    LoginViewController *login = [[LoginViewController alloc]init];
+    [self.navigationController pushViewController:login animated:YES];
 }
 @end
