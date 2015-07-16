@@ -417,7 +417,7 @@
 
     }
 }
-#pragma mark --buttonPress
+#pragma mark --buttonPress 
 //收藏、取消收藏
 -(void)favBtnClick:(UIButton *)sender
 {

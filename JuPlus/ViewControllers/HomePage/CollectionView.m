@@ -101,7 +101,7 @@
         [self stopReresh];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
-        [selectView endRefreshing];
+        [self stopReresh];
     } showProgressView:YES with:self];
 }
 -(void)stopReresh

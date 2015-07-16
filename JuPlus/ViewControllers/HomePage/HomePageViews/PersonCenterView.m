@@ -11,6 +11,7 @@
 #import "PersonCenterRespon.h"
 #import "OrderListViewController.h"
 #import "DesignerDetailViewController.h"
+#import "MyFavourViewController.h"
 @implementation PersonCenterView
 {
     PersonCenterReq *centerReq;
@@ -36,6 +37,7 @@
     [self addSubview:self.topView];
     [self.topView addSubview:self.portrait];
     [self.topView addSubview:self.nickLabel];
+    [self addSubview:self.uploadBtn];
     CGFloat labelW = 40.0f;
     CGFloat space = 60.0f;
     CGFloat labelH = 30.0f;
@@ -124,6 +126,22 @@
     }
     return _nickLabel;
 }
+-(UIButton *)uploadBtn
+{
+    if(!_uploadBtn)
+    {
+        _uploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _uploadBtn.frame = CGRectMake((SCREEN_WIDTH - 125.0f)/2, self.topView.bottom+50.0f, 125.0f, 45.0f) ;
+        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"upload_myWork"] forState:UIControlStateNormal];
+        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"upload_myWork"] forState:UIControlStateHighlighted];
+        [_uploadBtn addTarget:self action:@selector(uploadClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _uploadBtn;
+}
+-(void)uploadClick:(UIButton *)sender
+{
+    
+}
 #pragma mark --btnClick
 -(void)logoutPress:(UIButton *)sender
 {
@@ -145,7 +163,8 @@
             break;
         case 2:
         {
-            
+            MyFavourViewController *fav = [[MyFavourViewController alloc]init];
+            [[self getSuperViewController].navigationController pushViewController:fav animated:YES];
         }
             break;
             

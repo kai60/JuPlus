@@ -13,7 +13,10 @@
 -(void)loadDTO:(NSDictionary *)dict
 {
     self.name = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"name"]];
-    self.regNo = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"id"]];
-    
+    self.tagId = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"id"]];
+    self.imgUrl = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"imgUrl"]];
+
+    self.selImgUrl = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"id"]];
+
 }
 @end

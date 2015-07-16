@@ -55,7 +55,7 @@
 //网络请求IP地址
 //#define FRONT_SERVER_URL @"http://115.29.233.175:7064"
 //#define FRONT_SERVER_URL @"https://api.app.net:8080"
-#define FRONT_SERVER_URL @"http://192.168.0.110"
+#define FRONT_SERVER_URL @"http://192.168.0.112"
 
 
 

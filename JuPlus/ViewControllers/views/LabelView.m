@@ -238,7 +238,11 @@
         if(self.isLeft)
         [self.lineImg setFrame:CGRectMake(self.lineImg.left, self.lineImg.top, size.width, self.lineImg.height)];
         else
+        {
         [self.lineImg setFrame:CGRectMake(self.lineImg.right - size.width, self.lineImg.top, size.width, self.lineImg.height)];
+            [self.labelText setFrame:CGRectMake(self.lineImg.right - size.width, self.labelText.top, size.width, self.labelText.height)];
+
+        }
 
     }];
 }

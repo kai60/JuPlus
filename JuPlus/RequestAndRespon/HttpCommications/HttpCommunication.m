@@ -24,7 +24,7 @@
 {
     if(showProgressBar)
     {
-      //  [self showWaitingView:view withTitle:nil];
+        [self showWaitingView:view withTitle:nil];
     }
     
     //组包验证信息

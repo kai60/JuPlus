@@ -18,4 +18,5 @@
 //存储作品数/买入/收藏
 @property(nonatomic,strong)NSMutableArray *listArr;
 
+@property (nonatomic,strong)UIButton *uploadBtn;
 @end
