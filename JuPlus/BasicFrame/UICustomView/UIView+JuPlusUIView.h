@@ -37,10 +37,10 @@
 
 - (void)removeAllSubviews;
 - (UIViewController *)viewController;
-//设置view高斯模糊显示
--(void)setVisualEffect;
-//取消高斯模糊显示
--(void)removeVisualEffect;
+////设置view高斯模糊显示
+//-(void)setVisualEffect;
+////取消高斯模糊显示
+//-(void)removeVisualEffect;
 //like airbnb
 - (void)setAnchorPoint:(CGPoint)point;
 -(UIViewController *)getSuperViewController;

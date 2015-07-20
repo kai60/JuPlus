@@ -12,6 +12,8 @@
 #import "LoginReq.h"
 #import "LoginRespon.h"
 #import "HomeFurnishingViewController.h"
+#import "JuPlusUserInfoCenter.h"
+#import "ForgetPwdViewController.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 {
     LoginReq *req;
@@ -112,7 +114,8 @@
 //忘记密码
 -(void)passWordPress:(UIButton *)sender
 {
-    
+    ForgetPwdViewController *forget = [[ForgetPwdViewController alloc]init];
+    [self.navigationController pushViewController:forget animated:YES];
 }
 //登录
 -(void)comPress:(UIButton *)sender
@@ -168,11 +171,11 @@
     for(UITextField *obj in self.fieldArray)
     {
         if (obj.tag==0) {
-            [CommonUtil setUserDefaultsValue:obj.text forKey:@"loginName"];
+            [JuPlusUserInfoCenter sharedInstance].userInfo.mobile = obj.text;
         }
     }
-    [CommonUtil setUserDefaultsValue:respon.token forKey:TOKEN];
-    
+    [JuPlusUserInfoCenter sharedInstance].userInfo.token = respon.token;
+
     NSArray *vcArr = [self.navigationController viewControllers];
     //此段意为pop回进入登陆界面的上一层界面
     for(int i=0;i<[vcArr count];i++)

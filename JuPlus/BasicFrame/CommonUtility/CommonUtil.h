@@ -22,6 +22,35 @@
 #define IsArrEmpty(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref) count] == 0))
 
 //----------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
+
+#pragma mark - Singleton Creation  functions单例创建，统一单例命名调用方式
+//单例声明 .h中使用
+#undef	AS_SINGLETON
+#define AS_SINGLETON( __class ) \
++ (__class *)sharedInstance;
+//单例实现创建 .m中使用
+#undef	DEF_SINGLETON
+#define DEF_SINGLETON( __class ) \
++ (__class *)sharedInstance \
+{ \
+static dispatch_once_t once; \
+static __class * __singleton__; \
+dispatch_once( &once, ^{ __singleton__ = [[__class alloc] init]; } ); \
+return __singleton__; \
+}
+
+//----------------------------------------------------------------------------------------------
+/*／Atzuche_EXTERN 外联函数*/
+#if !defined(JuPlus_EXTERN)
+#  if defined(__cplusplus)
+#   define JuPlus_EXTERN extern "C"
+#  else
+#   define JuPlus_EXTERN extern
+#  endif
+#endif
+//----------------------------------------------------------------------------------------------
+JuPlus_EXTERN NSString     * EncodeStringFromDic(NSDictionary *dic, NSString *key);
 
 #pragma userDefalut相关
 +(id )getUserDefaultsValueWithKey:(NSString *) key;
@@ -41,7 +70,6 @@
 //得到token值
 +(NSString *)getToken;
 //----------------------------------------------------------------------------------------------
-
 //根据label宽度得到字符串占用高度
 +(CGSize)getLabelSizeWithString:(NSString *)Str andLabelWidth:(CGFloat)width  andFont:(UIFont *)font;
 //根据label高度得到字符串占用宽度

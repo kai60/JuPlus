@@ -10,7 +10,7 @@
 
 
 
-@interface AutoyolProgressView : UIImageView
+@interface JuPlusLoadingView : UIImageView
 @property (nonatomic,strong)UIView * middleView;
 
 @property (nonatomic,strong)UIActivityIndicatorView *indicatorView;

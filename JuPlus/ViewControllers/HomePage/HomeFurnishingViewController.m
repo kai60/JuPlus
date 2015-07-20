@@ -38,13 +38,17 @@
     [self.viewArray addObject:self.collectionV];
     [self.viewArray addObject:self.centerV];
 
-    [self.view addSubview:self.tabBarV];
+    [backV addSubview:self.tabBarV];
 
     //原定筛选按钮
     [self.collectionV.rightBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBarV.personBtn addTarget:self action:@selector(personBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    //判断是否需要添加标签页
+    
+    [self.view addSubview:self.classifyV];
+    [self.classifyV setHidden:YES];
+    
     [self checkSections];
+
 }
 -(void)addRightBtn
 {
@@ -52,7 +56,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(backV.width - 54.0f, 20, 44.0f, 44.0f);
     [btn addTarget:self action:@selector(rightPress) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@"筛选" forState:UIControlStateNormal];
+    [btn setTitle:@"兴趣" forState:UIControlStateNormal];
     [btn.titleLabel setFont:FontType(14.0f)];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     UIView *black = [[UIView alloc]initWithFrame:CGRectMake((btn.width - 15.0f)/2, 42.0f, 15.0f, 2.0f)];
@@ -62,11 +66,7 @@
 }
 -(void)checkSections
 {
-    if(1)
-    {
-        [self.view addSubview:self.classifyV];
-        //[backV setVisualEffect];
-    }
+    [self.classifyV setHidden:NO];
 }
 //标签选择界面
 -(ClassifyView *)classifyV
@@ -112,7 +112,7 @@
 //筛选按钮点击
 -(void)selectClick:(UIButton *)sender
 {
-    [self.classifyV setHidden:NO];
+    [self.classifyV showClassify];
 }
 #pragma mark 视图切换
 -(void)showCurrentView:(JuPlusUIView *)view

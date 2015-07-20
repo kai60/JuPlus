@@ -13,4 +13,8 @@
 @interface PackageViewController : BaseViewController<UIScrollViewDelegate>
 //套餐id
 @property(nonatomic,strong)NSString *regNo;
+
+@property(nonatomic,strong)NSString *imgUrl;
+
+@property(nonatomic,assign)CGRect popSize;
 @end

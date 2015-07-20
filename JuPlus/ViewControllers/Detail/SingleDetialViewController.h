@@ -13,6 +13,8 @@
 @interface SingleDetialViewController : BaseViewController<UIScrollViewDelegate>
 //单品对应id值
 @property (nonatomic,strong)NSString *singleId;
+//从套餐过来
+@property (nonatomic,assign)BOOL isfromPackage;
 //该单品对应的套餐(即从哪个套餐过来的)
 @property (nonatomic,strong)NSString *regNo;
 @property (nonatomic,strong)ImageScrollView *topView;
@@ -28,4 +30,7 @@
 @property (nonatomic,strong)UIScrollView *basisScroll;
 //购买单品
 @property (nonatomic,strong)UIButton *placeOrderBtn;
+
+@property (nonatomic,assign)CGPoint point;
+
 @end

@@ -10,11 +10,14 @@
 #define JuPlus_JuPlusGlobalNSUserDefault_h
 
 #define GetAppVerson @"getAppVerson"
+#define LabelTag @"labelTag"
 #pragma mark --NSSTRING
 #define TOKEN @"token"
 #define PageSize @"pageSize"
 #define PageNum @"pageNum"
 #define ResetPrice @"resetPrice"
+//刷新首页的通知
+#define ReloadList @"reloadList"
 //刷新地址
 #define ReloadAddress @"reloadAddress"
 #endif

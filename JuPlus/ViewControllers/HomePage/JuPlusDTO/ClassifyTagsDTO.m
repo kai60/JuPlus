@@ -16,7 +16,7 @@
     self.tagId = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"id"]];
     self.imgUrl = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"imgUrl"]];
 
-    self.selImgUrl = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"id"]];
+    self.selImgUrl = [NSString stringWithFormat:@"%@",[dict  objectForKey:@"hoverImgUrl"]];
 
 }
 @end

@@ -17,7 +17,7 @@
 
 -(NSString *)getErrorCode
 {
-    return [self.userInfo valueForKey:@"code"];
+    return [NSString stringWithFormat:@"%@",[self.userInfo valueForKey:@"code"]];
 }
 #ifdef IS_PROD
 //生产环境

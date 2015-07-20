@@ -1,27 +1,31 @@
 //
-//  RegisterViewController.m
+//  ForgetPwdViewController.m
 //  JuPlus
 //
-//  Created by admin on 15/6/30.
+//  Created by admin on 15/7/20.
 //  Copyright (c) 2015年 居+. All rights reserved.
-//
+//忘记密码
 
-#import "RegisterViewController.h"
+#import "ForgetPwdViewController.h"
 #import "VerificationReq.h"
-#import "RegisterRespon.h"
-#import "RegisterRequest.h"
 #import "LoginReq.h"
 #import "LoginRespon.h"
-#import "HomeFurnishingViewController.h"
+#import "ForgetReq.h"
+#import "ForgetRespon.h"
 #import "JuPlusUserInfoCenter.h"
-@interface RegisterViewController ()
+@interface ForgetPwdViewController ()<UITextFieldDelegate,keyBoardTopBarDelegate>
+
+@end
+
+@implementation ForgetPwdViewController
+
 {
     UIScrollView *backView;
     //获取验证码
     VerificationReq *regisReq;
-    //注册
-    RegisterRequest *registerReq;
-    RegisterRespon *registerRespon;
+//    //注册
+//    RegisterRequest *registerReq;
+//    RegisterRespon *registerRespon;
     //倒计时结束之后出现的view
     UIView *identifyView;
     NSMutableArray *fieldArray;
@@ -29,13 +33,11 @@
     LoginReq *req;
     LoginRespon *respon;
     
-
-
+    ForgetReq *forgetReq;
+    ForgetRespon *forgetRespon;
+    
+    
 }
-
-@end
-
-@implementation RegisterViewController
 
 -(void)remove
 {
@@ -45,61 +47,34 @@
 //信息校验完毕，则提交请求
 -(void)startRegist
 {
-     registerReq = [[RegisterRequest alloc] init];
+    forgetReq = [[ForgetReq alloc] init];
     for(UITextField *obj in fieldArray)
     {
         if (obj.tag==0) {
-            [registerReq setField:obj.text forKey:@"mobile"];
+            [forgetReq setField:obj.text forKey:@"mobile"];
         }
         else if(obj.tag==1){
-            [registerReq setField:obj.text forKey:@"msgCode"];
-        }
-        else if(obj.tag==2){
-            [registerReq setField:obj.text forKey:@"nickname"];
+            [forgetReq setField:obj.text forKey:@"msgCode"];
         }
         else if(obj.tag==3){
-            [registerReq setField:obj.text forKey:@"loginPwd"];
+            [forgetReq setField:obj.text forKey:@"loginPwd"];
         }
         [obj resignFirstResponder];
     }
-    registerRespon = [[RegisterRespon alloc]init];
-    [HttpCommunication request:registerReq getResponse:registerRespon Success:^(JuPlusResponse *response) {
-        //注册成功之后，返回登陆的用户名和密码，自己再做一遍登陆
-        [self login];
+    forgetRespon = [[ForgetRespon alloc]init];
+    [HttpCommunication request:forgetReq getResponse:forgetRespon Success:^(JuPlusResponse *response) {
+        //密码修改过之后，返回到登陆界面，让用户自己再做登陆
+        [self showMessage];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }
--(void)login
+-(void)showMessage
 {
-    req = [[LoginReq alloc]init];
-    respon = [[LoginRespon alloc]init];
+    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"修改成功" delegate:self cancelButtonTitle:Remind_Knowit otherButtonTitles:nil, nil];
+    alt.tag =101;
+    [alt show];
     
-   
-    [req setField:registerRespon.mobileNo forKey:@"mobile"];
-    
-    [req setField:registerRespon.passWord forKey:@"loginPwd"];
-    
-    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
-        [self fileLoginInfo];
-    } failed:^(NSDictionary *errorDTO) {
-        [self errorExp:errorDTO];
-    } showProgressView:YES with:self.view];
-
-}
--(void)fileLoginInfo
-{
-    [JuPlusUserInfoCenter sharedInstance].userInfo.mobile = registerRespon.mobileNo;
-    [JuPlusUserInfoCenter sharedInstance].userInfo.token = respon.token;
-    
-    NSArray *vcArr = [self.navigationController viewControllers];
-    for (UIViewController *vc in vcArr) {
-        if([vc isKindOfClass:[HomeFurnishingViewController class]])
-        {
-            [self.navigationController popToViewController:vc animated:YES];
-            return;
-        }
-    }    
 }
 - (void)viewDidLoad
 {
@@ -107,11 +82,11 @@
     // Do any additional setup after loading the view from its nib.
     //加载UI
     [self loadBaseUI];
-  
+    
     UIButton *loginButton=[UIButton buttonWithType:UIButtonTypeCustom];
     loginButton.frame=CGRectMake(30.0f, 420.0f, SCREEN_WIDTH-60.0f, 44);
-    [loginButton setTitle:@"注册" forState:UIControlStateNormal];
-        [loginButton setBackgroundColor:Color_Basic];
+    [loginButton setTitle:@"确 认" forState:UIControlStateNormal];
+    [loginButton setBackgroundColor:Color_Basic];
     [loginButton.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:16.0]];
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [backView addSubview:loginButton];
@@ -131,39 +106,28 @@
     keyboardTopBar = [[KeyBoardTopBar alloc] initWithArray:fieldArray];
     [keyboardTopBar setAllowShowPreAndNext:YES];
     keyboardTopBar.delegate = self;
-
     
-}
--(UIImageView *)iconImg
-{
-    if(!_iconImg)
-    {
-        CGFloat iconW = 66.0f;
-        CGFloat iconH = 54.0f;
-        _iconImg = [[UIImageView alloc]initWithFrame:CGRectMake((self.view.width - iconW)/2, 80.0f, iconW, iconH)];
-        [_iconImg setImage:[UIImage imageNamed:@"logo"]];
-    }
-    return _iconImg;
+    
 }
 #pragma mark ---加载UI
 -(void)loadBaseUI
 {
-    self.titleLabel.text=@"注册";
+    self.titleLabel.text=@"忘记密码";
     [self.leftBtn setHidden:NO];
     self.view.backgroundColor = [UIColor whiteColor];
     backView=[[UIScrollView alloc]initWithFrame:CGRectMake(0.0f,nav_height,SCREEN_WIDTH ,view_height)];
     backView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:backView];
     
-    [backView addSubview:self.iconImg];
-    NSArray *array1=[NSArray arrayWithObjects:@"手机号",@"验证码",@"昵称",@"密码",@"确认密码", nil];
+    NSArray *array1=[NSArray arrayWithObjects:@"手机号",@"验证码",@"密码",@"确认密码", nil];
     fieldArray=[[NSMutableArray alloc]initWithCapacity:array1.count];
     for (int i=0; i<array1.count; i++) {
-        JuPlusTextField *rlView=[[JuPlusTextField alloc]initWithFrame:CGRectMake(30.0f,140.0f+ i*50, SCREEN_WIDTH-60.0f, 50)];
+        JuPlusTextField *rlView=[[JuPlusTextField alloc]initWithFrame:CGRectMake(30.0f,20.0f+ i*50, SCREEN_WIDTH-60.0f, 50)];
         rlView.contentField.tag=i;
+    
         rlView.headTitleLa.text=[array1 objectAtIndex:i];
         rlView.contentField.delegate=self;
-                [backView addSubview:rlView];
+        [backView addSubview:rlView];
         [fieldArray addObject:rlView.contentField];
         if (i==0) {
             rlView.contentField.keyboardType=UIKeyboardTypePhonePad;
@@ -171,22 +135,22 @@
         if (i==1) {
             rlView.contentField.clearButtonMode=UITextFieldViewModeNever;
         }
-        if (i==3){
+        if (i==2){
             rlView.contentField.secureTextEntry=YES;
             rlView.contentField.placeholder=@"可包含数字、英文字母";
         }
-        if (i==4) {
+        if (i==3) {
             rlView.contentField.secureTextEntry=YES;
             rlView.contentField.placeholder=@"请确保两次输入内容一致";
         }
     }
-
+    
     
     //验证码
     identifyButtom=[TimerButton buttonWithType:UIButtonTypeCustom];
-    identifyButtom.frame=CGRectMake(208, 200, 100, 45.0f);
+    identifyButtom.frame=CGRectMake(208, 25.0f, 100, 45.0f);
     [identifyButtom addTarget:self action:@selector(identifyPress:) forControlEvents:UIControlEventTouchUpInside];
-   
+    
     [identifyButtom.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
     [identifyButtom setTitleColor:Color_FieldText forState:UIControlStateNormal];
     [identifyButtom setTitle:@"验证码" forState:UIControlStateNormal];
@@ -196,8 +160,8 @@
 #pragma mark----修改获得验证码状态
 -(void)changeIdentify
 {
-//    [identifyButtom setHidden:YES];
-//    [identifyView setHidden:NO];
+    //    [identifyButtom setHidden:YES];
+    //    [identifyView setHidden:NO];
 }
 
 #pragma mark buttonPress
@@ -206,76 +170,66 @@
 {
     NSString *passWordStr;
     NSString *passWordStr1;
-
-        int count=5;
-        for(UITextField *obj in fieldArray)
-        {
-            if ((obj.tag<5)&&IsStrEmpty(obj.text)) {
-                count--;
-            }
-            else if(obj.tag==3){
-                passWordStr=obj.text;
-            }
-            else if(obj.tag==4)
-                passWordStr1 = obj.text;
-            
+    
+    int count=4;
+    for(UITextField *obj in fieldArray)
+    {
+        if ((obj.tag<4)&&IsStrEmpty(obj.text)) {
+            count--;
         }
-        if (count==5){
+        else if(obj.tag==2){
+            passWordStr=obj.text;
+        }
+        else if(obj.tag==3)
+            passWordStr1 = obj.text;
         
-            //验证密码的完整性
-            if (passWordStr.length<6||passWordStr.length>12) {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"密码为6-12位（仅可使用大小写字母、数字、下划线）" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    }
+    if (count==4){
+        
+        //验证密码的完整性
+        if (passWordStr.length<6||passWordStr.length>12) {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"密码为6-12位（仅可使用大小写字母、数字、下划线）" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            count--;
+        }
+        else{
+            if(![passWordStr isEqualToString:passWordStr1])
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"两次密码输入不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
                 count--;
             }
-            else{
-                if(![passWordStr isEqualToString:passWordStr1])
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"两次密码输入不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            else
+            {
+                //判断是否有非法字符
+                NSCharacterSet *nameCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"] invertedSet];
+                NSRange userNameRange = [passWordStr rangeOfCharacterFromSet:nameCharacters];
+                if (userNameRange.location != NSNotFound) {
+                    //  NSLog(@"包含特殊字符");
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"密码为6-12位（仅可使用大小写字母、数字、下划线）" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alert show];
                     count--;
                 }
-                else
-                {
-                    //判断是否有非法字符
-                    NSCharacterSet *nameCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"] invertedSet];
-                    NSRange userNameRange = [passWordStr rangeOfCharacterFromSet:nameCharacters];
-                    if (userNameRange.location != NSNotFound) {
-                        //  NSLog(@"包含特殊字符");
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"密码为6-12位（仅可使用大小写字母、数字、下划线）" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                        [alert show];
-                        count--;
-                    }
-                    
-                    else{
-                        //提交注册信息
-                        [self startRegist];
-                    }
+                
+                else{
+                    //提交注册信息
+                    [self startRegist];
                 }
             }
         }
-        else{
-            UIAlertView *alt=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"请补充完整注册信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [alt show];
-        }
+    }
+    else{
+        UIAlertView *alt=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"请补充完整注册信息" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        [alt show];
+    }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
-    if (alertView.tag==10002) {
-        if (buttonIndex==0) {
-            //列表
-          //  [self gotoRootCarListViewWithNsIndex:[NSIndexPath indexPathForRow:0 inSection:0]];
-            
-        }
-        else{
-         //   [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:CheckingFrom];
-        //    CheckingViewController *checkView=[[CheckingViewController alloc]init];
-          //  [self.navigationController pushViewController:checkView animated:YES];
-            
-        }
-        
+    //点击我知道了返回上一界面重新登录
+    if (alertView.tag==101) {
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
@@ -294,7 +248,8 @@
     }
     if (num==0) {
         
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag=10001;
         [alert show];
         
     }
@@ -304,13 +259,13 @@
         regisReq = [[VerificationReq alloc]init];
         JuPlusResponse *response = [[JuPlusResponse alloc]init];
         [regisReq setField:((UITextField *)[fieldArray objectAtIndex:0]).text forKey:@"mobile"];
-        [regisReq setField:@"1" forKey:@"type"];
+        [regisReq setField:@"2" forKey:@"type"];
         [HttpCommunication request:regisReq getResponse:response Success:^(JuPlusResponse *response) {
             [identifyButtom useTimerButton];
         } failed:^(NSDictionary *er) {
             [self errorExp:er];
         } showProgressView:YES with:self.view];
- 
+        
     }
     
 }
@@ -397,10 +352,6 @@
     [textField resignFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 /*
 #pragma mark - Navigation

@@ -6,11 +6,11 @@
 //  Copyright (c) 2014年 詹文豹. All rights reserved.
 //
 
-#import "AutoyolProgressView.h"
+#import "JuPlusLoadingView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SCGIFImageView.h"
 #import "UIImage+GIF.h"
-@implementation AutoyolProgressView
+@implementation JuPlusLoadingView
 {
     CGFloat viewHeight;
 }

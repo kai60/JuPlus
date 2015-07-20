@@ -9,7 +9,7 @@
 #import "JuPlusRequest.h"
 #import "CommonUtil.h"
 #import "PackException.h"
-#import "AutoyolProgressView.h"
+#import "JuPlusLoadingView.h"
 #import "JuPlusEnvironmentConfig.h"
 @implementation JuPlusRequest
 @synthesize urlSeq,packDic,path,validParams,verifyMethod,verifySignSeq,securityMethod,requestMethod;

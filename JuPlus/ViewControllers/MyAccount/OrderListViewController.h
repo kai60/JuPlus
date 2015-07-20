@@ -10,4 +10,6 @@
 
 @interface OrderListViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITableView *orderListTab;
+
+@property (nonatomic,strong)NSMutableArray *dataArray;
 @end

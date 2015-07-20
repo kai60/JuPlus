@@ -8,6 +8,8 @@
 
 #import "LabelView.h"
 #import "SingleDetialViewController.h"
+#import "UINavigationController+RadialTransaction.h"
+#import "CollectionView.h"
 #define space 5.0f
 @implementation LabelView
 {
@@ -36,7 +38,8 @@
         [self addSubview:self.tipsImage];
         [self addSubview:self.lineImg];
         [self addSubview:self.labelText];
-        [self addSubview:self.touchBtn];
+       // [self addSubview:self.touchBtn];
+        self.userInteractionEnabled = YES;
         CGFloat tipsW = self.tipsImage.width;
         //背景view的转变
         CGFloat scale = 4.0f;
@@ -58,7 +61,7 @@
         orignAlpha = self.alphaImage.frame;
         
         
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(setAnimation) userInfo:nil repeats:YES];    //使用timer定时，每4秒触发一次，然后就是写selector了。
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(setAnimation) userInfo:nil repeats:YES];    //使用timer定时，每3秒触发一次，然后就是写selector了。
         [self setAnimation];
 
     }
@@ -171,7 +174,6 @@
             _dropImg.frame = CGRectMake(self.width - 10.5f, self.height - 15.5f, 8.0f, 13.0f);
             [_dropImg setImage:[UIImage imageNamed:@"lineLeft"]];
         }
-        
 
     }
     return _dropImg;
@@ -181,12 +183,12 @@
     if(!_labelText)
     {
         _labelText = [[UILabel alloc]init];
+        _labelText.textAlignment = NSTextAlignmentRight;
         if(self.isLeft)
-        _labelText.frame = CGRectMake(self.dropImg.right,self.dropImg.top - 20.0f,100.0f,20.0f);
+        _labelText.frame = CGRectMake(self.dropImg.right - 50.0f,self.dropImg.top - 20.0f,50.0f,20.0f);
         else
         {
         _labelText.frame = CGRectMake(self.dropImg.left - 100.0f,self.dropImg.top - 20.0f,100.0f,20.0f);
-            _labelText.textAlignment = NSTextAlignmentRight;
         }
         [_labelText setTextColor:[UIColor whiteColor]];
         [_labelText setShadowColor:Color_Gray];
@@ -215,18 +217,52 @@
         _touchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _touchBtn.backgroundColor = [UIColor clearColor];
         _touchBtn.frame = CGRectMake(0.0f,0.0f,self.width,self.height);
-        [_touchBtn addTarget:self action:@selector(senderPress:) forControlEvents:UIControlEventTouchUpInside];
+       // [_touchBtn addTarget:self action:@selector(senderPress:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _touchBtn;
 }
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self.window];
+    UIViewController *vc = [self getSuperViewController];
+    
+    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, vc.view.width, vc.view.height)];
+    backV.alpha = 0.99;
+    backV.backgroundColor = RGBACOLOR(255, 255, 255, 0.6);
+    [vc.view addSubview:backV];
+    [UIView animateWithDuration:1.0f animations:^{
+        backV.alpha = 1;
+    } completion:^(BOOL finished) {
+        [backV removeFromSuperview];
+    }];
+
+    CGPoint startPoint = CGPointMake(point.x -25.0f,point.y - 25.0f);
+    SingleDetialViewController *sing = [[SingleDetialViewController alloc]init];
+    sing.regNo =[NSString stringWithFormat:@"%ld", (long)self.superview.tag];
+    sing.isfromPackage = YES;
+    sing.singleId = [NSString stringWithFormat:@"%ld",self.tag];
+    sing.point = startPoint;
+    [vc.navigationController radialPushViewController:sing withDuration:1.0f withStartFrame:CGRectMake(startPoint.x,startPoint.y,50.0f,50.0f) comlititionBlock:^{
+        
+    }];
+    
+
+}
 -(void)senderPress:(UIButton *)sender
 {
+    UIViewController *vc = [self getSuperViewController];
+    
     SingleDetialViewController *sing = [[SingleDetialViewController alloc]init];
     sing.regNo =[NSString stringWithFormat:@"%ld", (long)self.superview.superview.tag];
+    sing.isfromPackage = YES;
     sing.singleId = [NSString stringWithFormat:@"%ld",(long)sender.tag];
-    UIViewController *vc = [self getSuperViewController];
-    [vc.navigationController.view.layer addAnimation:[self getPushTransition] forKey:nil];
-    [vc.navigationController pushViewController:sing animated:NO];
+    
+    [vc.navigationController radialPushViewController:sing withDuration:2 withStartFrame:CGRectMake(100.0f,120.0f,10.0f,10.0f) comlititionBlock:^{
+        
+    }];
+
+   // [vc.navigationController pushViewController:sing animated:NO];
     
 }
 -(void)showText:(NSString *)text
@@ -236,11 +272,14 @@
        
        CGSize  size = [CommonUtil getLabelSizeWithString:text andLabelHeight:20.0f andFont:self.labelText.font];
         if(self.isLeft)
+        {
         [self.lineImg setFrame:CGRectMake(self.lineImg.left, self.lineImg.top, size.width, self.lineImg.height)];
+        self.labelText.frame = CGRectMake(self.lineImg.right - size.width,self.dropImg.top - 20.0f,size.width,self.labelText.height);
+        }
         else
         {
         [self.lineImg setFrame:CGRectMake(self.lineImg.right - size.width, self.lineImg.top, size.width, self.lineImg.height)];
-            [self.labelText setFrame:CGRectMake(self.lineImg.right - size.width, self.labelText.top, size.width, self.labelText.height)];
+        [self.labelText setFrame:CGRectMake(self.lineImg.right - size.width, self.labelText.top, size.width, self.labelText.height)];
 
         }
 

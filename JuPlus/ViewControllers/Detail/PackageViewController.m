@@ -76,6 +76,31 @@
     [self.relativedView addSubview:self.relativedScroll];
     [self.view addSubview:self.placeOrderBtn];
     // Do any additional setup after loading the view.
+    //自定义转场动画
+    [self.leftBtn setHidden:YES];
+    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.frame = CGRectMake(0.0f, self.navView.height -44.0f, 44.0f, 44.0f);
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(backPress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navView addSubview:leftBtn];
+
+}
+-(void)backPress:(UIButton *)sender
+{
+    [self.packageImageV removeAllSubviews];
+
+    CGRect newF = CGRectMake(self.popSize.origin.x,+ self.backScroll.contentOffset.y+self.popSize.origin.y-nav_height, self.popSize.size.width, self.popSize.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+        self.secBackScroll.alpha = 0;
+        self.designIcon.alpha = 0;
+    } completion:^(BOOL finished) {
+        [UIView  animateWithDuration:1.0f animations:^{
+            self.packageImageV.frame = newF;
+        } completion:^(BOOL finished) {
+            [self.navigationController popViewControllerAnimated:NO];
+
+        }];
+    }];
 }
 #pragma mark --uifig
 -(UIButton *)placeOrderBtn
@@ -97,6 +122,7 @@
     if(!_packageImageV)
     {
         _packageImageV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
+        [_packageImageV setimageUrl:self.imgUrl placeholderImage:nil];
         _packageImageV.userInteractionEnabled = YES;
     }
     return _packageImageV;
@@ -105,11 +131,11 @@
 {
     if(!_favBtn)
     {
-        CGFloat btnR = 25.0f;
+        CGFloat btnR = 50.0f;
         _favBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_favBtn setImage:[UIImage imageNamed:@"fav_unsel"] forState:UIControlStateNormal];
         [_favBtn setImage:[UIImage imageNamed:@"fav_sel"] forState:UIControlStateSelected];
-        _favBtn.frame = CGRectMake(self.packageImageV.width - btnR - 10.0f, 20.0f, btnR, btnR);
+        _favBtn.frame = CGRectMake(self.packageImageV.width - btnR - 10.0f, 10.0f, btnR, btnR);
         [_favBtn addTarget:self action:@selector(favBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -120,7 +146,6 @@
     if(!_priceLabel)
     {
         _priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, self.packageImageV.height - 40.0f , 220.0f, 30.0f)];
-        _priceLabel.backgroundColor = Color_Basic;
         _priceLabel.textAlignment = NSTextAlignmentCenter;
         [_priceLabel setFont:FontType(16.0f)];
         [_priceLabel setTextColor:Color_White];
@@ -143,6 +168,7 @@
     {
         _secBackScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, PICTURE_HEIGHT, SCREEN_WIDTH, view_height)];
         _secBackScroll.backgroundColor = Color_White;
+        _secBackScroll.alpha = 0;
     }
     return _secBackScroll;
 }
@@ -172,6 +198,8 @@
         _designIcon.layer.borderWidth = 1.0f;
         _designIcon.layer.cornerRadius = imgW/2;
         _designIcon.layer.masksToBounds =YES;
+        _designIcon.alpha = 0;
+
     }
     return _designIcon;
 }
@@ -453,7 +481,7 @@
     [favReq setField:@"2" forKey:@"objType"];
     
     [HttpCommunication request:favReq getResponse:favRespon Success:^(JuPlusResponse *response) {
-        [self.favBtn setSelected:NO];
+        [self.favBtn startAnimation];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
@@ -469,7 +497,7 @@
     
     JuPlusResponse *favRespon =[[JuPlusResponse alloc]init];
     [HttpCommunication request:favReq getResponse:favRespon Success:^(JuPlusResponse *response) {
-        [self.favBtn setSelected:YES];
+        [self.favBtn startAnimation];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
@@ -526,6 +554,25 @@
     }
 
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.secBackScroll.alpha = 1;
+        self.designIcon.alpha = 1;
+
+    }];
+}
+-(void)viewWillDisppear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+//    [UIView animateWithDuration:0.3 animations:^{
+//        self.secBackScroll.alpha = 0;
+//        self.designIcon.alpha = 0;
+//
+//    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -10,7 +10,7 @@
 #import "NetException.h"
 #import "TimeoutException.h"
 #import "CommonUtil.h"
-#import "AutoyolProgressView.h"
+#import "JuPlusLoadingView.h"
 #import "LFCGzipUtillity.h"
 #import "SecurityUtil.h"
 #import "UnPackException.h"
@@ -233,16 +233,16 @@
     {
         return nil;
     }
-    AutoyolProgressView *autoyol=[[AutoyolProgressView alloc]init];
+    JuPlusLoadingView *autoyol=[[JuPlusLoadingView alloc]init];
     [autoyol showActivityViewFrame:view.frame AndTag:view.tag];
     [view addSubview:autoyol];
-    if (view.tag==222) {
-        view.userInteractionEnabled=NO;
-    }
-    else
-    {
-        view.userInteractionEnabled = NO;
-    }
+//    if (view.tag==222) {
+//        view.userInteractionEnabled=NO;
+//    }
+//    else
+//    {
+//        view.userInteractionEnabled = NO;
+//    }
     return view;
 }
 
@@ -253,12 +253,12 @@
         return;
     }
     aView.userInteractionEnabled=YES;
-    Class autoClass = [AutoyolProgressView class];
+    Class autoClass = [JuPlusLoadingView class];
     for(UIView *view in aView.subviews)
     {
         if ([view isKindOfClass:autoClass])
         {
-            [(AutoyolProgressView *)view hideActivityView];
+            [(JuPlusLoadingView *)view hideActivityView];
             [view removeFromSuperview];
         }
     }

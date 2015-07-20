@@ -11,6 +11,8 @@
 #import "UIImage+GIF.h"
 
 @interface ClassifyView :JuPlusUIView <UIScrollViewDelegate>
+
+@property (nonatomic,strong)UILabel *titleL;
 //可扩展的类容分布
 @property (nonatomic,strong)UIScrollView *itemsScroll;
 //数据源
@@ -20,4 +22,6 @@
 //被选中的标签数组
 @property (nonatomic,strong)NSMutableArray *selectArr;
 -(id)initWithFrame:(CGRect)frame andView:(UIView *)superV;
+
+-(void)showClassify;
 @end

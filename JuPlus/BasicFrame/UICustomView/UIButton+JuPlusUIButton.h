@@ -10,4 +10,6 @@
 
 @interface UIButton (JuPlusUIButton)
 -(void)setimageUrl:(NSString *)url placeholderImage:(NSString *)defalutImage;
+
+-(void)startAnimation;
 @end

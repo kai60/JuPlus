@@ -12,6 +12,7 @@
 #import "CollectionRespon.h"
 #import "PackageCell.h"
 #import "PackageViewController.h"
+#import "PackageCell.h"
 @implementation CollectionView
 {
     NSMutableArray *dataArray;
@@ -45,6 +46,7 @@
         [self.rightBtn setTitle:@"筛选" forState:UIControlStateNormal];
         [self.navView setHidden:NO];
         [self startHomePageRequest];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadList object:nil];
     }
     return self;
 }
@@ -88,9 +90,9 @@
 {
     collReq = [[CollocationReq alloc]init];
     collRespon = [[CollectionRespon alloc]init];
-    [collReq setField:[NSString stringWithFormat:@"%d",pageNum] forKey:@"pageNum"];
-    [collReq setField:PAGESIZE forKey:@"pageSize"];
-
+    NSString *tagId = [CommonUtil getUserDefaultsValueWithKey:LabelTag];
+    NSString *reqUrl = [NSString stringWithFormat:@"list?pageNum=%d&pageSize=%@&tagId=%@",pageNum,PAGESIZE,tagId?tagId:@"0"];
+    [collReq setField:reqUrl forKey:@"FunctionName"];
     [HttpCommunication request:collReq getResponse:collRespon Success:^(JuPlusResponse *response) {
         totalCount = [collRespon.count intValue];
         if (pageNum==1) {
@@ -131,10 +133,36 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PackageViewController *pack = [[PackageViewController alloc]init];
-    HomePageInfoDTO *homePage = [dataArray objectAtIndex:indexPath.row];
-    pack.regNo = homePage.regNo;
-    [[self getSuperViewController].navigationController pushViewController:pack animated:YES];
-}
+
+    //先给本界面加白色底层
+    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.width, self.height)];
+    backV.backgroundColor = Color_White;
+    [self addSubview:backV];
+    //在白色底层上添加转场动画
+    PackageCell *cell = (PackageCell *)[tableView cellForRowAtIndexPath:indexPath];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:cell.showImgV.image];
+    imageView.clipsToBounds = YES;
+    imageView.userInteractionEnabled = NO;
+    CGRect frameInSuperview = [cell.showImgV convertRect:cell.showImgV.frame toView:self];
+    frameInSuperview.origin.y -= nav_height+25;
+    imageView.frame = frameInSuperview;
+    [backV addSubview:imageView];
+
+    CGRect rect = imageView.frame;
+    [UIView animateWithDuration:1.0f animations:^{
+        imageView.frame = CGRectMake(0.0f, nav_height, PICTURE_HEIGHT, PICTURE_HEIGHT);
+    } completion:^(BOOL finished) {
+        PackageViewController *pack = [[PackageViewController alloc]init];
+        HomePageInfoDTO *homePage = [dataArray objectAtIndex:indexPath.row];
+        pack.regNo = homePage.regNo;
+        pack.imgUrl = homePage.collectionPic;
+        pack.popSize = rect;
+        [[self getSuperViewController].navigationController pushViewController:pack animated:NO];
+        [backV setHidden:YES];
+
+    }];
+
+    }
+
 
 @end

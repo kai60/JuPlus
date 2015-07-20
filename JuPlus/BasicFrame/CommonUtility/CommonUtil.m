@@ -53,16 +53,30 @@
 //判断是否登录成功
 +(BOOL)isLogin
 {
-    return !IsStrEmpty([self getUserDefaultsValueWithKey:TOKEN]);
+    if(IsStrEmpty([self getUserDefaultsValueWithKey:TOKEN])||[[self getUserDefaultsValueWithKey:TOKEN] isEqualToString:@"0"])
+        return NO;
+    else
+        return YES;
 }
 //得到token值
 +(NSString *)getToken
 {
-    if(IsNilOrNull([self getUserDefaultsValueWithKey:TOKEN]))
-    {
-        return @"0";
-    }
-    else
-    return [self getUserDefaultsValueWithKey:TOKEN];
+        return [self getUserDefaultsValueWithKey:TOKEN];
 }
+//----------------------------------------------------------------------------------------------
+//从字典里拿数据
+JuPlus_EXTERN NSString* EncodeStringFromDic(NSDictionary *dic, NSString *key)
+{
+    id temp = [dic objectForKey:key];
+    if ([temp isKindOfClass:[NSString class]])
+    {
+        return temp;
+    }
+    else if ([temp isKindOfClass:[NSNumber class]])
+    {
+        return [temp stringValue];
+    }
+    return nil;
+}
+
 @end

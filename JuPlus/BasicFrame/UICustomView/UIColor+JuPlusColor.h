@@ -27,6 +27,8 @@
 #define Color_Bottom RGBCOLOR(239, 239, 239)
 //输入框文字颜色
 #define Color_FieldText RGBCOLOR(128, 128, 128)
+#define Color_Red RGBCOLOR(251, 62, 69)
+
 @interface UIColor (JuPlusColor)
 
 + (UIColor *)colorWithRGBHex:(UInt32)hex;

@@ -16,6 +16,7 @@
 #import "PlaceOrderViewController.h"
 #import "LoginViewController.h"
 #import "productOrderDTO.h"
+#import "UINavigationController+RadialTransaction.h"
 @implementation SingleDetialViewController
 {
     SingleDetailReq *detailReq;
@@ -35,13 +36,42 @@
         //需要出层级显示效果的view
     [self.view addSubview:self.bottomV];
     [self.bottomV addSubview:self.descripLabel];
-
+    [self.leftBtn setHidden:YES];
+   
+      UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.frame = CGRectMake(0.0f, self.navView.height -44.0f, 44.0f, 44.0f);
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(backPress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navView addSubview:leftBtn];
     //信息展示
     [self.bottomV addSubview:self.basisView];
     [self.basisView addSubview:self.basisLabel];
     [self.basisView addSubview:self.basisScroll];
     [self.view addSubview:self.placeOrderBtn];
     
+}
+-(void)backPress:(UIButton *)button
+{
+    if(self.isfromPackage)
+    {
+        UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.width, self.view.height)];
+        backV.alpha = 0.99;
+        backV.backgroundColor = RGBACOLOR(255, 255, 255, 0.6);
+        [self.view addSubview:backV];
+        [UIView animateWithDuration:1.0f animations:^{
+            backV.alpha = 1;
+        } completion:^(BOOL finished) {
+            [backV removeFromSuperview];
+        }];
+
+    [self.navigationController radialPopViewControllerWithDuration:0.8 withStartFrame:CGRectMake(self.point.x, self.point.y, 50.0f, 50.0f) comlititionBlock:^{
+    }];
+    }
+    else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
 }
 #pragma mark --Reqeust
 -(void)startRequest
@@ -84,6 +114,7 @@
     self.topView.imageScroll.contentSize = CGSizeMake(SCREEN_WIDTH*[detailRespon.imageArray count], self.topView.imageScroll.height);
     
     [self.topView.priceLabel setPriceTxt:detailRespon.price];
+    
 }
 -(void)fileExplainTxt
 {
@@ -220,7 +251,7 @@
     [req setField:@"1" forKey:@"objType"];
 
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
-        [self.topView.favBtn setSelected:NO];
+        [self.topView.favBtn startAnimation];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
@@ -236,7 +267,7 @@
 
     JuPlusResponse *respon =[[JuPlusResponse alloc]init];
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
-        [self.topView  .favBtn setSelected:YES];
+        [self.topView.favBtn startAnimation];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];

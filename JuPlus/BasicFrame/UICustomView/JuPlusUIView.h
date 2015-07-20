@@ -26,4 +26,6 @@
 //一些系统的弹出处理,例如强制更新，登录失败
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 -(void)startHomePageRequest;
+
+//-(void)animationFrame:(CGRect)frame timerInterVal:(NSTimeInterval)duration;
 @end

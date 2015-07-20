@@ -76,7 +76,7 @@ CGFloat space = 10.0f;
 //    [self.timeLabel setText:homepageDTO.uploadTime];
     [self.timeLabel setText:@"1小时前"];
     [self.descripL setText:homepageDTO.descripTxt];
-    [self.showImgV setimageUrl:homepageDTO.collectionPic  placeholderImage:@""];
+    [self.showImgV setimageUrl:homepageDTO.collectionPic  placeholderImage:nil];
     self.showImgV.tag = [homepageDTO.regNo intValue];
     [self.topV.portraitImgV addTarget:self action:@selector(portraitImgVPress:) forControlEvents:UIControlEventTouchUpInside];
     [self.priceV setPriceText:homepageDTO.price];
@@ -118,7 +118,7 @@ CGFloat space = 10.0f;
 
         }
        
-        la.touchBtn.tag = [dto.productNo intValue];
+        la.tag = [dto.productNo intValue];
         [la showText:dto.productName];
         [self.showImgV addSubview:la];
     }

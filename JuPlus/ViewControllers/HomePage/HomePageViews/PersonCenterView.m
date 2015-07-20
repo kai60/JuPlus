@@ -12,6 +12,8 @@
 #import "OrderListViewController.h"
 #import "DesignerDetailViewController.h"
 #import "MyFavourViewController.h"
+#import "JuPlusUserInfoCenter.h"
+#import "MyInfoViewController.h"
 @implementation PersonCenterView
 {
     PersonCenterReq *centerReq;
@@ -74,6 +76,7 @@
     [centerReq setField:[CommonUtil getToken] forKey:TOKEN];
     centerRespon = [[PersonCenterRespon alloc]init];
     [HttpCommunication request:centerReq getResponse:centerRespon Success:^(JuPlusResponse *response) {
+        
         [self configData];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
@@ -81,6 +84,8 @@
 }
 -(void)configData
 {
+    [JuPlusUserInfoCenter sharedInstance].userInfo.nickname = centerRespon.nickname;
+    [JuPlusUserInfoCenter sharedInstance].userInfo.portraitUrl = centerRespon.portrait;
     NSArray *arr = [NSArray arrayWithObjects:centerRespon.worksCount,centerRespon.payCount,centerRespon.favourCount, nil];
     [self.portrait setimageUrl:centerRespon.portrait placeholderImage:nil];
     [self.nickLabel setText:centerRespon.nickname];
@@ -88,9 +93,10 @@
         [((JuPlusUILabel *)[self.listArr objectAtIndex:i]) setText:[arr objectAtIndex:i]];
     }
 }
--(void)goDesign
+-(void)goMyInfo
 {
-  
+    MyInfoViewController *info = [[MyInfoViewController alloc]init];
+    [[self getSuperViewController].navigationController pushViewController:info animated:YES];
 }
 #pragma mark --UIfig
 -(JuPlusUIView *)topView
@@ -110,7 +116,7 @@
         self.portrait.frame = CGRectMake(130,10, 60, 60);
         self.portrait.layer.masksToBounds=YES;
         self.portrait.layer.cornerRadius=30;
-        [self.portrait addTarget:self action:@selector(goDesign) forControlEvents:UIControlEventTouchUpInside];
+        [self.portrait addTarget:self action:@selector(goMyInfo) forControlEvents:UIControlEventTouchUpInside];
     }
     return _portrait;
 }
