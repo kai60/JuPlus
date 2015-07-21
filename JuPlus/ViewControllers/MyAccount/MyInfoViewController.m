@@ -11,6 +11,7 @@
 #import "ResetPwdViewController.h"
 #import "HomeFurnishingViewController.h"
 #import "ChangeNicknameReq.h"
+#import "ResetnicknameView.h"
 @interface InfoChangeV : JuPlusUIView
 
 @property (nonatomic,strong)UILabel *titleL;
@@ -60,7 +61,10 @@
 
 }
 @end
-@interface MyInfoViewController ()
+@interface MyInfoViewController ()<UITextFieldDelegate>
+
+@property (nonatomic,strong)JuPlusUIView *backView;
+
 @property (nonatomic,strong)UIScrollView *backScroll;
 //头像
 @property (nonatomic,strong)UIButton *iconImage;
@@ -68,6 +72,8 @@
 @property (nonatomic,strong)NSMutableArray *labelArray;
 //退出
 @property (nonatomic,strong)UIButton *logoutBtn;
+
+@property (nonatomic,strong)ResetnicknameView *nicknameV;
 @end
 
 @implementation MyInfoViewController
@@ -89,8 +95,6 @@
         InfoChangeV *info = [[InfoChangeV alloc]initWithFrame:CGRectMake(0.0f, i*labelH, self.backScroll.width, labelH)];
         [info.titleL setText:[arr objectAtIndex:i]];
         info.tag = i;
-        if(i==1)
-           [info.textL setText:[JuPlusUserInfoCenter sharedInstance].userInfo.nickname];
         [info.clickBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.labelArray addObject:info];
         [self.backScroll addSubview:info];
@@ -101,8 +105,21 @@
     contentH = labelH*([arr count]+4);
     self.backScroll.contentSize = CGSizeMake(SCREEN_WIDTH, contentH);
     [self.backScroll addSubview:self.logoutBtn];
+    [self.view addSubview:self.backView];
+    [self.backView addSubview:self.nicknameV];
 }
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+        if (IsStrEmpty(textField.text)) {
+            return NO;
+        }
+        else
+        {
+            [textField resignFirstResponder];
+            return YES;
+        }
+    return YES;
+}
 -(void)btnClick:(UIButton *)sender
 {
     switch (sender.superview.tag) {
@@ -114,6 +131,7 @@
         case 1:
         {
             //修改昵称
+            [self.backView setHidden:NO];
         }
             break;
         case 2:
@@ -130,7 +148,24 @@
 -(void)changeNickname
 {
     ChangeNicknameReq *req = [[ChangeNicknameReq alloc]init];
+    [req setField:self.nicknameV.nickTF.text forKey:@"nickname"];
+    [req setField:[CommonUtil getToken] forKey:TOKEN];
+    JuPlusResponse *respon = [[JuPlusResponse alloc]init];
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        [self.backView setHidden:YES];
+        [JuPlusUserInfoCenter sharedInstance].userInfo.nickname = self.nicknameV.nickTF.text;
+        [CommonUtil postNotification:ResetNickName Object:nil];
+        [self showAlertView:@"修改成功" withTag:0];
+    } failed:^(NSDictionary *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:YES with:self.view];
+    
  }
+-(void)resignNickname
+{
+    [self.backView setHidden:YES];
+    [self.nicknameV.nickTF resignFirstResponder];
+}
 -(void)logoutBtnClick:(UIButton *)sender
 {
     UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"确认要退出么？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -169,6 +204,35 @@
         [_logoutBtn addTarget:self action:@selector(logoutBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _logoutBtn;
+}
+-(JuPlusUIView *)backView
+{
+    if(!_backView)
+    {
+        _backView = [[JuPlusUIView alloc]init];
+        _backView.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _backView.backgroundColor = RGBACOLOR(0, 0, 0, 0.3);
+        _backView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(resignNickname)];
+        [_backView addGestureRecognizer:tap];
+        [_backView setHidden:YES];
+    }
+    return _backView;
+}
+-(ResetnicknameView *)nicknameV
+{
+    if(!_nicknameV)
+    {
+        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"ResetnicknameView" owner:self options:nil];
+        _nicknameV = [nib objectAtIndex:0];
+        _nicknameV.layer.masksToBounds = YES;
+        _nicknameV.layer.cornerRadius = 5.0f;
+        _nicknameV.nickTF.delegate = self;
+        _nicknameV.nickTF.text = [JuPlusUserInfoCenter sharedInstance].userInfo.nickname ;
+        [_nicknameV.sureBtn addTarget:self action:@selector(changeNickname) forControlEvents:UIControlEventTouchUpInside];
+        _nicknameV.frame = CGRectMake(30.0f, (SCREEN_HEIGHT - 300.0f)/2, 260.0f, 300.0f);
+    }
+    return _nicknameV;
 }
 #pragma mark --alertView
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

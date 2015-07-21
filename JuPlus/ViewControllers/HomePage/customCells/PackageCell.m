@@ -71,7 +71,7 @@ CGFloat space = 10.0f;
 //cell数据加载
 -(void)loadCellInfo:(HomePageInfoDTO *)homepageDTO
 {
-    [self.topV.portraitImgV setimageUrl:homepageDTO.portrait  placeholderImage:@"2.jpg"];
+    [self.topV.portraitImgV setimageUrl:homepageDTO.portrait  placeholderImage:nil];
     [self.topV.nikeNameL setText:homepageDTO.nikename];
 //    [self.timeLabel setText:homepageDTO.uploadTime];
     [self.timeLabel setText:@"1小时前"];

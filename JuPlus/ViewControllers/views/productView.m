@@ -27,7 +27,7 @@
 {
     if(!_iconImgV)
     {
-        CGFloat multiple = SCREEN_WIDTH/DETAIL_HEIGHT;
+        CGFloat multiple = SCREEN_WIDTH/PICTURE_HEIGHT;
         CGFloat imgW = 80.0f;
         CGFloat imgH = imgW/multiple;
         _iconImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, (self.height - imgH)/2 , imgW, imgH)];

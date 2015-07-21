@@ -18,6 +18,7 @@
 #import "LoginViewController.h"
 #import "PlaceOrderViewController.h"
 #import "productOrderDTO.h"
+#import "UINavigationController+RadialTransaction.h"
 @interface PackageViewController ()
 #define space 10.0f
 //购买
@@ -352,7 +353,7 @@
             
         }
         
-        la.touchBtn.tag = [dto.productNo intValue];
+        la.tag = [dto.productNo intValue];
         [la showText:dto.productName];
         [self.packageImageV addSubview:la];
     }
@@ -411,7 +412,10 @@
             NSDictionary *relateDic = [respon.packageList objectAtIndex:i];
             UIButton *imgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             imgBtn.frame = CGRectMake(space+(space+imgW)*i, space, imgW, imgW);
+            [imgBtn setBackgroundImage:[UIImage imageNamed:@"default_square"] forState:UIControlStateNormal];
             [imgBtn setimageUrl:[relateDic objectForKey:@"coverUrl"] placeholderImage:nil];
+            [imgBtn setTitle:[relateDic objectForKey:@"coverUrl"] forState:UIControlStateNormal];
+            [imgBtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
             imgBtn.tag = [[relateDic objectForKey:@"collocatePicNo"] intValue];
             [imgBtn addTarget:self action:@selector(relativedClick:) forControlEvents:UIControlEventTouchUpInside];
             [self.relativedScroll addSubview:imgBtn];
@@ -506,10 +510,34 @@
 //猜你喜欢相关点击事件
 -(void)relativedClick:(UIButton *)sender
 {
-    PackageViewController *pack = [[PackageViewController alloc]init];
-    pack.regNo = [NSString stringWithFormat:@"%ld",(long)sender.tag];
-    [self.navigationController pushViewController:pack animated:YES];
-}
+    //先给本界面加白色底层
+    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.width, self.view.height)];
+    backV.backgroundColor = Color_White;
+    [self.view addSubview:backV];
+    //在白色底层上添加转场动画
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:sender.imageView.image];
+    imageView.clipsToBounds = YES;
+    imageView.userInteractionEnabled = NO;
+    CGRect frameInSuperview = [sender convertRect:sender.frame toView:self.view];
+    frameInSuperview.origin.x = sender.origin.x +self.relativedScroll.contentOffset.x;
+    frameInSuperview.origin.y -=10.0f;
+    imageView.frame = frameInSuperview;
+    [backV addSubview:imageView];
+    
+    CGRect rect = imageView.frame;
+    [UIView animateWithDuration:1.0f animations:^{
+        imageView.frame = CGRectMake(0.0f, nav_height, PICTURE_HEIGHT, PICTURE_HEIGHT);
+    } completion:^(BOOL finished) {
+        PackageViewController *pack = [[PackageViewController alloc]init];
+        pack.regNo = [NSString stringWithFormat:@"%ld",(long)sender.tag];
+        pack.popSize = rect;
+        pack.imgUrl = sender.titleLabel.text;
+        [self.navigationController pushViewController:pack animated:NO];
+        [backV setHidden:YES];
+        
+    }];
+
+   }
 -(void)layoutSubFrame
 {
     self.productListV.frame = CGRectMake(self.productListV.left, self.displayView.bottom, self.productListV.width, self.productListV.height);
@@ -522,10 +550,30 @@
 //单品详情点击事件
 -(void)productClick:(UIButton *)sender
 {
-    SingleDetialViewController *detail = [[SingleDetialViewController alloc]init];
-    detail.singleId = [NSString stringWithFormat:@"%ld",(long)sender.tag];
-    [self.navigationController pushViewController:detail animated:YES];
-}
+
+    CGPoint point2 = [sender convertPoint:sender.center toView:nil];
+    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.width, self.view.height)];
+    backV.alpha = 0.99;
+    backV.backgroundColor = RGBACOLOR(255, 255, 255, 0.6);
+    [self.view addSubview:backV];
+    [UIView animateWithDuration:1.0f animations:^{
+        backV.alpha = 1;
+    } completion:^(BOOL finished) {
+        [backV removeFromSuperview];
+    }];
+    
+    CGPoint startPoint = CGPointMake(sender.center.x-25.0f,point2.y-25.0f);
+    SingleDetialViewController *sing = [[SingleDetialViewController alloc]init];
+    sing.regNo = self.regNo;
+    sing.isfromPackage = YES;
+    sing.singleId =  [NSString stringWithFormat:@"%ld",(long)sender.tag];
+    sing.point = startPoint;
+    [self.navigationController radialPushViewController:sing withDuration:1.0f withStartFrame:CGRectMake(startPoint.x,startPoint.y,50.0f,50.0f) comlititionBlock:^{
+        
+    }];
+    
+
+   }
 //购买
 -(void)payPress
 {

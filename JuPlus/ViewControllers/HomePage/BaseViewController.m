@@ -93,7 +93,7 @@
 //提示信息显示
 - (void)showAlertView:(NSString *)msg withTag:(int)tag
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil];
     alert.tag=tag;
     [alert show];
 }

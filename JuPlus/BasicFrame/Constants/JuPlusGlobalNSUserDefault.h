@@ -20,4 +20,8 @@
 #define ReloadList @"reloadList"
 //刷新地址
 #define ReloadAddress @"reloadAddress"
+//重置昵称
+#define ResetNickName @"resetNickName"
+//重置头像
+#define ResetPortrait @"resetPortrait"
 #endif

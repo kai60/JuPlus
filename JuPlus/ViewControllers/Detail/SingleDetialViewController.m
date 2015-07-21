@@ -32,9 +32,10 @@
 -(void)loadBaseUI
 {
     //滚动展示图层
-    [self.view addSubview:self.topView];
+    [self.view addSubview:self.backScroll];
+    [self.backScroll addSubview:self.topView];
         //需要出层级显示效果的view
-    [self.view addSubview:self.bottomV];
+    [self.backScroll addSubview:self.bottomV];
     [self.bottomV addSubview:self.descripLabel];
     [self.leftBtn setHidden:YES];
    
@@ -108,6 +109,7 @@
     {
         NSDictionary *dic = [detailRespon.imageArray objectAtIndex:i];
         UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH, 0.0f, self.topView.imageScroll.width, self.topView.imageScroll.height)];
+        [img setImage:[UIImage imageNamed:@"default_square"]];
         [img setimageUrl:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]] placeholderImage:nil];
         [self.topView.imageScroll addSubview:img];
     }
@@ -144,6 +146,9 @@
 -(void)layoutSubviews
 {
     self.basisView.frame = CGRectMake(0.0f, self.descripLabel.bottom +space, SCREEN_WIDTH,130.0f);
+    self.bottomV.frame = CGRectMake(0.0f, self.bottomV.top, SCREEN_WIDTH,self.basisView.bottom);
+
+    self.backScroll.contentSize = CGSizeMake(SCREEN_WIDTH, self.bottomV.bottom+20.0f);
     
 }
 #pragma mark --loadUI
@@ -151,9 +156,17 @@
 {
     if(!_topView)
     {
-        _topView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, DETAIL_HEIGHT)];
+        _topView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
     }
     return _topView;
+}
+-(UIScrollView *)backScroll
+{
+    if(!_backScroll)
+    {
+        _backScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f , nav_height - 20.0f, SCREEN_WIDTH, view_height - TABBAR_HEIGHT + 20.0f)];
+    }
+    return _backScroll;
 }
 -(JuPlusUIView *)bottomV
 {

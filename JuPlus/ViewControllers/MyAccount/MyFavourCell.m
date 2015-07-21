@@ -36,6 +36,8 @@
     if(!_backImage)
     {
     _backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, -80.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
+        [_backImage setImage:[UIImage imageNamed:@"default_square"]];
+
     }
     return _backImage;
     

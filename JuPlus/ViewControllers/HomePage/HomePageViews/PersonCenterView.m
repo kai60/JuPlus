@@ -29,8 +29,6 @@
         self.listArr = [[NSMutableArray alloc]init];
         self.titleLabel.text = @"我的主页";
         [self.rightBtn setHidden:YES];
-//        [self.rightBtn setTitle:@"登出" forState:UIControlStateNormal];
-//        [self.rightBtn addTarget:self action:@selector(logoutPress:) forControlEvents:UIControlEventTouchUpInside];
         [self uifig];
     }return self;
 }
@@ -45,7 +43,7 @@
     CGFloat labelH = 30.0f;
     NSArray *array=[NSArray arrayWithObjects:@"作品",@"买入",@"收藏", nil];
     for (int i =0; i<3; i++) {
-        JuPlusUILabel *label = [[JuPlusUILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - (labelW*3+space*2))/2+(space+labelW)*i, 100.0f, labelW, labelH)];
+        JuPlusUILabel *label = [[JuPlusUILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - (labelW*3+space*2))/2+(space+labelW)*i, 120.0f, labelW, labelH)];
         [label setFont:FontType(16.0f)];
         [label setTextColor:Color_Basic];
         label.textAlignment = NSTextAlignmentCenter;
@@ -67,8 +65,18 @@
         btn.tag = i;
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-   // [self startRequest];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetNickname) name:ResetNickName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPortrait) name:ResetPrice object:nil];
 
+}
+-(void)resetNickname
+{
+    [self.nickLabel setText:[JuPlusUserInfoCenter sharedInstance].userInfo.nickname];
+
+}
+-(void)resetPortrait
+{
+    [self.portrait setimageUrl:[JuPlusUserInfoCenter sharedInstance].userInfo.portraitUrl placeholderImage:nil];
 }
 -(void)startHomePageRequest
 {
@@ -102,7 +110,7 @@
 -(JuPlusUIView *)topView
 {
     if (!_topView) {
-        _topView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, 180.0f)];
+        _topView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, 200.0f)];
         _topView.backgroundColor = Color_White;
     }
     return _topView;
@@ -124,7 +132,7 @@
 {
     if(!_nickLabel)
     {
-        _nickLabel =[[JuPlusUILabel alloc]initWithFrame:CGRectMake(110, self.portrait.bottom+16, 100, 20)];
+        _nickLabel =[[JuPlusUILabel alloc]initWithFrame:CGRectMake(0.0f, self.portrait.bottom+16, self.topView.width, 20)];
         _nickLabel.font=FontType(16.0f);
         _nickLabel.textColor=Color_Black;
         _nickLabel.textAlignment=NSTextAlignmentCenter;

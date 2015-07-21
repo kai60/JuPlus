@@ -217,7 +217,6 @@
         _touchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _touchBtn.backgroundColor = [UIColor clearColor];
         _touchBtn.frame = CGRectMake(0.0f,0.0f,self.width,self.height);
-       // [_touchBtn addTarget:self action:@selector(senderPress:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _touchBtn;
 }
@@ -248,22 +247,6 @@
     }];
     
 
-}
--(void)senderPress:(UIButton *)sender
-{
-    UIViewController *vc = [self getSuperViewController];
-    
-    SingleDetialViewController *sing = [[SingleDetialViewController alloc]init];
-    sing.regNo =[NSString stringWithFormat:@"%ld", (long)self.superview.superview.tag];
-    sing.isfromPackage = YES;
-    sing.singleId = [NSString stringWithFormat:@"%ld",(long)sender.tag];
-    
-    [vc.navigationController radialPushViewController:sing withDuration:2 withStartFrame:CGRectMake(100.0f,120.0f,10.0f,10.0f) comlititionBlock:^{
-        
-    }];
-
-   // [vc.navigationController pushViewController:sing animated:NO];
-    
 }
 -(void)showText:(NSString *)text
 {

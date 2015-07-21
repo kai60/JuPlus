@@ -31,7 +31,7 @@
         _portraitImgV.frame = CGRectMake(0.0f, 0.0f, imageW, imageW);
         _portraitImgV.layer.cornerRadius = imageW/2;
         _portraitImgV.layer.masksToBounds = YES;
-      //  [_portraitImgV setimageUrl:@"http://h.hiphotos.baidu.com/image/pic/item/b3fb43166d224f4a6ffeae120bf790529822d148.jpg" placeholderImage:@"icons_2.png"];
+        [_portraitImgV setBackgroundImage:[UIImage imageNamed:@"default_square"] forState:UIControlStateNormal];
     }
     return _portraitImgV;
 }
