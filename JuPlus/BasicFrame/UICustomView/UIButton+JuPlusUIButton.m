@@ -13,8 +13,15 @@
 //加载网络图片
 -(void)setimageUrl:(NSString *)url placeholderImage:(NSString *)defalutImage
 {
-    if (defalutImage==nil) {
-        defalutImage = @"null";
+    if(defalutImage==nil)
+    {
+        if (self.width == self.height) {
+            defalutImage = @"default_square";
+        }
+    }
+    else if(self.width==self.height*2)
+    {
+        defalutImage = @"default_rectangle";
     }
   //  url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [self sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,url] ] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:defalutImage]];

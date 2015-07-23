@@ -52,16 +52,12 @@
 //测试环境
 #ifdef kDevTest
 //网络请求IP地址
-//#define FRONT_SERVER_URL @"http://115.29.233.175:7064"
-//#define FRONT_SERVER_URL @"https://api.app.net:8080"
-#define FRONT_SERVER_URL @"http://192.168.0.109"
-
-
+#define FRONT_SERVER_URL @"http://121.40.237.195:8859"
 
 //H5界面前缀地址
 #define FRONT_WEB_URL @""
 //图片的前置地址
-#define FRONT_PICTURE_URL @""
+#define FRONT_PICTURE_URL @"http://jujia-images-test.oss-cn-hangzhou.aliyuncs.com/"
 //准生产环境
 #elif kUATTest
 //网络请求IP地址
@@ -78,7 +74,7 @@
 //H5界面前缀地址
 #define FRONT_WEB_URL @""
 //图片的前置地址
-#define FRONT_PICTURE_URL @""
+#define FRONT_PICTURE_URL @"http://jujia-images.oss-cn-hangzhou.aliyuncs.com/"
 
 #else
 

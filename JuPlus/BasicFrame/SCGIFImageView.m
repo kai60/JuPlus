@@ -214,7 +214,11 @@
     [self setAnimationDuration:_seconds];
 
 	// Repeat infinite
-	[self setAnimationRepeatCount:1];
+    [self setAnimationRepeatCount:0];
+//    if(self.tag ==Progress_tag)
+//        [self setAnimationRepeatCount:0];
+//    else
+//	[self setAnimationRepeatCount:1];
     
 	
 	[self startAnimating];

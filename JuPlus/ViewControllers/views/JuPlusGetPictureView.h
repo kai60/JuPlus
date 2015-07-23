@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol AtzucheGetImageDelegate <NSObject>
+@protocol JuPlusGetPictureDelegate <NSObject>
 
 -(void)sendImage:(UIImage *)image;
 
@@ -17,6 +17,7 @@
 @interface JuPlusGetPictureView : UIView<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 -(void)showView;
 @property(nonatomic,strong)UIActionSheet *actionSheet;
-@property(nonatomic,assign)id<AtzucheGetImageDelegate>delegate;
+@property(nonatomic,assign)id<JuPlusGetPictureDelegate>delegate;
 
++(NSString *)getImageString:(UIImage *)image;
 @end

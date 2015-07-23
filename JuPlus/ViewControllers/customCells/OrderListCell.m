@@ -151,6 +151,7 @@
 
         }
         self.productScroll.frame = CGRectMake(0.0f, self.productScroll.top, SCREEN_WIDTH, productH*listDto.totalCount);
+        self.productScroll.userInteractionEnabled = NO;
         self.moreBtn.frame = CGRectMake(0.0f, self.productScroll.bottom, 0.0f, 0.0f);
     }
     else

@@ -21,5 +21,7 @@
 //个人
 @property(nonatomic,strong)UIButton *personBtn;
 
+@property(nonatomic,strong)NSMutableArray *buttonArr;
+
 -(void)resetButtonArray;
 @end

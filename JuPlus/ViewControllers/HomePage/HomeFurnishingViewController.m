@@ -46,7 +46,7 @@
     
     [self.view addSubview:self.classifyV];
     [self.classifyV setHidden:YES];
-    
+    //检测是否第一次加载
     [self checkSections];
 
 }
@@ -64,9 +64,20 @@
     [btn addSubview:black];
     [backV addSubview:btn];
 }
+-(void)show
+{
+    [self.classifyV showClassify];
+}
 -(void)checkSections
 {
-    [self.classifyV setHidden:NO];
+    if(IsStrEmpty([CommonUtil getUserDefaultsValueWithKey:isShowClassify]))
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:ShowClassify object:nil];
+    }
+    else
+    {
+        
+    }
 }
 //标签选择界面
 -(ClassifyView *)classifyV
@@ -109,7 +120,7 @@
     return _tabBarV;
 }
 #pragma mark --ClickMethod
-//筛选按钮点击
+//筛选按钮点击（跳转到九宫格）
 -(void)selectClick:(UIButton *)sender
 {
     [self.classifyV showClassify];
@@ -117,6 +128,9 @@
 #pragma mark 视图切换
 -(void)showCurrentView:(JuPlusUIView *)view
 {
+    //只有当点击页面不是屏幕显示内容时候才会重新分布位置，否则不做处理
+    if(view.origin.x!=0)
+    {
     [UIView animateWithDuration:ANIMATION animations:^{
         [backV bringSubviewToFront:view];
         [view startHomePageRequest];
@@ -129,6 +143,11 @@
             }
         }
     }];
+    }
+    else
+    {
+    
+    }
 }
 -(void)personBtnClick:(UIButton *)sender
 {
@@ -157,6 +176,13 @@
 #pragma mark --切换tabBar的显示效果
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.collectionV.listTab reloadData];
+    if(![CommonUtil isLogin])
+    {
+        self.tabBarV.personBtn.selected = NO;
+        ((UIButton *)[self.tabBarV.buttonArr firstObject]).selected = YES;
+    [self showCurrentView:self.collectionV];
+    }
     [super viewWillAppear:animated];
     [UIView animateWithDuration:ANIMATION animations:^{
         self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT - TABBAR_HEIGHT, SCREEN_WIDTH, TABBAR_HEIGHT);

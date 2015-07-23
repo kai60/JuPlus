@@ -17,12 +17,6 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="昵称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfm-O2-JVa">
-                    <rect key="frame" x="0.0" y="45" width="85" height="30"/>
-                    <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="16"/>
-                    <color key="textColor" red="0.46259469696969702" green="0.46259469696969702" blue="0.46259469696969702" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cYP-SH-4DI">
                     <rect key="frame" x="24" y="83" width="260" height="30"/>
                     <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
@@ -34,7 +28,7 @@
                     <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLK-Xi-Xrn">
-                    <rect key="frame" x="0.0" y="241" width="600" height="1"/>
+                    <rect key="frame" x="-203" y="241" width="600" height="1"/>
                     <color key="backgroundColor" red="0.779000947" green="0.779000947" blue="0.779000947" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLs-Jm-sDP">
@@ -49,6 +43,12 @@
                     <rect key="frame" x="24" y="121" width="220" height="30"/>
                     <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="13"/>
                     <color key="textColor" red="0.462594697" green="0.462594697" blue="0.462594697" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="昵称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfm-O2-JVa">
+                    <rect key="frame" x="0.0" y="45" width="85" height="30"/>
+                    <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="16"/>
+                    <color key="textColor" red="0.46259469696969702" green="0.46259469696969702" blue="0.46259469696969702" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

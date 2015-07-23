@@ -85,6 +85,7 @@
         [_postBtn setTitle:@"提交" forState:UIControlStateNormal];
         _postBtn.tag=11;
         [_postBtn setBackgroundColor:Color_Basic];
+        _postBtn.alpha = ALPHLA_BUTTON;
         [_postBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:17.0]];
         [_postBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.view addSubview:_postBtn];

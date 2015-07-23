@@ -17,7 +17,7 @@
     self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"price"]];
 
     self.locX = [[NSString stringWithFormat:@"%@",[dict objectForKey:@"positionX"]] floatValue];
-    self.locY = [[NSString stringWithFormat:@"%@",[dict objectForKey:@"positionX"]] floatValue];
+    self.locY = [[NSString stringWithFormat:@"%@",[dict objectForKey:@"positionY"]] floatValue];
     self.direction = [NSString stringWithFormat:@"%@",[dict objectForKey:@"direction"]];
 }
 @end

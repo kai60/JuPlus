@@ -12,7 +12,9 @@
 #import "HomeFurnishingViewController.h"
 #import "ChangeNicknameReq.h"
 #import "ResetnicknameView.h"
+#import "JuPlusGetPictureView.h"
 @interface InfoChangeV : JuPlusUIView
+
 
 @property (nonatomic,strong)UILabel *titleL;
 
@@ -33,6 +35,7 @@
     if(self)
     {
         [self uifig];
+        
     }
     return self;
 }
@@ -61,7 +64,7 @@
 
 }
 @end
-@interface MyInfoViewController ()<UITextFieldDelegate>
+@interface MyInfoViewController ()<UITextFieldDelegate,JuPlusGetPictureDelegate>
 
 @property (nonatomic,strong)JuPlusUIView *backView;
 
@@ -74,6 +77,8 @@
 @property (nonatomic,strong)UIButton *logoutBtn;
 
 @property (nonatomic,strong)ResetnicknameView *nicknameV;
+
+@property (nonatomic,strong)UILabel *nicknameL;
 @end
 
 @implementation MyInfoViewController
@@ -97,6 +102,11 @@
         info.tag = i;
         [info.clickBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.labelArray addObject:info];
+        if(i==1)
+        {
+            [info.textL setText:[JuPlusUserInfoCenter sharedInstance].userInfo.nickname];
+            self.nicknameL = info.textL;
+        }
         [self.backScroll addSubview:info];
     }
     
@@ -126,6 +136,7 @@
         case 0:
         {
             //修改头像
+            [self showPhotoView];
         }
             break;
         case 1:
@@ -145,6 +156,19 @@
             break;
     }
 }
+//修改头像
+-(void)showPhotoView
+{
+    JuPlusGetPictureView * photo = [[JuPlusGetPictureView alloc]init];
+    photo.delegate = self;
+    [self.view addSubview:photo];
+    [photo showView];
+}
+-(void)sendImage:(UIImage *)image
+{
+    
+}
+//修改昵称
 -(void)changeNickname
 {
     ChangeNicknameReq *req = [[ChangeNicknameReq alloc]init];
@@ -154,6 +178,7 @@
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         [self.backView setHidden:YES];
         [JuPlusUserInfoCenter sharedInstance].userInfo.nickname = self.nicknameV.nickTF.text;
+        [self.nicknameL setText:self.nicknameV.nickTF.text];
         [CommonUtil postNotification:ResetNickName Object:nil];
         [self showAlertView:@"修改成功" withTag:0];
     } failed:^(NSDictionary *errorDTO) {

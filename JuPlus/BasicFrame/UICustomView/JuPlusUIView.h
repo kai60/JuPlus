@@ -13,6 +13,7 @@
 #import "HttpCommunication.h"
 #import "JuPlusUILabel.h"
 #import "JuPlusRefreshView.h"
+#import "JuPlusUserInfoCenter.h"
 @interface JuPlusUIView : UIView
 @property(nonatomic,strong)UIView *navView;
 @property(nonatomic,strong)UILabel *titleLabel;

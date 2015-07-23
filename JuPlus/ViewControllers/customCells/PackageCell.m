@@ -64,6 +64,7 @@ CGFloat space = 10.0f;
     if(!_showImgV)
     {
         _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.descripL.bottom+space, self.contentView.width, PICTURE_HEIGHT)];
+        [_showImgV setImage:[UIImage imageNamed:@"default_square"]];
         _showImgV.userInteractionEnabled = YES;
     }
     return _showImgV;
@@ -105,7 +106,7 @@ CGFloat space = 10.0f;
     {
         LabelDTO *dto = [tipsArray objectAtIndex:i];
         CGFloat orignX = (dto.locX/100)*self.showImgV.width;
-        CGFloat orignY = (dto.locY/100)*self.showImgV.height;
+        CGFloat orignY = (dto.locY/100)*self.showImgV.height - 50.0f;
         
         CGSize size = [CommonUtil getLabelSizeWithString:dto.productName andLabelHeight:20.0f andFont:FontType(12.0f)];
         LabelView *la;

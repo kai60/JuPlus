@@ -226,6 +226,7 @@
     NSLog(@"%@",error);
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alert show];
+    
 }
 + (UIView *)showWaitingView:(UIView *)view withTitle:(NSString *)string
 {
@@ -233,16 +234,9 @@
     {
         return nil;
     }
-    JuPlusLoadingView *autoyol=[[JuPlusLoadingView alloc]init];
+    JuPlusLoadingView *autoyol=[[JuPlusLoadingView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, view.width, view.height)];
     [autoyol showActivityViewFrame:view.frame AndTag:view.tag];
     [view addSubview:autoyol];
-//    if (view.tag==222) {
-//        view.userInteractionEnabled=NO;
-//    }
-//    else
-//    {
-//        view.userInteractionEnabled = NO;
-//    }
     return view;
 }
 
@@ -258,8 +252,13 @@
     {
         if ([view isKindOfClass:autoClass])
         {
-            [(JuPlusLoadingView *)view hideActivityView];
-            [view removeFromSuperview];
+            [UIView animateWithDuration:2.0 animations:^{
+                view.alpha = 0;
+            } completion:^(BOOL finished) {
+                [(JuPlusLoadingView *)view hideActivityView];
+                [view removeFromSuperview];
+            }];
+            
         }
     }
 }

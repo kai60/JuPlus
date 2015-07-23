@@ -12,8 +12,8 @@
 {
     CGFloat normalW;
     CGFloat selectedW;
-    NSMutableArray *buttonArr;
 }
+@synthesize buttonArr;
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -41,7 +41,7 @@
 }
 -(void)loadUI
 {
-    NSArray *nameArr = [NSArray arrayWithObjects:@"搭配", nil];
+    NSArray *nameArr = [NSArray arrayWithObjects:@"    ", nil];
     NSArray *imgArrNormal = [NSArray arrayWithObjects:@"collect_unsel", nil];
     NSArray *imgArrSel = [NSArray arrayWithObjects:@"collect_sel", nil];
     for (int i=0; i<[nameArr count]; i++) {

@@ -43,7 +43,7 @@
 }
 -(void)layoutSubviews
 {
-    self.frame = CGRectMake(self.left, self.top , self.width, self.textL.height+60.0f);
+    self.frame = CGRectMake(self.left, self.top , self.width, self.textL.height+50.0f);
 }
 /*
 // Only override drawRect: if you perform custom drawing.

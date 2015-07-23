@@ -26,7 +26,7 @@
 -(void)setPath{
     
     [self setField:@"mem" forKey:@"ModuleName"];
-    [self setField:@"sendRegMsg" forKey:@"FunctionName"];
+    [self setField:@"sendCodeMsg" forKey:@"FunctionName"];
 }
 
 

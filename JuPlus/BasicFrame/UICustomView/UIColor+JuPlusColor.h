@@ -18,11 +18,14 @@
 #undef	HEX_RGB
 #define HEX_RGB(V)		[UIColor colorWithRGBHex:V]
 
-#define Color_Basic RGBCOLOR(187, 138, 51)
+#define ALPHLA_BUTTON 0.9
+
+#define Color_Basic RGBCOLOR(242, 114, 128)
 #define Color_Gray_lines RGBCOLOR(242, 242, 242)
 #define Color_Gray [UIColor grayColor]
 #define Color_Black RGBCOLOR(0, 0, 0)
 #define Color_White RGBCOLOR(255, 255, 255)
+
 //灰色背景
 #define Color_Bottom RGBCOLOR(239, 239, 239)
 //输入框文字颜色

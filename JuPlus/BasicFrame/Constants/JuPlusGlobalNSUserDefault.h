@@ -9,12 +9,24 @@
 #ifndef JuPlus_JuPlusGlobalNSUserDefault_h
 #define JuPlus_JuPlusGlobalNSUserDefault_h
 
+
+//==================================================================
+//系统版本号
 #define GetAppVerson @"getAppVerson"
+//系统记录的标签内容
 #define LabelTag @"labelTag"
+//是否进来就显示首页
+#define isShowClassify @"isShowClassify"
+//==================================================================
 #pragma mark --NSSTRING
 #define TOKEN @"token"
 #define PageSize @"pageSize"
 #define PageNum @"pageNum"
+
+//==================================================================
+#pragma mark NotificationCenter
+//显示筛选内容
+#define ShowClassify @"showClassify"
 #define ResetPrice @"resetPrice"
 //刷新首页的通知
 #define ReloadList @"reloadList"

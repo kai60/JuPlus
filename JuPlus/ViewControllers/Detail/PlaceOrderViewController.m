@@ -287,6 +287,8 @@
         [_postOrderBtn setBackgroundColor:Color_Basic];
         [_postOrderBtn setTitle:@"确认下单" forState:UIControlStateNormal];
         [_postOrderBtn.titleLabel setFont:FontType(16.0f)];
+        _postOrderBtn.alpha = ALPHLA_BUTTON;
+
         [_postOrderBtn setTitleColor:Color_White forState:UIControlStateNormal];
         [_postOrderBtn addTarget:self action:@selector(postPressed:) forControlEvents:UIControlEventTouchUpInside];
     }

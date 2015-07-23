@@ -82,7 +82,7 @@
     {
         productOrderDTO *dto = [getRespon.productArr objectAtIndex:i];
         productView *pro = [[productView alloc]initWithFrame:CGRectMake(0.0f, 100.0f*i, _packageV.width, 100.0f)];
-        pro.userInteractionEnabled = NO;
+        pro.countV.userInteractionEnabled = NO;
         [pro loadData:dto];
         [_packageV addSubview:pro];
         [productArr addObject:pro];

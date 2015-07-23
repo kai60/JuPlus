@@ -96,6 +96,7 @@
     [HttpCommunication request:collReq getResponse:collRespon Success:^(JuPlusResponse *response) {
         totalCount = [collRespon.count intValue];
         if (pageNum==1) {
+            [self.listTab setContentOffset:CGPointMake(0.0f, 0.0f)];
             [dataArray removeAllObjects];
         }
         [dataArray addObjectsFromArray:collRespon.listArray];
@@ -124,7 +125,7 @@
     PackageCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
     if(cell==nil)
     {
-        cell = [[PackageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
+        cell = [[PackageCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:str];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     HomePageInfoDTO *homePage = [dataArray objectAtIndex:indexPath.row];
@@ -134,6 +135,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+    NSLog(@"%ld",(long)indexPath.row);
     //先给本界面加白色底层
     UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.width, self.height)];
     backV.backgroundColor = Color_White;
@@ -150,13 +152,14 @@
 
     CGRect rect = imageView.frame;
     [UIView animateWithDuration:1.0f animations:^{
-        imageView.frame = CGRectMake(0.0f, nav_height, PICTURE_HEIGHT, PICTURE_HEIGHT);
+        imageView.frame = CGRectMake(0.0f, nav_height, SCREEN_WIDTH, PICTURE_HEIGHT);
     } completion:^(BOOL finished) {
         PackageViewController *pack = [[PackageViewController alloc]init];
         HomePageInfoDTO *homePage = [dataArray objectAtIndex:indexPath.row];
         pack.regNo = homePage.regNo;
         pack.imgUrl = homePage.collectionPic;
         pack.popSize = rect;
+        pack.isAnimation = YES;
         [[self getSuperViewController].navigationController pushViewController:pack animated:NO];
         [backV setHidden:YES];
 

@@ -185,10 +185,10 @@
         _labelText = [[UILabel alloc]init];
         _labelText.textAlignment = NSTextAlignmentRight;
         if(self.isLeft)
-        _labelText.frame = CGRectMake(self.dropImg.right - 50.0f,self.dropImg.top - 20.0f,50.0f,20.0f);
+        _labelText.frame = CGRectMake(self.dropImg.right - 50.0f,self.dropImg.top - 20.0f,1.0f,20.0f);
         else
         {
-        _labelText.frame = CGRectMake(self.dropImg.left - 100.0f,self.dropImg.top - 20.0f,100.0f,20.0f);
+        _labelText.frame = CGRectMake(self.dropImg.left,self.dropImg.top - 20.0f,1.0f,20.0f);
         }
         [_labelText setTextColor:[UIColor whiteColor]];
         [_labelText setShadowColor:Color_Gray];
@@ -261,8 +261,8 @@
         }
         else
         {
+        [self.labelText setFrame:CGRectMake(self.dropImg.left - size.width, self.labelText.top, size.width, self.labelText.height)];
         [self.lineImg setFrame:CGRectMake(self.lineImg.right - size.width, self.lineImg.top, size.width, self.lineImg.height)];
-        [self.labelText setFrame:CGRectMake(self.lineImg.right - size.width, self.labelText.top, size.width, self.labelText.height)];
 
         }
 

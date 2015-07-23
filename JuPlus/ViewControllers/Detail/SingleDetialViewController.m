@@ -230,6 +230,7 @@
         [_placeOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_placeOrderBtn setTitle:@"单品购买" forState:UIControlStateNormal];
         [_placeOrderBtn setBackgroundColor:Color_Basic];
+        _placeOrderBtn.alpha = ALPHLA_BUTTON;
         [_placeOrderBtn addTarget:self action:@selector(payPress) forControlEvents:UIControlEventTouchUpInside];
     }
     return _placeOrderBtn;

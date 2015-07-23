@@ -4,7 +4,7 @@
 //
 //  Created by 詹文豹 on 15/6/18.
 //  Copyright (c) 2015年 居+. All rights reserved.
-//
+//分类标签
 
 #import "ClassifyView.h"
 #import "JuPlusEnvironmentConfig.h"
@@ -67,13 +67,21 @@
         HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX +self.width*(i/9)+(space+btnW)*(i%3),50.0f +spaceY + (spaceY+btnH)*((i/3)%3), btnW, btnH)];
         [btn.iconBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,tagDTO.imgUrl]] forState:UIControlStateNormal];
         [btn.iconBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,tagDTO.selImgUrl]] forState:UIControlStateSelected];
+        if([tagDTO.tagId isEqualToString:[CommonUtil getUserDefaultsValueWithKey:LabelTag]])
+        {
+            btn.iconBtn.selected = YES;
+            selectedBtn = btn;
+        }
         btn.iconBtn.tag = [tagDTO.tagId integerValue];
         [btn.iconBtn addTarget:self action:@selector(btnClick1:) forControlEvents:UIControlEventTouchUpInside];
         [buttonArray addObject:btn];
         [self.itemsScroll addSubview:btn];
     }
     self.itemsScroll.contentSize = CGSizeMake(SCREEN_WIDTH*(([self.dataArray count] -1)/9+1), self.itemsScroll.width);
-    [self showClassify];
+    /*
+     此通知作用：由于网络加载有时间延迟，只有在网络加载完成后调用showClassify才能完成缩放效果，因此此处加通知，当第一次打开应用的时候，如果labels未加载完成，则不触发九宫格显示效果
+     */
+    [CommonUtil postNotification:ShowClassify Object:nil];
 }
 -(void)showClassify
 {
@@ -93,12 +101,13 @@
             btn.frame = CGRectMake(spaceX+self.width*(i/9)+(space+btnW)*(i%3),90.0f+spaceY+ (spaceY+btnH)*((i/3)%3), btnW, btnH);
         }
     
+        //取到高斯模糊的背景view
         UIView *visual = [superView viewWithTag:VisualEffectTag];
         self.alpha = 1;
         if(visual!=nil)
             visual.alpha = 1;
     } completion:^(BOOL finished) {
-        
+        [CommonUtil setUserDefaultsValue:@"1" forKey:isShowClassify];
     }];
 }
 //后台下发标签列表，统计用户的兴趣内容
@@ -188,7 +197,6 @@
     else
     {
         [CommonUtil setUserDefaultsValue:[NSString stringWithFormat:@"%ld",selectedBtn.iconBtn.tag] forKey:LabelTag];
-        [CommonUtil postNotification:ReloadList Object:nil];
     
     }
     CGFloat spaceX = 10.0f;
@@ -211,6 +219,7 @@
         [self setHidden:YES];
         [visual removeFromSuperview];
     }];
+    [CommonUtil postNotification:ReloadList Object:nil];
    }
 //设置view高斯模糊显示
 -(void)setVisualEffect
@@ -256,6 +265,7 @@
         _sureBtn.titleLabel.font=[UIFont fontWithName:FONTSTYLE size:20.0];
         [_sureBtn setTitle:@"确 定" forState:UIControlStateNormal];
         [_sureBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
+        _sureBtn.alpha = ALPHLA_BUTTON;
         [_sureBtn addTarget:self action:@selector(surePress1:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sureBtn;

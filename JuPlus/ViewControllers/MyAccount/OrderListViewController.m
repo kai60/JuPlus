@@ -46,6 +46,7 @@
     {
         cell = [[OrderListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     OrderListDTO *dto = [listRespon.orderListArray objectAtIndex:indexPath.row];
     [cell fileCell:dto];
     return cell;

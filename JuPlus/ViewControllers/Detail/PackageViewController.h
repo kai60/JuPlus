@@ -17,4 +17,6 @@
 @property(nonatomic,strong)NSString *imgUrl;
 
 @property(nonatomic,assign)CGRect popSize;
+
+@property(nonatomic,assign)BOOL isAnimation;
 @end

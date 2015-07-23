@@ -15,6 +15,5 @@
 #import "UIImageView+JuPlusUIImageView.h"
 #import "UIButton+JuPlusUIButton.h"
 #import "UILabel+JuPlusUILabel.h"
-#pragma mark - Nil or NULL 为空判断
 
 #endif

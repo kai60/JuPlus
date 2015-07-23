@@ -71,17 +71,9 @@ static NSTimer * codeTimer;
     }
     else {
         [self setEnabled:NO];
-      //
-        if (VERSION>=8.0) {
-             [self setTitle:[NSString stringWithFormat: @"%ld 秒", (long)codeTime] forState:UIControlStateNormal];
-        }
-        else
-        {
-            self.titleLabel.text=[NSString stringWithFormat: @"%ld 秒", (long)codeTime];
-        }
-       
-       // NSLog(@"输出东西 倒计时=%d  标题=%@",codeTime,self.titleLabel.text);
-      //  [self setTitleColor:[UIColor colorWithRed:ZRF/255 green:ZGF/255 blue:ZBF/255 alpha:1] forState:UIControlStateNormal];
+   
+        [self setTitle:[NSString stringWithFormat: @"%ld 秒", (long)codeTime] forState:UIControlStateNormal];
+            
         [self.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:16.0]];
     }
     

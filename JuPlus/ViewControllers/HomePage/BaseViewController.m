@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 #import "HttpCommunication.h"
+#import "JuPlusUserInfoCenter.h"
+#import "LoginViewController.h"
 @implementation BaseViewController
 {
     CGFloat statusY;
@@ -84,7 +86,7 @@
     {
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.width - titleWidth)/2, 20.0f, titleWidth, 44.0f)];
         _titleLabel.backgroundColor = [UIColor clearColor];
-        [_titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
+        [_titleLabel setFont:FontType(18.0f)];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
@@ -97,18 +99,22 @@
     alert.tag=tag;
     [alert show];
 }
-//返回数据后台提示的错误信息处理
 -(void)errorExp:(NSDictionary *)exp
 {
-    NSString *resMsg = [exp objectForKey:@"resMsg"];
     NSString *resCode = [exp objectForKey:@"resCode"];
-    NSLog(@"error = %@, resMsg = %@",exp,resMsg);
-    [self showAlertView:resMsg withTag:[resCode intValue]];
+    NSString *resMsg = [exp objectForKey:@"resMsg"];
+    NSLog(@"reason = %@",resMsg);
+    [self showAlertView:resMsg withTag:[resCode integerValue]];
 }
 //一些系统的弹出处理,例如强制更新，登录失败
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
+    //token失效处理
+    if (alertView.tag==ERROR_TOKEN_INVALID) {
+        [[JuPlusUserInfoCenter sharedInstance] resetUserInfo];
+        LoginViewController *log = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:log animated:YES];
+    }
 }
 -(void)viewWillDisappear:(BOOL)animated
 {

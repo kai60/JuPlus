@@ -48,6 +48,7 @@
     self.sureBtn.frame=CGRectMake(30.0f, 420.0f, SCREEN_WIDTH-60.0f, 44);
     [self.sureBtn setTitle:@"确认" forState:UIControlStateNormal];
     [self.sureBtn setBackgroundColor:Color_Gray];
+    self.sureBtn.alpha = ALPHLA_BUTTON;
     self.sureBtn.userInteractionEnabled = NO;
     [self.sureBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:16.0]];
     [self.sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

@@ -11,10 +11,6 @@
 
 
 @interface JuPlusLoadingView : UIImageView
-@property (nonatomic,strong)UIView * middleView;
-
-@property (nonatomic,strong)UIActivityIndicatorView *indicatorView;
-//@property(nonatomic,assign)NSInteger tag;
 -(void)showActivityViewFrame:(CGRect)frame AndTag:(int)vieTag;
 -(void)hideActivityView;
 @end

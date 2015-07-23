@@ -19,6 +19,7 @@
 #import "PlaceOrderViewController.h"
 #import "productOrderDTO.h"
 #import "UINavigationController+RadialTransaction.h"
+#import "DesignerDetailViewController.h"
 @interface PackageViewController ()
 #define space 10.0f
 //购买
@@ -34,7 +35,7 @@
 
 @property (nonatomic,strong)UIView *secBackScroll;
 //设计师头像
-@property (nonatomic,strong)UIImageView *designIcon;
+@property (nonatomic,strong)UIButton *designIcon;
 //设计师名称
 @property (nonatomic,strong)UILabel *nameLabel;
 //体验店
@@ -88,6 +89,8 @@
 }
 -(void)backPress:(UIButton *)sender
 {
+    if(self.isAnimation)
+    {
     [self.packageImageV removeAllSubviews];
 
     CGRect newF = CGRectMake(self.popSize.origin.x,+ self.backScroll.contentOffset.y+self.popSize.origin.y-nav_height, self.popSize.size.width, self.popSize.size.height);
@@ -102,6 +105,11 @@
 
         }];
     }];
+    }
+    else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 #pragma mark --uifig
 -(UIButton *)placeOrderBtn
@@ -110,9 +118,11 @@
     {
         _placeOrderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _placeOrderBtn.frame = CGRectMake(0.0f, SCREEN_HEIGHT - 44.0f, SCREEN_WIDTH, 44.0f);
+        [_placeOrderBtn.titleLabel setFont:FontType(FontSize)];
         [_placeOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_placeOrderBtn setTitle:@"全部单品购买" forState:UIControlStateNormal];
         [_placeOrderBtn setBackgroundColor:Color_Basic];
+        _placeOrderBtn.alpha = ALPHLA_BUTTON;
         [_placeOrderBtn addTarget:self action:@selector(payPress) forControlEvents:UIControlEventTouchUpInside];
     }
     return _placeOrderBtn;
@@ -148,6 +158,7 @@
     {
         _priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, self.packageImageV.height - 40.0f , 220.0f, 30.0f)];
         _priceLabel.textAlignment = NSTextAlignmentCenter;
+        _priceLabel.alpha = ALPHLA_BUTTON;
         [_priceLabel setFont:FontType(16.0f)];
         [_priceLabel setTextColor:Color_White];
     }
@@ -179,7 +190,7 @@
     if(!_nameLabel)
     {
         _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(space, 0.0f, self.backScroll.width - space*2, 40.0f)];
-        [_nameLabel setFont:FontType(14.0f)];
+        [_nameLabel setFont:FontType(FontSize)];
         [_nameLabel setTextColor:Color_Basic];
         _nameLabel.textAlignment = NSTextAlignmentCenter;
         
@@ -189,18 +200,18 @@
     }
     return _nameLabel;
 }
--(UIImageView *)designIcon
+-(UIButton *)designIcon
 {
     if(!_designIcon)
     {
         CGFloat imgW = 50.0f;
-        _designIcon = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.width - 60.0f,nav_height + PICTURE_HEIGHT -imgW/2, imgW, imgW)];
+        _designIcon = [[UIButton alloc]initWithFrame:CGRectMake(self.view.width - 60.0f,nav_height + PICTURE_HEIGHT -imgW/2, imgW, imgW)];
         _designIcon.layer.borderColor = [Color_White CGColor];
         _designIcon.layer.borderWidth = 1.0f;
         _designIcon.layer.cornerRadius = imgW/2;
         _designIcon.layer.masksToBounds =YES;
         _designIcon.alpha = 0;
-
+        [_designIcon addTarget:self action:@selector(designerPress:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _designIcon;
 }
@@ -208,7 +219,7 @@
 {
     if(!_addressView)
     {
-        _addressView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, self.nameLabel.bottom, self.backScroll.width, 80.0f)];
+        _addressView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, self.nameLabel.bottom, self.backScroll.width, 70.0f)];
         _addressView.headerL.text = @"线下体验店";
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, _addressView.width, _addressView.height);
@@ -220,7 +231,7 @@
 {
     if(!_displayView)
     {
-        _displayView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, self.addressView.bottom, self.backScroll.width, 80.0f)];
+        _displayView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, self.addressView.bottom, self.backScroll.width, 70.0f)];
         _displayView.headerL.text = @"简装介绍";
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -232,7 +243,7 @@
 {
     if(!_productListV)
     {
-        _productListV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.displayView.bottom, SCREEN_WIDTH, 100.0f)];
+        _productListV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.displayView.bottom+space, SCREEN_WIDTH, 100.0f)];
     }
     return _productListV;
 }
@@ -244,7 +255,7 @@
         _relativedView.autoresizingMask = YES;
        UILabel *title  = [[UILabel alloc]initWithFrame:CGRectMake(space, 0.0f, self.backScroll.width - space*2, 30.0f)];
         [title setText:@"猜你喜欢"];
-        [title setFont:FontType(16.0f)];
+        [title setFont:FontType(FontSize)];
         [title setTextColor:Color_Basic];
         title.textAlignment = NSTextAlignmentCenter;
         [_relativedView addSubview:title];
@@ -340,7 +351,7 @@
     {
         LabelDTO *dto = [respon.labelArray objectAtIndex:i];
         CGFloat orignX = (dto.locX/100)*self.packageImageV.width;
-        CGFloat orignY = (dto.locY/100)*self.packageImageV.height;
+        CGFloat orignY = (dto.locY/100)*self.packageImageV.height - 50.0f;
         
         CGSize size = [CommonUtil getLabelSizeWithString:dto.productName andLabelHeight:20.0f andFont:FontType(12.0f)];
         LabelView *la;
@@ -368,7 +379,7 @@
     CGSize optimumSize = [self.displayView.textL optimumSize];
     
     CGRect frame = [self.displayView.textL frame];
-    frame.size.height = (int)optimumSize.height+5; // +5 to fix height issue, this should be automatically fixed in iOS5
+    frame.size.height = (int)optimumSize.height+10; // +10 to fix height issue, this should be automatically fixed in iOS5
     [self.displayView.textL setFrame:frame];
     
 }
@@ -450,6 +461,11 @@
     }
 }
 #pragma mark --buttonPress 
+-(void)designerPress:(UIButton *)sender
+{
+    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
+    [self.navigationController pushViewController:design animated:YES];
+}
 //收藏、取消收藏
 -(void)favBtnClick:(UIButton *)sender
 {
@@ -532,6 +548,7 @@
         pack.regNo = [NSString stringWithFormat:@"%ld",(long)sender.tag];
         pack.popSize = rect;
         pack.imgUrl = sender.titleLabel.text;
+        pack.isAnimation = YES;
         [self.navigationController pushViewController:pack animated:NO];
         [backV setHidden:YES];
         
@@ -540,7 +557,7 @@
    }
 -(void)layoutSubFrame
 {
-    self.productListV.frame = CGRectMake(self.productListV.left, self.displayView.bottom, self.productListV.width, self.productListV.height);
+    self.productListV.frame = CGRectMake(self.productListV.left, self.displayView.bottom+space, self.productListV.width, self.productListV.height);
     self.relativedView.frame = CGRectMake(self.relativedView.left, self.productListV.bottom, self.relativedView.width, self.relativedView.height);
     self.secBackScroll.frame = CGRectMake(self.secBackScroll.left, self.secBackScroll.top, self.secBackScroll.width,self.relativedView.bottom);
     self.backScroll.contentSize = CGSizeMake(self.backScroll.width, self.relativedView.bottom+PICTURE_HEIGHT);

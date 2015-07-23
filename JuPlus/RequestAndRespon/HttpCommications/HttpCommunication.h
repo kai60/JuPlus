@@ -11,6 +11,8 @@
 #import "JuPlusResponse.h"
 
 @interface HttpCommunication : NSObject
+//token失效
+#define ERROR_TOKEN_INVALID 110003
 
 //考虑到扩展性，可以自定义HTTPRequestOperation的类，继承ASIHTTPRequest，然后直接返回HTTPRequestOperation
 //success、failure block可以适当加一些参数比如返回的数据这些

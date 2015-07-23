@@ -13,6 +13,9 @@
 @implementation JuPlusLoadingView
 {
     CGFloat viewHeight;
+    UIImageView *redBack;
+    SCGIFImageView* gifImageView;
+    UIImageView *gif;
 }
 - (id)initWithFrame:(CGRect)frame
 {
@@ -20,7 +23,7 @@
     if (self) {
         // Initialization code
         [self uifig];
-        viewHeight = 40.0f;
+        self.userInteractionEnabled = NO;
         
     }
     return self;
@@ -28,79 +31,88 @@
 
 -(void)showActivityViewFrame:(CGRect)frame AndTag:(int)vieTag
 {
-    //[self setBackgroundColor:[UIColor colorWithRed:0 green:.0 blue:0 alpha:0.6]];
-    [self.indicatorView startAnimating];
 
-    UIView *view = self.middleView;
-    CGFloat imageWidth = 150.0f;
-    CGFloat imageH = viewHeight;
-        self.frame = CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height);
-     if(frame.origin.y ==0)
-    {
-        view.frame = CGRectMake(frame.size.width/2-imageWidth/2, (frame.size.height-imageH)/2-nav_height, imageWidth, imageH);
-    }
-    else
-    {
-        view.frame = CGRectMake(frame.size.width/2-imageWidth/2, (frame.size.height-imageH)/2, imageWidth, imageH);
-    }
+    redBack.frame = CGRectMake((frame.size.width-redBack.width)/2, (frame.size.height-redBack.height)/2, redBack.width, redBack.height);
+    gifImageView.frame = redBack.frame;
+    [self setHidden:NO];
+//    //[self setBackgroundColor:[UIColor colorWithRed:0 green:.0 blue:0 alpha:0.6]];
+//    [self.indicatorView startAnimating];
+//
+//    UIView *view = self.middleView;
+//    CGFloat imageWidth = 150.0f;
+//    CGFloat imageH = viewHeight;
+//        self.frame = CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height);
+//        view.frame = CGRectMake(frame.size.width/2-imageWidth/2, (frame.size.height-imageH)/2-nav_height, imageWidth, imageH);
+////     if(frame.origin.y ==0)
+////    {
+////        view.frame = CGRectMake(frame.size.width/2-imageWidth/2, (frame.size.height-imageH)/2-nav_height, imageWidth, imageH);
+////    }
+////    else
+////    {
+////        view.frame = CGRectMake(frame.size.width/2-imageWidth/2, (frame.size.height-imageH)/2, imageWidth, imageH);
+////    }
 
-    
 }
 -(void)uifig
 {
     
-
-    if (self.indicatorView == nil) {
-        
-        CGFloat viewW = 150.0f;
-        self.middleView = [[UIView alloc]initWithFrame:CGRectMake((self.width -viewW)/2, (view_height - viewHeight)/2, viewW, viewHeight)];
-        self.middleView.backgroundColor = Color_Basic;
-        
-        //设置背景为圆角矩形
-        self.middleView.layer.cornerRadius = 10.0f;
-        self.middleView.layer.masksToBounds = YES;
-        [self addSubview:self.middleView];
-
-        
-        //初始化:
-        self.indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(10, 10.0f, 20.0f, 20.0f)];
-        
-        self.indicatorView.tag = Progress_tag;
-        //设置显示样式,见UIActivityIndicatorViewStyle的定义
-        self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-        //设置显示位置
-       // [indicator setCenter:CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0)];
-        
-        [self.middleView addSubview:self.indicatorView];
-
-        
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(self.indicatorView.right +10.0f, 10.0f/2, 90.0f, 30.0f)];
-        label.textAlignment = NSTextAlignmentCenter;
-        [label setFont:FontType(14.0f)];
-        [label setText:@"网络请求中···"];
-        [self.middleView addSubview:label];
-        //开始显示Loading动画
-       // [indicator startAnimating];
-        
-        
-    }
+//
+//    if (self.indicatorView == nil) {
+//        
+//        CGFloat viewW = 150.0f;
+//        self.middleView = [[UIView alloc]initWithFrame:CGRectMake((self.width -viewW)/2, (view_height - viewHeight)/2, viewW, viewHeight)];
+//        self.middleView.backgroundColor = Color_Basic;
+//        
+//        //设置背景为圆角矩形
+//        self.middleView.layer.cornerRadius = 10.0f;
+//        self.middleView.layer.masksToBounds = YES;
+//        [self addSubview:self.middleView];
+//
+//        
+//        //初始化:
+//        self.indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(10, 10.0f, 20.0f, 20.0f)];
+//        
+//        self.indicatorView.tag = Progress_tag;
+//        //设置显示样式,见UIActivityIndicatorViewStyle的定义
+//        self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+//        //设置显示位置
+//       // [indicator setCenter:CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0)];
+//        
+//        [self.middleView addSubview:self.indicatorView];
+//
+//        
+//        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(self.indicatorView.right +10.0f, 10.0f/2, 90.0f, 30.0f)];
+//        label.textAlignment = NSTextAlignmentCenter;
+//        [label setFont:FontType(14.0f)];
+//        [label setText:@"网络请求中···"];
+//        [self.middleView addSubview:label];
+//        //开始显示Loading动画
+//       // [indicator startAnimating];
+//        
+//        
+//    }
+    CGFloat imgSize = 50.0f;
+    redBack = [[UIImageView alloc]initWithFrame:CGRectMake((self.width - imgSize)/2, (self.height - imgSize)/2, imgSize, imgSize)];
+    redBack.layer.masksToBounds =  YES;
+    redBack.layer.cornerRadius = imgSize/2;
+    redBack.backgroundColor = RGBCOLOR(242, 114, 128);
+    redBack.alpha = 0.7;
+    [self addSubview:redBack];
     
-    //开始显示Loading动画
-//   // NSString* filePath = [[NSBundle mainBundle] pathForResource:@"checkmark.gif" ofType:nil];
-//    UIImageView *gifImageView = [[UIImageView alloc]init];
-//    [gifImageView setImage:[UIImage sd_animatedGIFNamed:@"1.gif"]];
-////    SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath withSeconds:2];
-//    CGFloat imgSize = 40.0f;
-//    gifImageView.frame = CGRectMake((self.frame.size.width-imgSize)/2, (self.frame.size.height-imgSize)/2,imgSize, imgSize);
-//    gifImageView.autoresizingMask = YES;
-//    gifImageView.tag = Progress_tag;
-//    [self addSubview:gifImageView];
-
+//    gif = [[UIImageView alloc]initWithFrame:redBack.frame];
+//    [gif setImage:[UIImage sd_animatedGIFNamed:@"loading"]];
+//    [self addSubview:gif];
+   // 开始显示Loading动画
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"loading.gif" ofType:nil];
+     gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath withSeconds:1.5];
+    gifImageView.frame = CGRectMake((self.width - imgSize)/2, (self.height - imgSize)/2, imgSize, imgSize);
+    gifImageView.tag = Progress_tag;
+    [self addSubview:gifImageView];
+    [self setHidden:YES];
 }
 
 -(void)hideActivityView
 {
-    [self.indicatorView endEditing:YES];
     [self removeFromSuperview];
 }
 
