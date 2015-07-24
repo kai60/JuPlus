@@ -74,10 +74,14 @@ CGFloat space = 10.0f;
 {
     [self.topV.portraitImgV setimageUrl:homepageDTO.portrait  placeholderImage:nil];
     [self.topV.nikeNameL setText:homepageDTO.nikename];
-//    [self.timeLabel setText:homepageDTO.uploadTime];
-    [self.timeLabel setText:@"1小时前"];
+    [self.timeLabel setText:homepageDTO.uploadTime];
+    //[self.timeLabel setText:@"1小时前"];
     [self.descripL setText:homepageDTO.descripTxt];
     [self.showImgV setimageUrl:homepageDTO.collectionPic  placeholderImage:nil];
+    self.showImgV.alpha = 0;
+    [UIView animateWithDuration:1.0f animations:^{
+        self.showImgV.alpha = 1.0f;
+    }];
     self.showImgV.tag = [homepageDTO.regNo intValue];
     [self.topV.portraitImgV addTarget:self action:@selector(portraitImgVPress:) forControlEvents:UIControlEventTouchUpInside];
     [self.priceV setPriceText:homepageDTO.price];

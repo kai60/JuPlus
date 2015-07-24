@@ -13,7 +13,6 @@
 //加载网络图片
 -(void)setimageUrl:(NSString *)url placeholderImage:(NSString *)defalutImage
 {
-    self.alpha = 0.0f;
     if(defalutImage==nil)
     {
         if (self.width == self.height) {
@@ -26,9 +25,7 @@
     }
    // url =[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [self sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,url]] placeholderImage:[UIImage imageNamed:defalutImage]];
-    [UIView animateWithDuration:1.0f animations:^{
-        self.alpha = 1.0f;
-    }];
+    
 }
 //设置圆形图片
 -(void)setLayerImage

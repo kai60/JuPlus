@@ -67,12 +67,12 @@
         HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX +self.width*(i/9)+(space+btnW)*(i%3),50.0f +spaceY + (spaceY+btnH)*((i/3)%3), btnW, btnH)];
         [btn.iconBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,tagDTO.imgUrl]] forState:UIControlStateNormal];
         [btn.iconBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,tagDTO.selImgUrl]] forState:UIControlStateSelected];
+        btn.iconBtn.tag = [tagDTO.tagId integerValue];
         if([tagDTO.tagId isEqualToString:[CommonUtil getUserDefaultsValueWithKey:LabelTag]])
         {
             btn.iconBtn.selected = YES;
             selectedBtn = btn;
         }
-        btn.iconBtn.tag = [tagDTO.tagId integerValue];
         [btn.iconBtn addTarget:self action:@selector(btnClick1:) forControlEvents:UIControlEventTouchUpInside];
         [buttonArray addObject:btn];
         [self.itemsScroll addSubview:btn];
@@ -220,7 +220,7 @@
         [visual removeFromSuperview];
     }];
     [CommonUtil postNotification:ReloadList Object:nil];
-   }
+}
 //设置view高斯模糊显示
 -(void)setVisualEffect
 {
@@ -264,7 +264,7 @@
         _sureBtn.frame=CGRectMake(0, self.height-84, SCREEN_WIDTH, 44);
         _sureBtn.titleLabel.font=[UIFont fontWithName:FONTSTYLE size:20.0];
         [_sureBtn setTitle:@"确 定" forState:UIControlStateNormal];
-        [_sureBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
+        [_sureBtn setTitleColor:Color_Pink forState:UIControlStateNormal];
         _sureBtn.alpha = ALPHLA_BUTTON;
         [_sureBtn addTarget:self action:@selector(surePress1:) forControlEvents:UIControlEventTouchUpInside];
     }

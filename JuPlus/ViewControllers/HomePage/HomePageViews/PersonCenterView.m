@@ -66,7 +66,7 @@
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetNickname) name:ResetNickName object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPortrait) name:ResetPrice object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPortrait) name:ResetPortrait object:nil];
 
 }
 -(void)resetNickname
@@ -145,22 +145,37 @@
     if(!_uploadBtn)
     {
         _uploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _uploadBtn.frame = CGRectMake((SCREEN_WIDTH - 125.0f)/2, self.topView.bottom+50.0f, 125.0f, 45.0f) ;
-        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"upload_myWork"] forState:UIControlStateNormal];
-        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"upload_myWork"] forState:UIControlStateHighlighted];
+        _uploadBtn.frame = CGRectMake((SCREEN_WIDTH - 122.0f)/2, self.topView.bottom+50.0f, 122.0f, 25.0f) ;
+        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"becomeDesigner"] forState:UIControlStateNormal];
+        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"becomeDesigner"] forState:UIControlStateHighlighted];
         [_uploadBtn addTarget:self action:@selector(uploadClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _uploadBtn;
 }
 -(void)uploadClick:(UIButton *)sender
 {
-    
+    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"完成基础操作后成为居+搭配设计师" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    alt.tag = 101;
+    [alt show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==101) {
+        if (buttonIndex==0) {
+          
+        }
+        else
+        {
+            //联系客服
+            UIWebView*callWebview =[[UIWebView alloc] init];
+            NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",HELPTELEPHONE]];
+            [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+            [self addSubview:callWebview];
+        }
+        [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
+    }
 }
 #pragma mark --btnClick
--(void)logoutPress:(UIButton *)sender
-{
-    
-}
 -(void)btnClick:(UIButton *)sender
 {
     switch (sender.tag) {
@@ -171,12 +186,14 @@
             break;
         case 1:
         {
+            //购买过的（订单列表）
             OrderListViewController *order = [[OrderListViewController alloc]init];
             [[self getSuperViewController].navigationController pushViewController:order animated:YES];
         }
             break;
         case 2:
         {
+            //我的收藏
             MyFavourViewController *fav = [[MyFavourViewController alloc]init];
             [[self getSuperViewController].navigationController pushViewController:fav animated:YES];
         }

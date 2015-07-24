@@ -42,7 +42,6 @@
 //设置价格
 -(void)setPriceText:(NSString *)price
 {
-   // NSString *str =[NSString stringWithFormat:@"¥%@",[price toFormatNumberString]];
     NSString *str =[NSString stringWithFormat:@"¥%@",price];
     CGFloat width = [CommonUtil getLabelSizeWithString:str andLabelHeight:self.textLabel.height andFont:self.textLabel.font].width;
     self.textLabel.frame = CGRectMake(self.width - width - 10.0f, 0.0f, width+10.0f, self.textLabel.height);

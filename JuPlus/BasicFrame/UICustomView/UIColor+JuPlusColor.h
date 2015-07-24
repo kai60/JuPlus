@@ -16,11 +16,12 @@
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 #undef	HEX_RGB
-#define HEX_RGB(V)		[UIColor colorWithRGBHex:V]
+#define HEX_RGB(hex)		[UIColor colorWithHexString:(hex)]
 
 #define ALPHLA_BUTTON 0.9
 
-#define Color_Basic RGBCOLOR(242, 114, 128)
+#define Color_Pink RGBCOLOR(242, 114, 128)
+#define Color_Basic HEX_RGB(@"c08c54")
 #define Color_Gray_lines RGBCOLOR(242, 242, 242)
 #define Color_Gray [UIColor grayColor]
 #define Color_Black RGBCOLOR(0, 0, 0)

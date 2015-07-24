@@ -13,6 +13,8 @@
 #import "ChangeNicknameReq.h"
 #import "ResetnicknameView.h"
 #import "JuPlusGetPictureView.h"
+#import "ChangePortraitReq.h"
+#import "PostPortraitRespon.h"
 @interface InfoChangeV : JuPlusUIView
 
 
@@ -166,7 +168,18 @@
 }
 -(void)sendImage:(UIImage *)image
 {
-    
+    ChangePortraitReq *req = [[ChangePortraitReq alloc]init];
+    NSString *imgStr = [image getImageString];
+    [req setField:imgStr forKey:@"picContent"];
+    [req setField:[CommonUtil getToken] forKey:TOKEN];
+    PostPortraitRespon *respon = [[PostPortraitRespon alloc]init];
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        [self.iconImage setImage:image forState:UIControlStateNormal];
+        [JuPlusUserInfoCenter sharedInstance].userInfo.portraitUrl = respon.portrait;
+        [CommonUtil postNotification:ResetPortrait Object:nil];
+    } failed:^(NSDictionary *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:YES with:self.view];
 }
 //修改昵称
 -(void)changeNickname

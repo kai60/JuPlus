@@ -15,6 +15,7 @@
     CGFloat width = [CommonUtil getLabelSizeWithString:str andLabelHeight:self.height andFont:self.font].width;
     self.frame = CGRectMake(0.0f, self.top, width+10.0f, self.height);
     [self setText:str];
-    self.backgroundColor = Color_Basic;
+    self.alpha = 0.8;
+    self.backgroundColor = HEX_RGB(@"895329");
 }
 @end

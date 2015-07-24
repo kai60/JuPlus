@@ -37,22 +37,22 @@
 #define FontType(_ref) [UIFont fontWithName:FONTSTYLE size:(_ref)]
 //常用字体大小
 #define FontSize 14.0f
-
 #define FontMinSize 12.0f
-
 #define FontMaxSize 16.0f
 // 连接超时时间，秒
 #define CONNECT_TIMEOUT 30
-
 // 数据等待超时时间，秒
 #define READ_TIMEOUT 10
-
 #define Progress_tag 2014
+//联系客服
+#define HELPTELEPHONE @"021-61138651"
+
 
 //测试环境
 #ifdef kDevTest
 //网络请求IP地址
 #define FRONT_SERVER_URL @"http://121.40.237.195:8859"
+//#define FRONT_SERVER_URL @"http://192.168.0.110"
 
 //H5界面前缀地址
 #define FRONT_WEB_URL @""

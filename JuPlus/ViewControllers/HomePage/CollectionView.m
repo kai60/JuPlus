@@ -162,6 +162,7 @@
         pack.isAnimation = YES;
         [[self getSuperViewController].navigationController pushViewController:pack animated:NO];
         [backV setHidden:YES];
+        self.isPackage = YES;
 
     }];
 

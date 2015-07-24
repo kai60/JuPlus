@@ -121,7 +121,7 @@
         [_placeOrderBtn.titleLabel setFont:FontType(FontSize)];
         [_placeOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_placeOrderBtn setTitle:@"全部单品购买" forState:UIControlStateNormal];
-        [_placeOrderBtn setBackgroundColor:Color_Basic];
+        [_placeOrderBtn setBackgroundColor:Color_Pink];
         _placeOrderBtn.alpha = ALPHLA_BUTTON;
         [_placeOrderBtn addTarget:self action:@selector(payPress) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -168,7 +168,7 @@
 {
     if(!_backScroll)
     {
-        _backScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height - TABBAR_HEIGHT)];
+        _backScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
         _backScroll.delegate = self;
         _backScroll.showsVerticalScrollIndicator = NO;
     }
@@ -449,6 +449,7 @@
         else
             [self.view bringSubviewToFront:self.packageImageV];
         [self.view bringSubviewToFront:self.designIcon];
+        [self.view bringSubviewToFront:self.placeOrderBtn];
         [self.view bringSubviewToFront:self.navView];
         CGFloat backY =  2*orignY/3;
         CGFloat iconY = nav_height+PICTURE_HEIGHT - 25.0f - orignY;
@@ -560,7 +561,7 @@
     self.productListV.frame = CGRectMake(self.productListV.left, self.displayView.bottom+space, self.productListV.width, self.productListV.height);
     self.relativedView.frame = CGRectMake(self.relativedView.left, self.productListV.bottom, self.relativedView.width, self.relativedView.height);
     self.secBackScroll.frame = CGRectMake(self.secBackScroll.left, self.secBackScroll.top, self.secBackScroll.width,self.relativedView.bottom);
-    self.backScroll.contentSize = CGSizeMake(self.backScroll.width, self.relativedView.bottom+PICTURE_HEIGHT);
+    self.backScroll.contentSize = CGSizeMake(self.backScroll.width, self.relativedView.bottom+PICTURE_HEIGHT+TABBAR_HEIGHT);
     [self.view bringSubviewToFront:self.packageImageV];
     
 }

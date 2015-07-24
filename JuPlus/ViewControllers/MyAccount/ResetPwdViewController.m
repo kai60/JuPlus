@@ -109,7 +109,7 @@
     if(!IsStrEmpty(tf1.text)&&!IsStrEmpty(tf2.text)&&!IsStrEmpty(tf3.text))
     {
         self.sureBtn.userInteractionEnabled = YES;
-        [self.sureBtn setBackgroundColor:Color_Basic];
+        [self.sureBtn setBackgroundColor:Color_Pink];
     }
     else
     {

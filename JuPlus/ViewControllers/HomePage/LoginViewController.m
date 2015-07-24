@@ -103,7 +103,7 @@
     self.loginBtn.frame=CGRectMake(30, 310, SCREEN_WIDTH-60, 44);
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     self.loginBtn.tag=11;
-    [self.loginBtn setBackgroundColor:Color_Basic];
+    [self.loginBtn setBackgroundColor:Color_Pink];
     self.leftBtn.alpha = ALPHLA_BUTTON;
     [self.loginBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:17.0]];
     [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

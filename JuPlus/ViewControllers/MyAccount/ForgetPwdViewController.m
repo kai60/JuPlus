@@ -86,7 +86,7 @@
     UIButton *loginButton=[UIButton buttonWithType:UIButtonTypeCustom];
     loginButton.frame=CGRectMake(30.0f, 420.0f, SCREEN_WIDTH-60.0f, 44);
     [loginButton setTitle:@"确 认" forState:UIControlStateNormal];
-    [loginButton setBackgroundColor:Color_Basic];
+    [loginButton setBackgroundColor:Color_Pink];
     loginButton.alpha = ALPHLA_BUTTON;
     [loginButton.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:16.0]];
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

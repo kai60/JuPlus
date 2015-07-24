@@ -176,14 +176,20 @@
 #pragma mark --切换tabBar的显示效果
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.collectionV.listTab reloadData];
+    if (self.collectionV.isPackage) {
+        self.collectionV.isPackage = NO;
+    }
+    else
+    {
+        [self.collectionV.listTab reloadData];
+    }
+    [super viewWillAppear:animated];
     if(![CommonUtil isLogin])
     {
         self.tabBarV.personBtn.selected = NO;
         ((UIButton *)[self.tabBarV.buttonArr firstObject]).selected = YES;
     [self showCurrentView:self.collectionV];
     }
-    [super viewWillAppear:animated];
     [UIView animateWithDuration:ANIMATION animations:^{
         self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT - TABBAR_HEIGHT, SCREEN_WIDTH, TABBAR_HEIGHT);
     }];

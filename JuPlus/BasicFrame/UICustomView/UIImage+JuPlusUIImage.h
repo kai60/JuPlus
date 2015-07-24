@@ -24,6 +24,8 @@
 
 
 - (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
+//得到缩放的图片
+-(NSString *)getImageString;
 
 
 @end

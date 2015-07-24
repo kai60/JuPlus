@@ -19,5 +19,4 @@
 @property(nonatomic,strong)UIActionSheet *actionSheet;
 @property(nonatomic,assign)id<JuPlusGetPictureDelegate>delegate;
 
-+(NSString *)getImageString:(UIImage *)image;
 @end

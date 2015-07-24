@@ -163,7 +163,7 @@
 
     
     self.addAddressBtn.frame = CGRectMake(0.0f, self.packageV.bottom+20.0f, SCREEN_WIDTH, 30.0f);
-    [self.listScrollV setContentSize:CGSizeMake(self.listScrollV.width, self.receivedAddressV.bottom+10.0f)];
+    [self.listScrollV setContentSize:CGSizeMake(self.listScrollV.width, self.receivedAddressV.bottom+10.0f +TABBAR_HEIGHT)];
 }
 #pragma mark changePrice
 //计算总价
@@ -177,7 +177,7 @@
         total+= [dto.price floatValue]*[pro.countV getCountNum];
     }
     
-    [self.totalPriceL setText:[NSString stringWithFormat:@"总价：%.2f",total]];
+    [self.totalPriceL setText:[NSString stringWithFormat:@"总价：¥%.2f",total]];
 }
 #pragma mark --UI
 //标题
@@ -207,7 +207,7 @@
 -(UIScrollView *)listScrollV
 {
     if (!_listScrollV) {
-        _listScrollV = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH , view_height - TABBAR_HEIGHT)];
+        _listScrollV = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH , view_height )];
         _listScrollV.backgroundColor = Color_White;
     }
     
@@ -284,7 +284,7 @@
     {
         _postOrderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _postOrderBtn.frame = CGRectMake(self.totalPriceL.right, 0.0f, self.placeOrderV.width/2, self.placeOrderV.height);
-        [_postOrderBtn setBackgroundColor:Color_Basic];
+        [_postOrderBtn setBackgroundColor:Color_Pink];
         [_postOrderBtn setTitle:@"确认下单" forState:UIControlStateNormal];
         [_postOrderBtn.titleLabel setFont:FontType(16.0f)];
         _postOrderBtn.alpha = ALPHLA_BUTTON;
@@ -316,10 +316,11 @@
     [postReq setField:[self getPostList] forKey:@"productList"];
     
     [HttpCommunication request:postReq getResponse:postRespon Success:^(JuPlusResponse *response) {
-        OrderDetailViewController *detail = [[OrderDetailViewController alloc]init];
-        detail.orderNo = postRespon.orderNo;
-        [self.navigationController pushViewController:detail animated:YES];
-    } failed:^(NSDictionary *errorDTO) {
+        
+        UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"你的订单已预订成功，稍后将由客服与您确认并发货。" delegate:self cancelButtonTitle:Remind_Knowit otherButtonTitles:nil , nil];
+        alt.tag = 101;
+        [alt show];
+        } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
     }
@@ -338,6 +339,17 @@
         [arr addObject:dict];
     }
     return arr;
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(alertView.tag==101)
+    {
+        OrderDetailViewController *detail = [[OrderDetailViewController alloc]init];
+        detail.orderNo = postRespon.orderNo;
+        [self.navigationController pushViewController:detail animated:YES];
+
+    }
+    [alertView dismissWithClickedButtonIndex:buttonIndex animated:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -130,26 +130,29 @@
 //主要成分内容
 -(void)fileBasisScroll
 {
-    for(int i=0;i<[detailRespon.basisArray count];i++)
-    {
-        CGFloat imgW = 50.0f;
-        NSDictionary *dic = [detailRespon.basisArray objectAtIndex:i];
-        UIButton *imgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        imgBtn.frame = CGRectMake(i*(50.0f+space/2), 0.0f,imgW, imgW);
-        imgBtn.layer.masksToBounds = YES;
-        imgBtn.layer.cornerRadius = imgW/2;
-        [imgBtn setimageUrl:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]] placeholderImage:nil];
-        [self.basisScroll addSubview:imgBtn];
+    if ([detailRespon.basisArray count]!=0) {
+        for(int i=0;i<[detailRespon.basisArray count];i++)
+        {
+            CGFloat imgW = 50.0f;
+            NSDictionary *dic = [detailRespon.basisArray objectAtIndex:i];
+            UIButton *imgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            imgBtn.frame = CGRectMake(i*(50.0f+space/2), 0.0f,imgW, imgW);
+            imgBtn.layer.masksToBounds = YES;
+            imgBtn.layer.cornerRadius = imgW/2;
+            [imgBtn setimageUrl:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]] placeholderImage:nil];
+            [self.basisScroll addSubview:imgBtn];
+        }
+        self.basisScroll.contentSize = CGSizeMake(60*[detailRespon.basisArray count], self.basisScroll.height);
+        self.basisView.frame = CGRectMake(0.0f, self.descripLabel.bottom +space, SCREEN_WIDTH,130.0f);
     }
-    self.basisScroll.contentSize = CGSizeMake(60*[detailRespon.basisArray count], self.basisScroll.height);
+    else
+        self.basisView.frame = CGRectMake(0.0f, self.descripLabel.bottom +space, self.basisView.width, 0.0f);
 }
 -(void)layoutSubviews
 {
-    self.basisView.frame = CGRectMake(0.0f, self.descripLabel.bottom +space, SCREEN_WIDTH,130.0f);
     self.bottomV.frame = CGRectMake(0.0f, self.bottomV.top, SCREEN_WIDTH,self.basisView.bottom);
 
-    self.backScroll.contentSize = CGSizeMake(SCREEN_WIDTH, self.bottomV.bottom+20.0f);
-    
+    self.backScroll.contentSize = CGSizeMake(SCREEN_WIDTH, self.bottomV.bottom+20.0f+TABBAR_HEIGHT);
 }
 #pragma mark --loadUI
 -(ImageScrollView *)topView
@@ -164,7 +167,7 @@
 {
     if(!_backScroll)
     {
-        _backScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f , nav_height - 20.0f, SCREEN_WIDTH, view_height - TABBAR_HEIGHT + 20.0f)];
+        _backScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f , nav_height - 20.0f, SCREEN_WIDTH, view_height + 20.0f)];
     }
     return _backScroll;
 }
@@ -196,6 +199,7 @@
     if(!_basisView)
     {
         _basisView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.descripLabel.bottom+space, SCREEN_WIDTH, 120.0f)];
+        _basisView.layer.masksToBounds = YES;
     }
     return _basisView;
 }
@@ -229,7 +233,7 @@
         _placeOrderBtn.frame = CGRectMake(0.0f, SCREEN_HEIGHT - 44.0f, SCREEN_WIDTH, 44.0f);
         [_placeOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_placeOrderBtn setTitle:@"单品购买" forState:UIControlStateNormal];
-        [_placeOrderBtn setBackgroundColor:Color_Basic];
+        [_placeOrderBtn setBackgroundColor:Color_Pink];
         _placeOrderBtn.alpha = ALPHLA_BUTTON;
         [_placeOrderBtn addTarget:self action:@selector(payPress) forControlEvents:UIControlEventTouchUpInside];
     }
