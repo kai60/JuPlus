@@ -19,6 +19,8 @@
 @property(nonatomic,strong)JuPlusUILabel *priceL;
 //增删器
 @property(nonatomic,strong)CountView *countV;
+//发货状态
+@property(nonatomic,strong)UILabel *typeLabel;
 
 -(void)loadData:(productOrderDTO *)dto;
 @end

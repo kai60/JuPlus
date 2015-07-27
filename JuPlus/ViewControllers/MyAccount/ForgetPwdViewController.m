@@ -149,7 +149,7 @@
     
     //验证码
     identifyButtom=[TimerButton buttonWithType:UIButtonTypeCustom];
-    identifyButtom.frame=CGRectMake(208, 25.0f, 100, 45.0f);
+    identifyButtom.frame=CGRectMake(208, 40.0, 100, 30.0f);
     [identifyButtom addTarget:self action:@selector(identifyPress:) forControlEvents:UIControlEventTouchUpInside];
     
     [identifyButtom.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];

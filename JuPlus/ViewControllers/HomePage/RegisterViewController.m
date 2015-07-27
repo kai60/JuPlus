@@ -186,7 +186,7 @@
     
     //验证码
     identifyButtom=[TimerButton buttonWithType:UIButtonTypeCustom];
-    identifyButtom.frame=CGRectMake(208, 200, 100, 45.0f);
+    identifyButtom.frame=CGRectMake(208, 210.0f, 100, 30.0f);
     [identifyButtom addTarget:self action:@selector(identifyPress:) forControlEvents:UIControlEventTouchUpInside];
    
     [identifyButtom.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
@@ -265,20 +265,6 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];
-    if (alertView.tag==10002) {
-        if (buttonIndex==0) {
-            //列表
-          //  [self gotoRootCarListViewWithNsIndex:[NSIndexPath indexPathForRow:0 inSection:0]];
-            
-        }
-        else{
-         //   [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:CheckingFrom];
-        //    CheckingViewController *checkView=[[CheckingViewController alloc]init];
-          //  [self.navigationController pushViewController:checkView animated:YES];
-            
-        }
-        
-    }
     
 }
 

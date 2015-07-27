@@ -90,10 +90,10 @@ CGFloat space = 10.0f;
 }
 -(void)portraitImgVPress:(UIButton *)sender
 {
-    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
-    UIViewController *vc = [self getSuperViewController];
-    [vc.navigationController.view.layer addAnimation:[self getPushTransition] forKey:nil];
-    [vc.navigationController pushViewController:design animated:NO];
+//    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
+//    UIViewController *vc = [self getSuperViewController];
+//    [vc.navigationController.view.layer addAnimation:[self getPushTransition] forKey:nil];
+//    [vc.navigationController pushViewController:design animated:NO];
     
 }
 -(void)setTipsWithArray:(NSArray *)tipsArray

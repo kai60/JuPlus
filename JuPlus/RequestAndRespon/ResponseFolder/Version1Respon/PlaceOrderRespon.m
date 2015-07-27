@@ -26,5 +26,15 @@
         [dto loadDTO:dic];
         [self.productArr addObject:dto];
     }
+    
+    NSInteger type = [[NSString stringWithFormat:@"%@",[dict objectForKey:@"status"]] integerValue];
+    if (type==10) {
+        self.status = @"未发货";
+    }
+    else if(type==20)
+    {
+        self.status = @"已发货";
+    }
+
 }
 @end

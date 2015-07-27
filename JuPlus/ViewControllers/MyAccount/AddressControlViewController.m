@@ -146,6 +146,7 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView.tag==101) {
         if (buttonIndex==1) {
             [self deleteAddress];

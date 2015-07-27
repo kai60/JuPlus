@@ -17,8 +17,8 @@
     self = [super initWithFrame:frame];
     if(self)
     {
-        space = 20.0f;
-        labelH = 30.0f;
+        space = 10.0f;
+        labelH = 20.0f;
         self.backgroundColor = [UIColor whiteColor];
         UIImageView *bgImg = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.width, self.height)];
         [bgImg setImage:[UIImage imageNamed:@"address_bg"]];
@@ -44,8 +44,8 @@
 {
     if(!_nameL)
     {
-        _nameL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(space, space, 80.0f, labelH)];
-        [_nameL setFont:FontType(18.0f)];
+        _nameL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(space, space, 70.0f, labelH)];
+        [_nameL setFont:FontType(14.0f)];
         [_nameL setTextColor:Color_Black];
     }
     return _nameL;
@@ -55,7 +55,7 @@
     if(!_mobileL)
     {
         _mobileL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.nameL.right, space, 120.0f, labelH)];
-        [_mobileL setFont:FontType(18.0f)];
+        [_mobileL setFont:FontType(FontSize)];
         [_mobileL setTextColor:Color_Black];
     }
     return _mobileL;
@@ -65,8 +65,8 @@
     if(!_addressL)
     {
         _addressL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(space, self.mobileL.bottom, self.width - 110.0f, labelH)];
-        [_addressL setFont:FontType(16.0f)];
-        [_addressL setTextColor:Color_Black];
+        [_addressL setFont:FontType(FontSize)];
+        [_addressL setTextColor:Color_Gray];
     }
     return _addressL;
 }

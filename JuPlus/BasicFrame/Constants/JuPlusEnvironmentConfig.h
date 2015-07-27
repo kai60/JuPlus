@@ -52,7 +52,7 @@
 #ifdef kDevTest
 //网络请求IP地址
 #define FRONT_SERVER_URL @"http://121.40.237.195:8859"
-//#define FRONT_SERVER_URL @"http://192.168.0.110"
+//#define FRONT_SERVER_URL @"http://192.168.0.112"
 
 //H5界面前缀地址
 #define FRONT_WEB_URL @""

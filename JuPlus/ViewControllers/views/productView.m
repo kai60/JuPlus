@@ -18,6 +18,7 @@
         [self addSubview:self.iconImgV];
         [self addSubview:self.titleL];
         [self addSubview:self.priceL];
+        [self addSubview:self.typeLabel];
         [self addSubview:self.countV];
     }
     return self;
@@ -40,9 +41,9 @@
 {
     if(!_titleL)
     {
-        _titleL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.iconImgV.right +space/2, space, 100.0f, 30.0f)];
+        _titleL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.iconImgV.right +space/2, space, 100.0f, 20.0f)];
         [_titleL setFont:FontType(14.0f)];
-        _titleL.textColor = Color_Gray;
+        _titleL.textColor = Color_Black;
     }
     return _titleL;
 }
@@ -51,7 +52,7 @@
     if(!_priceL)
     {
         _priceL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.titleL.left, self.titleL.bottom, 100.0f, 30.0f)];
-        [_priceL setFont:FontType(14.0f)];
+        [_priceL setFont:FontType(12.0f)];
         _priceL.textColor = Color_Gray;
     }
     return _priceL;
@@ -64,6 +65,17 @@
         _countV = [[CountView alloc]initWithFrame:CGRectMake(self.width - 80.0f, (self.height - 18.0f)/2, 80.0f, 22.0f)];
     }
     return _countV;
+}
+-(UILabel *)typeLabel
+{
+    if (!_typeLabel) {
+        _typeLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width - 100.0f, self.titleL.top, 100.0f, 30.0f)];
+        [_typeLabel setFont:FontType(FontSize)];
+        [_typeLabel setTextColor:Color_Basic];
+        _typeLabel.textAlignment = NSTextAlignmentRight;
+        [_typeLabel setHidden:YES];
+    }
+    return _typeLabel;
 }
 -(void)loadData:(productOrderDTO *)dto
 {

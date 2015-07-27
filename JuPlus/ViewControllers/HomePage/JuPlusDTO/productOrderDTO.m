@@ -16,6 +16,6 @@
     self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productPrice"]];
     self.countNum = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productNum"]];
     self.productNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"productNo"]];
-
+   
 }
 @end

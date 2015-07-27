@@ -19,4 +19,5 @@
 
 @property(nonatomic,strong)NSMutableArray *productArray;
 
+@property(nonatomic,strong)NSString *sendType;
 @end

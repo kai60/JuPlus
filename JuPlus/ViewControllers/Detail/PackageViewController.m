@@ -20,12 +20,13 @@
 #import "productOrderDTO.h"
 #import "UINavigationController+RadialTransaction.h"
 #import "DesignerDetailViewController.h"
+#import "ZoomImageViewController.h"
 @interface PackageViewController ()
 #define space 10.0f
 //购买
 @property (nonatomic,strong)UIButton *placeOrderBtn;
 //套餐详情
-@property(nonatomic,strong)UIImageView *packageImageV;
+@property(nonatomic,strong)UIButton *packageImageV;
 
 @property (nonatomic,strong)UILabel *priceLabel;
 
@@ -48,6 +49,7 @@
 @property (nonatomic,strong)JuPlusUIView *relativedView;
 //滚动层
 @property (nonatomic,strong)UIScrollView *relativedScroll;
+
 @end
 @implementation PackageViewController
 {
@@ -91,7 +93,11 @@
 {
     if(self.isAnimation)
     {
-    [self.packageImageV removeAllSubviews];
+        for (UIView *view in self.packageImageV.subviews) {
+            if (![view isKindOfClass:[UIImageView class]]) {
+                [view removeFromSuperview];
+            }
+        }
 
     CGRect newF = CGRectMake(self.popSize.origin.x,+ self.backScroll.contentOffset.y+self.popSize.origin.y-nav_height, self.popSize.size.width, self.popSize.size.height);
     [UIView animateWithDuration:0.5 animations:^{
@@ -120,7 +126,7 @@
         _placeOrderBtn.frame = CGRectMake(0.0f, SCREEN_HEIGHT - 44.0f, SCREEN_WIDTH, 44.0f);
         [_placeOrderBtn.titleLabel setFont:FontType(FontSize)];
         [_placeOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_placeOrderBtn setTitle:@"全部单品购买" forState:UIControlStateNormal];
+        [_placeOrderBtn setTitle:@"购买全部单品" forState:UIControlStateNormal];
         [_placeOrderBtn setBackgroundColor:Color_Pink];
         _placeOrderBtn.alpha = ALPHLA_BUTTON;
         [_placeOrderBtn addTarget:self action:@selector(payPress) forControlEvents:UIControlEventTouchUpInside];
@@ -128,13 +134,14 @@
     return _placeOrderBtn;
 }
 
--(UIImageView *)packageImageV
+-(UIButton *)packageImageV
 {
     if(!_packageImageV)
     {
-        _packageImageV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
+        _packageImageV = [UIButton buttonWithType:UIButtonTypeCustom];
+        _packageImageV.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, PICTURE_HEIGHT);
         [_packageImageV setimageUrl:self.imgUrl placeholderImage:nil];
-        _packageImageV.userInteractionEnabled = YES;
+        [_packageImageV addTarget:self action:@selector(ZoomImage) forControlEvents:UIControlEventTouchUpInside];
     }
     return _packageImageV;
 }
@@ -159,7 +166,7 @@
         _priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, self.packageImageV.height - 40.0f , 220.0f, 30.0f)];
         _priceLabel.textAlignment = NSTextAlignmentCenter;
         _priceLabel.alpha = ALPHLA_BUTTON;
-        [_priceLabel setFont:FontType(16.0f)];
+        [_priceLabel setFont:FontType(FontMaxSize)];
         [_priceLabel setTextColor:Color_White];
     }
     return _priceLabel;
@@ -438,6 +445,17 @@
         self.relativedView.frame = CGRectMake(self.relativedView.left, self.productListV.bottom, self.relativedView.width, 0.0f);
     }
 }
+#define ZoomImageScl
+-(void)ZoomImage
+{
+    ZoomImageViewController *zoom = [[ZoomImageViewController alloc]init];
+    zoom.tag = 0;
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:self.imgUrl forKey:@"imgUrl"];
+    zoom.imageDataArray = [NSArray arrayWithObject:dic];
+    [self presentViewController:zoom animated:YES completion:^{
+        
+    }];
+}
 #pragma mark --scrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -448,6 +466,9 @@
            [self.view bringSubviewToFront:self.backScroll];
         else
             [self.view bringSubviewToFront:self.packageImageV];
+        /*
+         设计师头像、导航栏、确认购买保持在最前边儿
+         */
         [self.view bringSubviewToFront:self.designIcon];
         [self.view bringSubviewToFront:self.placeOrderBtn];
         [self.view bringSubviewToFront:self.navView];
@@ -464,8 +485,8 @@
 #pragma mark --buttonPress 
 -(void)designerPress:(UIButton *)sender
 {
-    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
-    [self.navigationController pushViewController:design animated:YES];
+//    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
+//    [self.navigationController pushViewController:design animated:YES];
 }
 //收藏、取消收藏
 -(void)favBtnClick:(UIButton *)sender

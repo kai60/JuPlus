@@ -73,7 +73,7 @@
         }
         pageNum++;
     }
-    [self startRequest];
+    [self startRequestFav];
 }
 -(void)stopReresh
 {
@@ -91,7 +91,7 @@
     }
     return _myFavTab;
 }
--(void)startRequest
+-(void)startRequestFav
 {
     GetFavListReq *req = [[GetFavListReq alloc]init];
     [req setField:[CommonUtil getToken] forKey:TOKEN];
@@ -152,6 +152,11 @@
         [self.navigationController pushViewController:sing animated:YES];
   
     }
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self startRequestFav];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

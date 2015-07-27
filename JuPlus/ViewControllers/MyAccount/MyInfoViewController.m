@@ -268,13 +268,15 @@
         _nicknameV.nickTF.delegate = self;
         _nicknameV.nickTF.text = [JuPlusUserInfoCenter sharedInstance].userInfo.nickname ;
         [_nicknameV.sureBtn addTarget:self action:@selector(changeNickname) forControlEvents:UIControlEventTouchUpInside];
-        _nicknameV.frame = CGRectMake(30.0f, (SCREEN_HEIGHT - 300.0f)/2, 260.0f, 300.0f);
+        _nicknameV.frame = CGRectMake(30.0f, (SCREEN_HEIGHT - 280.0f)/2, 260.0f, 280.0f);
     }
     return _nicknameV;
 }
 #pragma mark --alertView
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
+
     if(alertView.tag==102)
     {
         if(buttonIndex==0)

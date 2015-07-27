@@ -22,7 +22,9 @@
         [self.contentView addSubview:back];
         back.layer.masksToBounds = YES;
         [back addSubview:self.backImage];
+        back.backgroundColor = RGBACOLOR(137, 83, 41, 0.2);
         [self.backImage addSubview:self.nameLabel];
+
 
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 160.0f , self.contentView.width, 2.0f)];
         line.backgroundColor = Color_White;
@@ -46,25 +48,25 @@
 {
     if(!_nameLabel)
     {
-        _nameLabel =[[UILabel alloc]initWithFrame:CGRectMake(0.0f, (self.backImage.height - 20.0f)/2, self.contentView.width, 20.0f)];
+        _nameLabel =[[UILabel alloc]initWithFrame:CGRectMake(0.0f, (self.backImage.height - 30.0f)/2, self.contentView.width, 30.0f)];
         _nameLabel.textAlignment = NSTextAlignmentCenter;
         [_nameLabel setFont:FontType(14.0f)];
         _nameLabel.numberOfLines = 0;
-        _nameLabel.backgroundColor = RGBACOLOR(255, 255, 255, 0.9);
-        _nameLabel.textColor = Color_Basic;
+        _nameLabel.backgroundColor = RGBACOLOR(255, 255, 255, 0.8);
+        _nameLabel.textColor = HEX_RGB(@"895329");
     }
     return _nameLabel;
 }
 -(void)fileData:(MyFavourDTO *)dto
 {
     CGSize size = [CommonUtil getLabelSizeWithString:dto.name andLabelHeight:self.nameLabel.height andFont:self.nameLabel.font];
-    CGFloat labelW = size.width +20.0f;
-    if ((size.width+20.0f)>=260.0f) {
+    CGFloat labelW = size.width +40.0f;
+    if ((size.width+40.0f)>=260.0f) {
         labelW = 260.0f;
     }
     CGSize size1 = [CommonUtil getLabelSizeWithString:dto.name andLabelWidth:labelW andFont:self.nameLabel.font];
-
-    self.nameLabel.frame = CGRectMake((SCREEN_WIDTH - labelW)/2, self.backImage.height/4+(self.backImage.height/2 - size1.height)/2, labelW, size1.height);
+    CGFloat labelH = size1.height+10.0f;
+    self.nameLabel.frame = CGRectMake((SCREEN_WIDTH - labelW)/2, self.backImage.height/4+(self.backImage.height/2 - labelH)/2, labelW, labelH);
     [self.nameLabel setText:dto.name];
        [self.backImage setimageUrl:dto.coverUrl placeholderImage:nil];
 }

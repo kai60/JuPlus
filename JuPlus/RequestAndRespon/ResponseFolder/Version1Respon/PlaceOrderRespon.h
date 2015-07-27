@@ -24,4 +24,6 @@
 
 @property (nonatomic,strong)NSString *reqTime;
 
+@property (nonatomic,strong)NSString *status;
+
 @end

@@ -81,7 +81,6 @@
 		84CE18561B4628A400B103F4 /* gd_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84CE18531B4628A400B103F4 /* gd_1.jpg */; };
 		84CE18571B4628A400B103F4 /* gd_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84CE18541B4628A400B103F4 /* gd_2.jpg */; };
 		84CE18581B4628A400B103F4 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CE18551B4628A400B103F4 /* logo@2x.png */; };
-		84CE185A1B462F5A00B103F4 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CE18591B462F5A00B103F4 /* back@2x.png */; };
 		84CE185D1B463F3E00B103F4 /* productView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CE185C1B463F3E00B103F4 /* productView.m */; };
 		84CE18601B46413900B103F4 /* CountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CE185F1B46413900B103F4 /* CountView.m */; };
 		84CE18621B46623A00B103F4 /* countNum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CE18611B46623A00B103F4 /* countNum@2x.png */; };
@@ -150,11 +149,13 @@
 		84E2E0671B53C46F007F2585 /* check_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E2E0651B53C46F007F2585 /* check_1@2x.png */; };
 		84E2E0681B53C46F007F2585 /* check_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E2E0661B53C46F007F2585 /* check_2@2x.png */; };
 		84E2E06B1B53C7D8007F2585 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E2E06A1B53C7D8007F2585 /* AddressCell.m */; };
+		84E40D1F1B65E1BD00FB63AE /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E40D1E1B65E1BD00FB63AE /* back@2x.png */; };
 		84E43D8A1B5DF14A00A7028D /* default_rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E43D881B5DF14A00A7028D /* default_rectangle@2x.png */; };
 		84E43D8B1B5DF14A00A7028D /* default_square@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E43D891B5DF14A00A7028D /* default_square@2x.png */; };
 		84E43D8E1B5E32D400A7028D /* ResetnicknameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E43D8D1B5E32D400A7028D /* ResetnicknameView.m */; };
 		84E43D901B5E336500A7028D /* ResetnicknameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E43D8F1B5E336500A7028D /* ResetnicknameView.xib */; };
 		84E43D951B5E57CD00A7028D /* JuPlusGetPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E43D941B5E57CD00A7028D /* JuPlusGetPictureView.m */; };
+		84E6CD811B622E1700FF73C3 /* ZoomImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6CD801B622E1700FF73C3 /* ZoomImageViewController.m */; };
 		84E80D5D1B40E20D006D9804 /* PlaceOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E80D5C1B40E20D006D9804 /* PlaceOrderViewController.m */; };
 		84E814B11B5611E400921332 /* MyFavourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E814B01B5611E400921332 /* MyFavourViewController.m */; };
 		84E814B41B56120B00921332 /* GetFavListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E814B31B56120B00921332 /* GetFavListReq.m */; };
@@ -358,7 +359,6 @@
 		84CE18531B4628A400B103F4 /* gd_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gd_1.jpg; sourceTree = "<group>"; };
 		84CE18541B4628A400B103F4 /* gd_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gd_2.jpg; sourceTree = "<group>"; };
 		84CE18551B4628A400B103F4 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
-		84CE18591B462F5A00B103F4 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		84CE185B1B463F3E00B103F4 /* productView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = productView.h; sourceTree = "<group>"; };
 		84CE185C1B463F3E00B103F4 /* productView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = productView.m; sourceTree = "<group>"; };
 		84CE185E1B46413900B103F4 /* CountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountView.h; sourceTree = "<group>"; };
@@ -458,6 +458,7 @@
 		84E2E0661B53C46F007F2585 /* check_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_2@2x.png"; sourceTree = "<group>"; };
 		84E2E0691B53C7D8007F2585 /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
 		84E2E06A1B53C7D8007F2585 /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		84E40D1E1B65E1BD00FB63AE /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		84E43D881B5DF14A00A7028D /* default_rectangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_rectangle@2x.png"; sourceTree = "<group>"; };
 		84E43D891B5DF14A00A7028D /* default_square@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_square@2x.png"; sourceTree = "<group>"; };
 		84E43D8C1B5E32D400A7028D /* ResetnicknameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetnicknameView.h; sourceTree = "<group>"; };
@@ -465,6 +466,8 @@
 		84E43D8F1B5E336500A7028D /* ResetnicknameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetnicknameView.xib; sourceTree = "<group>"; };
 		84E43D931B5E57CD00A7028D /* JuPlusGetPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusGetPictureView.h; sourceTree = "<group>"; };
 		84E43D941B5E57CD00A7028D /* JuPlusGetPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuPlusGetPictureView.m; sourceTree = "<group>"; };
+		84E6CD7F1B622E1700FF73C3 /* ZoomImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomImageViewController.h; sourceTree = "<group>"; };
+		84E6CD801B622E1700FF73C3 /* ZoomImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomImageViewController.m; sourceTree = "<group>"; };
 		84E80D5B1B40E20D006D9804 /* PlaceOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOrderViewController.h; sourceTree = "<group>"; };
 		84E80D5C1B40E20D006D9804 /* PlaceOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceOrderViewController.m; sourceTree = "<group>"; };
 		84E814AF1B5611E400921332 /* MyFavourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavourViewController.h; sourceTree = "<group>"; };
@@ -694,6 +697,7 @@
 		84B9AD141B453E56006CF63F /* Version1 */ = {
 			isa = PBXGroup;
 			children = (
+				84E40D1E1B65E1BD00FB63AE /* back@2x.png */,
 				84E81AAB1B5F47A7007E3B9B /* loading.gif */,
 				84E43D881B5DF14A00A7028D /* default_rectangle@2x.png */,
 				84E43D891B5DF14A00A7028D /* default_square@2x.png */,
@@ -725,7 +729,6 @@
 				84DAFFC31B4A78AB008418D0 /* point@2x.png */,
 				84DAFFBA1B4A4D50008418D0 /* price_bg@2x.png */,
 				84CE18611B46623A00B103F4 /* countNum@2x.png */,
-				84CE18591B462F5A00B103F4 /* back@2x.png */,
 				84DAFFBF1B4A61CF008418D0 /* drop@2x.png */,
 				84DAFFC11B4A62A6008418D0 /* labelLine@2x.png */,
 				84CE18531B4628A400B103F4 /* gd_1.jpg */,
@@ -1006,6 +1009,8 @@
 				84E80D5C1B40E20D006D9804 /* PlaceOrderViewController.m */,
 				846156701B4F68CD00F4AAA2 /* PackageViewController.h */,
 				846156711B4F68CD00F4AAA2 /* PackageViewController.m */,
+				84E6CD7F1B622E1700FF73C3 /* ZoomImageViewController.h */,
+				84E6CD801B622E1700FF73C3 /* ZoomImageViewController.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1388,11 +1393,11 @@
 				84DAFFC71B4A793A008418D0 /* lineLabel@2x.png in Resources */,
 				84DAFFC01B4A61CF008418D0 /* drop@2x.png in Resources */,
 				84D689011B4B82AF00E91423 /* collect_sel@2x.png in Resources */,
+				84E40D1F1B65E1BD00FB63AE /* back@2x.png in Resources */,
 				84DAFFAC1B4A4118008418D0 /* Icon.png in Resources */,
 				84DAFFAD1B4A4118008418D0 /* Icon-58@2x.png in Resources */,
 				84D4860C1B4D069300AD0CCF /* fav_sel@2x.png in Resources */,
 				84E43D901B5E336500A7028D /* ResetnicknameView.xib in Resources */,
-				84CE185A1B462F5A00B103F4 /* back@2x.png in Resources */,
 				84B9AD181B453E61006CF63F /* checkmark.gif in Resources */,
 				84D689021B4B82AF00E91423 /* collect_sel@3x.png in Resources */,
 				84B9AD191B453E61006CF63F /* logo_01.png in Resources */,
@@ -1606,6 +1611,7 @@
 				84CC25031B43CA0100BE342E /* NetException.m in Sources */,
 				84CC25021B43CA0100BE342E /* AFNetWorkClient.m in Sources */,
 				84E814D81B56124700921332 /* SingleDetailRespon.m in Sources */,
+				84E6CD811B622E1700FF73C3 /* ZoomImageViewController.m in Sources */,
 				8461567B1B4FA77700F4AAA2 /* UILabel+JuPlusUILabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1667,7 +1673,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1705,7 +1711,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1720,7 +1726,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wenbao zhan (87VF9X79E9)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus/JuPlus-Prefix.pch";
 				INFOPLIST_FILE = JuPlus/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1753,7 +1759,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Weijia Information Technology Co., Ltd. (5NM9FZ6B47)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JuPlus/JuPlus-Prefix.pch";
 				INFOPLIST_FILE = JuPlus/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

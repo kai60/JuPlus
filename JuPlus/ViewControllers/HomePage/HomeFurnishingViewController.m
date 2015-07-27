@@ -60,7 +60,7 @@
     [btn.titleLabel setFont:FontType(14.0f)];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     UIView *black = [[UIView alloc]initWithFrame:CGRectMake((btn.width - 15.0f)/2, 42.0f, 15.0f, 2.0f)];
-    [black setBackgroundColor:[UIColor blackColor]];
+    [black setBackgroundColor:Color_Basic];
     [btn addSubview:black];
     [backV addSubview:btn];
 }

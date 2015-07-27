@@ -20,4 +20,5 @@
 @property(nonatomic,strong)NSString *countNum;
 //该单品隶属于的套餐
 @property (nonatomic,strong)NSString *regNo;
+
 @end

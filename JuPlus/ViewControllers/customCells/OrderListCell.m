@@ -29,6 +29,7 @@
     [self.contentView addSubview:self.moreBtn];
     [self.contentView addSubview:self.countView];
     [self.contentView addSubview:self.bomAddV];
+    [self.countView addSubview:self.typeLabel];
     [self.countView addSubview:self.totalCountL];
     [self.countView addSubview:self.totalPayL];
 }
@@ -101,7 +102,7 @@
     {
         _totalCountL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(100.0f, orignX, 100.0f, 20.0f)];
         [_totalCountL setTextColor:Color_Black];
-        [_totalCountL setFont:FontType(14.0f)];
+        [_totalCountL setFont:FontType(FontSize)];
     }
     return _totalCountL;
 }
@@ -112,10 +113,21 @@
         _totalPayL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(200.0f, orignX, 110.0f, 20.0f)];
         [_totalPayL setTextColor:Color_Black];
         [_totalPayL setTextAlignment:NSTextAlignmentRight];
-        [_totalPayL setFont:FontType(14.0f)];
+        [_totalPayL setFont:FontType(FontSize)];
     }
     return _totalPayL;
 }
+-(JuPlusUILabel *)typeLabel
+{
+    if(!_typeLabel)
+    {
+        _typeLabel = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(orignX, orignX, 70.0f, 20.0f)];
+        [_typeLabel setTextColor:Color_Basic];
+        [_typeLabel setFont:FontType(FontSize)];
+    }
+    return _typeLabel;
+}
+
 -(JuPlusUIView *)bomAddV
 {
     if(!_bomAddV)
@@ -132,6 +144,7 @@
     [self.timeL setText:listDto.orderTime];
     [self.totalCountL setText:[NSString stringWithFormat:@"共%d件商品",listDto.totalCount]];
     [self.totalPayL setPriceText:listDto.totalPrice];
+    [self.typeLabel setText:listDto.sendType];
     NSString *amt = [NSString stringWithFormat:@"实付：%@",self.totalPayL.text];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:amt];
     [attributedString addAttribute:NSForegroundColorAttributeName value:Color_Gray range:[amt rangeOfString:@"实付："]];

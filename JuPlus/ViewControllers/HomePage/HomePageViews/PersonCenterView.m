@@ -84,7 +84,6 @@
     [centerReq setField:[CommonUtil getToken] forKey:TOKEN];
     centerRespon = [[PersonCenterRespon alloc]init];
     [HttpCommunication request:centerReq getResponse:centerRespon Success:^(JuPlusResponse *response) {
-        
         [self configData];
     } failed:^(NSDictionary *errorDTO) {
         [self errorExp:errorDTO];
@@ -160,6 +159,8 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    //必须先走父类中的代理方法，以防止子类代理覆盖父类中的内容
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if (alertView.tag==101) {
         if (buttonIndex==0) {
           

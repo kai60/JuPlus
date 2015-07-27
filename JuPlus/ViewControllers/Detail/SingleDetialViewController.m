@@ -12,10 +12,10 @@
 #import "SingleDetailDTO.h"
 #import "PostFaverReq.h"
 #import "DeleteFavReq.h"
-//#import "UIButton+WebCache.h"
 #import "PlaceOrderViewController.h"
 #import "LoginViewController.h"
 #import "productOrderDTO.h"
+#import "ZoomImageViewController.h"
 #import "UINavigationController+RadialTransaction.h"
 @implementation SingleDetialViewController
 {
@@ -108,15 +108,26 @@
     for(int i=0;i<[detailRespon.imageArray count];i++)
     {
         NSDictionary *dic = [detailRespon.imageArray objectAtIndex:i];
-        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH, 0.0f, self.topView.imageScroll.width, self.topView.imageScroll.height)];
-        [img setImage:[UIImage imageNamed:@"default_square"]];
+        UIButton *img = [[UIButton alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH, 0.0f, self.topView.imageScroll.width, self.topView.imageScroll.height)];
+        [img setImage:[UIImage imageNamed:@"default_square"] forState:UIControlStateNormal];
         [img setimageUrl:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]] placeholderImage:nil];
+        img.tag = i;
+        [img addTarget:self action:@selector(imgPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.topView.imageScroll addSubview:img];
     }
     self.topView.imageScroll.contentSize = CGSizeMake(SCREEN_WIDTH*[detailRespon.imageArray count], self.topView.imageScroll.height);
     
     [self.topView.priceLabel setPriceTxt:detailRespon.price];
     
+}
+-(void)imgPressed:(UIButton *)sender
+{
+    ZoomImageViewController *img = [[ZoomImageViewController alloc]init];
+    img.imageDataArray = detailRespon.imageArray;
+    img.tag = sender.tag;
+    [self presentViewController:img animated:YES completion:^{
+        
+    }];
 }
 -(void)fileExplainTxt
 {

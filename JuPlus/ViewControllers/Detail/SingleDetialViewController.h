@@ -31,6 +31,7 @@
 //购买单品
 @property (nonatomic,strong)UIButton *placeOrderBtn;
 
+@property (nonatomic,strong)UIScrollView *imageScroll;
 @property (nonatomic,assign)CGPoint point;
 
 @end

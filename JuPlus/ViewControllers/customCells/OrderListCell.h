@@ -27,5 +27,7 @@
 @property (nonatomic,strong)JuPlusUIView *bomAddV;
 //是否显示全部内容
 @property (nonatomic,assign)BOOL isShowAll;
+//发货状态
+@property (nonatomic,strong)JuPlusUILabel *typeLabel;
 -(void)fileCell:(OrderListDTO *)listDto;
 @end

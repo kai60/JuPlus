@@ -16,6 +16,7 @@
     if(self)
     {
         [self addSubview:self.navView];
+        self.backgroundColor = [UIColor whiteColor];
         [self.navView addSubview: self.titleLabel];
         [self.navView addSubview:self.leftBtn];
         [self.navView addSubview:self.rightBtn];
@@ -27,7 +28,10 @@
     if(!_navView)
     {
         _navView = [[UIView alloc]initWithFrame:CGRectMake(0.0f,20.0f - statusY, SCREEN_WIDTH, 44.0f+statusY)];
-        [_navView setBackgroundColor:RGBCOLOR(239, 239, 239)];
+        [_navView setBackgroundColor:RGBACOLOR(255, 255, 255, 0.9)];
+        UIView *bottom = [[UIView alloc]initWithFrame:CGRectMake(0.0f, _navView.height - 1.0f, _navView.width, 1.0f)];
+        [bottom setBackgroundColor:RGBCOLOR(229, 229, 229)];
+        [_navView addSubview:bottom];
         [_navView setHidden:YES];
     }
     return _navView;
@@ -40,7 +44,7 @@
     {
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.width - titleWidth)/2, 20.0f, titleWidth, 44.0f)];
         _titleLabel.backgroundColor = [UIColor clearColor];
-        [_titleLabel setFont:FontType(18.0f)];
+        [_titleLabel setFont:FontType(FontSize)];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
@@ -61,10 +65,10 @@
     {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _rightBtn.frame = CGRectMake(self.navView.width - 54.0f, statusY, 44.0f, 44.0f);
-        [_rightBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:14.0]];
+        [_rightBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:FontSize]];
         [_rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         UIView *black = [[UIView alloc]initWithFrame:CGRectMake((_rightBtn.width - 15.0f)/2, 42.0f, 15.0f, 2.0f)];
-        [black setBackgroundColor:[UIColor blackColor]];
+        [black setBackgroundColor:Color_Basic];
         [_rightBtn addSubview:black];
     }
     return _rightBtn;
@@ -97,5 +101,12 @@
         LoginViewController *log = [[LoginViewController alloc]init];
         [[self getSuperViewController].navigationController pushViewController:log animated:YES];
     }
+    //版本过低，强制更新
+    else if(alertView.tag==ERROR_VERSON_OUT)
+    {
+        //        NSString* path=APP_URL;
+        //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:path]];
+    }
+
 }
 @end

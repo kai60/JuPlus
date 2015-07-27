@@ -28,6 +28,7 @@
     self = [super initWithFrame:frame];
     if(self)
     {
+        self.backgroundColor = [UIColor clearColor];
         if ([dir intValue]==1) {
             self.isLeft = YES;
         }
@@ -184,6 +185,7 @@
     {
         _labelText = [[UILabel alloc]init];
         _labelText.textAlignment = NSTextAlignmentRight;
+        
         if(self.isLeft)
         _labelText.frame = CGRectMake(self.dropImg.right - 50.0f,self.dropImg.top - 20.0f,1.0f,20.0f);
         else

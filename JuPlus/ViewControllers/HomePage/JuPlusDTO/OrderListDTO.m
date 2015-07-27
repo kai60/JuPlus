@@ -23,6 +23,14 @@
         [self.productArray addObject:dto];
     }
     self.totalCount = [self.productArray count];
+    NSInteger type = [[NSString stringWithFormat:@"%@",[dict objectForKey:@"status"]] integerValue];
+    if (type==10) {
+        self.sendType = @"未发货";
+    }
+    else if(type==20)
+    {
+        self.sendType = @"已发货";
+    }
 
 }
 @end

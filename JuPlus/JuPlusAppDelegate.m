@@ -29,38 +29,38 @@
     
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-#pragma mark --insertPush
-    // iOS8 下需要使用新的 API
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        UIUserNotificationType myTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-        
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:myTypes categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    }else {
-        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
-    }
-    
-#warning 上线 AppStore 时需要修改 pushMode 需要修改 isDebug:是否是测试环境 Apikey为自己的Apikey
-  /*  aunchOptions：App 启动时系统提供的参数。
-    apiKey：通过apikey注册百度推送。
-    mode：当前推送的环境。
-    isdebug：是否是debug模式。
-    leftAction：快捷回复通知的第一个按钮名字
-    rightAction：第二个按钮名字
-    ategory 自定义参数 一组动作的唯一标示 需要与服务端ans的category匹配才能展现通知样式
-   */
-    // 在 App 启动时注册百度云推送服务，需要提供 Apikey
-    [BPush registerChannel:launchOptions apiKey:@"lGOY7gUXuRwvK2D7ibNrf8dY" pushMode:BPushModeDevelopment withFirstAction:@"取消" withSecondAction:@"确认" withCategory:nil isDebug:YES];
-    // App 是用户点击推送消息启动
-    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    if (userInfo) {
-        NSLog(@"从消息启动:%@",userInfo);
-        [BPush handleNotification:userInfo];
-    }
-    
-    //角标清0
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+//#pragma mark --insertPush
+//    // iOS8 下需要使用新的 API
+////    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+//        UIUserNotificationType myTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+//        
+//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:myTypes categories:nil];
+//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+////    }else {
+////        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
+////        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+////    }
+//    
+//#warning 上线 AppStore 时需要修改 pushMode 需要修改 isDebug:是否是测试环境 Apikey为自己的Apikey
+//  /*  aunchOptions：App 启动时系统提供的参数。
+//    apiKey：通过apikey注册百度推送。
+//    mode：当前推送的环境。
+//    isdebug：是否是debug模式。
+//    leftAction：快捷回复通知的第一个按钮名字
+//    rightAction：第二个按钮名字
+//    ategory 自定义参数 一组动作的唯一标示 需要与服务端ans的category匹配才能展现通知样式
+//   */
+//    // 在 App 启动时注册百度云推送服务，需要提供 Apikey
+//    [BPush registerChannel:launchOptions apiKey:@"lGOY7gUXuRwvK2D7ibNrf8dY" pushMode:BPushModeDevelopment withFirstAction:@"取消" withSecondAction:@"确认" withCategory:nil isDebug:YES];
+//    // App 是用户点击推送消息启动
+//    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+//    if (userInfo) {
+//        NSLog(@"从消息启动:%@",userInfo);
+//        [BPush handleNotification:userInfo];
+//    }
+//    
+//    //角标清0
+//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     /*
      // 测试本地通知
      [self performSelector:@selector(testLocalNotifi) withObject:nil afterDelay:1.0];
@@ -111,67 +111,67 @@
     self.window.rootViewController = nav;
 }
 
-#pragma mark --BPushDelegate
-- (void)testLocalNotifi
-{
-    NSLog(@"测试本地通知啦！！！");
-    NSDate *fireDate = [[NSDate new] dateByAddingTimeInterval:5];
-    [BPush localNotification:fireDate alertBody:@"这是本地通知" badge:3 withFirstAction:@"打开" withSecondAction:@"关闭" userInfo:nil soundName:nil region:nil regionTriggersOnce:YES category:nil];
-}
-
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-{
-    // 打印到日志 textView 中
-    NSLog(@"%@",[NSString stringWithFormat:@"backgroud : %@",userInfo]);
-    
-    completionHandler(UIBackgroundFetchResultNewData);
-    
-}
-
-// 在 iOS8 系统中，还需要添加这个方法。通过新的 API 注册推送服务
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
-{
-    
-    [application registerForRemoteNotifications];
-    
-    
-}
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    NSLog(@"test:%@",deviceToken);
-    [BPush registerDeviceToken:deviceToken];
-    [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
-         NSLog(@"%@",[NSString stringWithFormat:@"Method: %@\n%@",BPushRequestMethodBind,result]);
-    }];
-    
-    // 打印到日志 textView 中
-    NSLog(@"%@",[NSString stringWithFormat:@"Register use deviceToken : %@",deviceToken]);
-    
-    
-}
-
-// 当 DeviceToken 获取失败时，系统会回调此方法
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-{
-    NSLog(@"DeviceToken 获取失败，原因：%@",error);
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    // App 收到推送的通知
-    [BPush handleNotification:userInfo];
-    NSLog(@"%@",[NSString stringWithFormat:@"Received Remote Notification :\n%@",userInfo]);
-    
-    NSLog(@"%@",userInfo);
-}
-
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
-    NSLog(@"接收本地通知啦！！！");
-    [BPush showLocalNotificationAtFront:notification identifierKey:nil];
-}
-
+//#pragma mark --BPushDelegate
+//- (void)testLocalNotifi
+//{
+//    NSLog(@"测试本地通知啦！！！");
+//    NSDate *fireDate = [[NSDate new] dateByAddingTimeInterval:5];
+//    [BPush localNotification:fireDate alertBody:@"这是本地通知" badge:3 withFirstAction:@"打开" withSecondAction:@"关闭" userInfo:nil soundName:nil region:nil regionTriggersOnce:YES category:nil];
+//}
+//
+//
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+//{
+//    // 打印到日志 textView 中
+//    NSLog(@"%@",[NSString stringWithFormat:@"backgroud : %@",userInfo]);
+//    
+//    completionHandler(UIBackgroundFetchResultNewData);
+//    
+//}
+//
+//// 在 iOS8 系统中，还需要添加这个方法。通过新的 API 注册推送服务
+//- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+//{
+//    
+//    [application registerForRemoteNotifications];
+//    
+//    
+//}
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//{
+//    NSLog(@"test:%@",deviceToken);
+//    [BPush registerDeviceToken:deviceToken];
+//    [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
+//         NSLog(@"%@",[NSString stringWithFormat:@"Method: %@\n%@",BPushRequestMethodBind,result]);
+//    }];
+//    
+//    // 打印到日志 textView 中
+//    NSLog(@"%@",[NSString stringWithFormat:@"Register use deviceToken : %@",deviceToken]);
+//    
+//    
+//}
+//
+//// 当 DeviceToken 获取失败时，系统会回调此方法
+//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+//{
+//    NSLog(@"DeviceToken 获取失败，原因：%@",error);
+//}
+//
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//    // App 收到推送的通知
+//    [BPush handleNotification:userInfo];
+//    NSLog(@"%@",[NSString stringWithFormat:@"Received Remote Notification :\n%@",userInfo]);
+//    
+//    NSLog(@"%@",userInfo);
+//}
+//
+//- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+//{
+//    NSLog(@"接收本地通知啦！！！");
+//    [BPush showLocalNotificationAtFront:notification identifierKey:nil];
+//}
+//
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

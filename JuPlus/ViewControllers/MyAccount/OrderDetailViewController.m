@@ -13,7 +13,7 @@
 #import "productView.h"
 #import "productOrderDTO.h"
 #import "AddressDTO.h"
-#define space 20.0f
+#define space 10.0f
 @interface OrderDetailViewController ()
 {
     PlaceOrderReq *getReq;
@@ -36,6 +36,7 @@
 //总价
 @property(nonatomic,strong)JuPlusUILabel *placeOrderV;
 
+@property(nonatomic,strong)JuPlusUILabel *statusL;
 
 @end
 
@@ -53,7 +54,6 @@
     [self.listScrollV addSubview:self.sectionTitleV];
     
     [self.listScrollV addSubview:self.packageV];
-    
     
     [self.listScrollV addSubview:self.receivedAddressV];
     
@@ -82,7 +82,10 @@
     {
         productOrderDTO *dto = [getRespon.productArr objectAtIndex:i];
         productView *pro = [[productView alloc]initWithFrame:CGRectMake(0.0f, 100.0f*i, _packageV.width, 100.0f)];
-        pro.countV.userInteractionEnabled = NO;
+        pro.titleL.frame = CGRectMake(pro.titleL.left, pro.titleL.top, 180.0f, pro.titleL.height);
+        [pro.countV setHidden:YES];
+        [pro.typeLabel setHidden:NO];
+        [pro.typeLabel setText:[NSString stringWithFormat:@"X%@",dto.countNum]];
         [pro loadData:dto];
         [_packageV addSubview:pro];
         [productArr addObject:pro];
@@ -91,6 +94,9 @@
     dto.addName = getRespon.receictName;
     dto.addAddress = getRespon.receictAddress;
     dto.addMobile = getRespon.receictMobile;
+    //发货状态
+    [self.statusL setText:getRespon.status];
+    
     [self.receivedAddressV setAddressInfo:dto];
     
     [self resetFrames];
@@ -102,11 +108,11 @@
     frame.size.height = 100.0f*[getRespon.productArr count];
     self.packageV.frame = frame;
     
-    UIView *middle1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.packageV.bottom, SCREEN_WIDTH, 20.0f)];
+    UIView *middle1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.packageV.bottom, SCREEN_WIDTH, 10.0f)];
     [middle1 setBackgroundColor:RGBCOLOR(239, 239, 239)];
     [self.listScrollV addSubview:middle1];
 
-    self.receivedAddressV.frame = CGRectMake(0.0f, self.packageV.bottom+20.0f, SCREEN_WIDTH, 100.0f);
+    self.receivedAddressV.frame = CGRectMake(0.0f, self.packageV.bottom+10.0f, SCREEN_WIDTH, 60.0f);
     
     UIView *middle2 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.receivedAddressV.bottom, SCREEN_WIDTH, self.listScrollV.height - self.receivedAddressV.bottom)];
     [middle2 setBackgroundColor:RGBCOLOR(239, 239, 239)];
@@ -121,12 +127,17 @@
 {
     if(!_sectionTitleV)
     {
-        _sectionTitleV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(space, space, self.view.width - space*2, 30.0f)];
-        JuPlusUILabel *left = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 30.0f)];
+        _sectionTitleV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(space, 0.0f, self.view.width - space*2, 30.0f)];
+        JuPlusUILabel *left = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 70.0f, 30.0f)];
         [left setFont:FontType(14.0f)];
         [left setTextColor:Color_Gray];
-        [left setText:@"详情"];
+        [left setText:@"单品详情"];
         [_sectionTitleV addSubview:left];
+        
+        self.statusL = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(left.right, 0.0f, 70.0f, 30.0f)];
+        [self.statusL setFont:FontType(14.0f)];
+        [self.statusL setTextColor:Color_Basic];
+        [_sectionTitleV addSubview:self.statusL];
         JuPlusUILabel *right = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(_sectionTitleV.width - 100.0f, 0.0f, 100.0f, 30.0f)];
         [right setFont:FontType(14.0f)];
         [right setTextColor:Color_Gray];
@@ -153,7 +164,7 @@
 {
     if(!_packageV)
     {
-        _packageV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(space, space+self.sectionTitleV.bottom, SCREEN_WIDTH - space*2, 100.0f)];
+        _packageV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(space,self.sectionTitleV.bottom, SCREEN_WIDTH - space*2, 100.0f)];
         
     }
     return _packageV;
@@ -163,7 +174,7 @@
 {
     if(!_receivedAddressV)
     {
-        _receivedAddressV =[[ReceiveMessageView alloc]initWithFrame:CGRectMake(0.0f, self.packageV.bottom+20.0f, SCREEN_WIDTH, 100.0f)];
+        _receivedAddressV =[[ReceiveMessageView alloc]initWithFrame:CGRectMake(0.0f, self.packageV.bottom+space, SCREEN_WIDTH, 60.0f)];
         
     }
     return _receivedAddressV;
@@ -174,8 +185,9 @@
     if(!_placeOrderV)
     {
         _placeOrderV = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(0.0f, SCREEN_HEIGHT - 44.0f, SCREEN_WIDTH, 44.0f)];
-        [_placeOrderV setFont:FontType(18.0f)];
+        [_placeOrderV setFont:[UIFont boldSystemFontOfSize:17.0f]];
         _placeOrderV.backgroundColor = Color_White;
+        _placeOrderV.textColor = Color_Basic;
         _placeOrderV.textAlignment = NSTextAlignmentCenter;
     }
     return _placeOrderV;
