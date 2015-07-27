@@ -65,6 +65,8 @@
     {
         ClassifyTagsDTO *tagDTO = [self.dataArray objectAtIndex:i];
         HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX +self.width*(i/9)+(space+btnW)*(i%3),50.0f +spaceY + (spaceY+btnH)*((i/3)%3), btnW, btnH)];
+        btn.layer.masksToBounds = YES;
+        btn.layer.cornerRadius = btnW/2;
         [btn.iconBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,tagDTO.imgUrl]] forState:UIControlStateNormal];
         [btn.iconBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,tagDTO.selImgUrl]] forState:UIControlStateSelected];
         btn.iconBtn.tag = [tagDTO.tagId integerValue];

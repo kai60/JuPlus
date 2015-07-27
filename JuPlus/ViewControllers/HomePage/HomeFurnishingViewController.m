@@ -39,6 +39,8 @@
     [self.viewArray addObject:self.centerV];
 
     [backV addSubview:self.tabBarV];
+    
+    [self.tabBarV.logoBtn addTarget:self action:@selector(logoBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
     //原定筛选按钮
     [self.collectionV.rightBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -64,6 +66,7 @@
     [btn addSubview:black];
     [backV addSubview:btn];
 }
+//九宫格相关
 -(void)show
 {
     [self.classifyV showClassify];
@@ -85,6 +88,8 @@
     if(!_classifyV)
     {
         _classifyV = [[ClassifyView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT) andView:backV];
+        _classifyV.backgroundColor = [UIColor clearColor];
+
     }
     return _classifyV;
 }
@@ -93,7 +98,7 @@
 {
     if(!_collectionV)
     {
-        _collectionV = [[CollectionView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT - TABBAR_HEIGHT)];
+        _collectionV = [[CollectionView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT)];
         
     }
     return _collectionV;
@@ -103,7 +108,7 @@
 {
     if(!_centerV)
     {
-        _centerV = [[PersonCenterView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT - TABBAR_HEIGHT)];
+        _centerV = [[PersonCenterView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT)];
         
     }
     return _centerV;
@@ -112,14 +117,18 @@
 {
     if(!_tabBarV)
     {
-        _tabBarV = [[JuPlusTabBarView alloc]initWithFrame:CGRectMake(0.0f, SCREEN_HEIGHT - 44.0f, SCREEN_WIDTH, 44.0f)
+        _tabBarV = [[JuPlusTabBarView alloc]initWithFrame:CGRectMake(0.0f, SCREEN_HEIGHT - 49.0f, SCREEN_WIDTH, 49.0f)
                     ];
         _tabBarV.delegate = self;
-        _tabBarV.backgroundColor = [UIColor whiteColor];
+        _tabBarV.backgroundColor = [UIColor clearColor];
     }
     return _tabBarV;
 }
 #pragma mark --ClickMethod
+-(void)logoBtnClick
+{
+    NSLog(@"九宫格");
+}
 //筛选按钮点击（跳转到九宫格）
 -(void)selectClick:(UIButton *)sender
 {
@@ -133,6 +142,7 @@
     {
     [UIView animateWithDuration:ANIMATION animations:^{
         [backV bringSubviewToFront:view];
+        [backV bringSubviewToFront:self.tabBarV];
         [view startHomePageRequest];
         view.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH,view.height);
     } completion:^(BOOL finished) {
@@ -191,14 +201,14 @@
     [self showCurrentView:self.collectionV];
     }
     [UIView animateWithDuration:ANIMATION animations:^{
-        self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT - TABBAR_HEIGHT, SCREEN_WIDTH, TABBAR_HEIGHT);
+        self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT - 49.0f, SCREEN_WIDTH, 49.0f);
     }];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     
     [UIView animateWithDuration:ANIMATION animations:^{
-        self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT, SCREEN_WIDTH, TABBAR_HEIGHT);
+        self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT, SCREEN_WIDTH, 49.0f);
     }];
     [super viewWillDisappear:animated];
 }

@@ -144,14 +144,14 @@
     if(!_uploadBtn)
     {
         _uploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _uploadBtn.frame = CGRectMake((SCREEN_WIDTH - 122.0f)/2, self.topView.bottom+50.0f, 122.0f, 25.0f) ;
+        _uploadBtn.frame = CGRectMake((SCREEN_WIDTH - 100.0f)/2, self.topView.bottom+50.0f, 100.0f, 100.0f) ;
         [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"becomeDesigner"] forState:UIControlStateNormal];
         [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"becomeDesigner"] forState:UIControlStateHighlighted];
-        [_uploadBtn addTarget:self action:@selector(uploadClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_uploadBtn addTarget:self action:@selector(uploadClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _uploadBtn;
 }
--(void)uploadClick:(UIButton *)sender
+-(void)uploadClick
 {
     UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"完成基础操作后成为居+搭配设计师" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
     alt.tag = 101;
@@ -182,7 +182,7 @@
     switch (sender.tag) {
         case 0:
         {
-        
+            [self uploadClick];
         }
             break;
         case 1:

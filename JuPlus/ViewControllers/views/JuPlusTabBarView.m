@@ -19,11 +19,13 @@
     self = [super initWithFrame:frame];
     if(self)
     {
-        normalW = 44.0f;
-        selectedW = 74.0f;
+        normalW = 24.0f;
+        selectedW = 24.0f;
+
+      //  selectedW = 74.0f;
         buttonArr = [[NSMutableArray alloc]init];
         [self loadUI];
-        [self addSubview:self.personBtn];
+        //[self addSubview:self.personBtn];
     }
     return self;
 }
@@ -41,35 +43,55 @@
 }
 -(void)loadUI
 {
-    NSArray *nameArr = [NSArray arrayWithObjects:@"    ", nil];
-    NSArray *imgArrNormal = [NSArray arrayWithObjects:@"collect_unsel", nil];
-    NSArray *imgArrSel = [NSArray arrayWithObjects:@"collect_sel", nil];
-    for (int i=0; i<[nameArr count]; i++) {
+      
+    //NSArray *nameArr = [NSArray arrayWithObjects:@"    ", nil];
+    NSArray *bgImageArr = [NSArray arrayWithObjects:@"bar_bg_left",@"bar_bg_right", nil];
+    NSArray *imgArrNormal = [NSArray arrayWithObjects:@"icons_1_unsel",@"icons_2_unsel", nil];
+
+    NSArray *imgArrSel = [NSArray arrayWithObjects:@"icons_1_sel",@"icons_2_sel", nil];
+    for (int i=0; i<[imgArrNormal count]; i++) {
+        
+        UIImageView *bottom = [[UIImageView alloc]initWithFrame:CGRectMake((self.width - 85.0f)*i, 0.0f, 85.0f, 49.0f)];
+        bottom.userInteractionEnabled = YES;
+        [bottom setImage:[UIImage imageNamed:[bgImageArr objectAtIndex:i]]];
+        [self addSubview:bottom];
+        
+        
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(50*i, 0.0f, normalW, normalW);
+        btn.frame = CGRectMake((bottom.width - normalW)/2 - 5.0f +10.0f*i, (bottom.height - normalW)/2+5.0f, normalW, normalW);
         [btn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTitleColor:Color_Black forState:UIControlStateNormal];
-        [btn setTitleColor:Color_Basic forState:UIControlStateSelected];
-        [btn setTitle:@"" forState:UIControlStateNormal];
-        [btn.titleLabel setFont:FontType(14.0f)];
-        [btn setTitle:[nameArr objectAtIndex:i] forState:UIControlStateSelected];
+//        [btn setTitleColor:Color_Black forState:UIControlStateNormal];
+//        [btn setTitleColor:Color_Basic forState:UIControlStateSelected];
+//        [btn setTitle:@"" forState:UIControlStateNormal];
+//        [btn.titleLabel setFont:FontType(14.0f)];
+//          [btn setTitle:[nameArr objectAtIndex:i] forState:UIControlStateSelected];
         [btn setImage:[UIImage imageNamed:[imgArrNormal objectAtIndex:i]] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:[imgArrSel objectAtIndex:i]] forState:UIControlStateSelected];
         btn.tag = i;
         [buttonArr addObject:btn];
-        [self addSubview:btn];
+        [bottom addSubview:btn];
+        if(i==1)
+            self.personBtn = btn;
+        else
+            self.classifyBtn = btn;
         
     }
+    
+    self.logoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.logoBtn.frame = CGRectMake((self.width - 36.0f)/2, (self.height - 36.0f)/2, 36.0f, 36.0f);
+    [self.logoBtn setImage:[UIImage imageNamed:@"icons_logo"] forState:UIControlStateNormal];
+   // [logoBtn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.logoBtn];
     [self setFirstRespon];
 }
 -(void)setFirstRespon
 {
     UIButton *btn = ((UIButton *)[buttonArr firstObject]);
     [btn setSelected:YES];
-     btn.frame = CGRectMake(btn.left, btn.top, selectedW, btn.height);
 }
 -(void)buttonPressed:(UIButton *)sender
 {
+    
     if(!sender.selected)
     {
         self.selectedBtn.selected = NO;
@@ -84,22 +106,22 @@
                 {
                     [self.delegate changeTo:sender.tag];
                 }
-                [UIView animateWithDuration:1.0f animations:^{
-                    btn.frame = CGRectMake(sender.left, sender.top, selectedW, sender.height);
-                }];
+//                [UIView animateWithDuration:1.0f animations:^{
+//                    btn.frame = CGRectMake(sender.left, sender.top, selectedW, sender.height);
+//                }];
             }
             else
             {
                 btn.selected = NO;
-                if(i==0)
-                {
-                    btn.frame = CGRectMake(0.0f, 0.0f, normalW, normalW);
-                }
-                else
-                {
-                    CGFloat orignX = ((UIButton *)[buttonArr objectAtIndex:i-1]).right;
-                    btn.frame = CGRectMake(orignX, btn.top, normalW, normalW);
-                }
+//                if(i==0)
+//                {
+//                    btn.frame = CGRectMake(0.0f, 0.0f, normalW, normalW);
+//                }
+//                else
+//                {
+//                    CGFloat orignX = ((UIButton *)[buttonArr objectAtIndex:i-1]).right;
+//                    btn.frame = CGRectMake(orignX, btn.top, normalW, normalW);
+//                }
             }
         }
     }
@@ -112,15 +134,15 @@
 {
     for (UIButton *btn  in buttonArr) {
         btn.selected = NO;
-        if(btn.tag==0)
-        {
-            btn.frame = CGRectMake(0.0f, 0.0f, normalW, normalW);
-        }
-        else
-        {
-            CGFloat orignX = ((UIButton *)[buttonArr objectAtIndex:btn.tag-1]).right;
-            btn.frame = CGRectMake(orignX, btn.top, normalW, normalW);
-        }
+//        if(btn.tag==0)
+//        {
+//            btn.frame = CGRectMake(0.0f, 0.0f, normalW, normalW);
+//        }
+//        else
+//        {
+//            CGFloat orignX = ((UIButton *)[buttonArr objectAtIndex:btn.tag-1]).right;
+//            btn.frame = CGRectMake(orignX, btn.top, normalW, normalW);
+//        }
 
     }
 }

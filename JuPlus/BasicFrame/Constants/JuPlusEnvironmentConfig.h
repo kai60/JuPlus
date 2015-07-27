@@ -10,7 +10,7 @@
 #define FurnHouse_JuPlusEnvironmentConfig_h
 
 // 可读的版本号，类似1.0.0
-#define VERSION_STRING @"1.0.0"
+#define VERSION_STRING @"1.0"
 // 内部版本号，用于和后台匹配接口信息
 #define VERSION_INT 1
 //APP更新地址
@@ -70,7 +70,7 @@
 //正式上线环境
 #elif kReleaseH
 //网络请求IP地址
-#define FRONT_SERVER_URL @""
+#define FRONT_SERVER_URL @"http://121.40.228.199:8859/"
 //H5界面前缀地址
 #define FRONT_WEB_URL @""
 //图片的前置地址

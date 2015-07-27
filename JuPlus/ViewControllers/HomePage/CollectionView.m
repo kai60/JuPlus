@@ -42,7 +42,7 @@
         footer.delegate = self;
         footer.scrollView = self.listTab;
         
-        self.titleLabel.text = @"搭配";
+        self.titleLabel.text = @"居+";
         [self.rightBtn setTitle:@"筛选" forState:UIControlStateNormal];
         [self.navView setHidden:NO];
         [self startHomePageRequest];
@@ -54,7 +54,7 @@
 {
     if(!_listTab)
     {
-        _listTab = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height - TABBAR_HEIGHT) style:UITableViewStylePlain];
+        _listTab = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height) style:UITableViewStylePlain];
         _listTab.dataSource = self;
         _listTab.delegate = self;
         _listTab.separatorStyle = UITableViewCellSeparatorStyleNone;

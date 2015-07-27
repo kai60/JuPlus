@@ -60,7 +60,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLabel.text = @"我的订单";
+    self.titleLabel.text = @"确认订单";
     productArr = [[NSMutableArray alloc]init];
     productList = [[NSMutableArray alloc]init];
     self.view.backgroundColor = RGBCOLOR(239, 239, 239);
@@ -155,7 +155,7 @@
     frame.size.height = 100.0f*[self.regArray count];
     self.packageV.frame = frame;
     
-    self.receivedAddressV.frame = CGRectMake(0.0f, self.packageV.bottom+20.0f, SCREEN_WIDTH, 100.0f);
+    self.receivedAddressV.frame = CGRectMake(0.0f, self.packageV.bottom+20.0f, SCREEN_WIDTH, 60.0f);
     
     UIView *middle1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.packageV.bottom, SCREEN_WIDTH, 20.0f)];
     [middle1 setBackgroundColor:RGBCOLOR(239, 239, 239)];
@@ -185,7 +185,7 @@
 {
     if(!_sectionTitleV)
     {
-        _sectionTitleV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(space, space, self.view.width - space*2, 30.0f)];
+        _sectionTitleV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(space, 0.0f, self.view.width - space*2, 30.0f)];
         JuPlusUILabel *left = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 30.0f)];
         [left setFont:FontType(14.0f)];
         [left setTextColor:Color_Gray];
@@ -217,7 +217,7 @@
 {
     if(!_packageV)
     {
-        _packageV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(space, space+self.sectionTitleV.bottom, SCREEN_WIDTH - space*2, 100.0f)];
+        _packageV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(space, self.sectionTitleV.bottom, SCREEN_WIDTH - space*2, 100.0f)];
         
            }
     return _packageV;
@@ -227,7 +227,7 @@
 {
     if(!_receivedAddressV)
     {
-        _receivedAddressV =[[ReceiveMessageView alloc]initWithFrame:CGRectMake(0.0f, self.packageV.bottom+20.0f, SCREEN_WIDTH, 100.0f)];
+        _receivedAddressV =[[ReceiveMessageView alloc]initWithFrame:CGRectMake(0.0f, self.packageV.bottom+space/2, SCREEN_WIDTH, 60.0f)];
         UIButton *btn =[UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, _receivedAddressV.width, _receivedAddressV.height);
         [btn addTarget:self action:@selector(addressClick:) forControlEvents:UIControlEventTouchUpInside];

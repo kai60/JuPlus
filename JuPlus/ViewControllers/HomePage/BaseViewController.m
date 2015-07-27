@@ -76,7 +76,7 @@
         _navView = [[UIView alloc]initWithFrame:CGRectMake(0.0f,20.0f - statusY, SCREEN_WIDTH, 44.0f+statusY)];
         [_navView setBackgroundColor:RGBACOLOR(255, 255, 255, 0.8)];
         UIView *bottom = [[UIView alloc]initWithFrame:CGRectMake(0.0f, _navView.height - 1.0f, _navView.width, 1.0f)];
-        [bottom setBackgroundColor:RGBCOLOR(229, 229, 229)];
+        [bottom setBackgroundColor:RGBCOLOR(247, 247, 247)];
         [_navView addSubview:bottom];
     }
     return _navView;

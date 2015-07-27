@@ -95,7 +95,6 @@
 {
     [self.titleLabel setText:@"个人信息"];
     [self.view addSubview:self.backScroll];
-    [self.backScroll addSubview:self.iconImage];
     NSArray *arr = [NSArray arrayWithObjects:@"我的头像",@"昵称修改",@"密码修改", nil];
     CGFloat labelH = 50.0f;
     for (int i=0; i<3; i++) {
@@ -111,7 +110,8 @@
         }
         [self.backScroll addSubview:info];
     }
-    
+    [self.backScroll addSubview:self.iconImage];
+
     CGFloat contentH = view_height;
     if(view_height<labelH*([arr count]+4))
     contentH = labelH*([arr count]+4);
@@ -119,6 +119,7 @@
     [self.backScroll addSubview:self.logoutBtn];
     [self.view addSubview:self.backView];
     [self.backView addSubview:self.nicknameV];
+    
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -225,6 +226,7 @@
     {
     _iconImage = [UIButton buttonWithType:UIButtonTypeCustom];
     _iconImage.frame = CGRectMake(250.0f, 5.0f, 40.0f, 40.0f);
+        _iconImage.backgroundColor = [UIColor greenColor];
     _iconImage.layer.cornerRadius = _iconImage.width/2;
     _iconImage.layer.masksToBounds = YES;
     [_iconImage setimageUrl:[JuPlusUserInfoCenter sharedInstance].userInfo.portraitUrl placeholderImage:nil];

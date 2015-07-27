@@ -21,6 +21,11 @@
 //个人
 @property(nonatomic,strong)UIButton *personBtn;
 
+@property(nonatomic,strong)UIButton *classifyBtn;
+
+@property(nonatomic,strong)    UIButton *logoBtn;
+
+
 @property(nonatomic,strong)NSMutableArray *buttonArr;
 
 -(void)resetButtonArray;
