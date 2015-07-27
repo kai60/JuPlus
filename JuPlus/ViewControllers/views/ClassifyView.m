@@ -120,7 +120,7 @@
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         [self.dataArray addObjectsFromArray:respon.tagsArray];
         [self fileData];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:NO with:self];
 }

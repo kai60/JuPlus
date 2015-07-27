@@ -65,7 +65,7 @@
     [HttpCommunication request:forgetReq getResponse:forgetRespon Success:^(JuPlusResponse *response) {
         //密码修改过之后，返回到登陆界面，让用户自己再做登陆
         [self showMessage];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }
@@ -263,7 +263,7 @@
         [regisReq setField:@"2" forKey:@"type"];
         [HttpCommunication request:regisReq getResponse:response Success:^(JuPlusResponse *response) {
             [identifyButtom useTimerButton];
-        } failed:^(NSDictionary *er) {
+        } failed:^(ErrorInfoDto *er) {
             [self errorExp:er];
         } showProgressView:YES with:self.view];
         

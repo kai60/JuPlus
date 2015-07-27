@@ -106,7 +106,7 @@
         [self.dataArray addObjectsFromArray:respon.dataArray];
         [self.myFavTab reloadData];
         [self stopReresh];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
         [self stopReresh];
     } showProgressView:YES with:self.view];

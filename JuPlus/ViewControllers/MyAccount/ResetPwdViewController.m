@@ -81,7 +81,7 @@
             UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"修改成功" delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil];
             alt.tag =101;
             [alt show];
-        } failed:^(NSDictionary *errorDTO) {
+        } failed:^(ErrorInfoDto *errorDTO) {
             [self errorExp:errorDTO];
         } showProgressView:YES with:self.view];
 

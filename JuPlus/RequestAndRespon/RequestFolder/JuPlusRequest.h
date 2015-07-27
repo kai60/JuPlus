@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 #import "JuPlusResponse.h"
 #import "AFNetWorkClient.h"
+#import "ErrorInfoDto.h"
 #define DEFAULT_PACKNAME @"the_pack_value_is_nil"
 
 #define TDES_STRING @"TDES"
@@ -26,7 +27,7 @@ typedef void (^JuPlusCallBackBlockWithResult)(BOOL isSuccess, NSString *errorCod
 typedef void (^JuPlusArrayBlock)(NSArray *list);
 
 typedef void (^JuPlusCallBackSuccess)(JuPlusResponse *response);
-typedef void (^JuPlusCallBackFailed)(NSDictionary *errorDTO);
+typedef void (^JuPlusCallBackFailed)(ErrorInfoDto *errorDTO);
 
 
 #endif

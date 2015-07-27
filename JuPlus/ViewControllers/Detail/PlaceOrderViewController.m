@@ -107,7 +107,7 @@
         self.dataArray = addRespon.addressArray;
       //数据加载成功
         [self fileAddress];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }
@@ -320,7 +320,7 @@
         UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"你的订单已预订成功，稍后将由客服与您确认并发货。" delegate:self cancelButtonTitle:Remind_Knowit otherButtonTitles:nil , nil];
         alt.tag = 101;
         [alt show];
-        } failed:^(NSDictionary *errorDTO) {
+        } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
     }

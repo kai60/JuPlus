@@ -178,7 +178,7 @@
         [self.iconImage setImage:image forState:UIControlStateNormal];
         [JuPlusUserInfoCenter sharedInstance].userInfo.portraitUrl = respon.portrait;
         [CommonUtil postNotification:ResetPortrait Object:nil];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }
@@ -195,7 +195,7 @@
         [self.nicknameL setText:self.nicknameV.nickTF.text];
         [CommonUtil postNotification:ResetNickName Object:nil];
         [self showAlertView:@"修改成功" withTag:0];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
     

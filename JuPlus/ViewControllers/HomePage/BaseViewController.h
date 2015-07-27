@@ -10,6 +10,7 @@
 #import "JuPlusEnvironmentConfig.h"
 #import "JuPlusCustomMethod.h"
 #import "JuPlusUIView.h"
+#import "ErrorInfoDto.h"
 @interface BaseViewController : UIViewController
 //导航栏
 @property(nonatomic,strong)UIView *navView;
@@ -18,7 +19,7 @@
 //@property(nonatomic,strong)UIView *viewBack;
 @property(nonatomic,strong)UIButton *leftBtn;
 @property(nonatomic,strong)UIButton *rightBtn;
--(void)errorExp:(NSDictionary *)exp;
+-(void)errorExp:(ErrorInfoDto *)exp;
 //提示的错误消息
 - (void)showAlertView:(NSString *)msg withTag:(int)tag;
 //一些系统的弹出处理,例如强制更新，登录失败

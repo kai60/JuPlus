@@ -102,7 +102,7 @@
         [dataArray addObjectsFromArray:collRespon.listArray];
         [self.listTab reloadData];
         [self stopReresh];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
         [self stopReresh];
     } showProgressView:YES with:self];

@@ -72,7 +72,7 @@
     [HttpCommunication request:getReq getResponse:getRespon Success:^(JuPlusResponse *response) {
       //数据加载成功
         [self fileData];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }

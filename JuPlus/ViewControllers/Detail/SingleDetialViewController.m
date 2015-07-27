@@ -92,7 +92,7 @@
         //重置布局
         [self layoutSubviews];
 
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
     
@@ -281,7 +281,7 @@
 
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         [self.topView.favBtn startAnimation];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 
@@ -297,7 +297,7 @@
     JuPlusResponse *respon =[[JuPlusResponse alloc]init];
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         [self.topView.favBtn startAnimation];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }

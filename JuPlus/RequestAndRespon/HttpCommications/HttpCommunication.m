@@ -14,6 +14,7 @@
 #import "LFCGzipUtillity.h"
 #import "SecurityUtil.h"
 #import "UnPackException.h"
+#import "ErrorInfoDto.h"
 @implementation HttpCommunication
 //数据处理
 +(NSURLSessionDataTask *)request:(JuPlusRequest *)request getResponse:(JuPlusResponse *)response
@@ -49,11 +50,10 @@
                }
                else
                {
-                   NSMutableDictionary *errDic = [[NSMutableDictionary alloc]init];
-                   [errDic setObject:[resalut objectForKey:@"resCode"] forKey:@"resCode"];
-                   [errDic setObject:[resalut objectForKey:@"resMsg"] forKey:@"resMsg"];
-                   [errDic setObject:[request getrequestMethodString] forKey:@"reqMethod"];
-                   
+                   ErrorInfoDto *errDic = [[ErrorInfoDto alloc]init];
+                   [errDic loadDTO:resalut];
+                   errDic.reqMethod = [request getrequestMethodString];
+
                    dispatch_async(dispatch_get_main_queue(), ^{
                        failedBlock(errDic);
                    });
@@ -93,11 +93,10 @@
                }
                else
                {
-                   NSMutableDictionary *errDic = [[NSMutableDictionary alloc]init];
-                   [errDic setObject:[resalut objectForKey:@"resCode"] forKey:@"resCode"];
-                   [errDic setObject:[[resalut objectForKey:@"resMsg"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"resMsg"];
-                   [errDic setObject:[request getrequestMethodString] forKey:@"reqMethod"];
-                   
+                   ErrorInfoDto *errDic = [[ErrorInfoDto alloc]init];
+                   [errDic loadDTO:resalut];
+                   errDic.reqMethod = [request getrequestMethodString];
+
                    dispatch_async(dispatch_get_main_queue(), ^{
                        failedBlock(errDic);
                    });
@@ -136,11 +135,11 @@
                    });
                }
                else
-               { NSMutableDictionary *errDic = [[NSMutableDictionary alloc]init];
-                   [errDic setObject:[resalut objectForKey:@"resCode"] forKey:@"resCode"];
-                   [errDic setObject:[resalut objectForKey:@"resMsg"] forKey:@"resMsg"];
-                   [errDic setObject:[request getrequestMethodString] forKey:@"reqMethod"];
-                   
+               {
+                   ErrorInfoDto *errDic = [[ErrorInfoDto alloc]init];
+                   [errDic loadDTO:resalut];
+                   errDic.reqMethod = [request getrequestMethodString];
+
                    dispatch_async(dispatch_get_main_queue(), ^{
                        failedBlock(errDic);
                    });
@@ -180,10 +179,9 @@
                }
                else
                {
-                   NSMutableDictionary *errDic = [[NSMutableDictionary alloc]init];
-                   [errDic setObject:[resalut objectForKey:@"resCode"] forKey:@"resCode"];
-                   [errDic setObject:[resalut objectForKey:@"resMsg"] forKey:@"resMsg"];
-                   [errDic setObject:[request getrequestMethodString] forKey:@"reqMethod"];
+                   ErrorInfoDto *errDic = [[ErrorInfoDto alloc]init];
+                   [errDic loadDTO:resalut];
+                   errDic.reqMethod = [request getrequestMethodString];
                    
                    dispatch_async(dispatch_get_main_queue(), ^{
                        failedBlock(errDic);

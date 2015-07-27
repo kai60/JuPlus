@@ -66,7 +66,7 @@
     [HttpCommunication request:registerReq getResponse:registerRespon Success:^(JuPlusResponse *response) {
         //注册成功之后，返回登陆的用户名和密码，自己再做一遍登陆
         [self login];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }
@@ -82,7 +82,7 @@
     
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         [self fileLoginInfo];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 
@@ -295,7 +295,7 @@
         [regisReq setField:@"1" forKey:@"type"];
         [HttpCommunication request:regisReq getResponse:response Success:^(JuPlusResponse *response) {
             [identifyButtom useTimerButton];
-        } failed:^(NSDictionary *er) {
+        } failed:^(ErrorInfoDto *er) {
             [self errorExp:er];
         } showProgressView:YES with:self.view];
  

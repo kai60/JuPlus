@@ -21,7 +21,7 @@
 @property(nonatomic,strong)UIButton *leftBtn;
 @property(nonatomic,strong)UIButton *rightBtn;
 
--(void)errorExp:(NSDictionary *)exp;
+-(void)errorExp:(ErrorInfoDto *)exp;
 //提示的错误消息
 - (void)showAlertView:(NSString *)msg withTag:(int)tag;
 //一些系统的弹出处理,例如强制更新，登录失败

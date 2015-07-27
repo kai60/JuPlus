@@ -162,7 +162,7 @@
     
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         [self fileLoginInfo];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }

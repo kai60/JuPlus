@@ -128,7 +128,7 @@
         
         [CommonUtil postNotification:ReloadAddress Object:nil];
         [self.navigationController popViewControllerAnimated:YES];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 

@@ -56,7 +56,7 @@
             self.addressListTab.frame = CGRectMake(0.0f, self.addView.bottom, SCREEN_WIDTH, SCREEN_HEIGHT - self.addView.bottom);
         }
     [self.addressListTab reloadData];
-} failed:^(NSDictionary *errorDTO) {
+} failed:^(ErrorInfoDto *errorDTO) {
     [self errorExp:errorDTO];
 } showProgressView:YES with:self.view];
 }
@@ -176,7 +176,7 @@
 //            [AuTableView addSubview:statusImage];
          
 
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }
@@ -195,7 +195,7 @@
     JuPlusResponse *respon = [[JuPlusResponse alloc]init];
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         [CommonUtil postNotification:ReloadAddress Object:nil];       [self startRequest];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:NO with:self.view];
 }

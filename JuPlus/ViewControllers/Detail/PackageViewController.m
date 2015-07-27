@@ -295,7 +295,7 @@
     respon = [[PackageRespon alloc]init];
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         [self fileData];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }
@@ -524,7 +524,7 @@
     
     [HttpCommunication request:favReq getResponse:favRespon Success:^(JuPlusResponse *response) {
         [self.favBtn startAnimation];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
     
@@ -540,7 +540,7 @@
     JuPlusResponse *favRespon =[[JuPlusResponse alloc]init];
     [HttpCommunication request:favReq getResponse:favRespon Success:^(JuPlusResponse *response) {
         [self.favBtn startAnimation];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }

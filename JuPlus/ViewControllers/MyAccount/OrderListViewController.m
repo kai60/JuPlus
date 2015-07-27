@@ -82,7 +82,7 @@
         [self.dataArray addObjectsFromArray:listRespon.orderListArray];
         [self.orderListTab reloadData];
         [self stopReresh];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
         [self stopReresh];
     } showProgressView:YES with:self.view];

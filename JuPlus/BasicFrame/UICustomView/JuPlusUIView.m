@@ -10,6 +10,9 @@
 #define statusY 20.0f
 #import "LoginViewController.h"
 @implementation JuPlusUIView
+{
+    NSString *appUrl;
+}
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -85,12 +88,12 @@
     [alert show];
 }
 //返回数据后台提示的错误信息处理
--(void)errorExp:(NSDictionary *)exp
+-(void)errorExp:(ErrorInfoDto *)exp
 {
-    NSString *resCode = [exp objectForKey:@"resCode"];
-    NSString *resMsg = [exp objectForKey:@"resMsg"];
-    NSLog(@"reason = %@",resMsg);
-    [self showAlertView:resMsg withTag:[resCode integerValue]];
+    NSLog(@"reason = %@",exp.resMsg);
+    if([exp.resCode integerValue]==ERROR_VERSON_OUT)
+        appUrl = exp.downloadUrl;
+    [self showAlertView:exp.resMsg withTag:[exp.resCode integerValue]];
 }
 //一些系统的弹出处理,例如强制更新，登录失败
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -104,8 +107,8 @@
     //版本过低，强制更新
     else if(alertView.tag==ERROR_VERSON_OUT)
     {
-        //        NSString* path=APP_URL;
-        //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:path]];
+                NSString* path=appUrl;
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:path]];
     }
 
 }

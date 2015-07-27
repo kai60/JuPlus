@@ -85,7 +85,7 @@
     centerRespon = [[PersonCenterRespon alloc]init];
     [HttpCommunication request:centerReq getResponse:centerRespon Success:^(JuPlusResponse *response) {
         [self configData];
-    } failed:^(NSDictionary *errorDTO) {
+    } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self];
 }
