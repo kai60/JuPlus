@@ -11,4 +11,6 @@
 @interface OrderDetailViewController : BaseViewController
 //订单号
 @property(nonatomic,strong)NSString *orderNo;
+
+@property(nonatomic,assign)BOOL isFromPlaceOrder;
 @end

@@ -13,6 +13,7 @@
 {
     self.resCode = [NSString stringWithFormat:@"%@",[dict objectForKey:@"resCode"]];
     self.resMsg = [NSString stringWithFormat:@"%@",[dict objectForKey:@"resMsg"]];
+    if([self.resCode integerValue]==ERROR_VERSON_OUT)
     self.downloadUrl = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"data"] objectForKey:@"downLink"]];
 }
 @end

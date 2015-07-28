@@ -47,6 +47,9 @@
     self.titleLabel.text = @"订单详情";
     productArr = [[NSMutableArray alloc]init];
     productList = [[NSMutableArray alloc]init];
+    //自定义返回事件
+    [self.leftBtn setHidden:YES];
+    [self addLeftBtn];
     self.view.backgroundColor = RGBCOLOR(239, 239, 239);
     
     [self.view addSubview:self.listScrollV];
@@ -122,6 +125,29 @@
 }
 
 #pragma mark --UI
+-(void)addLeftBtn
+{
+    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.frame = CGRectMake(0.0f, self.navView.height -44.0f, 44.0f, 44.0f);
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(backPress) forControlEvents:UIControlEventTouchUpInside];
+    [self.navView addSubview:leftBtn];
+
+}
+-(void)backPress
+{
+    if(self.isFromPlaceOrder)
+    {
+        
+        NSArray *vcArr = [self.navigationController viewControllers];
+        UIViewController *vc = [vcArr objectAtIndex:[vcArr count]-3];
+        [self.navigationController popToViewController:vc animated:YES];
+    }
+    else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 //标题
 -(JuPlusUIView *)sectionTitleV
 {

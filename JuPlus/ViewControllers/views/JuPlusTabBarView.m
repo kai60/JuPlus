@@ -46,9 +46,9 @@
       
     //NSArray *nameArr = [NSArray arrayWithObjects:@"    ", nil];
     NSArray *bgImageArr = [NSArray arrayWithObjects:@"bar_bg_left",@"bar_bg_right", nil];
-    NSArray *imgArrNormal = [NSArray arrayWithObjects:@"icons_1_unsel",@"icons_2_unsel", nil];
+    NSArray *imgArrNormal = [NSArray arrayWithObjects:@"icons_01_unsel",@"icons_02_unsel", nil];
 
-    NSArray *imgArrSel = [NSArray arrayWithObjects:@"icons_1_sel",@"icons_2_sel", nil];
+    NSArray *imgArrSel = [NSArray arrayWithObjects:@"icons_01_sel",@"icons_02_sel", nil];
     for (int i=0; i<[imgArrNormal count]; i++) {
         
         UIImageView *bottom = [[UIImageView alloc]initWithFrame:CGRectMake((self.width - 85.0f)*i, 0.0f, 85.0f, 49.0f)];

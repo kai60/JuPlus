@@ -288,8 +288,12 @@
         [_postOrderBtn setTitle:@"确认下单" forState:UIControlStateNormal];
         [_postOrderBtn.titleLabel setFont:FontType(16.0f)];
         _postOrderBtn.alpha = ALPHLA_BUTTON;
-
         [_postOrderBtn setTitleColor:Color_White forState:UIControlStateNormal];
+        if([self.regArray count]==0)
+        {
+            [_postOrderBtn setBackgroundColor:Color_Gray];
+        }
+        else
         [_postOrderBtn addTarget:self action:@selector(postPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _postOrderBtn;
@@ -305,6 +309,10 @@
 {
     if (self.receivedAddressV.hidden) {
         [self showAlertView:@"请先添加收货地址" withTag:0];
+    }
+    else if([self.regArray count]==0)
+    {
+    
     }
     else
     {
@@ -348,6 +356,7 @@
     {
         OrderDetailViewController *detail = [[OrderDetailViewController alloc]init];
         detail.orderNo = postRespon.orderNo;
+        detail.isFromPlaceOrder = YES;
         [self.navigationController pushViewController:detail animated:YES];
 
     }

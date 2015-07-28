@@ -27,11 +27,13 @@
 @property(nonatomic,strong)JuPlusUIView *basisView;
 //主要成分数量
 @property(nonatomic,strong)UILabel *basisLabel;
+//主要成分图片列表
 @property (nonatomic,strong)UIScrollView *basisScroll;
 //购买单品
 @property (nonatomic,strong)UIButton *placeOrderBtn;
 
 @property (nonatomic,strong)UIScrollView *imageScroll;
+//需要返回的上个界面中心坐标
 @property (nonatomic,assign)CGPoint point;
 
 @end

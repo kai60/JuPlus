@@ -28,12 +28,13 @@
 {
     [self.navView setHidden:YES];
     //如果此处直接用self.view则上层的标签选择页面也会随之变化，因此在self.view上加层透明view放置原来置于self.view层的内容，以方便处理高斯模糊效果
-    backV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f,0.0f, self.view.width, self.view.height)];
+    backV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f,0.0f, SCREEN_WIDTH, self.view.height)];
     [self.view addSubview:backV];
     
-    [backV addSubview:self.collectionV];
-    
     [backV addSubview:self.centerV];
+    
+    [backV addSubview:self.collectionV];
+
     
     [self.viewArray addObject:self.collectionV];
     [self.viewArray addObject:self.centerV];
@@ -43,7 +44,7 @@
     [self.tabBarV.logoBtn addTarget:self action:@selector(logoBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
     //原定筛选按钮
-    [self.collectionV.rightBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
+   // [self.collectionV.rightBtn addTarget:self action:@selector(selectClick) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBarV.personBtn addTarget:self action:@selector(personBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.classifyV];
@@ -128,10 +129,14 @@
 -(void)logoBtnClick
 {
     NSLog(@"九宫格");
+    [self selectClick];
 }
 //筛选按钮点击（跳转到九宫格）
--(void)selectClick:(UIButton *)sender
+-(void)selectClick
 {
+    [self.tabBarV.classifyBtn setSelected:YES];
+    [self.tabBarV.personBtn setSelected:NO];
+    [self changeTo:0];
     [self.classifyV showClassify];
 }
 #pragma mark 视图切换
@@ -145,13 +150,19 @@
         [backV bringSubviewToFront:self.tabBarV];
         [view startHomePageRequest];
         view.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH,view.height);
+        if(view==self.collectionV)
+            self.centerV.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH,view.height);
+        else
+            self.collectionV.frame = CGRectMake(-SCREEN_WIDTH, 0.0f, SCREEN_WIDTH,view.height);
+
     } completion:^(BOOL finished) {
-        for (JuPlusUIView *vi in self.viewArray) {
-            if(vi!=view)
-            {
-                vi.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, vi.height);
-            }
-        }
+        
+//        for (JuPlusUIView *vi in self.viewArray) {
+//            if(vi!=view)
+//            {
+//                vi.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, vi.height);
+//            }
+//        }
     }];
     }
     else
@@ -200,6 +211,8 @@
         ((UIButton *)[self.tabBarV.buttonArr firstObject]).selected = YES;
     [self showCurrentView:self.collectionV];
     }
+    
+
     [UIView animateWithDuration:ANIMATION animations:^{
         self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT - 49.0f, SCREEN_WIDTH, 49.0f);
     }];

@@ -14,6 +14,7 @@
     self = [super initWithFrame:frame];
     if(self)
     {
+        self.backgroundColor = Color_Gray;
         [self addSubview:self.imageScroll];
         [self addSubview:self.pageControl];
         [self addSubview:self.priceLabel];

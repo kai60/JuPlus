@@ -143,7 +143,10 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
-
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [super alertView:alertView clickedButtonAtIndex:buttonIndex];

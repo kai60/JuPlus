@@ -90,7 +90,7 @@
         //加载主要成分
         [self fileBasisScroll];
         //重置布局
-        [self layoutSubviews];
+        [self reloadRect];
 
     } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
@@ -115,7 +115,7 @@
         [img addTarget:self action:@selector(imgPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.topView.imageScroll addSubview:img];
     }
-    self.topView.imageScroll.contentSize = CGSizeMake(SCREEN_WIDTH*[detailRespon.imageArray count], self.topView.imageScroll.height);
+    self.topView.imageScroll.contentSize = CGSizeMake(SCREEN_WIDTH*[detailRespon.imageArray count], PICTURE_HEIGHT);
     
     [self.topView.priceLabel setPriceTxt:detailRespon.price];
     
@@ -159,18 +159,19 @@
     else
         self.basisView.frame = CGRectMake(0.0f, self.descripLabel.bottom +space, self.basisView.width, 0.0f);
 }
--(void)layoutSubviews
+-(void)reloadRect
 {
-    self.bottomV.frame = CGRectMake(0.0f, self.bottomV.top, SCREEN_WIDTH,self.basisView.bottom);
+    self.bottomV.frame = CGRectMake(0.0f, self.bottomV.top, SCREEN_WIDTH,self.basisView.bottom+10.0f+TABBAR_HEIGHT);
 
-    self.backScroll.contentSize = CGSizeMake(SCREEN_WIDTH, self.bottomV.bottom+20.0f+TABBAR_HEIGHT);
+    self.backScroll.contentSize = CGSizeMake(SCREEN_WIDTH, self.bottomV.bottom);
+    
 }
 #pragma mark --loadUI
 -(ImageScrollView *)topView
 {
     if(!_topView)
     {
-        _topView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
+        _topView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0.0f, -20.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
     }
     return _topView;
 }
@@ -178,7 +179,7 @@
 {
     if(!_backScroll)
     {
-        _backScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f , nav_height - 20.0f, SCREEN_WIDTH, view_height + 20.0f)];
+        _backScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f , self.navView.bottom, SCREEN_WIDTH, view_height)];
     }
     return _backScroll;
 }

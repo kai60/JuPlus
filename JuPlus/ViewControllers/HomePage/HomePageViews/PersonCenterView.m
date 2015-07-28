@@ -120,7 +120,7 @@
     {
         self.portrait = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        self.portrait.frame = CGRectMake(130,10, 60, 60);
+        self.portrait.frame = CGRectMake((self.width - 60.0f)/2,10, 60, 60);
         self.portrait.layer.masksToBounds=YES;
         self.portrait.layer.cornerRadius=30;
         [self.portrait addTarget:self action:@selector(goMyInfo) forControlEvents:UIControlEventTouchUpInside];
