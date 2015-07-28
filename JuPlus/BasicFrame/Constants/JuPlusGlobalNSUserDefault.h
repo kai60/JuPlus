@@ -36,4 +36,6 @@
 #define ResetNickName @"resetNickName"
 //重置头像
 #define ResetPortrait @"resetPortrait"
+
+#define ReloadPerson @"reloadPersonCenter"
 #endif

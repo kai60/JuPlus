@@ -176,7 +176,10 @@
         }
     }
     [JuPlusUserInfoCenter sharedInstance].userInfo.token = respon.token;
-
+    [JuPlusUserInfoCenter sharedInstance].userInfo.nickname = respon.nickname;[JuPlusUserInfoCenter sharedInstance].userInfo.portraitUrl = respon.portraitPath;
+    
+    //登陆成功刷新个人中心内容
+    [CommonUtil postNotification:ReloadPerson Object:nil];
     NSArray *vcArr = [self.navigationController viewControllers];
     //此段意为pop回进入登陆界面的上一层界面
     for(int i=0;i<[vcArr count];i++)

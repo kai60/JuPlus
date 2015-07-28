@@ -89,9 +89,12 @@
 }
 -(void)fileLoginInfo
 {
-    [JuPlusUserInfoCenter sharedInstance].userInfo.mobile = registerRespon.mobileNo;
     [JuPlusUserInfoCenter sharedInstance].userInfo.token = respon.token;
-    
+    [JuPlusUserInfoCenter sharedInstance].userInfo.mobile = registerRespon.mobileNo;
+
+    [JuPlusUserInfoCenter sharedInstance].userInfo.nickname = respon.nickname;[JuPlusUserInfoCenter sharedInstance].userInfo.portraitUrl = respon.portraitPath;
+    //登陆成功刷新个人中心内容
+    [CommonUtil postNotification:ReloadPerson Object:nil];
     NSArray *vcArr = [self.navigationController viewControllers];
     for (UIViewController *vc in vcArr) {
         if([vc isKindOfClass:[HomeFurnishingViewController class]])

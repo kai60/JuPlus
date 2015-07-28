@@ -288,6 +288,7 @@
         else
         {
             [[JuPlusUserInfoCenter sharedInstance] resetUserInfo];
+           
             NSArray *vcArr = [self.navigationController viewControllers];
             for (UIViewController *vc in vcArr) {
                 if([vc isKindOfClass:[HomeFurnishingViewController class]])
