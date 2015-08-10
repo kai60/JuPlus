@@ -14,6 +14,7 @@
 #import "MyFavourViewController.h"
 #import "JuPlusUserInfoCenter.h"
 #import "MyInfoViewController.h"
+#import "CameraViewController.h"
 @implementation PersonCenterView
 {
     PersonCenterReq *centerReq;
@@ -183,7 +184,10 @@
     switch (sender.tag) {
         case 0:
         {
-            [self uploadClick];
+            //[self uploadClick];
+            CameraViewController *view = [[CameraViewController alloc]init];
+            [[self getSuperViewController].navigationController pushViewController:view animated:YES];
+            
         }
             break;
         case 1:

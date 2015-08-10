@@ -47,9 +47,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     NSLog(@"%@",imageDataArray);
-    
-    NSLog(@"输出尺寸 %f ,%f",self.view.frame.size.height,self.view.frame.size.width);
-    
+        
     //返回
     UIButton *button2=[UIButton buttonWithType:UIButtonTypeCustom];
     button2.frame=CGRectMake(0, 0, 52, 30);
@@ -69,38 +67,14 @@
     myScrollView.delegate=self;
     myScrollView.pagingEnabled=YES;
     myScrollView.backgroundColor = [UIColor blackColor];
-    myScrollView.showsVerticalScrollIndicator=NO;
-    myScrollView.showsHorizontalScrollIndicator=NO;
-    //不让左弹右弹
-    myScrollView.alwaysBounceHorizontal=NO;//
-    myScrollView.alwaysBounceVertical=NO ;//
-    
-    
     
     
     for (int i=0; i<[imageDataArray count]; i++) {
         
         NSDictionary * dic=[imageDataArray objectAtIndex:i];
-       UIImageView *imgView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, PICTURE_HEIGHT)];
-        [imgView setImage:[UIImage imageNamed:@"default_square"]];
-        [imgView setimageUrl:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]] placeholderImage:nil];
-        imgView.userInteractionEnabled=YES;
-        //给图片添加点击事件
-        UITapGestureRecognizer *ges=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeImage:)];
-        [imgView addGestureRecognizer:ges];
-        
-        
-        UIScrollView *pinchScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH, (SCREEN_HEIGHT-PICTURE_HEIGHT)/2, SCREEN_WIDTH, PICTURE_HEIGHT)];
-        [pinchScroll addSubview:imgView];
-        pinchScroll.delegate=self;
-        
-        pinchScroll.maximumZoomScale=2.5;//放大倍数
-        pinchScroll.minimumZoomScale=1;//缩小倍数
-        [myScrollView addSubview:pinchScroll];
-        
-        
-        _n = myScrollView.contentOffset.x/SCREEN_WIDTH;
-        
+       VIPhotoView *imgView=[[VIPhotoView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, myScrollView.height) andImage:[NSString stringWithFormat:@"%@",[dic objectForKey:@"imgUrl"]]];
+               
+        [myScrollView addSubview:imgView];
         
     }
     [self.view addSubview:myScrollView];
@@ -113,53 +87,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
--(UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
-    return  [scrollView.subviews objectAtIndex:0];
-}
--(void)scrollViewDidZoom:(UIScrollView *)scrollView
-{
-    if(scrollView!=myScrollView)
-    {
-        UIView *view = [scrollView.subviews objectAtIndex:0];
-        
-        NSLog(@"%.2f",self.view.center.y);
-        CGFloat hight = view.frame.size.height;
-        // 应该上移的高度
-        CGFloat hight_1 = (SCREEN_HEIGHT-PICTURE_HEIGHT)/2-(hight-PICTURE_HEIGHT)/2;
-        //[myScrollView setFrame:CGRectMake(0, hight_1, SCREEN_WIDTH, view.frame.size.height)];
-        [scrollView setFrame:CGRectMake(scrollView.frame.origin.x, hight_1, SCREEN_WIDTH, view.frame.size.height)];
-        
-        scrollView.tag = 101;
-        
-        _x = myScrollView.contentOffset.x;
-        
-        NSLog(@"开始放大");
-    }
-}
-// 取得放大倍数
--(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
-{
-    _scale = scale;
-}
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    if (scrollView == myScrollView)
-    {
-        _n = scrollView.contentOffset.x/scrollView.frame.size.width;
-        CGFloat x_1 = scrollView.contentOffset.x-_x;
-        if (x_1 == SCREEN_WIDTH ||x_1 == -SCREEN_WIDTH)
-        {
-            UIScrollView *view = (UIScrollView *)[self.view viewWithTag:101];
-            float n = 1/_scale;
-            [view setZoomScale:n];
-        }
-        
-    }
-}
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

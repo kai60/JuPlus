@@ -22,10 +22,14 @@
         [self.contentView addSubview:back];
         back.layer.masksToBounds = YES;
         [back addSubview:self.backImage];
-        back.backgroundColor = RGBACOLOR(137, 83, 41, 0.2);
+
+
+        UIView *coverV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, PICTURE_HEIGHT/2, self.backImage.width, PICTURE_HEIGHT/2)];
+        coverV.backgroundColor = RGBACOLOR(137, 83, 41, 0.9);
+        [self.backImage addSubview:coverV];
+        
         [self.backImage addSubview:self.nameLabel];
-
-
+        
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 160.0f , self.contentView.width, 2.0f)];
         line.backgroundColor = Color_White;
         [self.contentView addSubview:line];

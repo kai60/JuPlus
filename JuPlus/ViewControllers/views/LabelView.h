@@ -26,5 +26,7 @@
 @property(nonatomic,assign)BOOL isLeft;
 
 @property(nonatomic,strong)NSTimer *timer;
+//判断是否正在编辑标签
+@property(nonatomic,assign)BOOL isEdit;
 -(void)showText:(NSString *)text;
 @end

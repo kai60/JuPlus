@@ -153,7 +153,7 @@
     [backV addSubview:imageView];
 
     CGRect rect = imageView.frame;
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         imageView.frame = CGRectMake(0.0f, nav_height, SCREEN_WIDTH, PICTURE_HEIGHT);
     } completion:^(BOOL finished) {
         PackageViewController *pack = [[PackageViewController alloc]init];

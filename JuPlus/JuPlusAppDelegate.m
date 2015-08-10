@@ -16,6 +16,10 @@
 #import "JuPlusNavigationController.h"
 #import "HomeFurnishingViewController.h"
 #import "BPush.h"
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialQQHandler.h"
 @interface JuPlusAppDelegate ()
 @property(nonatomic,strong)HomeFurnishingViewController *home;
 @end
@@ -26,8 +30,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     sleep(1);//设置启动页面时间
-    
-
+#pragma mark --UM sign
+    [self signUM];
+//    for(NSString *familyName in [UIFont familyNames]){
+//        NSLog(@"Font FamilyName = %@",familyName); //*输出字体族科名字
+//        
+//        for(NSString *fontName in [UIFont fontNamesForFamilyName:familyName]){
+//            NSLog(@"\t%@",fontName);         //*输出字体族科下字样名字
+//        }
+//    }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //#pragma mark --insertPush
 //    // iOS8 下需要使用新的 API
@@ -82,11 +93,28 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+-(void)signUM
+{
+    [UMSocialData setAppKey:UM_APPKey];
+    //设置微信AppId、appSecret，分享url
+    //[UMSocialWechatHandler setWXAppId:kWeChatAppId appSecret:kWeChatAppKey url:kTcRedirectURI];
+    //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
+    // [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:@"http://www.umeng.com/social"];
+    // [UMSocialQQHandler setSupportWebView:YES];
+    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。若在新浪后台设置我们的回调地址，“http://sns.whalecloud.com/sina2/callback”，这里可以传nil ,需要 #import "UMSocialSinaHandler.h"
+    [UMSocialSinaHandler openSSOWithRedirectURL:nil];
+    //[UMSocialData openLog:YES];
+    
+    //打开腾讯微博的SSO开关
+    // [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:kTcRedirectURI];
+}
+//引导页
 -(void)runGuideMethod
 {
     GuideViewController *guide=[[GuideViewController alloc]init];
     self.window.rootViewController = guide;
 }
+//正常打开首页
 -(void)runNormalMethod
 {
 //    JuPlusTabBarController *tab = [[JuPlusTabBarController alloc]init];

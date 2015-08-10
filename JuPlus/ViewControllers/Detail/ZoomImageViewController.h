@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "VIPhotoView.h"
 @interface ZoomImageViewController : UIViewController<UIScrollViewDelegate,UIApplicationDelegate>
 {
     UIScrollView *myScrollView;

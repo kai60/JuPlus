@@ -12,7 +12,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import "ClassifyLabelsRequest.h"
 #import "ClassifyRespon.h"
-#import "ClassifyTagsDTO.h"
 #import "SCGIFImageView.h"
 #import "UIButton+WebCache.h"
 
@@ -83,7 +82,9 @@
     /*
      此通知作用：由于网络加载有时间延迟，只有在网络加载完成后调用showClassify才能完成缩放效果，因此此处加通知，当第一次打开应用的时候，如果labels未加载完成，则不触发九宫格显示效果
      */
-    [CommonUtil postNotification:ShowClassify Object:nil];
+    if (!self.isEdit) {
+        [CommonUtil postNotification:ShowClassify Object:nil];
+    }
 }
 -(void)showClassify
 {
@@ -191,15 +192,30 @@
 //确认按钮
 -(void)surePress1:(UIButton *)sender
 {
-    
-    if(IsNilOrNull(selectedBtn))
-    {
-        [CommonUtil removeUserDefaultsValue:LabelTag];
+    //如果是作品上传中的编辑效果图分类信息
+    if (self.isEdit) {
+        
+        for (ClassifyTagsDTO *dto in self.dataArray) {
+            if ([dto.tagId intValue]==selectedBtn.iconBtn.tag) {
+                self.infoDTO = dto;
+            }
+        }
+        if (self.delegate&&[self.delegate respondsToSelector:@selector(reloadInfo:)]) {
+            [self.delegate reloadInfo:self.infoDTO];
+        }
     }
     else
     {
+        if(IsNilOrNull(selectedBtn))
+        {
+        [CommonUtil removeUserDefaultsValue:LabelTag];
+        }
+        else
+        {
         [CommonUtil setUserDefaultsValue:[NSString stringWithFormat:@"%ld",selectedBtn.iconBtn.tag] forKey:LabelTag];
     
+        }
+        [CommonUtil postNotification:ReloadList Object:nil];
     }
     CGFloat spaceX = 10.0f;
     CGFloat spaceY = 70.0f;
@@ -221,7 +237,6 @@
         [self setHidden:YES];
         [visual removeFromSuperview];
     }];
-    [CommonUtil postNotification:ReloadList Object:nil];
 }
 //设置view高斯模糊显示
 -(void)setVisualEffect

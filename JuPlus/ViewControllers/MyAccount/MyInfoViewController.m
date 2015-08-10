@@ -15,57 +15,8 @@
 #import "JuPlusGetPictureView.h"
 #import "ChangePortraitReq.h"
 #import "PostPortraitRespon.h"
-@interface InfoChangeV : JuPlusUIView
+#import "InfoChangeV.h"
 
-
-@property (nonatomic,strong)UILabel *titleL;
-
-@property (nonatomic,strong)UILabel *textL;
-
-@property (nonatomic,strong)UIImageView *rightArrow;
-
-@property (nonatomic,strong)UIButton *clickBtn;
-
-@property (nonatomic,strong)JuPlusUIView *botomV;
-@end
-
-@implementation InfoChangeV
-
--(id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if(self)
-    {
-        [self uifig];
-        
-    }
-    return self;
-}
--(void)uifig
-{
-    _titleL = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 0.0f, 120.0f, self.height)];
-    [_titleL setFont:FontType(16.0f)];
-    [self addSubview:_titleL];
-    
-    _textL = [[UILabel alloc]initWithFrame:CGRectMake(150.0f, 0.0f, 140.0f, self.height)];
-    [_textL setFont:FontType(16.0f)];
-    [_textL setTextAlignment:NSTextAlignmentRight];
-    [self addSubview:_textL];
-
-    _rightArrow = [[UIImageView alloc]initWithFrame:CGRectMake(self.width - 30.0f, (self.height - 20.0f)/2, 20.0f, 20.0f)];
-    [_rightArrow setImage: [UIImage imageNamed:@"arrow_right"]];
-    [self addSubview:_rightArrow];
-    
-    _clickBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _clickBtn.frame = CGRectMake(0.0f, 0.0f, self.width , self.height);
-    [self addSubview:_clickBtn];
-    
-    _botomV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(_titleL.left, self.height - 1.0f, self.width - 10.0f, 1.0f)];
-    [_botomV setBackgroundColor:Color_Gray_lines];
-    [self addSubview:self.botomV];
-
-}
-@end
 @interface MyInfoViewController ()<UITextFieldDelegate,JuPlusGetPictureDelegate>
 
 @property (nonatomic,strong)JuPlusUIView *backView;

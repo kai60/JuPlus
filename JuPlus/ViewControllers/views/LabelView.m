@@ -39,7 +39,6 @@
         [self addSubview:self.tipsImage];
         [self addSubview:self.lineImg];
         [self addSubview:self.labelText];
-       // [self addSubview:self.touchBtn];
         self.userInteractionEnabled = YES;
         CGFloat tipsW = self.tipsImage.width;
         //背景view的转变
@@ -60,7 +59,6 @@
         
         alpha1 = CGRectMake(self.alphaImage.left - changeSpace, self.alphaImage.top-changeSpace, tipsW*scale, tipsW*scale);
         orignAlpha = self.alphaImage.frame;
-        
         
         self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(setAnimation) userInfo:nil repeats:YES];    //使用timer定时，每3秒触发一次，然后就是写selector了。
         [self setAnimation];
@@ -192,10 +190,12 @@
         {
         _labelText.frame = CGRectMake(self.dropImg.left,self.dropImg.top - 20.0f,1.0f,20.0f);
         }
+        [_labelText setFont:[UIFont boldSystemFontOfSize:14.0f]];
+
+        [_labelText setFont:FontType(FontMaxSize)];
         [_labelText setTextColor:[UIColor whiteColor]];
         [_labelText setShadowColor:Color_Gray];
         [_labelText setShadowOffset:CGSizeMake(0, 1)];
-        [_labelText setFont:[UIFont boldSystemFontOfSize:14.0f]];
     }
     return _labelText;
 }

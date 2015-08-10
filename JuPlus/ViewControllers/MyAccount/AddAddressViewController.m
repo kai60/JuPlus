@@ -76,6 +76,7 @@
     keyboardTopBar.delegate = self;
 
    }
+
 -(UIButton *)postBtn
 {
     if(!_postBtn)

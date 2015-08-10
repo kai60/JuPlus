@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "JuPlusUIView.h"
 #import "UIImage+GIF.h"
+#import "ClassifyTagsDTO.h"
+
+@protocol ClassifyViewDelegate <NSObject>
+
+-(void)reloadInfo:(ClassifyTagsDTO *)info;
+
+@end
 
 @interface ClassifyView :JuPlusUIView <UIScrollViewDelegate>
 
@@ -21,6 +28,12 @@
 @property (nonatomic,strong)UIButton *sureBtn;
 //被选中的标签数组
 @property (nonatomic,strong)NSMutableArray *selectArr;
+
+@property (nonatomic,assign)BOOL isEdit;
+
+@property (nonatomic,assign)id<ClassifyViewDelegate>delegate;
+
+@property (nonatomic,strong)ClassifyTagsDTO *infoDTO;
 -(id)initWithFrame:(CGRect)frame andView:(UIView *)superV;
 
 -(void)showClassify;
