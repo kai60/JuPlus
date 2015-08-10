@@ -162,6 +162,10 @@
 		84E40D441B663A8400FB63AE /* icons_01_unsel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E40D401B663A8400FB63AE /* icons_01_unsel@2x.png */; };
 		84E40D451B663A8400FB63AE /* icons_02_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E40D411B663A8400FB63AE /* icons_02_sel@2x.png */; };
 		84E40D461B663A8400FB63AE /* icons_02_unsel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E40D421B663A8400FB63AE /* icons_02_unsel@2x.png */; };
+		84E4321F1B7895DD00AABF3F /* UIScrollView+UITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4321E1B7895DD00AABF3F /* UIScrollView+UITouch.m */; };
+		84E432221B78A19A00AABF3F /* PostProductReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E432211B78A19A00AABF3F /* PostProductReq.m */; };
+		84E432251B78A1F400AABF3F /* AddCollocationReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E432241B78A1F400AABF3F /* AddCollocationReq.m */; };
+		84E432281B78A24A00AABF3F /* PostProductRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E432271B78A24A00AABF3F /* PostProductRespon.m */; };
 		84E43D8A1B5DF14A00A7028D /* default_rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E43D881B5DF14A00A7028D /* default_rectangle@2x.png */; };
 		84E43D8B1B5DF14A00A7028D /* default_square@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E43D891B5DF14A00A7028D /* default_square@2x.png */; };
 		84E43D8E1B5E32D400A7028D /* ResetnicknameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E43D8D1B5E32D400A7028D /* ResetnicknameView.m */; };
@@ -592,6 +596,14 @@
 		84E40D401B663A8400FB63AE /* icons_01_unsel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_01_unsel@2x.png"; sourceTree = "<group>"; };
 		84E40D411B663A8400FB63AE /* icons_02_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_02_sel@2x.png"; sourceTree = "<group>"; };
 		84E40D421B663A8400FB63AE /* icons_02_unsel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_02_unsel@2x.png"; sourceTree = "<group>"; };
+		84E4321D1B7895DD00AABF3F /* UIScrollView+UITouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+UITouch.h"; sourceTree = "<group>"; };
+		84E4321E1B7895DD00AABF3F /* UIScrollView+UITouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+UITouch.m"; sourceTree = "<group>"; };
+		84E432201B78A19A00AABF3F /* PostProductReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostProductReq.h; sourceTree = "<group>"; };
+		84E432211B78A19A00AABF3F /* PostProductReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostProductReq.m; sourceTree = "<group>"; };
+		84E432231B78A1F400AABF3F /* AddCollocationReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollocationReq.h; sourceTree = "<group>"; };
+		84E432241B78A1F400AABF3F /* AddCollocationReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCollocationReq.m; sourceTree = "<group>"; };
+		84E432261B78A24A00AABF3F /* PostProductRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostProductRespon.h; sourceTree = "<group>"; };
+		84E432271B78A24A00AABF3F /* PostProductRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostProductRespon.m; sourceTree = "<group>"; };
 		84E43D881B5DF14A00A7028D /* default_rectangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_rectangle@2x.png"; sourceTree = "<group>"; };
 		84E43D891B5DF14A00A7028D /* default_square@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_square@2x.png"; sourceTree = "<group>"; };
 		84E43D8C1B5E32D400A7028D /* ResetnicknameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetnicknameView.h; sourceTree = "<group>"; };
@@ -1623,6 +1635,10 @@
 			children = (
 				84F0D1221B706CBC00F56D5A /* RelatedTagsReq.h */,
 				84F0D1231B706CBC00F56D5A /* RelatedTagsReq.m */,
+				84E432201B78A19A00AABF3F /* PostProductReq.h */,
+				84E432211B78A19A00AABF3F /* PostProductReq.m */,
+				84E432231B78A1F400AABF3F /* AddCollocationReq.h */,
+				84E432241B78A1F400AABF3F /* AddCollocationReq.m */,
 			);
 			path = Version2Req;
 			sourceTree = "<group>";
@@ -1632,6 +1648,8 @@
 			children = (
 				84F0D1251B706CD700F56D5A /* RelatedTagsRespon.h */,
 				84F0D1261B706CD700F56D5A /* RelatedTagsRespon.m */,
+				84E432261B78A24A00AABF3F /* PostProductRespon.h */,
+				84E432271B78A24A00AABF3F /* PostProductRespon.m */,
 			);
 			path = Version2Respon;
 			sourceTree = "<group>";
@@ -1834,6 +1852,8 @@
 				84B9AD111B4534D5006CF63F /* UIButton+JuPlusUIButton.m */,
 				846156791B4FA77700F4AAA2 /* UILabel+JuPlusUILabel.h */,
 				8461567A1B4FA77700F4AAA2 /* UILabel+JuPlusUILabel.m */,
+				84E4321D1B7895DD00AABF3F /* UIScrollView+UITouch.h */,
+				84E4321E1B7895DD00AABF3F /* UIScrollView+UITouch.m */,
 			);
 			path = UICustomView;
 			sourceTree = "<group>";
@@ -2221,6 +2241,7 @@
 				84E672861B6B47DB00CFD1A2 /* DCIntrospect.m in Sources */,
 				84CDD96B1B4E76B800C97F7B /* ScrollRefreshViewFooter.m in Sources */,
 				84E1EC951B579AF700DABA36 /* AAPTransitionDirector.m in Sources */,
+				84E432281B78A24A00AABF3F /* PostProductRespon.m in Sources */,
 				84829F951B428376001D807F /* Des.c in Sources */,
 				84E6727E1B6B47DB00CFD1A2 /* SCCaptureCameraController.m in Sources */,
 				84829F961B428376001D807F /* NSData+HMAC.m in Sources */,
@@ -2268,6 +2289,7 @@
 				84CE18601B46413900B103F4 /* CountView.m in Sources */,
 				84829FB81B42839A001D807F /* md_wrap.c in Sources */,
 				84CDD96A1B4E76B800C97F7B /* ScrollRefreshView.m in Sources */,
+				84E432221B78A19A00AABF3F /* PostProductReq.m in Sources */,
 				84D486081B4D002A00AD0CCF /* PostFaverReq.m in Sources */,
 				84CC250A1B43CA0100BE342E /* JuPlusRequest.m in Sources */,
 				84B06AFF1B71FCEC00BD6D18 /* InfoChangeV.m in Sources */,
@@ -2277,6 +2299,7 @@
 				84EE1F811B6F0CE300141434 /* IphoneScreen.m in Sources */,
 				9C7C3F8E1B29596300D8F29B /* UIView+JuPlusUIView.m in Sources */,
 				84A8AFE71B5CEA4200B25196 /* UserInfoDTO.m in Sources */,
+				84E4321F1B7895DD00AABF3F /* UIScrollView+UITouch.m in Sources */,
 				846156721B4F68CD00F4AAA2 /* PackageViewController.m in Sources */,
 				84CE18651B46732A00B103F4 /* LoginReq.m in Sources */,
 				84E814D61B56124700921332 /* PostOrderRespon.m in Sources */,
@@ -2338,6 +2361,7 @@
 				84E672821B6B47DB00CFD1A2 /* UIImage+Resize.m in Sources */,
 				84E80D5D1B40E20D006D9804 /* PlaceOrderViewController.m in Sources */,
 				9C00174B1B3D2C840018A9BF /* LabelDTO.m in Sources */,
+				84E432251B78A1F400AABF3F /* AddCollocationReq.m in Sources */,
 				84B06AF31B71EEF300BD6D18 /* PostViewController.m in Sources */,
 				84B06AF21B71EEF300BD6D18 /* MarkTagsViewController.m in Sources */,
 				84D486101B4D0DF200AD0CCF /* OrderListViewController.m in Sources */,

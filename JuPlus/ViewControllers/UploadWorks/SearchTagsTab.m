@@ -9,6 +9,7 @@
 #import "SearchTagsTab.h"
 #import "RelatedTagsReq.h"
 #import "RelatedTagsRespon.h"
+#import "UploadNotesViewController.h"
 @interface SearchTagsTab ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UISearchBarDelegate>
 {
     RelatedTagsReq *tagReq;
@@ -268,13 +269,20 @@ tagRespon = [[RelatedTagsRespon alloc]init];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     LabelDTO *dto = [self.dataArray objectAtIndex:indexPath.row];
     
+    //如果添加标签，则跳转到单品配置界面
     if ([dto.productName rangeOfString:@"添加标签："].location != NSNotFound) {
         self.infoDTO.productName = [dto.productName substringFromIndex:5];
+        UploadNotesViewController *upload = [[UploadNotesViewController alloc]init];
+        upload.infoDTO = self.infoDTO;
+        [[self getSuperViewController].navigationController pushViewController:upload animated:YES];
     }
     else
-    self.infoDTO.productName = dto.productName;
+    {
+        self.infoDTO.productName = dto.productName;
+        [CommonUtil postNotification:AddLabels Object:self.infoDTO];
+
+    }
     
-    [CommonUtil postNotification:AddLabels Object:self.infoDTO];
     [self backPress];
     
 }

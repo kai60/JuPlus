@@ -7,20 +7,14 @@
 //
 
 #import "UploadNotesViewController.h"
-#import "InfoChangeV.h"
-#import "ClassifyView.h"
 #import "UMSocial.h"
-@interface UploadNotesViewController ()<UITextViewDelegate,ClassifyViewDelegate,UITextFieldDelegate,UMSocialUIDelegate>
+#import "PostProductReq.h"
+#import "PostProductRespon.h"
+@interface UploadNotesViewController ()<UITextFieldDelegate,UMSocialUIDelegate>
 
 @property (nonatomic,strong)UIScrollView *backSCroll;
 //输入内容
-@property (nonatomic,strong)UITextView *detailView;
-//字数限制
-@property (nonatomic,strong)UILabel *countLabel;
-
-@property (nonatomic,strong)UILabel *placeholderLabel;
-
-@property (nonatomic,strong)InfoChangeV *clfyPickView;
+@property (nonatomic,strong)UITextField *detailView;
 
 @property (nonatomic,strong)UITextField *urlTextView;
 
@@ -28,7 +22,6 @@
 
 @property (nonatomic,strong)UIButton *sureBtn;
 
-@property (nonatomic,strong)ClassifyView *classify;
 @end
 
 @implementation UploadNotesViewController
@@ -41,25 +34,23 @@
     [self.rightBtn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backSCroll];
 
+    UILabel *tagL =[[UILabel alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 200.0f, 30.0f)];
+    [tagL setFont:FontType(FontSize)];
+    tagL.text = @"请输入标签";
+    [self.backSCroll addSubview:tagL];
+    
     [self.backSCroll addSubview:self.detailView];
-    [self.backSCroll addSubview:self.placeholderLabel];
-    [self.backSCroll addSubview:self.countLabel];
-    [self.backSCroll addSubview:self.clfyPickView];
+    
+    UILabel *urlL =[[UILabel alloc]initWithFrame:CGRectMake(10.0f, 70.0f, 200.0f, 30.0f)];
+    [urlL setFont:FontType(FontSize)];
+    urlL.text = @"请输入相关购买地址或者链接";
+    [self.backSCroll addSubview:urlL];
+
     [self.backSCroll addSubview:self.urlTextView];
     [self.backSCroll addSubview:self.remindL];
     self.backSCroll.contentSize = CGSizeMake(self.backSCroll.width, self.remindL.bottom+TABBAR_HEIGHT);
     [self.view addSubview:self.sureBtn];
-    [self.view addSubview:self.classify];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHidden:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-
     // Do any additional setup after loading the view from its nib.
 }
 -(void)sharePress:(UIButton *)sender
@@ -76,70 +67,24 @@
     }
     return _backSCroll;
 }
--(UITextView *)detailView
+-(UITextField *)detailView
 {
     if(!_detailView)
     {
-        _detailView=[[UITextView alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 300.0f,200.0f)];
+        _detailView=[[UITextField alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 300.0f,30.0f)];
         _detailView.delegate=self;
+        _detailView.placeholder = @"例：椅子";
         _detailView.backgroundColor=[UIColor whiteColor];
-        [_detailView setEditable:YES];
         _detailView.layer.borderColor= [Color_Gray_lines CGColor];
         _detailView.returnKeyType=UIReturnKeyDone;
         _detailView.layer.borderWidth=1;
-        _detailView.layer.cornerRadius=5.0;
+        _detailView.layer.cornerRadius=1.0;
         _detailView.layer.masksToBounds=YES;
         _detailView.textColor= Color_Gray;
         _detailView.font=FontType(FontSize);
     }
         
     return _detailView;
-}
--(UILabel *)countLabel
-{
-    if(!_countLabel)
-    {
-        _countLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.detailView.right - 80.0f, 10.0f+self.detailView.bottom, 80.0f, 30.0f)];
-        _countLabel.backgroundColor=[UIColor clearColor];
-        _countLabel.font=FontType(FontSize);
-        _countLabel.textAlignment=NSTextAlignmentRight;
-        _countLabel.textColor=Color_Gray;
-        _countLabel.text=@"0/140字";
-
-    }
-    return _countLabel;
-}
--(UILabel *)placeholderLabel
-{
-    if(!_placeholderLabel)
-    {
-        _placeholderLabel = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, 10.0f, 280.0f, 60.0f)];
-        _placeholderLabel.backgroundColor=[UIColor clearColor];
-        _placeholderLabel.numberOfLines = 0;
-        _placeholderLabel.font=FontType(FontSize);
-        _placeholderLabel.textAlignment=NSTextAlignmentLeft;
-        _placeholderLabel.textColor=Color_Gray;
-        _placeholderLabel.text=@"请添加内容";
-    }
-    return _placeholderLabel;
-}
--(InfoChangeV *)clfyPickView
-{
-    if(!_clfyPickView)
-    {
-        _clfyPickView = [[InfoChangeV alloc]initWithFrame:CGRectMake(0.0f, self.countLabel.bottom, self.backSCroll.width, 40.0f)];
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _clfyPickView.width, 1.0f)];
-        [line setBackgroundColor:Color_Gray_lines];
-        [_clfyPickView addSubview:line];
-        UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, _clfyPickView.height - 1.0f, _clfyPickView.width, 1.0f)];
-        [line1 setBackgroundColor:Color_Gray_lines];
-        [_clfyPickView addSubview:line1];
-        _clfyPickView.titleL.text = @"选择分类";
-        [_clfyPickView.botomV removeFromSuperview];
-        [_clfyPickView.clickBtn addTarget:self action:@selector(rightBtnPress:) forControlEvents:UIControlEventTouchUpInside];
-
-    }
-    return _clfyPickView;
 }
 -(UIButton *)sureBtn
 {
@@ -157,28 +102,19 @@
     }
     return _sureBtn;
 }
--(ClassifyView *)classify
-{
-    if(!_classify)
-    {
-        _classify = [[ClassifyView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT) andView:self.sureBtn];
-        _classify.delegate = self;
-        _classify.backgroundColor = [UIColor whiteColor];
-        [_classify setHidden:YES];
-    }
-    return _classify;
-}
 -(UITextField *)urlTextView
 {
     if(!_urlTextView)
     {
-        _urlTextView = [[UITextField alloc]initWithFrame:CGRectMake(10.0f, self.clfyPickView.bottom, self.backSCroll.width - 20.0f, 40.0f)];
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(10.0f, _urlTextView.height - 1.0f, _clfyPickView.width -20.0f, 1.0f)];
-        [line setBackgroundColor:Color_Gray_lines];
+        _urlTextView = [[UITextField alloc]initWithFrame:CGRectMake(10.0f, 100.0f, self.backSCroll.width - 20.0f, 40.0f)];
+        _urlTextView.layer.borderColor= [Color_Gray_lines CGColor];
+        _urlTextView.returnKeyType=UIReturnKeyDone;
+        _urlTextView.layer.borderWidth=1;
+        _urlTextView.layer.cornerRadius=1.0;
+        _urlTextView.layer.masksToBounds=YES;
         _urlTextView.delegate = self;
-        [_urlTextView addSubview:line];
         [_urlTextView setFont:FontType(FontSize)];
-        _urlTextView.placeholder = @"请输入购买地址或链接";
+        _urlTextView.placeholder = @"例：https://www.jujiax.com";
 
     }
     return _urlTextView;
@@ -190,6 +126,7 @@
         
         _remindL = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.urlTextView.bottom+10.0f, self.backSCroll.width - 20.0f, 60.0f)];
         _remindL.numberOfLines = 0;
+        _remindL.textColor = Color_Gray;
         [_remindL setFont:FontType(FontSize)];
         [_remindL setText:@"我们的工作人员将在2个工作日内联系你，如果物品可以出售，你将获得百分之十的返点"];
         [_remindL sizeToFit];
@@ -197,65 +134,55 @@
     return _remindL;
 }
 #pragma mark --Click
-//显示可选择的分类
--(void)rightBtnPress:(UIButton *)sender
-{
-    [self.classify showClassify];
-}
--(void)reloadInfo:(ClassifyTagsDTO *)info
-{
-    [self.clfyPickView.textL setText:info.name];
-    self.clfyPickView.tag = [info.tagId integerValue];
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 -(void)sureBtnPress:(UIButton *)sender
 {
-    if(IsStrEmpty(self.detailView.text)||IsStrEmpty(self.urlTextView.text)||self.clfyPickView.tag==0)
+    if(IsStrEmpty(self.detailView.text)||IsStrEmpty(self.urlTextView.text))
     {
         [self showAlertView:@"请补充完整信息" withTag:0];
         return;
     }
-    else if(self.detailView.text.length>140)
-    {
-        [self showAlertView:@"您输入的内容过长" withTag:0];
-    }
     else
     {
-        [self postData];
+        [self postProduct];
     }
 }
-//发送post表单，推送
--(void)postData
+-(void)postProduct
 {
-   
-}
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-
-}
+    PostProductReq *req = [[PostProductReq alloc]init];
+    [req setField:[CommonUtil getToken] forKey:TOKEN];
+    [req setField:self.urlTextView.text forKey:@"supplierUrl"];
+    [req setField:self.detailView.text forKey:@"name"];
+    
+    PostProductRespon *respon = [[PostProductRespon alloc]init];
+    
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        
+        self.infoDTO.productName = respon.regName;
+        self.infoDTO.productNo = respon.regNo;
+        //因为上传的时候标签是不带图片的，所以用coverUrl存储购买地址或者链接
+        //self.infoDTO.coverUrl = self.urlTextView.text;
+        [CommonUtil postNotification:AddLabels Object:self.infoDTO];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    } failed:^(ErrorInfoDto *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:YES with:self.view];
+   }
 #pragma mark --textField
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [UIView animateWithDuration:ANIMATION animations:^{
-        CGRect frame = self.backSCroll.frame;
-        frame.origin.y = -50.0f;
-        self.backSCroll.frame = frame;
-    }];
     
 
 }
 #pragma mark --textView
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    [UIView animateWithDuration:ANIMATION animations:^{
-        CGRect frame = self.backSCroll.frame;
-        frame.origin.y = nav_height;
-        self.backSCroll.frame = frame;
-    }];
-
+   
 }
 //退出键盘
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -266,53 +193,13 @@
     }
     return YES;
 }
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
 }
 
--(void)textViewDidChange:(UITextView *)textView
-{
-    if(textView.text.length>0)
-    {
-        [self.placeholderLabel setHidden:YES];
-    }
-    else
-        [self.placeholderLabel setHidden:NO];
-    self.countLabel.text = [NSString stringWithFormat:@"%lu/140字",(unsigned long)textView.text.length];
-    
-}
 
-#pragma mark --keyboard
--(void)keyboardWillShow:(NSNotification *)noti
-{
-//    NSDictionary *info = [noti userInfo];
-//    CGFloat height = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    if ([self.urlTextView isFirstResponder]) {
-        [UIView animateWithDuration:ANIMATION animations:^{
-            CGRect frame = self.backSCroll.frame;
-            frame.origin.y = -50.0f;
-            self.backSCroll.frame = frame;
-        }];
-    }
-    else
-    {
-        [UIView animateWithDuration:ANIMATION animations:^{
-            CGRect frame = self.backSCroll.frame;
-            frame.origin.y = nav_height;
-            self.backSCroll.frame = frame;
-        }];
-    }
-}
--(void)keyboardWillHidden:(NSNotification *)noti
-{
-    [UIView animateWithDuration:ANIMATION animations:^{
-        CGRect frame = self.backSCroll.frame;
-        frame.origin.y = nav_height;
-        self.backSCroll.frame = frame;
-    }];
-}
 /*
 #pragma mark - Navigation
 

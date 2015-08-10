@@ -20,6 +20,7 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSinaHandler.h"
 #import "UMSocialQQHandler.h"
+#import "UMSocialSinaSSOHandler.h"
 @interface JuPlusAppDelegate ()
 @property(nonatomic,strong)HomeFurnishingViewController *home;
 @end
@@ -97,17 +98,16 @@
 {
     [UMSocialData setAppKey:UM_APPKey];
     //设置微信AppId、appSecret，分享url
-    //[UMSocialWechatHandler setWXAppId:kWeChatAppId appSecret:kWeChatAppKey url:kTcRedirectURI];
+    [UMSocialWechatHandler setWXAppId:WeiChatAppKey appSecret:WeiChatAppKey url:WeiChatShareUrl];
     //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
     // [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:@"http://www.umeng.com/social"];
     // [UMSocialQQHandler setSupportWebView:YES];
-    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。若在新浪后台设置我们的回调地址，“http://sns.whalecloud.com/sina2/callback”，这里可以传nil ,需要 #import "UMSocialSinaHandler.h"
+        [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+        [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialSinaHandler openSSOWithRedirectURL:nil];
     //[UMSocialData openLog:YES];
     
-    //打开腾讯微博的SSO开关
-    // [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:kTcRedirectURI];
-}
+   }
 //引导页
 -(void)runGuideMethod
 {

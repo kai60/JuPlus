@@ -61,8 +61,11 @@
 //新浪微博
 #define SinaAppKey @"34489026"
 #define SinaSecret @"efb2084c177517ea8fad51d9e3d7f47a"
-//微信
-#define WeiChatAppKey @""
+//微信分享
+#define WeiChatAppKey @"wxf4ab24a1fcf8de97"
+#define WeiChatAppSecret @"60bfbcc61019e15292ea0dd7bd1f0546"
+
+#define WeiChatShareUrl @"www.jujiax.com"
 //qq
 //测试环境
 #ifdef kDevTest
