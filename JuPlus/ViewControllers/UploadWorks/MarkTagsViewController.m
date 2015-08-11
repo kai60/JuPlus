@@ -15,11 +15,14 @@
 #import "ClassifyView.h"
 #import "UMSocial.h"
 #import "UIScrollView+UITouch.h"
+#import "AddCollocationReq.h"
 @interface MarkTagsViewController ()<UITextViewDelegate,ClassifyViewDelegate,UITextFieldDelegate,UMSocialUIDelegate>
 {
     UIView *selectedView;
     
     CGPoint currentPoint;
+    
+    UIImageView *remindBtn;
 }
 @property (nonatomic,strong)UIImageView *topImgView;
 
@@ -39,8 +42,6 @@
 
 @property (nonatomic,strong)InfoChangeV *clfyPickView;
 
-@property (nonatomic,strong)UITextField *urlTextView;
-
 @property (nonatomic,strong)UILabel *remindL;
 
 @property (nonatomic,strong)UIButton *sureBtn;
@@ -56,10 +57,16 @@
     self.titleLabel.text = @"添加标签";
     
     self.tagsArray = [[NSMutableArray alloc]init];
-    
+
     [self.view addSubview:self.backSCroll];
     
-    [self.backSCroll addSubview:self.topImgView];
+    [self.view addSubview:self.topImgView];
+    
+    remindBtn = [[UIImageView alloc]initWithFrame:_topImgView.frame];
+    remindBtn.userInteractionEnabled = YES;
+    [remindBtn setImage:[UIImage imageNamed:@"remind_Tag"]];
+    [self.view addSubview:remindBtn];
+
     
     [self.backSCroll addSubview:self.bottomView];
     
@@ -78,14 +85,13 @@
     [self.backSCroll addSubview:self.placeholderLabel];
     [self.backSCroll addSubview:self.countLabel];
     [self.backSCroll addSubview:self.clfyPickView];
-    [self.backSCroll addSubview:self.urlTextView];
     [self.backSCroll addSubview:self.remindL];
-    self.backSCroll.contentSize = CGSizeMake(self.backSCroll.width, self.remindL.bottom+TABBAR_HEIGHT);
+    self.backSCroll.contentSize = CGSizeMake(self.backSCroll.width, self.remindL.bottom+TABBAR_HEIGHT+10.0f);
     [self.view addSubview:self.sureBtn];
     [self.view addSubview:self.classify];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardDidShowNotification
+                                                 name:UIKeyboardWillShowNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -95,6 +101,7 @@
 
     // Do any additional setup after loading the view.
 }
+
 -(void)sharePress:(UIButton *)sender
 {
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UM_APPKey shareText:@"测试" shareImage:[UIImage imageNamed:@"Icon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil] delegate:self];
@@ -106,6 +113,7 @@
     if(!_backSCroll)
     {
         _backSCroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
+        _backSCroll.delegate = self;
     }
     return _backSCroll;
 }
@@ -195,34 +203,19 @@
     if(!_classify)
     {
         _classify = [[ClassifyView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT) andView:self.sureBtn];
+        _classify.isEdit = YES;
         _classify.delegate = self;
         _classify.backgroundColor = [UIColor whiteColor];
         [_classify setHidden:YES];
     }
     return _classify;
 }
--(UITextField *)urlTextView
-{
-    if(!_urlTextView)
-    {
-        _urlTextView = [[UITextField alloc]initWithFrame:CGRectMake(10.0f, self.clfyPickView.bottom, self.backSCroll.width - 20.0f, 40.0f)];
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(10.0f, _urlTextView.height - 1.0f, _clfyPickView.width -20.0f, 1.0f)];
-        [line setBackgroundColor:Color_Gray_lines];
-        _urlTextView.delegate = self;
-        [_urlTextView addSubview:line];
-        _urlTextView.returnKeyType = UIReturnKeyDone;
-        [_urlTextView setFont:FontType(FontSize)];
-        _urlTextView.placeholder = @"请输入购买地址或链接";
-        
-    }
-    return _urlTextView;
-}
 -(UILabel *)remindL
 {
     if(!_remindL)
     {
         
-        _remindL = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.urlTextView.bottom+10.0f, self.backSCroll.width - 20.0f, 60.0f)];
+        _remindL = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.clfyPickView.bottom+10.0f, self.backSCroll.width - 20.0f, 60.0f)];
         _remindL.numberOfLines = 0;
         [_remindL setFont:FontType(FontSize)];
         [_remindL setText:@"我们的工作人员将在2个工作日内联系你，如果物品可以出售，你将获得百分之十的返点"];
@@ -230,12 +223,37 @@
     }
     return _remindL;
 }
+#pragma mark --scrollView
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view bringSubviewToFront:self.navView];
+    [self.view bringSubviewToFront:self.sureBtn];
+    [self.view bringSubviewToFront:scrollView];
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.view bringSubviewToFront:self.navView];
+    [self.view bringSubviewToFront:self.sureBtn];
+
+    CGFloat orignY = scrollView.contentOffset.y;
+    self.topImgView.frame = CGRectMake(self.topImgView.left, nav_height -  orignY, self.topImgView.width, self.topImgView.height);
+    remindBtn.frame = CGRectMake(remindBtn.left, nav_height -  orignY, remindBtn.width, remindBtn.height);
+
+    
+}
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self.view bringSubviewToFront:self.topImgView];
+    [self.view bringSubviewToFront:self.navView];
+    [self.view bringSubviewToFront:self.sureBtn];
+}
 #pragma mark --Click
 //显示可选择的分类
 -(void)rightBtnPress:(UIButton *)sender
 {
     [self.classify showClassify];
 }
+//代理回调，
 -(void)reloadInfo:(ClassifyTagsDTO *)info
 {
     [self.clfyPickView.textL setText:info.name];
@@ -247,7 +265,11 @@
 }
 -(void)sureBtnPress:(UIButton *)sender
 {
-    if(IsStrEmpty(self.detailView.text)||IsStrEmpty(self.urlTextView.text)||self.clfyPickView.tag==0)
+    
+    if (IsArrEmpty(self.topImgView.subviews)) {
+        [self showAlertView:@"请至少添加一种标签" withTag:0];
+    }
+   else if(IsStrEmpty(self.detailView.text)||self.clfyPickView.tag==0)
     {
         [self showAlertView:@"请补充完整信息" withTag:0];
         return;
@@ -258,42 +280,32 @@
     }
     else
     {
+        [self getTagsArray];
         [self postData];
     }
 }
 //发送post表单，上送结果
 -(void)postData
 {
-    
+    AddCollocationReq *req = [[AddCollocationReq alloc]init];
+    [req setField:[CommonUtil getToken] forKey:TOKEN];
+    [req setField:self.detailView.text forKey:@"explain"];
+    [req setField:self.tagsArray forKey:@"productList"];
+    [req setField:[self.postImage getImageString] forKey:@"picContent"];
+    [req setField:[NSString stringWithFormat:@"%ld",(long)self.clfyPickView.tag] forKey:@"tagIds"];
+    JuPlusResponse *respon = [[JuPlusResponse alloc]init];
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        //
+    } failed:^(ErrorInfoDto *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:YES with:self.view];
 }
 //分享成功
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
     
 }
-#pragma mark --textField
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [UIView animateWithDuration:ANIMATION animations:^{
-        CGRect frame = self.backSCroll.frame;
-        frame.origin.y = -200.0f;
-        self.backSCroll.frame = frame;
-    }];
-    [self.view bringSubviewToFront:self.navView];
-    
-    
-}
-#pragma mark --textView
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-    [UIView animateWithDuration:ANIMATION animations:^{
-        CGRect frame = self.backSCroll.frame;
-        frame.origin.y = -140.0f;;
-        self.backSCroll.frame = frame;
-    }];
-    [self.view bringSubviewToFront:self.navView];
 
-}
 //退出键盘
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"])
@@ -301,12 +313,6 @@
         [textView resignFirstResponder];
         return NO;
     }
-    return YES;
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
     return YES;
 }
 
@@ -325,32 +331,31 @@
 #pragma mark --keyboard
 -(void)keyboardWillShow:(NSNotification *)noti
 {
+  
+        CGRect frame = self.backSCroll.frame;
+        frame.origin.y = - 140.0f;
+    [self.backSCroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
+        [UIView animateWithDuration:ANIMATION animations:^{
+            self.backSCroll.frame = frame;
+            self.topImgView.frame = CGRectMake(0.0f,  - 140.0f, self.topImgView.width, self.topImgView.height);
+            remindBtn.frame = CGRectMake(0.0f,  - 140.0f , remindBtn.width, remindBtn.height);
+        }];
+
     //    NSDictionary *info = [noti userInfo];
     //    CGFloat height = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    if ([self.urlTextView isFirstResponder]) {
-        [UIView animateWithDuration:ANIMATION animations:^{
-            CGRect frame = self.backSCroll.frame;
-            frame.origin.y = -200.0f;
-            self.backSCroll.frame = frame;
-        }];
-    }
-    else
-    {
-        [UIView animateWithDuration:ANIMATION animations:^{
-            CGRect frame = self.backSCroll.frame;
-            frame.origin.y = -140.0f;
-            self.backSCroll.frame = frame;
-        }];
-    }
 }
 -(void)keyboardWillHidden:(NSNotification *)noti
 {
-    [UIView animateWithDuration:ANIMATION animations:^{
+    [self.backSCroll setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
+       [UIView animateWithDuration:ANIMATION animations:^{
         CGRect frame = self.backSCroll.frame;
         frame.origin.y = nav_height;
         self.backSCroll.frame = frame;
+
+        self.topImgView.frame = CGRectMake(0.0f,nav_height, self.topImgView.width, self.topImgView.height);
+        remindBtn.frame = CGRectMake(0.0f, nav_height , remindBtn.width, remindBtn.height);
     }];
-}
+ }
 
 #pragma mark --labels相关
 //添加标签
@@ -395,19 +400,23 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
-    if (touch.view ==self.topImgView) {
+    if (touch.view ==self.topImgView||touch.view==remindBtn) {
         //判断标签是否超过3个
         if ([self.topImgView.subviews count]>=3) {
             [self showAlertView:@"标签添加不超过3个" withTag:0];
         }
         else
         {
-        CGPoint currTouchPoint = [touch locationInView:self.topImgView];
+       
+        CGPoint currTouchPoint = [touch locationInView:touch.view];
         LabelDTO *dto = [[LabelDTO alloc]init];
         dto.locX = currTouchPoint.x;
         dto.locY = currTouchPoint.y;
         self.searchTab.infoDTO = dto;
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:ANIMATION animations:^{
+            if (touch.view==remindBtn) {
+                [remindBtn removeFromSuperview];
+            }
             [self.view bringSubviewToFront:self.searchTab];
             [self.searchTab.searchBar setShowsCancelButton:YES animated:YES];
             [self.searchTab.searchBar becomeFirstResponder];
@@ -462,7 +471,7 @@
 {
     if(!_topImgView)
     {
-        _topImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, PICTURE_HEIGHT, PICTURE_HEIGHT)];
+        _topImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, nav_height, PICTURE_HEIGHT, PICTURE_HEIGHT)];
         _topImgView.userInteractionEnabled = YES;
     }
     return _topImgView;
@@ -472,7 +481,7 @@
 {
     if(!_bottomView)
     {
-        _bottomView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.topImgView.bottom, SCREEN_WIDTH, 10.0f)];
+        _bottomView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, PICTURE_HEIGHT, SCREEN_WIDTH, 10.0f)];
         _bottomView.backgroundColor = [UIColor whiteColor];
     }
     return _bottomView;
@@ -487,18 +496,6 @@
 }
 
 #pragma fileData
-//此时统计需要上传的位置信息以及标签内容
--(void)nextPress:(UIButton *)sender
-{
-    if (IsArrEmpty(self.topImgView.subviews)) {
-        [self showAlertView:@"请至少添加一种标签" withTag:0];
-    }
-    else
-    {
-        [self getTagsArray];
-    }
-    //下一步
-}
 //得到上传标签的所有信息
 -(void)getTagsArray
 {
@@ -510,7 +507,7 @@
             NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
             [dic setObject:[NSString stringWithFormat:@"%.2f",(mark.infoDTO.locX/SCREEN_WIDTH)*100] forKey:@"positionX"];
             [dic setObject:[NSString stringWithFormat:@"%.2f",(mark.infoDTO.locY/SCREEN_WIDTH)*100] forKey:@"positionY"];
-            [dic setObject:mark.infoDTO.productName forKey:@"productName"];
+            [dic setObject:mark.infoDTO.productNo forKey:@"productNo"];
             [dic setObject:mark.infoDTO.direction forKey:@"direction"];
             [self.tagsArray addObject:dic];
         }

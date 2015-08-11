@@ -24,8 +24,8 @@
         [back addSubview:self.backImage];
 
 
-        UIView *coverV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, PICTURE_HEIGHT/2, self.backImage.width, PICTURE_HEIGHT/2)];
-        coverV.backgroundColor = RGBACOLOR(137, 83, 41, 0.9);
+        UIView *coverV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, PICTURE_HEIGHT/4, self.backImage.width, PICTURE_HEIGHT/2)];
+        coverV.backgroundColor = RGBACOLOR(137, 83, 41, 0.2);
         [self.backImage addSubview:coverV];
         
         [self.backImage addSubview:self.nameLabel];

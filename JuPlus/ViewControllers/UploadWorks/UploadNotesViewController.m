@@ -14,7 +14,7 @@
 
 @property (nonatomic,strong)UIScrollView *backSCroll;
 //输入内容
-@property (nonatomic,strong)UITextField *detailView;
+@property (nonatomic,strong)UILabel *detailView;
 
 @property (nonatomic,strong)UITextField *urlTextView;
 
@@ -36,7 +36,7 @@
 
     UILabel *tagL =[[UILabel alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 200.0f, 30.0f)];
     [tagL setFont:FontType(FontSize)];
-    tagL.text = @"请输入标签";
+    tagL.text = @"标签名称";
     [self.backSCroll addSubview:tagL];
     
     [self.backSCroll addSubview:self.detailView];
@@ -67,20 +67,17 @@
     }
     return _backSCroll;
 }
--(UITextField *)detailView
+-(UILabel *)detailView
 {
     if(!_detailView)
     {
-        _detailView=[[UITextField alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 300.0f,30.0f)];
-        _detailView.delegate=self;
-        _detailView.placeholder = @"例：椅子";
+        _detailView=[[UILabel alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 300.0f,30.0f)];
+        _detailView.text = self.infoDTO.productName;
         _detailView.backgroundColor=[UIColor whiteColor];
         _detailView.layer.borderColor= [Color_Gray_lines CGColor];
-        _detailView.returnKeyType=UIReturnKeyDone;
         _detailView.layer.borderWidth=1;
         _detailView.layer.cornerRadius=1.0;
         _detailView.layer.masksToBounds=YES;
-        _detailView.textColor= Color_Gray;
         _detailView.font=FontType(FontSize);
     }
         

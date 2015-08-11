@@ -150,6 +150,7 @@
 		84E2E0671B53C46F007F2585 /* check_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E2E0651B53C46F007F2585 /* check_1@2x.png */; };
 		84E2E0681B53C46F007F2585 /* check_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E2E0661B53C46F007F2585 /* check_2@2x.png */; };
 		84E2E06B1B53C7D8007F2585 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E2E06A1B53C7D8007F2585 /* AddressCell.m */; };
+		84E2EBA01B79E4D200CD0C8B /* remind_Tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E2EB9F1B79E4D200CD0C8B /* remind_Tag@2x.png */; };
 		84E40D1F1B65E1BD00FB63AE /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E40D1E1B65E1BD00FB63AE /* back@2x.png */; };
 		84E40D271B6614A700FB63AE /* bar_bg_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E40D201B6614A700FB63AE /* bar_bg_left@2x.png */; };
 		84E40D281B6614A700FB63AE /* bar_bg_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E40D211B6614A700FB63AE /* bar_bg_right@2x.png */; };
@@ -583,6 +584,7 @@
 		84E2E0661B53C46F007F2585 /* check_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_2@2x.png"; sourceTree = "<group>"; };
 		84E2E0691B53C7D8007F2585 /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
 		84E2E06A1B53C7D8007F2585 /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		84E2EB9F1B79E4D200CD0C8B /* remind_Tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remind_Tag@2x.png"; sourceTree = "<group>"; };
 		84E40D1E1B65E1BD00FB63AE /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		84E40D201B6614A700FB63AE /* bar_bg_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_bg_left@2x.png"; sourceTree = "<group>"; };
 		84E40D211B6614A700FB63AE /* bar_bg_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_bg_right@2x.png"; sourceTree = "<group>"; };
@@ -1473,6 +1475,7 @@
 		84E672A31B6B590F00CFD1A2 /* Verson2 */ = {
 			isa = PBXGroup;
 			children = (
+				84E2EB9F1B79E4D200CD0C8B /* remind_Tag@2x.png */,
 				84E672A41B6B5EF600CFD1A2 /* camera_tag_01@2x.png */,
 				84E672A51B6B5EF600CFD1A2 /* camera_tag_02@2x.png */,
 				84EE1F821B6F0FEC00141434 /* tag_album@2x.png */,
@@ -2109,6 +2112,7 @@
 				84E43D8A1B5DF14A00A7028D /* default_rectangle@2x.png in Resources */,
 				84DAFFC21B4A62A6008418D0 /* labelLine@2x.png in Resources */,
 				84E672721B6B47DB00CFD1A2 /* shot.png in Resources */,
+				84E2EBA01B79E4D200CD0C8B /* remind_Tag@2x.png in Resources */,
 				84DAFFC71B4A793A008418D0 /* lineLabel@2x.png in Resources */,
 				84DAFFC01B4A61CF008418D0 /* drop@2x.png in Resources */,
 				84D689011B4B82AF00E91423 /* collect_sel@2x.png in Resources */,
@@ -2526,8 +2530,8 @@
 			baseConfigurationReference = E62F0845A09F94CB285CAC40 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: wenbao zhan (87VF9X79E9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wenbao zhan (87VF9X79E9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JuPlus/ThirdFrameWorks/UM_SDK/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
@@ -2570,8 +2574,8 @@
 			baseConfigurationReference = D7C5DA73B5B9477AD5A090BD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Weijia Information Technology Co., Ltd. (5NM9FZ6B47)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Weijia Information Technology Co., Ltd. (5NM9FZ6B47)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JuPlus/ThirdFrameWorks/UM_SDK/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",

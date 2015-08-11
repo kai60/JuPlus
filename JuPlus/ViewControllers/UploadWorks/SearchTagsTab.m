@@ -60,17 +60,7 @@
         [self addSubview:self.searchResaultTab];
         
         [self addSubview:self.coverView];
-        //增加监听，当键盘出现或改变时收出消息
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardShow:)
-                                                     name:UIKeyboardWillShowNotification
-                                                   object:nil];
         
-        //增加监听，当键退出时收出消息
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardHide:)
-                                                     name:UIKeyboardWillHideNotification
-                                                   object:nil];
         [self.searchResaultTab reloadData];
     }
     return self;
@@ -95,28 +85,7 @@ tagRespon = [[RelatedTagsRespon alloc]init];
         [self errorExp:errorDTO];
     } showProgressView:YES with:self];
 }
-#pragma mark fiedAndViewKeyBoard
-//自适应高度
--(void)keyboardShow:(NSNotification *)notification
-{
-    NSDictionary *userInfo = [notification userInfo];
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
-    float height = keyboardRect.size.height;
-    
-    double keyAinima = [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    [UIView animateWithDuration:keyAinima animations:^{
-        self.searchResaultTab.frame =CGRectMake(self.searchResaultTab.left,self.searchResaultTab.top, SCREEN_WIDTH, self.height - headView.height - height);
-    }];
-    
-}
--(void)keyboardHide:(NSNotification *)notification
-{
-    [self.coverView setHidden:YES];
-    [UIView animateWithDuration:0.3 animations:^{
-        self.searchResaultTab.frame =CGRectMake(self.searchResaultTab.left,self.searchResaultTab.top, SCREEN_WIDTH, self.height - headView.height);
-    }];
-}
+
 #pragma mark - Initialization
 
 - (UISearchBar *)searchBar
@@ -140,7 +109,7 @@ tagRespon = [[RelatedTagsRespon alloc]init];
 {
     if(!_searchResaultTab)
     {
-        _searchResaultTab=[[UITableView alloc]initWithFrame:CGRectMake(0,headView.bottom, SCREEN_WIDTH, self.height - headView.height)];
+        _searchResaultTab=[[UITableView alloc]initWithFrame:CGRectMake(0,headView.bottom, SCREEN_WIDTH, self.height - headView.bottom)];
         _searchResaultTab.delegate=self;
         _searchResaultTab.dataSource=self;
         _searchResaultTab.separatorColor = Color_Gray_lines;
@@ -190,6 +159,7 @@ tagRespon = [[RelatedTagsRespon alloc]init];
 //开始输入
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
+    
     [self.coverView setHidden:NO];
     [self.searchBar setShowsCancelButton:YES animated:YES];
     

@@ -10,9 +10,9 @@
 #import "PostViewController.h"
 #import "ImageCropper.h"
 #import "ImageFilterProcessViewController.h"
-@interface CameraViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface CameraViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 //图片编辑
-@property (nonatomic,strong)UIImageView *backImage;
+@property (nonatomic,strong)UIButton *backImage;
 //滤镜、标签处理
 @property (nonatomic,strong)JuPlusUIView *bottomView;
 //下一步
@@ -21,19 +21,24 @@
 @property (nonatomic,strong)UIButton *filterBtn;
 //相册
 @property (nonatomic,strong)UIButton *labelBtn;
+
+@property(nonatomic,strong)UIActionSheet *actionSheet;
+
 @end
 
 @implementation CameraViewController
 
--(UIImageView *)backImage
+-(UIButton *)backImage
 {
     if(!_backImage)
     {
-        _backImage = [[UIImageView alloc]init];
+        _backImage = [UIButton buttonWithType:UIButtonTypeCustom];
         _backImage.clipsToBounds = YES;
         _backImage.contentMode = UIViewContentModeScaleAspectFill;
-        [_backImage setImage:[UIImage imageNamed:@"bg_upload"]];
+        [_backImage setImage:[UIImage imageNamed:@"bg_upload"] forState:UIControlStateNormal];
+        [_backImage setImage:[UIImage imageNamed:@"bg_upload"] forState:UIControlStateHighlighted];
         _backImage.frame = CGRectMake(0, self.navView.bottom, SCREEN_WIDTH, PICTURE_HEIGHT);
+        [_backImage addTarget:self action:@selector(showActionSheet:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backImage;
 }
@@ -70,6 +75,17 @@
     }
     return _labelBtn;
 }
+-(UIActionSheet *)actionSheet
+{
+    if(!_actionSheet)
+    {
+        _actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"相机拍摄" otherButtonTitles:@"相片库", nil];
+        _actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        
+    }
+    return _actionSheet;
+}
+//
 
 
 - (void)viewDidLoad
@@ -89,6 +105,29 @@
     
     
     
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        
+        [self btnPressed:self.filterBtn];
+    
+    }
+    else if(buttonIndex ==1)
+    {
+        [self labelBtnPress:self.labelBtn];
+    }
+    else
+    {
+    
+    }
+
+    [actionSheet setHidden:YES];
+}
+//弹出actionsheet
+-(void)showActionSheet:(UIButton *)sender
+{
+    [self.actionSheet showFromRect:self.view.bounds inView:self.view animated:YES];
 }
 //拍照
 - (void)btnPressed:(id)sender {
