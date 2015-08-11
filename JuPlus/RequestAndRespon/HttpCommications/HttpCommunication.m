@@ -53,7 +53,7 @@
                    ErrorInfoDto *errDic = [[ErrorInfoDto alloc]init];
                    [errDic loadDTO:resalut];
                    errDic.reqMethod = [request getrequestMethodString];
-
+                   ///////*          *//////
                    dispatch_async(dispatch_get_main_queue(), ^{
                        failedBlock(errDic);
                    });
@@ -245,6 +245,8 @@
         return;
     }
     aView.userInteractionEnabled=YES;
+    
+    
     Class autoClass = [JuPlusLoadingView class];
     for(UIView *view in aView.subviews)
     {

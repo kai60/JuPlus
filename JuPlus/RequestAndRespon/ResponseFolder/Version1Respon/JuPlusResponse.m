@@ -41,6 +41,7 @@
         NSLog(@"json = %@",json);
         
         if ([json isKindOfClass:[NSDictionary class]]) {
+            //unpackParams 必要的参数  校验
             [self validateJsonValue:json ParamsArray:unpackParams Optional:NO];
         }
         

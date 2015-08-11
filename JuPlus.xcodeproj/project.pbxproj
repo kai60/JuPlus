@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		464FF2DC1B79CDA5005F0FE0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 464FF2DB1B79CDA5005F0FE0 /* libsqlite3.dylib */; };
+		464FF2DE1B79CDAF005F0FE0 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 464FF2DD1B79CDAF005F0FE0 /* libc++.dylib */; };
 		8461566C1B4F630D00F4AAA2 /* PackageReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461566B1B4F630D00F4AAA2 /* PackageReq.m */; };
 		846156721B4F68CD00F4AAA2 /* PackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156711B4F68CD00F4AAA2 /* PackageViewController.m */; };
 		846156751B4F698C00F4AAA2 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156741B4F698C00F4AAA2 /* ImageScrollView.m */; };
@@ -203,7 +205,6 @@
 		9C5863B21B3931EA008BB5AD /* PortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5863B11B3931EA008BB5AD /* PortraitView.m */; };
 		9C7C3F531B2958F100D8F29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F521B2958F100D8F29B /* main.m */; };
 		9C7C3F5E1B2958F100D8F29B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3F5D1B2958F100D8F29B /* Images.xcassets */; };
-		9C7C3F6D1B2958F100D8F29B /* JuPlusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F6C1B2958F100D8F29B /* JuPlusTests.m */; };
 		9C7C3F8B1B29596300D8F29B /* NSString+JuPlisString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F7C1B29596300D8F29B /* NSString+JuPlisString.m */; };
 		9C7C3F8C1B29596300D8F29B /* UIColor+JuPlusColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F7F1B29596300D8F29B /* UIColor+JuPlusColor.m */; };
 		9C7C3F8D1B29596300D8F29B /* UIImage+JuPlusUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F811B29596300D8F29B /* UIImage+JuPlusUIImage.m */; };
@@ -223,17 +224,10 @@
 		9CABB3DE1B32A97A006AD405 /* HobbyItemBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABB3DD1B32A97A006AD405 /* HobbyItemBtn.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		9C7C3F671B2958F100D8F29B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9C7C3F451B2958F100D8F29B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9C7C3F4C1B2958F100D8F29B;
-			remoteInfo = JuPlus;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		464FF2DB1B79CDA5005F0FE0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		464FF2DD1B79CDAF005F0FE0 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		469FE46B1B7A0C0D00DE1100 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "Pods/../build/Debug-iphoneos/libAFNetworking.a"; sourceTree = "<group>"; };
 		5BAD414BFA828A27F0636609 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8461566A1B4F630D00F4AAA2 /* PackageReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageReq.h; sourceTree = "<group>"; };
 		8461566B1B4F630D00F4AAA2 /* PackageReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageReq.m; sourceTree = "<group>"; };
@@ -560,9 +554,6 @@
 		9C7C3F511B2958F100D8F29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C7C3F521B2958F100D8F29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9C7C3F5D1B2958F100D8F29B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9C7C3F661B2958F100D8F29B /* JuPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JuPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C7C3F6B1B2958F100D8F29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9C7C3F6C1B2958F100D8F29B /* JuPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JuPlusTests.m; sourceTree = "<group>"; };
 		9C7C3F781B29596300D8F29B /* JuPlusConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusConstant.h; sourceTree = "<group>"; };
 		9C7C3F791B29596300D8F29B /* JuPlusEnvironmentConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusEnvironmentConfig.h; sourceTree = "<group>"; };
 		9C7C3F7C1B29596300D8F29B /* NSString+JuPlisString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JuPlisString.m"; sourceTree = "<group>"; };
@@ -611,16 +602,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				464FF2DE1B79CDAF005F0FE0 /* libc++.dylib in Frameworks */,
+				464FF2DC1B79CDA5005F0FE0 /* libsqlite3.dylib in Frameworks */,
 				84829FBF1B428508001D807F /* libz.1.2.5.dylib in Frameworks */,
 				8481E2711B60DC8500CB89C6 /* libBPush.a in Frameworks */,
 				87B140312DACAD6FB0419571 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C7C3F631B2958F100D8F29B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,7 +1102,6 @@
 			isa = PBXGroup;
 			children = (
 				9C7C3F4F1B2958F100D8F29B /* JuPlus */,
-				9C7C3F691B2958F100D8F29B /* JuPlusTests */,
 				9C7C3F4E1B2958F100D8F29B /* Products */,
 				6FB8F60F36C0EB648810EA39 /* Pods */,
 				E73E3BE362588C83AF8352D9 /* Frameworks */,
@@ -1127,7 +1112,6 @@
 			isa = PBXGroup;
 			children = (
 				9C7C3F4D1B2958F100D8F29B /* JuPlus.app */,
-				9C7C3F661B2958F100D8F29B /* JuPlusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1155,23 +1139,6 @@
 				9C7C3F511B2958F100D8F29B /* Info.plist */,
 				9C7C3F521B2958F100D8F29B /* main.m */,
 				84CC24D51B43B14100BE342E /* JuPlus-prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9C7C3F691B2958F100D8F29B /* JuPlusTests */ = {
-			isa = PBXGroup;
-			children = (
-				9C7C3F6C1B2958F100D8F29B /* JuPlusTests.m */,
-				9C7C3F6A1B2958F100D8F29B /* Supporting Files */,
-			);
-			path = JuPlusTests;
-			sourceTree = "<group>";
-		};
-		9C7C3F6A1B2958F100D8F29B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9C7C3F6B1B2958F100D8F29B /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1333,6 +1300,9 @@
 		E73E3BE362588C83AF8352D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				469FE46B1B7A0C0D00DE1100 /* libAFNetworking.a */,
+				464FF2DD1B79CDAF005F0FE0 /* libc++.dylib */,
+				464FF2DB1B79CDA5005F0FE0 /* libsqlite3.dylib */,
 				84829FBE1B428508001D807F /* libz.1.2.5.dylib */,
 				5BAD414BFA828A27F0636609 /* libPods.a */,
 			);
@@ -1361,24 +1331,6 @@
 			productReference = 9C7C3F4D1B2958F100D8F29B /* JuPlus.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9C7C3F651B2958F100D8F29B /* JuPlusTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9C7C3F731B2958F100D8F29B /* Build configuration list for PBXNativeTarget "JuPlusTests" */;
-			buildPhases = (
-				9C7C3F621B2958F100D8F29B /* Sources */,
-				9C7C3F631B2958F100D8F29B /* Frameworks */,
-				9C7C3F641B2958F100D8F29B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9C7C3F681B2958F100D8F29B /* PBXTargetDependency */,
-			);
-			name = JuPlusTests;
-			productName = JuPlusTests;
-			productReference = 9C7C3F661B2958F100D8F29B /* JuPlusTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1397,10 +1349,6 @@
 							};
 						};
 					};
-					9C7C3F651B2958F100D8F29B = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 9C7C3F4C1B2958F100D8F29B;
-					};
 				};
 			};
 			buildConfigurationList = 9C7C3F481B2958F100D8F29B /* Build configuration list for PBXProject "JuPlus" */;
@@ -1417,7 +1365,6 @@
 			projectRoot = "";
 			targets = (
 				9C7C3F4C1B2958F100D8F29B /* JuPlus */,
-				9C7C3F651B2958F100D8F29B /* JuPlusTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1495,13 +1442,6 @@
 				84B9AD1A1B453E61006CF63F /* logo_02.png in Resources */,
 				84FCB13F1B67578E00D00081 /* 9.png in Resources */,
 				84E43D8B1B5DF14A00A7028D /* default_square@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C7C3F641B2958F100D8F29B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1690,23 +1630,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9C7C3F621B2958F100D8F29B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9C7C3F6D1B2958F100D8F29B /* JuPlusTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9C7C3F681B2958F100D8F29B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9C7C3F4C1B2958F100D8F29B /* JuPlus */;
-			targetProxy = 9C7C3F671B2958F100D8F29B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9C7C3F6E1B2958F100D8F29B /* Debug */ = {
@@ -1806,11 +1730,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JuPlus/ThirdFrameWorks/BaiduPush",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
 					"-framework",
 					"\"CoreGraphics\"",
 					"-framework",
@@ -1840,11 +1764,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JuPlus/ThirdFrameWorks/BaiduPush",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
 					"-framework",
 					"\"CoreGraphics\"",
 					"-framework",
@@ -1857,40 +1781,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
-			};
-			name = Release;
-		};
-		9C7C3F741B2958F100D8F29B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = JuPlusTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JuPlus.app/JuPlus";
-			};
-			name = Debug;
-		};
-		9C7C3F751B2958F100D8F29B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = JuPlusTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JuPlus.app/JuPlus";
 			};
 			name = Release;
 		};
@@ -1911,15 +1801,6 @@
 			buildConfigurations = (
 				9C7C3F711B2958F100D8F29B /* Debug */,
 				9C7C3F721B2958F100D8F29B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9C7C3F731B2958F100D8F29B /* Build configuration list for PBXNativeTarget "JuPlusTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9C7C3F741B2958F100D8F29B /* Debug */,
-				9C7C3F751B2958F100D8F29B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
