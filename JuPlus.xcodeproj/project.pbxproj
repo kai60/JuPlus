@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		467251011B7B1AB800558648 /* MyworkslistReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251001B7B1AB800558648 /* MyworkslistReq.m */; };
+		467251071B7B1C2D00558648 /* MyworkslistRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251061B7B1C2D00558648 /* MyworkslistRespon.m */; };
 		8461566C1B4F630D00F4AAA2 /* PackageReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461566B1B4F630D00F4AAA2 /* PackageReq.m */; };
 		846156721B4F68CD00F4AAA2 /* PackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156711B4F68CD00F4AAA2 /* PackageViewController.m */; };
 		846156751B4F698C00F4AAA2 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156741B4F698C00F4AAA2 /* ImageScrollView.m */; };
@@ -327,6 +329,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		467250FF1B7B1AB800558648 /* MyworkslistReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyworkslistReq.h; sourceTree = "<group>"; };
+		467251001B7B1AB800558648 /* MyworkslistReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyworkslistReq.m; sourceTree = "<group>"; };
+		467251051B7B1C2D00558648 /* MyworkslistRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyworkslistRespon.h; sourceTree = "<group>"; };
+		467251061B7B1C2D00558648 /* MyworkslistRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyworkslistRespon.m; sourceTree = "<group>"; };
 		5BAD414BFA828A27F0636609 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8461566A1B4F630D00F4AAA2 /* PackageReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageReq.h; sourceTree = "<group>"; };
 		8461566B1B4F630D00F4AAA2 /* PackageReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageReq.m; sourceTree = "<group>"; };
@@ -1636,6 +1642,8 @@
 				84E432211B78A19A00AABF3F /* PostProductReq.m */,
 				84E432231B78A1F400AABF3F /* AddCollocationReq.h */,
 				84E432241B78A1F400AABF3F /* AddCollocationReq.m */,
+				467250FF1B7B1AB800558648 /* MyworkslistReq.h */,
+				467251001B7B1AB800558648 /* MyworkslistReq.m */,
 			);
 			path = Version2Req;
 			sourceTree = "<group>";
@@ -1647,6 +1655,8 @@
 				84F0D1261B706CD700F56D5A /* RelatedTagsRespon.m */,
 				84E432261B78A24A00AABF3F /* PostProductRespon.h */,
 				84E432271B78A24A00AABF3F /* PostProductRespon.m */,
+				467251051B7B1C2D00558648 /* MyworkslistRespon.h */,
+				467251061B7B1C2D00558648 /* MyworkslistRespon.m */,
 			);
 			path = Version2Respon;
 			sourceTree = "<group>";
@@ -2190,6 +2200,7 @@
 				84E672861B6B47DB00CFD1A2 /* DCIntrospect.m in Sources */,
 				84CDD96B1B4E76B800C97F7B /* ScrollRefreshViewFooter.m in Sources */,
 				84E1EC951B579AF700DABA36 /* AAPTransitionDirector.m in Sources */,
+				467251011B7B1AB800558648 /* MyworkslistReq.m in Sources */,
 				84E432281B78A24A00AABF3F /* PostProductRespon.m in Sources */,
 				84829F951B428376001D807F /* Des.c in Sources */,
 				84E6727E1B6B47DB00CFD1A2 /* SCCaptureCameraController.m in Sources */,
@@ -2241,6 +2252,7 @@
 				84829FB81B42839A001D807F /* md_wrap.c in Sources */,
 				84CDD96A1B4E76B800C97F7B /* ScrollRefreshView.m in Sources */,
 				84E432221B78A19A00AABF3F /* PostProductReq.m in Sources */,
+				467251071B7B1C2D00558648 /* MyworkslistRespon.m in Sources */,
 				84D486081B4D002A00AD0CCF /* PostFaverReq.m in Sources */,
 				84CC250A1B43CA0100BE342E /* JuPlusRequest.m in Sources */,
 				84B06AFF1B71FCEC00BD6D18 /* InfoChangeV.m in Sources */,
