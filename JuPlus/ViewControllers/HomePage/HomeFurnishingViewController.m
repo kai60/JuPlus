@@ -139,6 +139,8 @@
     NSLog(@"九宫格");
 //    [UMSocialSnsService presentSnsIconSheetView:self appKey:UM_APPKey shareText:@"测试" shareImage:[UIImage imageNamed:@"Icon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil] delegate:self];
 
+    
+    
     [self selectClick];
 }
 //筛选按钮点击（跳转到九宫格）

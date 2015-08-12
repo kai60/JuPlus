@@ -21,6 +21,8 @@
 #import "UMSocialSinaHandler.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialSinaSSOHandler.h"
+
+/* */
 @interface JuPlusAppDelegate ()
 @property(nonatomic,strong)HomeFurnishingViewController *home;
 @end
