@@ -17,7 +17,7 @@
     OrderListReq *listReq;
     OrderListRespon *listRespon;
     
-    ScrollRefreshViewHead *header;
+    ScrollRefreshViewHeader *header;
     ScrollRefreshViewFooter * footer;
     ScrollRefreshView *selectView;
     
@@ -57,7 +57,7 @@
     self.dataArray = [[NSMutableArray alloc]init];
     [self.view addSubview:self.orderListTab];
     pageNum = 1;
-    header = [ScrollRefreshViewHead header];
+    header = [ScrollRefreshViewHeader header];
     header.delegate = self;
     header.scrollView = self.orderListTab;
     

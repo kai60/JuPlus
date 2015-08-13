@@ -7,7 +7,7 @@
 //
 
 #import "UIImage+JuPlusUIImage.h"
-
+#import <CoreText/CoreText.h>
 @implementation UIImage (JuPlusUIImage)
 
 CGFloat DegreesToRadians(CGFloat degrees)
@@ -149,6 +149,59 @@ CGFloat RadiansToDegrees(CGFloat radians)
     //NSLog(@"base64转码，的实验");
     return pictureDataString;
     
+}
+
+//绘制图像上的文字
+-(UIImage *)addText:(NSString *)text
+{
+    
+    //上下文的大小
+    int w = self.size.width;
+    int h = self.size.height;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();//创建颜色
+    //创建上下文
+    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 22 * w, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
+    CGContextDrawImage(context, CGRectMake(0, 0, w, h),self.CGImage);//将img绘至context上下文中
+    //设置字体
+    CTFontRef font = CTFontCreateWithName(CFSTR("ZHSRXT--GBK1-0"), 25, NULL);
+    NSString *strNS = text;
+    CFStringRef strRef = (__bridge CFStringRef)strNS;
+    
+    // Create an attributed string
+    CFStringRef keys[] = { kCTFontAttributeName };
+    CFTypeRef values[] = { font };
+    CFDictionaryRef attr = CFDictionaryCreate(NULL, (const void **)&keys, (const void **)&values,
+                                              sizeof(keys) / sizeof(keys[0]), &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    CFAttributedStringRef attrString = CFAttributedStringCreate(NULL, strRef, attr);
+    CFRelease(attr);
+    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0); //白色
+    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);//设置字体绘制的颜色
+    CGContextSetTextDrawingMode(context, kCGTextFillStroke);//设置字体绘制方式
+    // Draw the string
+    CTLineRef line = CTLineCreateWithAttributedString(attrString);
+    CGContextSetTextMatrix(context, CGAffineTransformIdentity);  //Use this one when using standard view coordinates
+    CGContextSetTextPosition(context, (w - 22.0f*text.length)/2, 30.0f);
+    CTLineDraw(line, context);
+    
+    // Clean up
+    CFRelease(line);
+    CFRelease(attrString);
+    CFRelease(font);
+    
+    //    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 44 * w, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
+    //    CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);//将img绘至context上下文中
+    //    CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 1);//设置颜色
+    //    char* text = (char *)[text1 cStringUsingEncoding:NSUTF8StringEncoding];
+    //    // CGContextSelectFont(context, "Georgia", 30, kCGEncodingMacRoman);//设置字体的大小
+    //    CGContextSetTextDrawingMode(context, kCGTextFill);//设置字体绘制方式
+    //    CGContextSetRGBFillColor(context, 255, 0, 0, 1);//设置字体绘制的颜色
+    //
+    //    CGContextShowTextAtPoint(context, w/2-strlen(text)*5, h/2, text, strlen(text));//设置字体绘制的位置
+    //Create image ref from the context
+    CGImageRef imageMasked = CGBitmapContextCreateImage(context);//创建CGImage
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    return [UIImage imageWithCGImage:imageMasked];//获得添加水印后的图片
 }
 
 @end

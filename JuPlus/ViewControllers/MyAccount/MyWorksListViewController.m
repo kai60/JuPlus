@@ -10,7 +10,7 @@
 #import "JuPlusRefreshView.h"
 @interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
-    ScrollRefreshViewHead *header;
+    ScrollRefreshViewHeader *header;
     ScrollRefreshViewFooter *footer;
 }
 @end

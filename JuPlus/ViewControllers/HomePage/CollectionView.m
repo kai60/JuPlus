@@ -18,7 +18,7 @@
     NSMutableArray *dataArray;
     CollocationReq *collReq;
     CollectionRespon *collRespon;
-    ScrollRefreshViewHead *header;
+    ScrollRefreshViewHeader *header;
     ScrollRefreshViewFooter * footer;
     ScrollRefreshView *selectView;
     int pageNum;
@@ -35,7 +35,7 @@
         dataArray = [[NSMutableArray alloc]init];
         [self addSubview:self.listTab];
         pageNum = 1;
-        header = [ScrollRefreshViewHead header];
+        header = [ScrollRefreshViewHeader header];
         header.delegate = self;
         header.scrollView =  self.listTab;
         

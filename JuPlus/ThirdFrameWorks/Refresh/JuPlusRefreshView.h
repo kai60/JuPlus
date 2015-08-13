@@ -10,6 +10,6 @@
 #define JuPlus_JuPlusRefreshView_h
 
 #import"ScrollRefreshView.h"
-#import"ScrollRefreshViewHead.h"
+#import"ScrollRefreshViewHeader.h"
 #import"ScrollRefreshViewFooter.h"
 #endif

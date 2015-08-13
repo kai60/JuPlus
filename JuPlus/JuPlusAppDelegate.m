@@ -21,6 +21,7 @@
 #import "UMSocialSinaHandler.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialSinaSSOHandler.h"
+#import "MobClick.h"
 @interface JuPlusAppDelegate ()
 @property(nonatomic,strong)HomeFurnishingViewController *home;
 @end
@@ -33,15 +34,9 @@
     sleep(1);//设置启动页面时间
 #pragma mark --UM sign
     [self signUM];
-//    for(NSString *familyName in [UIFont familyNames]){
-//        NSLog(@"Font FamilyName = %@",familyName); //*输出字体族科名字
-//        
-//        for(NSString *fontName in [UIFont fontNamesForFamilyName:familyName]){
-//            NSLog(@"\t%@",fontName);         //*输出字体族科下字样名字
-//        }
-//    }
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//#pragma mark --insertPush
+//#pragma mark --insertPush百度推送
 //    // iOS8 下需要使用新的 API
 ////    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
 //        UIUserNotificationType myTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
@@ -106,6 +101,8 @@
         [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialSinaHandler openSSOWithRedirectURL:nil];
     //[UMSocialData openLog:YES];
+    //友盟统计添加
+    //[MobClick startWithAppkey:UM_APPKey reportPolicy:BATCH channelId:@"web"];
     
    }
 //引导页

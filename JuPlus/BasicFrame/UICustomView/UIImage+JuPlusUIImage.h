@@ -26,6 +26,7 @@
 - (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
 //得到缩放的图片
 -(NSString *)getImageString;
-
+//给图像绘制文字
+-(UIImage *)addText:(NSString *)text;
 
 @end

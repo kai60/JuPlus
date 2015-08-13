@@ -12,8 +12,8 @@
 -(void)unPackJsonValue:(NSDictionary *)dict
 {
     self.tagsArray = [[NSMutableArray alloc]init];
-    
-    NSArray *arr = [NSArray arrayWithArray:[dict objectForKey:@"tagAddress"]];
+    self.count = [NSString stringWithFormat:@"%@",[dict objectForKey:@"count"]];
+    NSArray *arr = [NSArray arrayWithArray:[dict objectForKey:@"list"]];
     
     for (int i=0; i<[arr count]; i++) {
         LabelDTO *dto = [[LabelDTO alloc]init];
