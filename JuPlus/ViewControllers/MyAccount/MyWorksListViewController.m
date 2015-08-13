@@ -35,7 +35,8 @@
     [self.view addSubview:self.listTab];
     
     [self startRequestMy];
-    
+    //去掉分割线
+    self.listTab.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.dataArray = [[NSMutableArray alloc]init];
     // Do any additional setup after loading the view.
 }
@@ -111,7 +112,7 @@
 #pragma mark --
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 145.0f;
+    return 225.0f;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
