@@ -10,7 +10,10 @@
 #import "JuPlusRefreshView.h"
 #import "MyworkslistReq.h"
 #import "MyworkslistRespon.h"
-
+#import "MyDeleteReq.h"
+#import "GetFavListReq.h"
+#import "PackageViewController.h"
+#import "CameraViewController.h"
 @interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 {
@@ -22,6 +25,7 @@
     int allCount;
     
 }
+
 @end
 
 @implementation MyWorksListViewController
@@ -38,7 +42,19 @@
     //去掉分割线
     self.listTab.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.dataArray = [[NSMutableArray alloc]init];
+    
+    //发布按钮
+    [self.rightBtn setHidden:NO];
+    [self.rightBtn setTitle:@"发布" forState:UIControlStateNormal];
+    [self.rightBtn setTitleColor:Color_Pink  forState:UIControlStateNormal];
+    [self.rightBtn addTarget:self action:@selector(release:) forControlEvents:UIControlEventTouchUpInside];
+    
     // Do any additional setup after loading the view.
+}
+- (void)release:(UIButton *)button
+{
+    CameraViewController *cameVC = [[CameraViewController alloc]init];
+    [self.navigationController pushViewController:cameVC animated:YES];
 }
 -(void)resetBackView
 {
@@ -102,7 +118,7 @@
         [self.dataArray addObjectsFromArray:respon.myworkArray];
         [self.listTab reloadData];
         [self stopReresh];
-        NSLog(@"~~~~~~~~%@",self.dataArray);
+        NSLog(@"~~~~~~~~%d",(int)self.dataArray.count);
         
     } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
@@ -112,7 +128,7 @@
 #pragma mark --
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 225.0f;
+    return 201.0f;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -123,18 +139,78 @@
 {
    static NSString *work = @"work";
     MyWorksCell *cell = [tableView dequeueReusableCellWithIdentifier:work];
-    if (cell==nil) {
-        cell = [[MyWorksCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:work];
+    if (!cell) {
+        cell = [[MyWorksCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:work];
     }
-    
+    cell.deleteBtn.tag = indexPath.row + 1000;
+
     //复制方法fileData
-    MyWorksDTO *dto = [self.dataArray objectAtIndex:indexPath.row];
-    [cell fileData:dto];
+    self.dto = [self.dataArray objectAtIndex:indexPath.row];
+    [cell fileData:_dto];
+    
+    // 按钮方法
+    [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+
     return cell;
+}
+- (void)deleteBtnClick:(UIButton *)button
+{
+    
+//     self.indexPath = [NSIndexPath indexPathForRow:button.tag inSection:0];
+    
+    self.index = [NSIndexPath indexPathForRow:button.tag - 1000 inSection:0];
+    
+    NSLog(@"Index = %d", (int)self.index.row);
+
+    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"确定删除此项内容么？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    
+    [alt show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1){
+//       NSLog(@"%ld", (long)self.index);
+        
+        MyDeleteReq *req = [[MyDeleteReq alloc]init];
+        MyWorksDTO *dto = [self.dataArray objectAtIndex:self.index.row];
+        NSLog(@"self.dataArray.count = %d", (int)self.dataArray.count);
+        
+        [req setField:dto.regNo forKey:@"collocateNo"];
+        [req setField:[CommonUtil getToken] forKey:TOKEN];
+        
+        NSLog(@"%@ ------", req);
+        JuPlusResponse *respon = [[JuPlusResponse alloc]init];
+        
+        [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+           
+            [CommonUtil postNotification:ReloadAddress Object:nil];
+            //删除成功
+            [self.dataArray removeObjectAtIndex:self.index.row];
+            NSLog(@"删除的Index = %d", (int)self.index.row);
+
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.index.row inSection:0];
+            NSLog(@"刷新的Index = %d", (int)self.index.row);
+            
+            [self.listTab deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            //刷新tab
+            NSIndexSet *indexset = [[NSIndexSet alloc] initWithIndex:0];
+            [self.listTab reloadSections:indexset withRowAnimation:UITableViewRowAnimationNone];
+            
+        } failed:^(ErrorInfoDto *errorDTO) {
+            [self errorExp:errorDTO];
+        } showProgressView:YES with:self.view];
+    }
 }
 //推到详情
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    MyWorksDTO *dto = [self.dataArray objectAtIndex:indexPath.row];
+    PackageViewController *singVC = [[PackageViewController alloc]init];
+    singVC.regNo = dto.regNo;
+    [self.navigationController pushViewController:singVC animated:YES];
 
 }
 - (void)didReceiveMemoryWarning {

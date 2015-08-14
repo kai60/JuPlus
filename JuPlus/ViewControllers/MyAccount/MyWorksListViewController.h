@@ -14,4 +14,10 @@
 @property (nonatomic,strong)UITableView *listTab;
 
 @property (nonatomic,strong)NSMutableArray *dataArray;
+@property (nonatomic, strong)MyWorksDTO *dto;
+
+@property (nonatomic, strong)NSIndexPath *indexPath;
+@property (nonatomic, strong) NSIndexPath *index;
+@property (nonatomic, strong) NSMutableDictionary *dic;
+
 @end

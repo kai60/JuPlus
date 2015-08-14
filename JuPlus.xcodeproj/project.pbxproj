@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		467251011B7B1AB800558648 /* MyworkslistReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251001B7B1AB800558648 /* MyworkslistReq.m */; };
 		467251071B7B1C2D00558648 /* MyworkslistRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251061B7B1C2D00558648 /* MyworkslistRespon.m */; };
+		46811E051B7C69BD00F84B5F /* MyDeleteReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 46811E041B7C69BD00F84B5F /* MyDeleteReq.m */; };
+		46B3FFA01B7D923B00FCBF98 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FF9F1B7D923B00FCBF98 /* delete@2x.png */; };
+		46B3FFA21B7D924100FCBF98 /* fav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA11B7D924100FCBF98 /* fav@2x.png */; };
+		46B3FFA41B7D924600FCBF98 /* pay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA31B7D924600FCBF98 /* pay@2x.png */; };
 		8461566C1B4F630D00F4AAA2 /* PackageReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461566B1B4F630D00F4AAA2 /* PackageReq.m */; };
 		846156721B4F68CD00F4AAA2 /* PackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156711B4F68CD00F4AAA2 /* PackageViewController.m */; };
 		846156751B4F698C00F4AAA2 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156741B4F698C00F4AAA2 /* ImageScrollView.m */; };
@@ -339,6 +343,11 @@
 		467251001B7B1AB800558648 /* MyworkslistReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyworkslistReq.m; sourceTree = "<group>"; };
 		467251051B7B1C2D00558648 /* MyworkslistRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyworkslistRespon.h; sourceTree = "<group>"; };
 		467251061B7B1C2D00558648 /* MyworkslistRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyworkslistRespon.m; sourceTree = "<group>"; };
+		46811E031B7C69BD00F84B5F /* MyDeleteReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDeleteReq.h; sourceTree = "<group>"; };
+		46811E041B7C69BD00F84B5F /* MyDeleteReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDeleteReq.m; sourceTree = "<group>"; };
+		46B3FF9F1B7D923B00FCBF98 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
+		46B3FFA11B7D924100FCBF98 /* fav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav@2x.png"; sourceTree = "<group>"; };
+		46B3FFA31B7D924600FCBF98 /* pay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay@2x.png"; sourceTree = "<group>"; };
 		5BAD414BFA828A27F0636609 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8461566A1B4F630D00F4AAA2 /* PackageReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageReq.h; sourceTree = "<group>"; };
 		8461566B1B4F630D00F4AAA2 /* PackageReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageReq.m; sourceTree = "<group>"; };
@@ -1087,6 +1096,9 @@
 				84B9AD151B453E61006CF63F /* checkmark.gif */,
 				84B9AD161B453E61006CF63F /* logo_01.png */,
 				84B9AD171B453E61006CF63F /* logo_02.png */,
+				46B3FF9F1B7D923B00FCBF98 /* delete@2x.png */,
+				46B3FFA11B7D924100FCBF98 /* fav@2x.png */,
+				46B3FFA31B7D924600FCBF98 /* pay@2x.png */,
 			);
 			path = Version1;
 			sourceTree = "<group>";
@@ -1282,10 +1294,10 @@
 				84E2E05F1B53C230007F2585 /* AddAddressViewController.m */,
 				84E2E0691B53C7D8007F2585 /* AddressCell.h */,
 				84E2E06A1B53C7D8007F2585 /* AddressCell.m */,
-				84E814AF1B5611E400921332 /* MyFavourViewController.h */,
-				84E814B01B5611E400921332 /* MyFavourViewController.m */,
 				84E814DF1B5635F000921332 /* MyFavourCell.h */,
 				84E814E01B5635F000921332 /* MyFavourCell.m */,
+				84E814AF1B5611E400921332 /* MyFavourViewController.h */,
+				84E814B01B5611E400921332 /* MyFavourViewController.m */,
 				84E8EDA61B5CC6C900A7420C /* MyInfoViewController.h */,
 				84E8EDA71B5CC6C900A7420C /* MyInfoViewController.m */,
 				84A8AFE21B5CE81200B25196 /* ResetPwdViewController.h */,
@@ -1674,6 +1686,8 @@
 				84E432241B78A1F400AABF3F /* AddCollocationReq.m */,
 				467250FF1B7B1AB800558648 /* MyworkslistReq.h */,
 				467251001B7B1AB800558648 /* MyworkslistReq.m */,
+				46811E031B7C69BD00F84B5F /* MyDeleteReq.h */,
+				46811E041B7C69BD00F84B5F /* MyDeleteReq.m */,
 			);
 			path = Version2Req;
 			sourceTree = "<group>";
@@ -2126,6 +2140,7 @@
 				84E7DE071B7326C200956CCE /* UMSLoginViewController.xib in Resources */,
 				84E7DE021B7326C200956CCE /* UMSCommentDetailController.xib in Resources */,
 				84DAFFAC1B4A4118008418D0 /* Icon.png in Resources */,
+				46B3FFA21B7D924100FCBF98 /* fav@2x.png in Resources */,
 				84E6728A1B6B47DB00CFD1A2 /* SVProgressHUD.bundle in Resources */,
 				84DAFFAD1B4A4118008418D0 /* Icon-58@2x.png in Resources */,
 				84E6726A1B6B47DB00CFD1A2 /* close_cha_h.png in Resources */,
@@ -2133,6 +2148,7 @@
 				84E43D901B5E336500A7028D /* ResetnicknameView.xib in Resources */,
 				84B9AD181B453E61006CF63F /* checkmark.gif in Resources */,
 				84E40D451B663A8400FB63AE /* icons_02_sel@2x.png in Resources */,
+				46B3FFA01B7D923B00FCBF98 /* delete@2x.png in Resources */,
 				84D689021B4B82AF00E91423 /* collect_sel@3x.png in Resources */,
 				84B9AD191B453E61006CF63F /* logo_01.png in Resources */,
 				84FCB1411B6758B300D00081 /* 10.png in Resources */,
@@ -2173,6 +2189,7 @@
 				84FCB1361B67578E00D00081 /* 1.png in Resources */,
 				84DAFFB01B4A4118008418D0 /* Icon-512@3x.png in Resources */,
 				84E2E0641B53C327007F2585 /* icons_edit@2x.png in Resources */,
+				46B3FFA41B7D924600FCBF98 /* pay@2x.png in Resources */,
 				84E6726C1B6B47DB00CFD1A2 /* flashing_auto.png in Resources */,
 				84E672751B6B47DB00CFD1A2 /* shot_h@2x.png in Resources */,
 				84CE18561B4628A400B103F4 /* gd_1.jpg in Resources */,
@@ -2254,6 +2271,7 @@
 				84E16FE11B54BB1500588D2B /* GetAddressListReq.m in Sources */,
 				84B9AD0C1B44E1E7006CF63F /* HomePageInfoDTO.m in Sources */,
 				84E814D11B56124700921332 /* LoginRespon.m in Sources */,
+				46811E051B7C69BD00F84B5F /* MyDeleteReq.m in Sources */,
 				8461566C1B4F630D00F4AAA2 /* PackageReq.m in Sources */,
 				846156781B4F779E00F4AAA2 /* InfoDisplayView.m in Sources */,
 				9C7C3FAA1B296CAD00D8F29B /* ClassificationViewController.m in Sources */,
