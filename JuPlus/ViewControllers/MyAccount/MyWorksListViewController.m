@@ -14,7 +14,8 @@
 #import "GetFavListReq.h"
 #import "PackageViewController.h"
 #import "CameraViewController.h"
-@interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource,ScrollRefreshViewDegegate>
+#import "HomeFurnishingViewController.h"
+@interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 {
     ScrollRefreshViewHeader *header;
@@ -46,7 +47,7 @@
     //发布按钮
     [self.rightBtn setHidden:NO];
     [self.rightBtn setTitle:@"发布" forState:UIControlStateNormal];
-    [self.rightBtn setTitleColor:Color_Pink  forState:UIControlStateNormal];
+    [self.rightBtn setTitleColor:Color_Basic  forState:UIControlStateNormal];
     [self.rightBtn addTarget:self action:@selector(release:) forControlEvents:UIControlEventTouchUpInside];
     
     //上拉刷新
@@ -67,7 +68,23 @@
 }
 -(void)resetBackView
 {
-    
+    [self.leftBtn setHidden:YES];
+    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.frame = CGRectMake(0.0f, self.navView.height -44.0f, 44.0f, 44.0f);
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(backPress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navView addSubview:leftBtn];
+}
+-(void)backPress:(UIButton *)sender
+{
+    NSArray *vcArr = [self.navigationController viewControllers];
+    for (UIViewController *vc in vcArr) {
+        if([vc isKindOfClass:[HomeFurnishingViewController class]])
+        {
+            [self.navigationController popToViewController:vc animated:YES];
+            return;
+        }
+    }
 }
 #pragma mark --uifig
 -(UITableView *)listTab
