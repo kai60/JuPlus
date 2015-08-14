@@ -15,6 +15,7 @@
 #import "JuPlusUserInfoCenter.h"
 #import "MyInfoViewController.h"
 #import "CameraViewController.h"
+#import "MyWorksListViewController.h"
 @implementation PersonCenterView
 {
     PersonCenterReq *centerReq;
@@ -155,9 +156,12 @@
 }
 -(void)uploadClick
 {
-    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"完成基础操作后成为居+搭配设计师" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-    alt.tag = 101;
-    [alt show];
+//    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"完成基础操作后成为居+搭配设计师" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+//    alt.tag = 101;
+//    [alt show];
+    MyWorksListViewController *myWorks = [[MyWorksListViewController alloc]init];
+    [[self getSuperViewController].navigationController pushViewController:myWorks animated:YES];
+    
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

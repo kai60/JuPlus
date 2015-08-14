@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		467251011B7B1AB800558648 /* MyworkslistReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251001B7B1AB800558648 /* MyworkslistReq.m */; };
+		467251071B7B1C2D00558648 /* MyworkslistRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251061B7B1C2D00558648 /* MyworkslistRespon.m */; };
 		8461566C1B4F630D00F4AAA2 /* PackageReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461566B1B4F630D00F4AAA2 /* PackageReq.m */; };
 		846156721B4F68CD00F4AAA2 /* PackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156711B4F68CD00F4AAA2 /* PackageViewController.m */; };
 		846156751B4F698C00F4AAA2 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156741B4F698C00F4AAA2 /* ImageScrollView.m */; };
@@ -313,7 +315,6 @@
 		9C5863B21B3931EA008BB5AD /* PortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5863B11B3931EA008BB5AD /* PortraitView.m */; };
 		9C7C3F531B2958F100D8F29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F521B2958F100D8F29B /* main.m */; };
 		9C7C3F5E1B2958F100D8F29B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C3F5D1B2958F100D8F29B /* Images.xcassets */; };
-		9C7C3F6D1B2958F100D8F29B /* JuPlusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F6C1B2958F100D8F29B /* JuPlusTests.m */; };
 		9C7C3F8B1B29596300D8F29B /* NSString+JuPlisString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F7C1B29596300D8F29B /* NSString+JuPlisString.m */; };
 		9C7C3F8C1B29596300D8F29B /* UIColor+JuPlusColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F7F1B29596300D8F29B /* UIColor+JuPlusColor.m */; };
 		9C7C3F8D1B29596300D8F29B /* UIImage+JuPlusUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F811B29596300D8F29B /* UIImage+JuPlusUIImage.m */; };
@@ -333,17 +334,11 @@
 		9CABB3DE1B32A97A006AD405 /* HobbyItemBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABB3DD1B32A97A006AD405 /* HobbyItemBtn.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		9C7C3F671B2958F100D8F29B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9C7C3F451B2958F100D8F29B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9C7C3F4C1B2958F100D8F29B;
-			remoteInfo = JuPlus;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		467250FF1B7B1AB800558648 /* MyworkslistReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyworkslistReq.h; sourceTree = "<group>"; };
+		467251001B7B1AB800558648 /* MyworkslistReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyworkslistReq.m; sourceTree = "<group>"; };
+		467251051B7B1C2D00558648 /* MyworkslistRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyworkslistRespon.h; sourceTree = "<group>"; };
+		467251061B7B1C2D00558648 /* MyworkslistRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyworkslistRespon.m; sourceTree = "<group>"; };
 		5BAD414BFA828A27F0636609 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8461566A1B4F630D00F4AAA2 /* PackageReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageReq.h; sourceTree = "<group>"; };
 		8461566B1B4F630D00F4AAA2 /* PackageReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageReq.m; sourceTree = "<group>"; };
@@ -848,9 +843,6 @@
 		9C7C3F511B2958F100D8F29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C7C3F521B2958F100D8F29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9C7C3F5D1B2958F100D8F29B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9C7C3F661B2958F100D8F29B /* JuPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JuPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C7C3F6B1B2958F100D8F29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9C7C3F6C1B2958F100D8F29B /* JuPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JuPlusTests.m; sourceTree = "<group>"; };
 		9C7C3F781B29596300D8F29B /* JuPlusConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusConstant.h; sourceTree = "<group>"; };
 		9C7C3F791B29596300D8F29B /* JuPlusEnvironmentConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusEnvironmentConfig.h; sourceTree = "<group>"; };
 		9C7C3F7C1B29596300D8F29B /* NSString+JuPlisString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JuPlisString.m"; sourceTree = "<group>"; };
@@ -925,13 +917,6 @@
 				84E7DE011B7326C200956CCE /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
 				8481E2711B60DC8500CB89C6 /* libBPush.a in Frameworks */,
 				87B140312DACAD6FB0419571 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C7C3F631B2958F100D8F29B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1687,6 +1672,8 @@
 				84E432211B78A19A00AABF3F /* PostProductReq.m */,
 				84E432231B78A1F400AABF3F /* AddCollocationReq.h */,
 				84E432241B78A1F400AABF3F /* AddCollocationReq.m */,
+				467250FF1B7B1AB800558648 /* MyworkslistReq.h */,
+				467251001B7B1AB800558648 /* MyworkslistReq.m */,
 			);
 			path = Version2Req;
 			sourceTree = "<group>";
@@ -1698,6 +1685,8 @@
 				84F0D1261B706CD700F56D5A /* RelatedTagsRespon.m */,
 				84E432261B78A24A00AABF3F /* PostProductRespon.h */,
 				84E432271B78A24A00AABF3F /* PostProductRespon.m */,
+				467251051B7B1C2D00558648 /* MyworkslistRespon.h */,
+				467251061B7B1C2D00558648 /* MyworkslistRespon.m */,
 			);
 			path = Version2Respon;
 			sourceTree = "<group>";
@@ -1784,7 +1773,6 @@
 			isa = PBXGroup;
 			children = (
 				9C7C3F4F1B2958F100D8F29B /* JuPlus */,
-				9C7C3F691B2958F100D8F29B /* JuPlusTests */,
 				9C7C3F4E1B2958F100D8F29B /* Products */,
 				6FB8F60F36C0EB648810EA39 /* Pods */,
 				E73E3BE362588C83AF8352D9 /* Frameworks */,
@@ -1795,7 +1783,6 @@
 			isa = PBXGroup;
 			children = (
 				9C7C3F4D1B2958F100D8F29B /* JuPlus.app */,
-				9C7C3F661B2958F100D8F29B /* JuPlusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1823,23 +1810,6 @@
 				9C7C3F511B2958F100D8F29B /* Info.plist */,
 				9C7C3F521B2958F100D8F29B /* main.m */,
 				84CC24D51B43B14100BE342E /* JuPlus-prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9C7C3F691B2958F100D8F29B /* JuPlusTests */ = {
-			isa = PBXGroup;
-			children = (
-				9C7C3F6C1B2958F100D8F29B /* JuPlusTests.m */,
-				9C7C3F6A1B2958F100D8F29B /* Supporting Files */,
-			);
-			path = JuPlusTests;
-			sourceTree = "<group>";
-		};
-		9C7C3F6A1B2958F100D8F29B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9C7C3F6B1B2958F100D8F29B /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1880,8 +1850,8 @@
 		9C7C3F7B1B29596300D8F29B /* UICustomView */ = {
 			isa = PBXGroup;
 			children = (
-				9C7C3F7C1B29596300D8F29B /* NSString+JuPlisString.m */,
 				9C7C3F7D1B29596300D8F29B /* NSString+JuPlusString.h */,
+				9C7C3F7C1B29596300D8F29B /* NSString+JuPlisString.m */,
 				9C7C3F7E1B29596300D8F29B /* UIColor+JuPlusColor.h */,
 				9C7C3F7F1B29596300D8F29B /* UIColor+JuPlusColor.m */,
 				9C7C3F801B29596300D8F29B /* UIImage+JuPlusUIImage.h */,
@@ -2049,24 +2019,6 @@
 			productReference = 9C7C3F4D1B2958F100D8F29B /* JuPlus.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9C7C3F651B2958F100D8F29B /* JuPlusTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9C7C3F731B2958F100D8F29B /* Build configuration list for PBXNativeTarget "JuPlusTests" */;
-			buildPhases = (
-				9C7C3F621B2958F100D8F29B /* Sources */,
-				9C7C3F631B2958F100D8F29B /* Frameworks */,
-				9C7C3F641B2958F100D8F29B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9C7C3F681B2958F100D8F29B /* PBXTargetDependency */,
-			);
-			name = JuPlusTests;
-			productName = JuPlusTests;
-			productReference = 9C7C3F661B2958F100D8F29B /* JuPlusTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2085,10 +2037,6 @@
 							};
 						};
 					};
-					9C7C3F651B2958F100D8F29B = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 9C7C3F4C1B2958F100D8F29B;
-					};
 				};
 			};
 			buildConfigurationList = 9C7C3F481B2958F100D8F29B /* Build configuration list for PBXProject "JuPlus" */;
@@ -2106,7 +2054,6 @@
 			projectRoot = "";
 			targets = (
 				9C7C3F4C1B2958F100D8F29B /* JuPlus */,
-				9C7C3F651B2958F100D8F29B /* JuPlusTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2239,13 +2186,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9C7C3F641B2958F100D8F29B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -2297,6 +2237,7 @@
 				84E672861B6B47DB00CFD1A2 /* DCIntrospect.m in Sources */,
 				84CDD96B1B4E76B800C97F7B /* ScrollRefreshViewFooter.m in Sources */,
 				84E1EC951B579AF700DABA36 /* AAPTransitionDirector.m in Sources */,
+				467251011B7B1AB800558648 /* MyworkslistReq.m in Sources */,
 				84E432281B78A24A00AABF3F /* PostProductRespon.m in Sources */,
 				84829F951B428376001D807F /* Des.c in Sources */,
 				84E6727E1B6B47DB00CFD1A2 /* SCCaptureCameraController.m in Sources */,
@@ -2349,6 +2290,7 @@
 				84829FB81B42839A001D807F /* md_wrap.c in Sources */,
 				84CDD96A1B4E76B800C97F7B /* ScrollRefreshView.m in Sources */,
 				84E432221B78A19A00AABF3F /* PostProductReq.m in Sources */,
+				467251071B7B1C2D00558648 /* MyworkslistRespon.m in Sources */,
 				84D486081B4D002A00AD0CCF /* PostFaverReq.m in Sources */,
 				84CC250A1B43CA0100BE342E /* JuPlusRequest.m in Sources */,
 				84B06AFF1B71FCEC00BD6D18 /* InfoChangeV.m in Sources */,
@@ -2466,23 +2408,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9C7C3F621B2958F100D8F29B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9C7C3F6D1B2958F100D8F29B /* JuPlusTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9C7C3F681B2958F100D8F29B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9C7C3F4C1B2958F100D8F29B /* JuPlus */;
-			targetProxy = 9C7C3F671B2958F100D8F29B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		84E7DDE61B7326C200956CCE /* UMSocialLocalizable.strings */ = {
@@ -2610,7 +2536,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
 					"-framework",
 					"\"CoreGraphics\"",
 					"-framework",
@@ -2655,7 +2580,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
 					"-framework",
 					"\"CoreGraphics\"",
 					"-framework",
@@ -2668,40 +2592,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
-			};
-			name = Release;
-		};
-		9C7C3F741B2958F100D8F29B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = JuPlusTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JuPlus.app/JuPlus";
-			};
-			name = Debug;
-		};
-		9C7C3F751B2958F100D8F29B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = JuPlusTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JuPlus.app/JuPlus";
 			};
 			name = Release;
 		};
@@ -2722,15 +2612,6 @@
 			buildConfigurations = (
 				9C7C3F711B2958F100D8F29B /* Debug */,
 				9C7C3F721B2958F100D8F29B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9C7C3F731B2958F100D8F29B /* Build configuration list for PBXNativeTarget "JuPlusTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9C7C3F741B2958F100D8F29B /* Debug */,
-				9C7C3F751B2958F100D8F29B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -21,7 +21,7 @@
 @property (nonatomic,strong)UIButton *filterBtn;
 //相册
 @property (nonatomic,strong)UIButton *labelBtn;
-
+//弹出
 @property(nonatomic,strong)UIActionSheet *actionSheet;
 
 @end

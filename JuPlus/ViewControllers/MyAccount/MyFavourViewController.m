@@ -128,6 +128,7 @@
     {
         cell = [[MyFavourCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:str];
     }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     MyFavourDTO *dto = [self.dataArray objectAtIndex:indexPath.row];
     [cell fileData:dto];
