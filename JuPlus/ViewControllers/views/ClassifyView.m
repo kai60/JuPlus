@@ -60,7 +60,6 @@
     CGFloat btnH = btnW;
 
     for(int i=0;i<[self.dataArray count];i++)
-//    for(int i=0;i<9;i++)
     {
         ClassifyTagsDTO *tagDTO = [self.dataArray objectAtIndex:i];
         HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX +self.width*(i/9)+(space+btnW)*(i%3),50.0f +spaceY + (spaceY+btnH)*((i/3)%3), btnW, btnH)];

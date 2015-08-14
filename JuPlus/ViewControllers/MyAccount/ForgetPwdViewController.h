@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 #import "KeyBoardTopBar.h"
 #import "JuPlusTextField.h"
 #import "TimerButton.h"
-@interface ForgetPwdViewController : BaseViewController
+@interface ForgetPwdViewController : JuPlusUIViewController
 {
     TimerButton *identifyButtom;
     KeyBoardTopBar *keyboardTopBar;

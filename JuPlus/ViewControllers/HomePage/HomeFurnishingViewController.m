@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "UMSocial.h"
 #import "UMSocialScreenShoter.h"
+#import "BasicUIViewController.h"
 #import <CoreText/CoreText.h>
 @interface HomeFurnishingViewController()<UMSocialUIDelegate>
 
@@ -141,6 +142,7 @@
 //    [UMSocialSnsService presentSnsIconSheetView:self appKey:UM_APPKey shareText:@"测试" shareImage:[UIImage imageNamed:@"Icon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil] delegate:self];
 
     [self selectClick];
+   
 }
 
 

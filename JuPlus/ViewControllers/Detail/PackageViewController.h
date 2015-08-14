@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 #import "PostFaverReq.h"
 #import "DeleteFavReq.h"
 
-@interface PackageViewController : BaseViewController<UIScrollViewDelegate>
+@interface PackageViewController : JuPlusUIViewController<UIScrollViewDelegate>
 //套餐id
 @property(nonatomic,strong)NSString *regNo;
 

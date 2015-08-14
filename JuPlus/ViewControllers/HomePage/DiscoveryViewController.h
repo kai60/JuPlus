@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //发现
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 
-@interface DiscoveryViewController : BaseViewController
+@interface DiscoveryViewController : JuPlusUIViewController
 
 @end

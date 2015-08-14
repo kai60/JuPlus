@@ -11,7 +11,7 @@
 #import "JuPlusCustomMethod.h"
 #import "JuPlusUIView.h"
 #import "ErrorInfoDto.h"
-@interface BaseViewController : UIViewController
+@interface JuPlusUIViewController : UIViewController
 //导航栏
 @property(nonatomic,strong)UIView *navView;
 //标题栏

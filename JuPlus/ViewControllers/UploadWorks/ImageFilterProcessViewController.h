@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 Wu.weibin. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 @protocol ImageFitlerProcessDelegate;
-@interface ImageFilterProcessViewController : BaseViewController
+@interface ImageFilterProcessViewController : JuPlusUIViewController
 {
     UIImageView *rootImageView;
     UIScrollView *scrollerView;
