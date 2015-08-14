@@ -15,7 +15,7 @@
 #import "PackageViewController.h"
 #import "CameraViewController.h"
 #import "HomeFurnishingViewController.h"
-@interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource,ScrollRefreshViewDegegate>
 
 {
     ScrollRefreshViewHeader *header;
