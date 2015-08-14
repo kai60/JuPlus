@@ -75,13 +75,14 @@
 {
     if(!_dateLabel)
     {
-        _dateLabel =[[UILabel alloc]initWithFrame:CGRectMake(0.0f, PICTURE_HEIGHT/4+10.0f, 120.0f, 30.0f)];
+        _dateLabel =[[UILabel alloc]initWithFrame:CGRectMake(0.0f, PICTURE_HEIGHT/4+10.0f, 120.0f, 20.0f)];
         _dateLabel.textAlignment = NSTextAlignmentCenter;
         [_dateLabel setFont:FontType(FontSize)];
         _dateLabel.numberOfLines = 0;
-        _dateLabel.backgroundColor = Color_Basic;
+        _dateLabel.backgroundColor = RGBCOLOR(137, 83, 41);
         _dateLabel.alpha = ALPHLA_BUTTON;
         _dateLabel.textColor = Color_White;
+        _dateLabel.font = [UIFont systemFontOfSize:12];
     }
     return _dateLabel;
 }
@@ -100,10 +101,11 @@
     if(!_deleteBtn)
     {
         _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _deleteBtn.frame = CGRectMake(10.0f, 8.0f, 60.0f, 20.0f);
+        _deleteBtn.frame = CGRectMake(10.0f, 8.0f, 20.0f, 20.0f);
         [_deleteBtn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
         [_deleteBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
         [_deleteBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,_favBtn.imageView.image.size.width, 0.0, 0.0)];
+        _deleteBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     }
     
     return _deleteBtn;
@@ -114,12 +116,12 @@
     if(!_favBtn)
     {
         _favBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _favBtn.frame = CGRectMake(200.0f, 8.0f, 40.0f, 20.0f);
+        _favBtn.frame = CGRectMake(220.0f, 8.0f, 40.0f, 20.0f);
         [_favBtn setImage:[UIImage imageNamed:@"fav"] forState:UIControlStateNormal];
         [_favBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
         [_favBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0,0.0, 0.0, 20.0)];
         [_favBtn setTitle:_favBtn.titleLabel.text forState:UIControlStateNormal];
-        _favBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _favBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         
     }
     return _favBtn;
@@ -129,12 +131,12 @@
     if(!_payBtn)
     {
         _payBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _payBtn.frame = CGRectMake(250.0f, 8.0f, 40.0f, 20.0f);
+        _payBtn.frame = CGRectMake(270.0f, 8.0f, 40.0f, 20.0f);
         [_payBtn setImage:[UIImage imageNamed:@"pay"] forState:UIControlStateNormal];
         [_payBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 20.0)];
         [_payBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
         [_payBtn setTitle:self.payBtn.titleLabel.text forState:UIControlStateNormal];
-        _payBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _payBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         
     }
     return _payBtn;

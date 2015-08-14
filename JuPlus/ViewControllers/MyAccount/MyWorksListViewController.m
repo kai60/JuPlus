@@ -14,7 +14,7 @@
 #import "GetFavListReq.h"
 #import "PackageViewController.h"
 #import "CameraViewController.h"
-@interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource,ScrollRefreshViewDegegate>
 
 {
     ScrollRefreshViewHeader *header;
@@ -48,6 +48,15 @@
     [self.rightBtn setTitle:@"发布" forState:UIControlStateNormal];
     [self.rightBtn setTitleColor:Color_Pink  forState:UIControlStateNormal];
     [self.rightBtn addTarget:self action:@selector(release:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //上拉刷新
+    header = [ScrollRefreshViewHeader header];
+    header.delegate = self;
+    header.scrollView = self.listTab;
+    //下拉加载
+    footer = [ScrollRefreshViewFooter footer];
+    footer.delegate = self;
+    footer.scrollView = self.listTab;
     
     // Do any additional setup after loading the view.
 }
@@ -109,7 +118,6 @@
     [myReq setField:[NSString stringWithFormat:@"%d",pageNum] forKey:PageNum];
     [myReq setField:PAGESIZE forKey:PageSize];
     MyworkslistRespon * respon = [[MyworkslistRespon alloc]init];
-
     [HttpCommunication request:myReq getResponse:respon Success:^(JuPlusResponse *response) {
         allCount = [respon.count integerValue];
         if (pageNum == 1) {
