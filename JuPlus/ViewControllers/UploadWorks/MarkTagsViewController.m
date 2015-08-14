@@ -301,17 +301,20 @@
     return _remindL;
 }
 #pragma mark --scrollView
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+-(void)setFront
 {
     [self.view bringSubviewToFront:self.navView];
     [self.view bringSubviewToFront:self.sureBtn];
+    [self.view bringSubviewToFront:self.searchTab];
+}
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self setFront];
     [self.view bringSubviewToFront:scrollView];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.view bringSubviewToFront:self.navView];
-    [self.view bringSubviewToFront:self.sureBtn];
-
+    [self setFront];
     CGFloat orignY = scrollView.contentOffset.y;
     self.topImgView.frame = CGRectMake(self.topImgView.left, nav_height -  orignY, self.topImgView.width, self.topImgView.height);
     remindBtn.frame = CGRectMake(remindBtn.left, nav_height -  orignY, remindBtn.width, remindBtn.height);
@@ -321,8 +324,7 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self.view bringSubviewToFront:self.topImgView];
-    [self.view bringSubviewToFront:self.navView];
-    [self.view bringSubviewToFront:self.sureBtn];
+    [self setFront];
 }
 #pragma mark --Click
 //显示可选择的分类
