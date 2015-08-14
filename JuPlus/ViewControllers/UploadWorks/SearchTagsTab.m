@@ -10,11 +10,18 @@
 #import "RelatedTagsReq.h"
 #import "RelatedTagsRespon.h"
 #import "UploadNotesViewController.h"
-@interface SearchTagsTab ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UISearchBarDelegate>
+@interface SearchTagsTab ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UISearchBarDelegate,ScrollRefreshViewDegegate>
 {
     RelatedTagsReq *tagReq;
     
     RelatedTagsRespon *tagRespon;
+    
+    ScrollRefreshViewHeader *header;
+    ScrollRefreshViewFooter *footer;
+    ScrollRefreshView * selectedView;
+    int totalCount;
+    
+    int pageNum;
 }
 
 @property (nonatomic,strong)     UITableView *searchResaultTab;
@@ -38,24 +45,26 @@
     self = [super initWithFrame:frame];
     if(self)
     {
+        pageNum = 1;
         self.dataArray = [[NSMutableArray alloc]init];
         headView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 20.0f, SCREEN_WIDTH, 40.0f)];
         headView.backgroundColor = [UIColor clearColor];
         [self addSubview:headView];
-//        
-//        UIImageView *addSearch = [[UIImageView alloc]initWithFrame:CGRectMake(10.0f, 5.0f, 20.0f, 20.0f)];
-//        [addSearch setImage:[UIImage imageNamed:@"search_add"]];
-//        [headView addSubview:addSearch];
         
         [headView addSubview:self.searchBar];
         
-        //[headView addSubview:self.clearBtn];
-        
-        //[headView addSubview:self.cancelBtn];
-        
         UIView *top = [[UIView alloc]initWithFrame:CGRectMake(0.0f,headView.height - 1.0f, self.width, 1.0f)];
         [top setBackgroundColor:Color_Gray_lines];
+        
         [headView addSubview:top];
+        
+        footer = [ScrollRefreshViewFooter footer];
+        footer.delegate = self;
+        footer.scrollView = self.searchResaultTab;
+        header = [ScrollRefreshViewHeader header];
+        header.delegate = self;
+        header.scrollView = self.searchResaultTab;
+        
         
         [self addSubview:self.searchResaultTab];
         
@@ -71,21 +80,52 @@
 -(void)startRequest
 {
     tagReq = [[RelatedTagsReq alloc]init];
-tagRespon = [[RelatedTagsRespon alloc]init];
+    NSString *urlStr = [NSString stringWithFormat:@"list?pageNum=%d&pageSize=%@&name=%@",pageNum,PAGESIZE,self.searchBar.text];
+    [tagReq setField:urlStr forKey:@"FunctionName"];
+    tagRespon = [[RelatedTagsRespon alloc]init];
 
-    //[self.tagReq setField:self.searchBar.text forKey:@"searchKey"];
-    [tagReq setField:[CommonUtil getToken] forKey:TOKEN];
     [HttpCommunication request:tagReq getResponse:tagRespon Success:^(JuPlusResponse *response) {
-        self.dataArray = tagRespon.tagsArray;
-        LabelDTO *dto = [[LabelDTO alloc]init];
-        dto.productName = [NSString stringWithFormat:@"添加标签：%@",self.searchBar.text];
-        [self.dataArray addObject:dto];
-        [self.searchResaultTab reloadData];
+        [self stopRefresh];
+        if (pageNum==1) {
+            [self.dataArray removeAllObjects];
+            LabelDTO *dto = [[LabelDTO alloc]init];
+            dto.productName = [NSString stringWithFormat:@"添加标签：%@",self.searchBar.text];
+            [self.dataArray addObject:dto];
+        }
+        [self.dataArray addObjectsFromArray:tagRespon.tagsArray];
+               [self.searchResaultTab reloadData];
     } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
+        [self stopRefresh];
     } showProgressView:YES with:self];
 }
-
+-(void)stopRefresh
+{
+    [selectedView endRefreshing];
+}
+-(void)refreshViewBeginRefreshing:(ScrollRefreshView *)refreshView
+{
+    selectedView = refreshView;
+    //下拉刷新
+    if(refreshView.viewType == RefreshViewTypeHeader)
+    {
+        pageNum = 1;
+        //下拉刷新则重载上拉加载更多选项
+        [footer setState:RefreshStateNormal withAnimate:NO];
+    }
+    //上拉加载更多
+    else
+    {
+        if([self.dataArray count]>=totalCount)
+        {
+            //显示无更多内容
+            [refreshView setState:RefreshStateALL withAnimate:YES];
+            return;
+        }
+        pageNum++;
+    }
+    [self startRequest];
+}
 #pragma mark - Initialization
 
 - (UISearchBar *)searchBar
@@ -144,8 +184,8 @@ tagRespon = [[RelatedTagsRespon alloc]init];
         _coverView.backgroundColor = RGBACOLOR(0, 0, 0, 0.3);
         _coverView.userInteractionEnabled = YES;
         [_coverView setHidden:YES];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgesPress:)];
-        [_coverView addGestureRecognizer:tap];
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgesPress:)];
+//        [_coverView addGestureRecognizer:tap];
     }
     return _coverView;
 }
@@ -159,7 +199,8 @@ tagRespon = [[RelatedTagsRespon alloc]init];
 //开始输入
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    
+    [self.superview bringSubviewToFront:self];
+
     [self.coverView setHidden:NO];
     [self.searchBar setShowsCancelButton:YES animated:YES];
     
@@ -248,6 +289,7 @@ tagRespon = [[RelatedTagsRespon alloc]init];
     }
     else
     {
+        self.infoDTO.productNo = dto.productNo;
         self.infoDTO.productName = dto.productName;
         [CommonUtil postNotification:AddLabels Object:self.infoDTO];
 

@@ -13,7 +13,7 @@
     self = [super init];
     if (self)
     {
-        self.urlSeq = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",TOKEN,nil];
+        self.urlSeq = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",nil];
         self.requestMethod = RequestMethod_GET;
         self.validParams = [[NSArray alloc] initWithObjects:@"ModuleName",@"FunctionName",nil];
         self.packDic = [[NSMutableDictionary alloc] initWithCapacity:0];
@@ -25,8 +25,8 @@
 
 -(void)setPath{
     
-    [self setField:@"address" forKey:@"ModuleName"];
-    [self setField:@"list" forKey:@"FunctionName"];
+    [self setField:@"product/name" forKey:@"ModuleName"];
+
 }
 
 @end

@@ -201,6 +201,10 @@
             }
         }
         if (self.delegate&&[self.delegate respondsToSelector:@selector(reloadInfo:)]) {
+            if(IsNilOrNull(selectedBtn))
+            {
+                self.infoDTO = nil;
+            }
             [self.delegate reloadInfo:self.infoDTO];
         }
     }

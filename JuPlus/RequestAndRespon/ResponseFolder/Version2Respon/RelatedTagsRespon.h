@@ -10,4 +10,6 @@
 
 @interface RelatedTagsRespon : JuPlusResponse
 @property (nonatomic,strong)NSMutableArray *tagsArray;
+
+@property (nonatomic,strong)NSString *count;
 @end

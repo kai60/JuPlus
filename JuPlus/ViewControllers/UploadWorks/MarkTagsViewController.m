@@ -16,7 +16,9 @@
 #import "UMSocial.h"
 #import "UIScrollView+UITouch.h"
 #import "AddCollocationReq.h"
-@interface MarkTagsViewController ()<UITextViewDelegate,ClassifyViewDelegate,UITextFieldDelegate,UMSocialUIDelegate>
+#import "MyWorksListViewController.h"
+#import "ToastView.h"
+@interface MarkTagsViewController ()<UITextViewDelegate,ClassifyViewDelegate,UITextFieldDelegate,UMSocialUIDelegate,ToastViewDelegate>
 {
     UIView *selectedView;
     
@@ -48,6 +50,9 @@
 
 @property (nonatomic,strong)ClassifyView *classify;
 
+@property (nonatomic,strong)ToastView *toast;
+
+@property (nonatomic,strong)UIView *backView;
 @end
 
 @implementation MarkTagsViewController
@@ -77,9 +82,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fileLabels:) name:AddLabels object:nil];
 #pragma mark --添加套餐介绍等信息
-    [self.rightBtn setHidden:NO];
-    [self.rightBtn setTitle:@"分享" forState:UIControlStateNormal];
-    [self.rightBtn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.backSCroll addSubview:self.detailView];
     [self.backSCroll addSubview:self.placeholderLabel];
@@ -99,13 +101,70 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 
+    [self addToastView];
     // Do any additional setup after loading the view.
 }
-
+#pragma mark --toastView
+-(void)Method:(NSInteger)tag
+{
+    //分享到微信好友
+    if (tag==ShareToWechatSession) {
+        [self shareToUM:UMShareToWechatSession];
+    }
+    //分享到朋友圈
+    else if(tag==ShareToWechatTimeline)
+    {
+        [self shareToUM:UMShareToWechatTimeline];
+    }
+    else
+    {
+        [self hiddenToastView];
+        [self gotoWorksList];
+    }
+    
+}
+//调用分享到朋友圈、微信好友
+-(void)shareToUM:(NSString *)shareMehtod
+{
+    
+    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:[self.postImage addText:self.detailView.text] socialUIDelegate:self];        //设置分享内容和回调对象
+    [UMSocialSnsPlatformManager getSocialPlatformWithName:shareMehtod].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
+}
+//弹出分享界面
+-(void)addToastView
+{
+    UIWindow*  Hywindow = [[[UIApplication sharedApplication] delegate] window];
+    [Hywindow addSubview:self.backView];
+    [self.backView addSubview:self.toast];
+    [self.backView setHidden:YES];
+}
+-(void)showToastView
+{
+    [self.backView setHidden:NO];
+}
+-(void)hiddenToastView
+{
+    [self.backView setHidden:YES];
+}
 -(void)sharePress:(UIButton *)sender
 {
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UM_APPKey shareText:@"测试" shareImage:[UIImage imageNamed:@"Icon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil] delegate:self];
+    [self showToastView];
     
+}
+#pragma mark --UM_Delegate
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+{
+    //微信分享纯图片，不需要文字信息
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
+}
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //如果分享成功，回调方法
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        //
+        [self hiddenToastView];
+        [self gotoWorksList];
+    }
 }
 #pragma mark --uifig
 -(UIScrollView *)backSCroll
@@ -182,6 +241,24 @@
     }
     return _clfyPickView;
 }
+-(ToastView *)toast
+{
+    if(!_toast)
+    {
+        _toast = [[ToastView alloc]initWithFrame:CGRectMake(35.0f, (SCREEN_HEIGHT - 300.0f)/2, SCREEN_WIDTH - 70.0f, 300.0f)];
+        _toast.delegate = self;
+    }
+    return _toast;
+}
+-(UIView *)backView
+{
+        if(!_backView)
+        {
+            _backView = [[UIView alloc]initWithFrame:self.view.bounds];
+            _backView.backgroundColor = RGBACOLOR(0, 0, 0, 0.7);
+        }
+    return _backView;
+}
 -(UIButton *)sureBtn
 {
     if(!_sureBtn)
@@ -190,7 +267,7 @@
         _sureBtn.frame=CGRectMake(0, SCREEN_HEIGHT - TABBAR_HEIGHT, SCREEN_WIDTH, TABBAR_HEIGHT);
         [_sureBtn setBackgroundColor:Color_Basic];
         _sureBtn.alpha = ALPHLA_BUTTON;
-        [_sureBtn setTitle:@"完成" forState:UIControlStateNormal];
+        [_sureBtn setTitle:@"发布" forState:UIControlStateNormal];
         _sureBtn.titleLabel.font=FontType(FontMaxSize);
         [_sureBtn setTitleColor:Color_White forState:UIControlStateNormal];
         [_sureBtn addTarget:self action:@selector(sureBtnPress:) forControlEvents:UIControlEventTouchUpInside];
@@ -224,17 +301,20 @@
     return _remindL;
 }
 #pragma mark --scrollView
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+-(void)setFront
 {
     [self.view bringSubviewToFront:self.navView];
     [self.view bringSubviewToFront:self.sureBtn];
+    [self.view bringSubviewToFront:self.searchTab];
+}
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self setFront];
     [self.view bringSubviewToFront:scrollView];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.view bringSubviewToFront:self.navView];
-    [self.view bringSubviewToFront:self.sureBtn];
-
+    [self setFront];
     CGFloat orignY = scrollView.contentOffset.y;
     self.topImgView.frame = CGRectMake(self.topImgView.left, nav_height -  orignY, self.topImgView.width, self.topImgView.height);
     remindBtn.frame = CGRectMake(remindBtn.left, nav_height -  orignY, remindBtn.width, remindBtn.height);
@@ -244,20 +324,25 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self.view bringSubviewToFront:self.topImgView];
-    [self.view bringSubviewToFront:self.navView];
-    [self.view bringSubviewToFront:self.sureBtn];
+    [self setFront];
 }
 #pragma mark --Click
 //显示可选择的分类
 -(void)rightBtnPress:(UIButton *)sender
 {
+    [self.view bringSubviewToFront:self.classify];
     [self.classify showClassify];
 }
 //代理回调，
 -(void)reloadInfo:(ClassifyTagsDTO *)info
 {
-    [self.clfyPickView.textL setText:info.name];
-    self.clfyPickView.tag = [info.tagId integerValue];
+    [self.view sendSubviewToBack:self.classify];
+    if (info) {
+        [self.clfyPickView.textL setText:info.name];
+        self.clfyPickView.tag = [info.tagId integerValue];
+    }
+    else
+        [self.clfyPickView.textL setText:@""];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -296,16 +381,18 @@
     JuPlusResponse *respon = [[JuPlusResponse alloc]init];
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         //
+        [self showToastView];
     } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
 }
-//分享成功
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    
-}
 
+//跳转到我的列表页面
+-(void)gotoWorksList
+{
+    MyWorksListViewController *list = [[MyWorksListViewController alloc]init];
+    [self.navigationController pushViewController:list animated:YES];
+}
 //退出键盘
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"])
@@ -391,9 +478,6 @@
     
     [self.topImgView addSubview:la];
     
-    
-
-
 }
 #pragma mark UItapGesture--
 
@@ -417,7 +501,6 @@
             if (touch.view==remindBtn) {
                 [remindBtn removeFromSuperview];
             }
-            [self.view bringSubviewToFront:self.searchTab];
             [self.searchTab.searchBar setShowsCancelButton:YES animated:YES];
             [self.searchTab.searchBar becomeFirstResponder];
             self.searchTab.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -465,6 +548,7 @@
         }
             [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
     }
+
 }
 #pragma mark --uifig
 -(UIImageView *)topImgView

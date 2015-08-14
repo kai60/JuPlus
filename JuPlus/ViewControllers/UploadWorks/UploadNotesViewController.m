@@ -29,9 +29,6 @@
     [super viewDidLoad];
     self.titleLabel.text = @"发布作品";
     
-    [self.rightBtn setHidden:NO];
-    [self.rightBtn setTitle:@"分享" forState:UIControlStateNormal];
-    [self.rightBtn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backSCroll];
 
     UILabel *tagL =[[UILabel alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 200.0f, 30.0f)];

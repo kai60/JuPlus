@@ -17,7 +17,7 @@
 @interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 {
-    ScrollRefreshViewHead *header;
+    ScrollRefreshViewHeader *header;
     ScrollRefreshViewFooter *footer;
     ScrollRefreshView *selectView;
     
