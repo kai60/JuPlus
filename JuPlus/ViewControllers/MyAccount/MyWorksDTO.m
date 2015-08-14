@@ -12,8 +12,8 @@
 -(void)loadDTO:(NSDictionary *)dict
 {
     self.status = [NSString stringWithFormat:@"%@",[dict objectForKey:@"status"]];
-    self.payCount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"status"]];
-    self.favCount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"status"]];
+    self.payCount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"buyCount"]];
+    self.favCount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"favouriteCount"]];
     self.regNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"regNo"]];
     self.uploadTime = [NSString stringWithFormat:@"%@",[dict objectForKey:@"uploadTime"]];
     self.coverUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"coverUrl"]];

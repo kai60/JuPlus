@@ -51,6 +51,7 @@
     if(!_backImage)
     {
         _backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, -80.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
+        _backImage.backgroundColor = [UIColor blueColor];
         [_backImage setImage:[UIImage imageNamed:@"default_square"]];
         
     }
@@ -88,21 +89,23 @@
 {
     if(!_bottomView)
     {
-        _bottomView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.back.bottom, self.width, 60.0f)];
+        _bottomView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.back.bottom, self.width, 36.0f)];
         _bottomView.backgroundColor = Color_White;
     }
     return _bottomView;
 }
 -(UIButton *)deleteBtn
 {
+    //删除按钮
     if(!_deleteBtn)
     {
         _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _deleteBtn.frame = CGRectMake(10.0f, 15.0f, 60.0f, 30.0f);
-        [_deleteBtn setImage:[UIImage imageNamed:@"fav"] forState:UIControlStateNormal];
+        _deleteBtn.frame = CGRectMake(10.0f, 8.0f, 60.0f, 20.0f);
+        [_deleteBtn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
         [_deleteBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
         [_deleteBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,_favBtn.imageView.image.size.width, 0.0, 0.0)];
     }
+    
     return _deleteBtn;
 }
 
@@ -111,10 +114,13 @@
     if(!_favBtn)
     {
         _favBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _favBtn.frame = CGRectMake(180.0f, 15.0f, 60.0f, 30.0f);
+        _favBtn.frame = CGRectMake(200.0f, 8.0f, 40.0f, 20.0f);
         [_favBtn setImage:[UIImage imageNamed:@"fav"] forState:UIControlStateNormal];
         [_favBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
-        [_favBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,_favBtn.imageView.image.size.width, 0.0, 0.0)];
+        [_favBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0,0.0, 0.0, 20.0)];
+        [_favBtn setTitle:_favBtn.titleLabel.text forState:UIControlStateNormal];
+        _favBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        
     }
     return _favBtn;
 }
@@ -123,10 +129,13 @@
     if(!_payBtn)
     {
         _payBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _payBtn.frame = CGRectMake(250.0f, 15.0f, 60.0f, 30.0f);
-        [_payBtn setImage:[UIImage imageNamed:@"fav"] forState:UIControlStateNormal];
+        _payBtn.frame = CGRectMake(250.0f, 8.0f, 40.0f, 20.0f);
+        [_payBtn setImage:[UIImage imageNamed:@"pay"] forState:UIControlStateNormal];
+        [_payBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 20.0)];
         [_payBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
-        [_payBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,_favBtn.imageView.image.size.width, 0.0, 0.0)];
+        [_payBtn setTitle:self.payBtn.titleLabel.text forState:UIControlStateNormal];
+        _payBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        
     }
     return _payBtn;
 }
@@ -142,11 +151,21 @@
         self.dateLabel.frame = CGRectMake(self.dateLabel.left, self.dateLabel.top, size.width + 10.0f, self.dateLabel.height);
         [self.dateLabel setText:dto.uploadTime];
     }
-    [self.nameLabel setText:dto.status];
+    NSString *str = @"";
+    if ([dto.status integerValue] == 1) {
+        str = @"待审核";
+    }else if ([dto.status integerValue] == 2){
+        str = @"审核失败";
+    }else if ([dto.status integerValue] == 3){
+        str = @"审核成功";
+    }
+    [self.nameLabel setText:str];
+    //自定义button的赋值方法
     [self.favBtn setTitle:dto.favCount forState:UIControlStateNormal];
     [self.payBtn setTitle:dto.payCount forState:UIControlStateNormal];
-
     [self.backImage setimageUrl:dto.coverUrl placeholderImage:nil];
+
+    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
