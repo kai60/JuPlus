@@ -25,6 +25,8 @@
           UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.frame = CGRectMake(10.0f+i*60.0f, orignY, 48.0f, 65.0f);
             [btn setImage:[UIImage imageNamed:[nameArr objectAtIndex:i]] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:[nameArr objectAtIndex:i]] forState:UIControlStateHighlighted];
+
             btn.tag = i+1;
             [self addSubview:btn];
             [btn addTarget:self action:@selector(btnPress:) forControlEvents:UIControlEventTouchUpInside];

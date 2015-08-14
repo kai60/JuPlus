@@ -159,8 +159,8 @@
 //    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"完成基础操作后成为居+搭配设计师" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
 //    alt.tag = 101;
 //    [alt show];
-    MyWorksListViewController *myWorks = [[MyWorksListViewController alloc]init];
-    [[self getSuperViewController].navigationController pushViewController:myWorks animated:YES];
+    CameraViewController *view = [[CameraViewController alloc]init];
+    [[self getSuperViewController].navigationController pushViewController:view animated:YES];
     
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -189,8 +189,8 @@
         case 0:
         {
             //[self uploadClick];
-            CameraViewController *view = [[CameraViewController alloc]init];
-            [[self getSuperViewController].navigationController pushViewController:view animated:YES];
+            MyWorksListViewController *myWorks = [[MyWorksListViewController alloc]init];
+            [[self getSuperViewController].navigationController pushViewController:myWorks animated:YES];
             
         }
             break;
@@ -206,6 +206,7 @@
             //我的收藏
             MyFavourViewController *fav = [[MyFavourViewController alloc]init];
             [[self getSuperViewController].navigationController pushViewController:fav animated:YES];
+
         }
             break;
             

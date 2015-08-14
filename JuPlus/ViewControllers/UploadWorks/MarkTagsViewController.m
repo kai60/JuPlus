@@ -368,6 +368,7 @@
         [self getTagsArray];
         [self postData];
     }
+//    [self.topImgView setImage:[self.postImage addText:self.detailView.text]];
 }
 //发送post表单，上送结果
 -(void)postData

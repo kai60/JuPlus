@@ -174,9 +174,9 @@ CGFloat RadiansToDegrees(CGFloat radians)
                                               sizeof(keys) / sizeof(keys[0]), &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     CFAttributedStringRef attrString = CFAttributedStringCreate(NULL, strRef, attr);
     CFRelease(attr);
+    CGContextSetTextDrawingMode(context, kCGTextFillStroke);//设置字体绘制方式
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0); //白色
     CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);//设置字体绘制的颜色
-    CGContextSetTextDrawingMode(context, kCGTextFillStroke);//设置字体绘制方式
     // Draw the string
     CTLineRef line = CTLineCreateWithAttributedString(attrString);
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);  //Use this one when using standard view coordinates
@@ -190,7 +190,6 @@ CGFloat RadiansToDegrees(CGFloat radians)
     
     //    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 44 * w, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
     //    CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);//将img绘至context上下文中
-    //    CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 1);//设置颜色
     //    char* text = (char *)[text1 cStringUsingEncoding:NSUTF8StringEncoding];
     //    // CGContextSelectFont(context, "Georgia", 30, kCGEncodingMacRoman);//设置字体的大小
     //    CGContextSetTextDrawingMode(context, kCGTextFill);//设置字体绘制方式
