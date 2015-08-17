@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //我的作品列表
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 #import "MyWorksDTO.h"
 #import "MyWorksCell.h"
-@interface MyWorksListViewController : BaseViewController
+@interface MyWorksListViewController : JuPlusUIViewController
 
 @property (nonatomic,strong)UITableView *listTab;
 

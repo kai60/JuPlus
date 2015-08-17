@@ -292,10 +292,10 @@
     if(!_remindL)
     {
         
-        _remindL = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.clfyPickView.bottom+10.0f, self.backSCroll.width - 20.0f, 60.0f)];
+        _remindL = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.clfyPickView.bottom+10.0f, self.backSCroll.width - 20.0f, 30.0f)];
         _remindL.numberOfLines = 0;
         [_remindL setFont:FontType(FontSize)];
-        [_remindL setText:@"我们的工作人员将在2个工作日内联系你，如果物品可以出售，你将获得百分之十的返点"];
+        [_remindL setText:@"*我们的工作人员将在2个工作日内联系你"];
         [_remindL sizeToFit];
     }
     return _remindL;
@@ -368,7 +368,6 @@
         [self getTagsArray];
         [self postData];
     }
-//    [self.topImgView setImage:[self.postImage addText:self.detailView.text]];
 }
 //发送post表单，上送结果
 -(void)postData

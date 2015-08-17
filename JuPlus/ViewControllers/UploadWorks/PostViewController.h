@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 Aevitx. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 
-@interface PostViewController : BaseViewController
+@interface PostViewController : JuPlusUIViewController
 
 @property (nonatomic, strong) UIImage *postImage;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //(套餐下单或者单品下单)
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 //下单界面
-@interface PlaceOrderViewController : BaseViewController
+@interface PlaceOrderViewController : JuPlusUIViewController
 //
 @property(nonatomic,strong)NSArray *regArray;
 //是单品还是套餐

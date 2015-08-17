@@ -181,6 +181,7 @@ CGFloat RadiansToDegrees(CGFloat radians)
     CTLineRef line = CTLineCreateWithAttributedString(attrString);
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);  //Use this one when using standard view coordinates
     CGContextSetTextPosition(context, (w - 22.0f*text.length)/2, 30.0f);
+     CGContextSetLineWidth(context, 2.0);
     CTLineDraw(line, context);
     
     // Clean up
@@ -196,9 +197,11 @@ CGFloat RadiansToDegrees(CGFloat radians)
     //    CGContextSetRGBFillColor(context, 255, 0, 0, 1);//设置字体绘制的颜色
     //
     //    CGContextShowTextAtPoint(context, w/2-strlen(text)*5, h/2, text, strlen(text));//设置字体绘制的位置
+    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0); //白色
+    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);//设置字体绘制的颜色
     //Create image ref from the context
     CGImageRef imageMasked = CGBitmapContextCreateImage(context);//创建CGImage
-    CGContextRelease(context);
+        CGContextRelease(context);
     CGColorSpaceRelease(colorSpace);
     return [UIImage imageWithCGImage:imageMasked];//获得添加水印后的图片
 }

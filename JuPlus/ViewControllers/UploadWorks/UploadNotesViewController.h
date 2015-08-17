@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //新添加的单品设置
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 #import "LabelDTO.h"
-@interface UploadNotesViewController : BaseViewController
+@interface UploadNotesViewController : JuPlusUIViewController
 
 @property (nonatomic,strong)LabelDTO *infoDTO;
 

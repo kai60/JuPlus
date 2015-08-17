@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //订单详情
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 
-@interface OrderDetailViewController : BaseViewController
+@interface OrderDetailViewController : JuPlusUIViewController
 //订单号
 @property(nonatomic,strong)NSString *orderNo;
 

@@ -7,9 +7,9 @@
 //登陆界面
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 #import "KeyBoardTopBar.h"
-@interface LoginViewController :BaseViewController<keyBoardTopBarDelegate>
+@interface LoginViewController :JuPlusUIViewController<keyBoardTopBarDelegate>
 {
     KeyBoardTopBar *keyboardTopBar;
     //界面向上弹出的高度

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 Aevitx. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 #import "SCNavigationController.h"
 
-@interface CameraViewController : BaseViewController <SCNavigationControllerDelegate>
+@interface CameraViewController : JuPlusUIViewController <SCNavigationControllerDelegate>
 
 @end

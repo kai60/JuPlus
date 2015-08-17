@@ -284,12 +284,14 @@
 		84EAFFDD1B7C908B006B55BC /* weichat_session@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EAFFDB1B7C908B006B55BC /* weichat_session@2x.png */; };
 		84EAFFDE1B7C908B006B55BC /* weichat_TimeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EAFFDC1B7C908B006B55BC /* weichat_TimeLine@2x.png */; };
 		84EBAA801B7DE5BA006E1148 /* Detault-736@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EBAA7F1B7DE5BA006E1148 /* Detault-736@3x.png */; };
+		84EBAA831B7DF8F4006E1148 /* BasicUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBAA821B7DF8F4006E1148 /* BasicUIViewController.m */; };
+		84EBAA881B7DF923006E1148 /* JuPlusTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBAA851B7DF923006E1148 /* JuPlusTabBarController.m */; };
+		84EBAA891B7DF923006E1148 /* JuPlusUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBAA871B7DF923006E1148 /* JuPlusUIViewController.m */; };
 		84EE1F7E1B6F0CD400141434 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE1F7B1B6F0CD400141434 /* ImageUtil.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		84EE1F811B6F0CE300141434 /* IphoneScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE1F801B6F0CE300141434 /* IphoneScreen.m */; };
 		84EE1F841B6F0FEC00141434 /* tag_album@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE1F821B6F0FEC00141434 /* tag_album@2x.png */; };
 		84EE1F851B6F0FEC00141434 /* tag_carmera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE1F831B6F0FEC00141434 /* tag_carmera@2x.png */; };
 		84EE1F871B6F110B00141434 /* bg_upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE1F861B6F110B00141434 /* bg_upload@2x.png */; };
-		84EE77841B6A2BA900E6F7C9 /* fangzhengyouxian.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EE77821B6A29CE00E6F7C9 /* fangzhengyouxian.ttf */; };
 		84EE77861B6A2D0000E6F7C9 /* zhsrx.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EE77851B6A2CE800E6F7C9 /* zhsrx.ttf */; };
 		84EF22C31B7AF1A800CEEE47 /* MyWorksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF22C21B7AF1A800CEEE47 /* MyWorksCell.m */; };
 		84EF22C61B7AF3D100CEEE47 /* MyWorksDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF22C51B7AF3D100CEEE47 /* MyWorksDTO.m */; };
@@ -326,8 +328,6 @@
 		9C7C3F8F1B29596300D8F29B /* JuPlusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F881B29596300D8F29B /* JuPlusAppDelegate.m */; };
 		9C7C3F951B295F7100D8F29B /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F941B295F7100D8F29B /* CommonUtil.m */; };
 		9C7C3F981B2961F000D8F29B /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F971B2961F000D8F29B /* GuideViewController.m */; };
-		9C7C3F9E1B29646700D8F29B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3F9D1B29646700D8F29B /* BaseViewController.m */; };
-		9C7C3FA11B2966F200D8F29B /* JuPlusTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FA01B2966F200D8F29B /* JuPlusTabBarController.m */; };
 		9C7C3FA41B296BFC00D8F29B /* DiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FA31B296BFC00D8F29B /* DiscoveryViewController.m */; };
 		9C7C3FA71B296C5C00D8F29B /* CollocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FA61B296C5C00D8F29B /* CollocationViewController.m */; };
 		9C7C3FAA1B296CAD00D8F29B /* ClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C3FA91B296CAD00D8F29B /* ClassificationViewController.m */; };
@@ -800,6 +800,12 @@
 		84EAFFDB1B7C908B006B55BC /* weichat_session@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weichat_session@2x.png"; sourceTree = "<group>"; };
 		84EAFFDC1B7C908B006B55BC /* weichat_TimeLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weichat_TimeLine@2x.png"; sourceTree = "<group>"; };
 		84EBAA7F1B7DE5BA006E1148 /* Detault-736@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Detault-736@3x.png"; sourceTree = "<group>"; };
+		84EBAA811B7DF8F4006E1148 /* BasicUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicUIViewController.h; sourceTree = "<group>"; };
+		84EBAA821B7DF8F4006E1148 /* BasicUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicUIViewController.m; sourceTree = "<group>"; };
+		84EBAA841B7DF923006E1148 /* JuPlusTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusTabBarController.h; sourceTree = "<group>"; };
+		84EBAA851B7DF923006E1148 /* JuPlusTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuPlusTabBarController.m; sourceTree = "<group>"; };
+		84EBAA861B7DF923006E1148 /* JuPlusUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusUIViewController.h; sourceTree = "<group>"; };
+		84EBAA871B7DF923006E1148 /* JuPlusUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuPlusUIViewController.m; sourceTree = "<group>"; };
 		84EE1F7B1B6F0CD400141434 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
 		84EE1F7C1B6F0CD400141434 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
 		84EE1F7D1B6F0CD400141434 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
@@ -808,7 +814,6 @@
 		84EE1F821B6F0FEC00141434 /* tag_album@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag_album@2x.png"; sourceTree = "<group>"; };
 		84EE1F831B6F0FEC00141434 /* tag_carmera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag_carmera@2x.png"; sourceTree = "<group>"; };
 		84EE1F861B6F110B00141434 /* bg_upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_upload@2x.png"; sourceTree = "<group>"; };
-		84EE77821B6A29CE00E6F7C9 /* fangzhengyouxian.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fangzhengyouxian.ttf; sourceTree = "<group>"; };
 		84EE77851B6A2CE800E6F7C9 /* zhsrx.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = zhsrx.ttf; sourceTree = "<group>"; };
 		84EF22C11B7AF1A800CEEE47 /* MyWorksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWorksCell.h; sourceTree = "<group>"; };
 		84EF22C21B7AF1A800CEEE47 /* MyWorksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorksCell.m; sourceTree = "<group>"; };
@@ -870,10 +875,6 @@
 		9C7C3F941B295F7100D8F29B /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
 		9C7C3F961B2961F000D8F29B /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		9C7C3F971B2961F000D8F29B /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
-		9C7C3F9C1B29646700D8F29B /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = ../HomePage/BaseViewController.h; sourceTree = "<group>"; };
-		9C7C3F9D1B29646700D8F29B /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = ../HomePage/BaseViewController.m; sourceTree = "<group>"; };
-		9C7C3F9F1B2966F200D8F29B /* JuPlusTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JuPlusTabBarController.h; path = ../HomePage/JuPlusTabBarController.h; sourceTree = "<group>"; };
-		9C7C3FA01B2966F200D8F29B /* JuPlusTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JuPlusTabBarController.m; path = ../HomePage/JuPlusTabBarController.m; sourceTree = "<group>"; };
 		9C7C3FA21B296BFC00D8F29B /* DiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryViewController.h; sourceTree = "<group>"; };
 		9C7C3FA31B296BFC00D8F29B /* DiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryViewController.m; sourceTree = "<group>"; };
 		9C7C3FA51B296C5C00D8F29B /* CollocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollocationViewController.h; sourceTree = "<group>"; };
@@ -1659,7 +1660,6 @@
 		84EE77811B6A29A600E6F7C9 /* FontType */ = {
 			isa = PBXGroup;
 			children = (
-				84EE77821B6A29CE00E6F7C9 /* fangzhengyouxian.ttf */,
 				84EE77851B6A2CE800E6F7C9 /* zhsrx.ttf */,
 			);
 			path = FontType;
@@ -1936,12 +1936,14 @@
 		9C7C3FAE1B296DCC00D8F29B /* BaseControl */ = {
 			isa = PBXGroup;
 			children = (
-				9C7C3F9C1B29646700D8F29B /* BaseViewController.h */,
-				9C7C3F9D1B29646700D8F29B /* BaseViewController.m */,
-				9C7C3F9F1B2966F200D8F29B /* JuPlusTabBarController.h */,
-				9C7C3FA01B2966F200D8F29B /* JuPlusTabBarController.m */,
+				84EBAA841B7DF923006E1148 /* JuPlusTabBarController.h */,
+				84EBAA851B7DF923006E1148 /* JuPlusTabBarController.m */,
+				84EBAA861B7DF923006E1148 /* JuPlusUIViewController.h */,
+				84EBAA871B7DF923006E1148 /* JuPlusUIViewController.m */,
 				9C7C3FAF1B296DFB00D8F29B /* JuPlusNavigationController.h */,
 				9C7C3FB01B296DFB00D8F29B /* JuPlusNavigationController.m */,
+				84EBAA811B7DF8F4006E1148 /* BasicUIViewController.h */,
+				84EBAA821B7DF8F4006E1148 /* BasicUIViewController.m */,
 			);
 			path = BaseControl;
 			sourceTree = "<group>";
@@ -2081,7 +2083,6 @@
 				84EE77861B6A2D0000E6F7C9 /* zhsrx.ttf in Resources */,
 				84E672A61B6B5EF600CFD1A2 /* camera_tag_01@2x.png in Resources */,
 				84E7DE091B7326C200956CCE /* UMSShareListController.xib in Resources */,
-				84EE77841B6A2BA900E6F7C9 /* fangzhengyouxian.ttf in Resources */,
 				84FCB13E1B67578E00D00081 /* 8.png in Resources */,
 				84EE1F871B6F110B00141434 /* bg_upload@2x.png in Resources */,
 				84E7DE331B7326E700956CCE /* ios-social-sdk-shake.html in Resources */,
@@ -2276,9 +2277,7 @@
 				846156781B4F779E00F4AAA2 /* InfoDisplayView.m in Sources */,
 				9C7C3FAA1B296CAD00D8F29B /* ClassificationViewController.m in Sources */,
 				9C7C3F8F1B29596300D8F29B /* JuPlusAppDelegate.m in Sources */,
-				9C7C3F9E1B29646700D8F29B /* BaseViewController.m in Sources */,
 				84E16FE71B54BC2000588D2B /* AddressDTO.m in Sources */,
-				9C7C3FA11B2966F200D8F29B /* JuPlusTabBarController.m in Sources */,
 				84CC24DE1B43C04F00BE342E /* UIImageView+JuPlusUIImageView.m in Sources */,
 				84D6F5271B4E5840006E9893 /* DeleteFavReq.m in Sources */,
 				84CC25051B43CA0100BE342E /* ServerException.m in Sources */,
@@ -2369,6 +2368,7 @@
 				846156881B4FC4A200F4AAA2 /* AppointViewController.m in Sources */,
 				84CC24D81B43BE6300BE342E /* JuPlusUILabel.m in Sources */,
 				84E814DB1B56126B00921332 /* GetFavListRespon.m in Sources */,
+				84EBAA891B7DF923006E1148 /* JuPlusUIViewController.m in Sources */,
 				84E16FED1B54ED1000588D2B /* DeleteAddressReq.m in Sources */,
 				84829F821B427887001D807F /* TimerButton.m in Sources */,
 				84F0D1271B706CD700F56D5A /* RelatedTagsRespon.m in Sources */,
@@ -2403,6 +2403,7 @@
 				84DAFF971B4A244F008418D0 /* productOrderDTO.m in Sources */,
 				84CC25061B43CA0100BE342E /* TimeoutException.m in Sources */,
 				8495ED2D1B4165E6004A0C41 /* RTLabel.m in Sources */,
+				84EBAA881B7DF923006E1148 /* JuPlusTabBarController.m in Sources */,
 				8481E2741B60F4D100CB89C6 /* PostPortraitRespon.m in Sources */,
 				84E814E11B5635F000921332 /* MyFavourCell.m in Sources */,
 				84829FB71B42839A001D807F /* md5.c in Sources */,
@@ -2415,6 +2416,7 @@
 				84CC250B1B43CA0100BE342E /* VerificationReq.m in Sources */,
 				84829F731B4259BB001D807F /* ClassifyTagsDTO.m in Sources */,
 				84A8AFE41B5CE81200B25196 /* ResetPwdViewController.m in Sources */,
+				84EBAA831B7DF8F4006E1148 /* BasicUIViewController.m in Sources */,
 				8495ED261B414F7D004A0C41 /* SCGIFImageView.m in Sources */,
 				9C00174E1B3D2EAC0018A9BF /* BaseDTO.m in Sources */,
 				84CC25031B43CA0100BE342E /* NetException.m in Sources */,

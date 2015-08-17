@@ -6,12 +6,12 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 #import "HttpCommunication.h"
 #import "JuPlusUserInfoCenter.h"
 #import "LoginViewController.h"
 
-@implementation BaseViewController
+@implementation JuPlusUIViewController
 {
     CGFloat statusY;
     NSString *appUrl;
