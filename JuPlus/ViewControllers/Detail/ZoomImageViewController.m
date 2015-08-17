@@ -38,6 +38,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    //隐藏或显示导航栏。如果动画,它将使用
    	[self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
