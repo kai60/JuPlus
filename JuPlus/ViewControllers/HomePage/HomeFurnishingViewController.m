@@ -12,6 +12,7 @@
 #import "UMSocial.h"
 #import "UMSocialScreenShoter.h"
 #import "BasicUIViewController.h"
+#import "CameraViewController.h"
 #import <CoreText/CoreText.h>
 @interface HomeFurnishingViewController()<UMSocialUIDelegate>
 
@@ -52,7 +53,7 @@
     [self.tabBarV.logoBtn addTarget:self action:@selector(logoBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
     //原定筛选按钮
-   // [self.collectionV.rightBtn addTarget:self action:@selector(selectClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.collectionV.rightBtn addTarget:self action:@selector(reloadCollectionTab) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBarV.personBtn addTarget:self action:@selector(personBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.classifyV];
@@ -61,6 +62,7 @@
     [self checkSections];
 
 }
+
 -(void)addRightBtn
 {
     [self.leftBtn setHidden:YES];
@@ -139,7 +141,8 @@
 //    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:[[UIImage imageNamed:@"bg_upload"] addText:@"这仅仅是一个测试内容这仅仅是一个测试abc这仅仅是一个" andNickname:@"我是测试abc"] socialUIDelegate:self];        //设置分享内容和回调对象
 //    [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
     
-    [self selectClick];
+   [self selectClick];
+    
    
 }
 -(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
@@ -148,17 +151,24 @@
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
 }
 #pragma mark --一键切换显示方式
--(void)reloadListTab
+-(void)reloadCollectionTab
 {
-    
+    if(self.collectionV.isShared)
+        self.collectionV.isShared = NO;
+    else
+    self.collectionV.isShared = YES;
+    [self.collectionV.listTab reloadData];
 }
+
 //筛选按钮点击（跳转到九宫格）
 -(void)selectClick
 {
-    [self.tabBarV.classifyBtn setSelected:YES];
-    [self.tabBarV.personBtn setSelected:NO];
-    [self changeTo:0];
-    [self.classifyV showClassify];
+    CameraViewController *ca = [[CameraViewController alloc]init];
+    [self.navigationController pushViewController:ca animated:YES];
+//    [self.tabBarV.classifyBtn setSelected:YES];
+//    [self.tabBarV.personBtn setSelected:NO];
+//    [self changeTo:0];
+//    [self.classifyV showClassify];
 }
 #pragma mark 视图切换
 -(void)showCurrentView:(JuPlusUIView *)view

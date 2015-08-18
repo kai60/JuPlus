@@ -44,8 +44,8 @@
         footer.scrollView = self.listTab;
         
         self.titleLabel.text = @"居+";
-        [self.rightBtn setTitle:@"筛选" forState:UIControlStateNormal];
-        [self.rightBtn setHidden:YES];
+        [self.rightBtn setTitle:@"切换" forState:UIControlStateNormal];
+        [self.rightBtn setHidden:NO];
         [self.navView setHidden:NO];
         [self startHomePageRequest];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadList object:nil];
@@ -115,6 +115,10 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.isShared) {
+        return PICTURE_HEIGHT+2.0f;
+    }
+    else
     return PICTURE_HEIGHT+90.0f;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -131,7 +135,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     HomePageInfoDTO *homePage = [dataArray objectAtIndex:indexPath.row];
-    [cell loadCellInfo:homePage];
+    [cell loadCellInfo:homePage withShow:self.isShared];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -141,7 +141,7 @@ CGFloat RadiansToDegrees(CGFloat radians)
 //压缩图片，发送数据
 -(NSString *)getImageString
 {
-    NSData* pictureData = UIImageJPEGRepresentation(self,0.1);//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
+    NSData* pictureData = UIImageJPEGRepresentation(self,1.0);//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
     //NSLog(@"调用了image@String方法");
     //NSLog(@"%@这个值是什么实现的？",pictureData);
     NSString* pictureDataString = [pictureData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];//图片转码成为base64Encoding，

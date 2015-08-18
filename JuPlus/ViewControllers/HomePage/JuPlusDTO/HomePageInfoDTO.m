@@ -20,6 +20,8 @@
     self.regNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"regNo"]];
 
     self.collectionPic = [NSString stringWithFormat:@"%@",[dict objectForKey:@"coverUrl"]];
+    self.sharePic = [NSString stringWithFormat:@"%@",[dict objectForKey:@"sharePicUrl"]];
+
     self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"totalPrice"]];
     NSArray *arr = [dict objectForKey:@"productList"];
     self.labelArray = [[NSMutableArray alloc]init];

@@ -214,7 +214,7 @@ static inline CGFloat DegreesToRadians(CGFloat degrees)
                                                 8,
                                                 0,
                                                 CGImageGetColorSpace(imageRef),
-                                                kCGImageAlphaNoneSkipLast);
+                                                (CGBitmapInfo)kCGImageAlphaNoneSkipLast);
     
     // Rotate and/or flip the image if required by its orientation
     CGContextConcatCTM(bitmap, transform);

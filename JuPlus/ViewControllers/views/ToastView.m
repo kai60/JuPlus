@@ -21,9 +21,10 @@
         [self addSubview:self.textLabel];
         NSArray *nameArr = [NSArray arrayWithObjects:@"weichat_TimeLine",@"weichat_session", nil];
         CGFloat orignY = self.textLabel.bottom+20.0f;
+        CGFloat space = (self.width - 48.0f*2)/3;
         for (int i =0; i<2; i++) {
           UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            btn.frame = CGRectMake(10.0f+i*60.0f, orignY, 48.0f, 65.0f);
+            btn.frame = CGRectMake(space+i*(space + 48.0f), orignY, 48.0f, 65.0f);
             [btn setImage:[UIImage imageNamed:[nameArr objectAtIndex:i]] forState:UIControlStateNormal];
             [btn setImage:[UIImage imageNamed:[nameArr objectAtIndex:i]] forState:UIControlStateHighlighted];
 
@@ -33,7 +34,7 @@
             [self.buttonArr addObject:btn];
         }
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.height - 40.0f, self.width, 1.0f)];
-        [line setBackgroundColor:Color_Gray];
+        [line setBackgroundColor:Color_Gray_lines];
         [self addSubview:line];
         [self addSubview:self.sureBtn];
     }
