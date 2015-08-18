@@ -278,7 +278,7 @@
 		84E81AB31B5F8577007E3B9B /* PackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E81AB11B5F8577007E3B9B /* PackageCell.m */; };
 		84E8EDA81B5CC6C900A7420C /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8EDA71B5CC6C900A7420C /* MyInfoViewController.m */; };
 		84E8EDAE1B5CCE6500A7420C /* JuPlusUserInfoCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8EDAD1B5CCE6500A7420C /* JuPlusUserInfoCenter.m */; };
-		84EA42711B834653009F8107 /* shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EA42701B834653009F8107 /* shot@2x.png */; };
+		84EA42711B834653009F8107 /* carma_shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EA42701B834653009F8107 /* carma_shot@2x.png */; };
 		84EAFE941B81841800A80658 /* yegenyoutekai.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EAFE931B81841800A80658 /* yegenyoutekai.ttf */; };
 		84EAFE9C1B819F6B00A80658 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84EAFE9B1B819F6B00A80658 /* 1.jpg */; };
 		84EAFFD81B7C83B7006B55BC /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EAFFD71B7C83B7006B55BC /* ToastView.m */; };
@@ -797,7 +797,7 @@
 		84E8EDA71B5CC6C900A7420C /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoViewController.m; sourceTree = "<group>"; };
 		84E8EDAC1B5CCE6500A7420C /* JuPlusUserInfoCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JuPlusUserInfoCenter.h; path = JuPlus/ViewControllers/MyAccount/JuPlusUserInfoCenter.h; sourceTree = SOURCE_ROOT; };
 		84E8EDAD1B5CCE6500A7420C /* JuPlusUserInfoCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JuPlusUserInfoCenter.m; path = JuPlus/ViewControllers/MyAccount/JuPlusUserInfoCenter.m; sourceTree = SOURCE_ROOT; };
-		84EA42701B834653009F8107 /* shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot@2x.png"; sourceTree = "<group>"; };
+		84EA42701B834653009F8107 /* carma_shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carma_shot@2x.png"; sourceTree = "<group>"; };
 		84EAFE931B81841800A80658 /* yegenyoutekai.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = yegenyoutekai.ttf; sourceTree = "<group>"; };
 		84EAFE9B1B819F6B00A80658 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		84EAFFD61B7C83B7006B55BC /* ToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
@@ -1513,7 +1513,7 @@
 			isa = PBXGroup;
 			children = (
 				84F0277C1B81D377004FF997 /* icon_sign@2x.png */,
-				84EA42701B834653009F8107 /* shot@2x.png */,
+				84EA42701B834653009F8107 /* carma_shot@2x.png */,
 				84EAFE9B1B819F6B00A80658 /* 1.jpg */,
 				84EAFFDB1B7C908B006B55BC /* weichat_session@2x.png */,
 				84EAFFDC1B7C908B006B55BC /* weichat_TimeLine@2x.png */,
@@ -2103,7 +2103,7 @@
 				84DAFFAF1B4A4118008418D0 /* Icon@2x.png in Resources */,
 				84E672681B6B47DB00CFD1A2 /* close_cha.png in Resources */,
 				84CDD9621B4E64B900C97F7B /* lineLeft@2x.png in Resources */,
-				84EA42711B834653009F8107 /* shot@2x.png in Resources */,
+				84EA42711B834653009F8107 /* carma_shot@2x.png in Resources */,
 				84DAFFAA1B4A4118008418D0 /* Icon-29.png in Resources */,
 				84E672711B6B47DB00CFD1A2 /* flashing_on@2x.png in Resources */,
 				84E40D3C1B66399300FB63AE /* Default-568h@2x.png in Resources */,
