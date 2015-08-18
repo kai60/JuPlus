@@ -30,7 +30,7 @@
 #define bottomContainerView_DOWN_COLOR   [UIColor colorWithRed:68/255.0f green:68/255.0f blue:68/255.0f alpha:1.f]       //bottomContainerView的下半部分
 #define DARK_GREEN_COLOR        [UIColor colorWithRed:10/255.0f green:107/255.0f blue:42/255.0f alpha:1.f]    //深绿色
 #define LIGHT_GREEN_COLOR       [UIColor colorWithRed:143/255.0f green:191/255.0f blue:62/255.0f alpha:1.f]    //浅绿色
-
+#define SPACE 5
 
 //对焦
 #define ADJUSTINT_FOCUS @"adjustingFocus"
@@ -42,7 +42,8 @@
 //    bottomContainerViewTypeAudio     =   1   //录音页面
 //} BottomContainerViewType;
 
-@interface SCCaptureCameraController () {
+@interface SCCaptureCameraController ()<UIImagePickerControllerDelegate>
+{
     int alphaTimes;
     CGPoint currTouchPoint;
 }
@@ -131,7 +132,7 @@
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [SVProgressHUD showErrorWithStatus:@"设备不支持拍照功能，给个妹纸给你喵喵T_T"];
         
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, CAMERA_TOPVIEW_HEIGHT, self.view.frame.size.width, self.view.frame.size.width)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, CAMERA_TOPVIEW_HEIGHT+60, self.view.frame.size.width, self.view.frame.size.width)];
         imgView.clipsToBounds = YES;
         imgView.contentMode = UIViewContentModeScaleAspectFill;
         imgView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"meizi" ofType:@"jpg"]];
@@ -177,7 +178,7 @@
         CGRect topFrame = CGRectMake(0, 0, SC_APP_SIZE.width, CAMERA_TOPVIEW_HEIGHT);
         
         UIView *tView = [[UIView alloc] initWithFrame:topFrame];
-        tView.backgroundColor = [UIColor clearColor];
+        //tView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:tView];
         self.topContainerView = tView;
         
@@ -186,13 +187,13 @@
         emptyView.alpha = 0.4f;
         [_topContainerView addSubview:emptyView];
         
-        topFrame.origin.x += 10;
-        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, topFrame.size.height)];
-        lbl.backgroundColor = [UIColor clearColor];
-        lbl.textColor = [UIColor whiteColor];
-        lbl.font = [UIFont systemFontOfSize:25.f];
-        [_topContainerView addSubview:lbl];
-        self.topLbl = lbl;
+//        topFrame.origin.x += 10;
+//        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, topFrame.size.height)];
+//        lbl.backgroundColor = [UIColor yellowColor];
+//        lbl.textColor = [UIColor whiteColor];
+//        lbl.font = [UIFont systemFontOfSize:25.f];
+//        [_topContainerView addSubview:lbl];
+//        self.topLbl = lbl;
     }
     _topLbl.text = text;
 }
@@ -203,35 +204,65 @@
     CGFloat bottomY = _captureManager.previewLayer.frame.origin.y + _captureManager.previewLayer.frame.size.height;
     CGRect bottomFrame = CGRectMake(0, bottomY, SC_APP_SIZE.width, SC_APP_SIZE.height - bottomY);
     
+    
+    //在view上加一个查看相册的按钮
     UIView *view = [[UIView alloc] initWithFrame:bottomFrame];
-    view.backgroundColor = bottomContainerView_UP_COLOR;
+    view.backgroundColor = [UIColor blackColor];
     [self.view addSubview:view];
     self.bottomContainerView = view;
+    
+    CGFloat downH = (isHigherThaniPhone4_SC ? CAMERA_MENU_VIEW_HEIGH : 0);
+    CGFloat cameraBtnLength = 32;
+    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(24, (_bottomContainerView.frame.size.height - downH - cameraBtnLength) / 2 + 80, cameraBtnLength, cameraBtnLength)];
+    imageV.image = [UIImage imageNamed:@"meizi.jpg"];
+//    imageV.layer.masksToBounds = YES;
+//    imageV.layer.cornerRadius = 16;
+    imageV.userInteractionEnabled = YES;
+    [view addSubview:imageV];
+    
+    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    [imageV addGestureRecognizer:tapImage];
+    
 }
+- (void)tapAction:(UITapGestureRecognizer *)tap
+{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary]) {
+        sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    //sourceType = UIImagePickerControllerSourceTypeCamera; //照相机
+//    sourceType = UIImagePickerControllerSourceTypePhotoLibrary; //相片库
+    sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum; //保存的相片
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing=YES;
+    picker.sourceType = sourceType;
+    [self presentViewController:picker animated:YES completion:nil];
 
+}
 //拍照菜单栏
 - (void)addCameraMenuView {
     
     //拍照按钮
     CGFloat downH = (isHigherThaniPhone4_SC ? CAMERA_MENU_VIEW_HEIGH : 0);
     CGFloat cameraBtnLength = 90;
-    [self buildButton:CGRectMake((SC_APP_SIZE.width - cameraBtnLength) / 2, (_bottomContainerView.frame.size.height - downH - cameraBtnLength) / 2 , cameraBtnLength, cameraBtnLength)
-         normalImgStr:@"shot.png"
-      highlightImgStr:@"shot_h.png"
+    [self buildButton:CGRectMake((SC_APP_SIZE.width - cameraBtnLength) / 2, (_bottomContainerView.frame.size.height - downH - cameraBtnLength) / 2 + 80, cameraBtnLength, cameraBtnLength)
+         normalImgStr:@"Btn_shot"
+      highlightImgStr:@"Btn_shot_click"
        selectedImgStr:@""
                action:@selector(takePictureBtnPressed:)
            parentView:_bottomContainerView];
     
     
     //拍照的菜单栏view（屏幕高度大于480的，此view在上面，其他情况在下面）
-    CGFloat menuViewY = (isHigherThaniPhone4_SC ? SC_DEVICE_SIZE.height - CAMERA_MENU_VIEW_HEIGH : 0);
-    UIView *menuView = [[UIView alloc] initWithFrame:CGRectMake(0, menuViewY, self.view.frame.size.width, CAMERA_MENU_VIEW_HEIGH)];
-    menuView.backgroundColor = (isHigherThaniPhone4_SC ? bottomContainerView_DOWN_COLOR : [UIColor clearColor]);
+//    CGFloat menuViewY = (isHigherThaniPhone4_SC ? SC_DEVICE_SIZE.height - CAMERA_MENU_VIEW_HEIGH : 0);
+    
+    UIView *menuView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, CAMERA_MENU_VIEW_HEIGH)];
+//    menuView.backgroundColor = (isHigherThaniPhone4_SC ? bottomContainerView_DOWN_COLOR : [UIColor clearColor]);
     [self.view addSubview:menuView];
     self.cameraMenuView = menuView;
-    
-    
-    
+   
     [self addMenuViewButtons];
 }
 
@@ -244,8 +275,9 @@
     NSMutableArray *actionArr = [[NSMutableArray alloc] initWithObjects:@"dismissBtnPressed:", @"gridBtnPressed:", @"switchCameraBtnPressed:", @"flashBtnPressed:", nil];
     
     CGFloat eachW = SC_APP_SIZE.width / actionArr.count;
+   
     
-    [SCCommon drawALineWithFrame:CGRectMake(eachW, 0, 1, CAMERA_MENU_VIEW_HEIGH) andColor:rgba_SC(102, 102, 102, 1.0000) inLayer:_cameraMenuView.layer];
+//    [SCCommon drawALineWithFrame:CGRectMake(eachW, 0, 1, CAMERA_MENU_VIEW_HEIGH) andColor:rgba_SC(102, 10, 102, 1.0000) inLayer:_cameraMenuView.layer];
     
     
     //屏幕高度大于480的，后退按钮放在_cameraMenuView；小于480的，放在_bottomContainerView
@@ -262,7 +294,6 @@
                                 parentView:parent];
         
         btn.showsTouchWhenHighlighted = YES;
-        
         [_cameraBtnSet addObject:btn];
     }
 }
