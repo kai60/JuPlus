@@ -27,6 +27,6 @@
 //得到缩放的图片
 -(NSString *)getImageString;
 //给图像绘制文字
--(UIImage *)addText:(NSString *)text;
+-(UIImage *)addText:(NSString *)text andNickname:(NSString *)name;
 
 @end

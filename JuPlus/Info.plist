@@ -53,8 +53,9 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>zqljyb.ttf</string>
+		<string>yegenyoutekai.ttf</string>
 		<string>zhsrx.ttf</string>
-		<string>fangzhengyouxian.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

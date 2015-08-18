@@ -127,7 +127,7 @@
 -(void)shareToUM:(NSString *)shareMehtod
 {
     
-    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:[self.postImage addText:self.detailView.text] socialUIDelegate:self];        //设置分享内容和回调对象
+    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:[self.postImage addText:self.detailView.text andNickname:[JuPlusUserInfoCenter sharedInstance].userInfo.nickname] socialUIDelegate:self];        //设置分享内容和回调对象
     [UMSocialSnsPlatformManager getSocialPlatformWithName:shareMehtod].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
 }
 //弹出分享界面
