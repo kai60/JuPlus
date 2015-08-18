@@ -194,7 +194,7 @@
 {
     SetDefAddressReq *req = [[SetDefAddressReq alloc]init];
     [req setField:[CommonUtil getToken] forKey:TOKEN];
-    [req setField:[NSString stringWithFormat:@"%ld",sender.tag] forKey:@"addressId"];
+    [req setField:[NSString stringWithFormat:@"%ld",(long)sender.tag] forKey:@"addressId"];
     JuPlusResponse *respon = [[JuPlusResponse alloc]init];
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
         [CommonUtil postNotification:ReloadAddress Object:nil];       [self startRequest];

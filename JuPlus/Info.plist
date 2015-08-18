@@ -53,6 +53,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>fzhj.ttf</string>
 		<string>zqljyb.ttf</string>
 		<string>yegenyoutekai.ttf</string>
 		<string>zhsrx.ttf</string>

@@ -215,7 +215,7 @@
         }
         else
         {
-        [CommonUtil setUserDefaultsValue:[NSString stringWithFormat:@"%ld",selectedBtn.iconBtn.tag] forKey:LabelTag];
+        [CommonUtil setUserDefaultsValue:[NSString stringWithFormat:@"%ld",(long)selectedBtn.iconBtn.tag] forKey:LabelTag];
     
         }
         [CommonUtil postNotification:ReloadList Object:nil];

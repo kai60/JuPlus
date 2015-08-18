@@ -316,8 +316,18 @@ CGFloat RadiansToDegrees(CGFloat radians)
     CGContextScaleCTM(contextRef, 1.0, -1.0);
     CGFloat currentFont = 32.0f;
     
+//    //毛笔
+//    UIFont *font = [UIFont fontWithName:@"-" size:currentFont];
+//    UIFont *nameFont = [UIFont fontWithName:@"-" size:22.0f];
+//
+    //刘江硬笔草体
     UIFont *font = [UIFont fontWithName:@"LiuJiang-Cao-1.0" size:currentFont];
     UIFont *nameFont = [UIFont fontWithName:@"LiuJiang-Cao-1.0" size:22.0f];
+//    //方正洪俊硬笔草体
+//    UIFont *font = [UIFont fontWithName:@"FZZJ-HJYBXCJW" size:currentFont];
+//    UIFont *nameFont = [UIFont fontWithName:@"FZZJ-HJYBXCJW" size:22.0f];
+
+    
     
     
 //    CTParagraphStyleSetting lineBreakMode;

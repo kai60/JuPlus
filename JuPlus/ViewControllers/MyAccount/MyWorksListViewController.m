@@ -82,7 +82,7 @@
         if([vc isKindOfClass:[HomeFurnishingViewController class]])
         {
             [self.navigationController popToViewController:vc animated:YES];
-            return;
+           // return;
         }
     }
 }

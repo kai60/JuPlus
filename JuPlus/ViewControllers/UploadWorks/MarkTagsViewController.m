@@ -25,6 +25,8 @@
     CGPoint currentPoint;
     
     UIImageView *remindBtn;
+    //得到需要分享的图片
+    UIImage *shareImage;
 }
 @property (nonatomic,strong)UIImageView *topImgView;
 
@@ -127,7 +129,7 @@
 -(void)shareToUM:(NSString *)shareMehtod
 {
     
-    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:[self.postImage addText:self.detailView.text andNickname:[JuPlusUserInfoCenter sharedInstance].userInfo.nickname] socialUIDelegate:self];        //设置分享内容和回调对象
+    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:shareImage socialUIDelegate:self];        //设置分享内容和回调对象
     [UMSocialSnsPlatformManager getSocialPlatformWithName:shareMehtod].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
 }
 //弹出分享界面
@@ -365,6 +367,7 @@
     }
     else
     {
+        shareImage = [self.postImage addText:self.detailView.text andNickname:[JuPlusUserInfoCenter sharedInstance].userInfo.nickname];
         [self getTagsArray];
         [self postData];
     }
@@ -377,6 +380,8 @@
     [req setField:self.detailView.text forKey:@"explain"];
     [req setField:self.tagsArray forKey:@"productList"];
     [req setField:[self.postImage getImageString] forKey:@"picContent"];
+    [req setField:[shareImage getImageString] forKey:@"sharePicContent"];
+
     [req setField:[NSString stringWithFormat:@"%ld",(long)self.clfyPickView.tag] forKey:@"tagIds"];
     JuPlusResponse *respon = [[JuPlusResponse alloc]init];
     [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {

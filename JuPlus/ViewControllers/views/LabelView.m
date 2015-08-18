@@ -242,7 +242,7 @@
     SingleDetialViewController *sing = [[SingleDetialViewController alloc]init];
     sing.regNo =[NSString stringWithFormat:@"%ld", (long)self.superview.tag];
     sing.isfromPackage = YES;
-    sing.singleId = [NSString stringWithFormat:@"%ld",self.tag];
+    sing.singleId = [NSString stringWithFormat:@"%ld",(long)self.tag];
     sing.point = startPoint;
     [vc.navigationController radialPushViewController:sing withDuration:1.0f withStartFrame:CGRectMake(startPoint.x,startPoint.y,50.0f,50.0f) comlititionBlock:^{
         

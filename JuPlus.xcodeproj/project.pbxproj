@@ -304,6 +304,7 @@
 		84F0D11F1B7057BC00F56D5A /* MarkLabeiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D11E1B7057BC00F56D5A /* MarkLabeiView.m */; };
 		84F0D1241B706CBC00F56D5A /* RelatedTagsReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D1231B706CBC00F56D5A /* RelatedTagsReq.m */; };
 		84F0D1271B706CD700F56D5A /* RelatedTagsRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D1261B706CD700F56D5A /* RelatedTagsRespon.m */; };
+		84F65D9C1B82DD150007A019 /* fzhj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84F65D9B1B82DD150007A019 /* fzhj.ttf */; };
 		84FCB11D1B67243300D00081 /* Icon-180@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FCB11C1B67243300D00081 /* Icon-180@3x.png */; };
 		84FCB1361B67578E00D00081 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FCB12C1B67578E00D00081 /* 1.png */; };
 		84FCB1371B67578E00D00081 /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FCB12D1B67578E00D00081 /* 11.png */; };
@@ -837,6 +838,7 @@
 		84F0D1231B706CBC00F56D5A /* RelatedTagsReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelatedTagsReq.m; sourceTree = "<group>"; };
 		84F0D1251B706CD700F56D5A /* RelatedTagsRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelatedTagsRespon.h; sourceTree = "<group>"; };
 		84F0D1261B706CD700F56D5A /* RelatedTagsRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelatedTagsRespon.m; sourceTree = "<group>"; };
+		84F65D9B1B82DD150007A019 /* fzhj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fzhj.ttf; sourceTree = "<group>"; };
 		84FCB11C1B67243300D00081 /* Icon-180@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-180@3x.png"; sourceTree = "<group>"; };
 		84FCB12C1B67578E00D00081 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		84FCB12D1B67578E00D00081 /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
@@ -1671,6 +1673,7 @@
 				84EE77851B6A2CE800E6F7C9 /* zhsrx.ttf */,
 				84EAFE931B81841800A80658 /* yegenyoutekai.ttf */,
 				84F027801B81E9D2004FF997 /* zqljyb.ttf */,
+				84F65D9B1B82DD150007A019 /* fzhj.ttf */,
 			);
 			path = FontType;
 			sourceTree = "<group>";
@@ -2143,6 +2146,7 @@
 				84E672691B6B47DB00CFD1A2 /* close_cha@2x.png in Resources */,
 				84FCB1391B67578E00D00081 /* 3.png in Resources */,
 				84FCB13A1B67578E00D00081 /* 4.png in Resources */,
+				84F65D9C1B82DD150007A019 /* fzhj.ttf in Resources */,
 				84FCB13D1B67578E00D00081 /* 7.png in Resources */,
 				84E672741B6B47DB00CFD1A2 /* shot_h.png in Resources */,
 				84E40D1F1B65E1BD00FB63AE /* back@2x.png in Resources */,
