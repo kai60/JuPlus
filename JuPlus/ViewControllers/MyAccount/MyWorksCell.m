@@ -158,9 +158,8 @@
         str = @"待审核";
     }else if ([dto.status integerValue] == 2){
         str = @"审核失败";
-    }else if ([dto.status integerValue] == 3){
-        str = @"审核成功";
     }
+    
     [self.nameLabel setText:str];
     //自定义button的赋值方法
     [self.favBtn setTitle:dto.favCount forState:UIControlStateNormal];
