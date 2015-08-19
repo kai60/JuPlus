@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 
 #import "SCNavigationController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 //static void * CapturingStillImageContext = &CapturingStillImageContext;
 //static void * RecordingContext = &RecordingContext;
@@ -64,6 +65,9 @@
 
 @property (nonatomic, strong) SCSlider *scSlider;
 
+@property (nonatomic, strong) UIView *viewBut;
+@property (nonatomic, strong) UIImageView *imageV;
+@property (nonatomic, strong) ALAssetsLibrary *library;
 //@property (nonatomic) id runtimeErrorHandlingObserver;
 //@property (nonatomic) BOOL lockInterfaceRotation;
 
@@ -138,6 +142,14 @@
         [self.view addSubview:imgView];
     }
 #endif
+    
+    self.library = [[ALAssetsLibrary alloc] init];
+//    [self.library enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+//        if (group) {
+//            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+//            [self.groupArr addObject:group];
+//        } failureBlock:^(NSError *error) {
+//        }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -205,24 +217,71 @@
     
     
     //在view上加一个查看相册的按钮
-    UIView *view = [[UIView alloc] initWithFrame:bottomFrame];
-    view.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:view];
-    self.bottomContainerView = view;
+    self.viewBut = [[UIView alloc] initWithFrame:bottomFrame];
+    self.viewBut.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:_viewBut];
+    self.bottomContainerView = _viewBut;
     
     CGFloat downH = (isHigherThaniPhone4_SC ? CAMERA_MENU_VIEW_HEIGH : 0);
-    CGFloat cameraBtnLength = 32;
-    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(24, (_bottomContainerView.frame.size.height - downH - cameraBtnLength) / 2 + 80, cameraBtnLength, cameraBtnLength)];
-    imageV.image = [UIImage imageNamed:@"meizi.jpg"];
+    CGFloat cameraBtnLength = 40;
+    self.imageV = [[UIImageView alloc]initWithFrame:CGRectMake(24, (_bottomContainerView.frame.size.height - downH - cameraBtnLength) / 2 + 80, cameraBtnLength, cameraBtnLength)];
+//    _imageV.image = [UIImage imageNamed:@"meizi.jpg"];
+    
 //    imageV.layer.masksToBounds = YES;
 //    imageV.layer.cornerRadius = 16;
-    imageV.userInteractionEnabled = YES;
-    [view addSubview:imageV];
+    _imageV.userInteractionEnabled = YES;
+    [self.viewBut addSubview:_imageV];
     
     UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-    [imageV addGestureRecognizer:tapImage];
+    [_imageV addGestureRecognizer:tapImage];
     
 }
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissViewControllerAnimated:NO completion:nil];
+    
+    UIImage * image=[info objectForKey:@"UIImagePickerControllerEditedImage"];
+    
+       self.imageV.image = image;
+    
+
+    
+}
++ (ALAssetsLibrary *)defaultAssetsLibrary {
+    
+    static dispatch_once_t pred = 0;
+    static ALAssetsLibrary *library = nil;
+    
+    dispatch_once(&pred, ^{
+        
+        library = [[ALAssetsLibrary alloc] init];
+    });
+    return library;
+}
+//遍历媒体库所有图片组
+//- (void )getAllPhotosGroup:(void(^)(NSMutableArray *groups,NSError *error))block {
+//    
+//    ALAssetsLibrary *assetsLibrary = [self.imageV defaultAssetsLibrary];
+//    
+//    __block NSMutableArray *groups = [NSMutableArray array];
+//    
+//    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll
+//                                 usingBlock:^(ALAssetsGroup *group, BOOL *stop)
+//     {
+//         if (group) {
+//             if ([group numberOfAssets] != 0 && [group posterImage]) {
+//                 [groups addObject:group];
+//             }
+//         }else{
+//             block(groups,nil);
+//         }
+//         
+//     }failureBlock:^(NSError *error)
+//     {
+//         block(nil,error);
+//     }];
+//    
+//}
 - (void)tapAction:(UITapGestureRecognizer *)tap
 {
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
