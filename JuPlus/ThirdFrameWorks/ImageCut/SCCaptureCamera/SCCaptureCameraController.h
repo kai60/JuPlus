@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SCCaptureSessionManager.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface SCCaptureCameraController : UIViewController<UINavigationControllerDelegate,UIPickerViewDelegate>
 
 @property (nonatomic, assign) CGRect previewRect;
 @property (nonatomic, assign) BOOL isStatusBarHiddenBeforeShowCamera;
 
-
+@property(nonatomic,copy) NSString *lastChosenMediaType;
 @end

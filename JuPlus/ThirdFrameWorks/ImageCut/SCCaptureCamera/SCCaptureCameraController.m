@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 
 #import "SCNavigationController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 //static void * CapturingStillImageContext = &CapturingStillImageContext;
 //static void * RecordingContext = &RecordingContext;
@@ -41,7 +42,7 @@
 //    bottomContainerViewTypeAudio     =   1   //录音页面
 //} BottomContainerViewType;
 
-@interface SCCaptureCameraController ()<UIImagePickerControllerDelegate>
+@interface SCCaptureCameraController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     int alphaTimes;
     CGPoint currTouchPoint;
@@ -64,6 +65,9 @@
 
 @property (nonatomic, strong) SCSlider *scSlider;
 
+@property (nonatomic, strong) UIView *viewBut;
+@property (nonatomic, strong) UIImageView *imageV;
+@property (nonatomic, strong) ALAssetsLibrary *library;
 //@property (nonatomic) id runtimeErrorHandlingObserver;
 //@property (nonatomic) BOOL lockInterfaceRotation;
 
@@ -138,6 +142,14 @@
         [self.view addSubview:imgView];
     }
 #endif
+    
+    self.library = [[ALAssetsLibrary alloc] init];
+//    [self.library enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+//        if (group) {
+//            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+//            [self.groupArr addObject:group];
+//        } failureBlock:^(NSError *error) {
+//        }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -205,22 +217,34 @@
     
     
     //在view上加一个查看相册的按钮
-    UIView *view = [[UIView alloc] initWithFrame:bottomFrame];
-    view.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:view];
-    self.bottomContainerView = view;
+    self.viewBut = [[UIView alloc] initWithFrame:bottomFrame];
+    self.viewBut.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:_viewBut];
+    self.bottomContainerView = _viewBut;
     
     CGFloat downH = (isHigherThaniPhone4_SC ? CAMERA_MENU_VIEW_HEIGH : 0);
-    CGFloat cameraBtnLength = 32;
-    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(24, (_bottomContainerView.frame.size.height - downH - cameraBtnLength) / 2 + 80, cameraBtnLength, cameraBtnLength)];
-    imageV.image = [UIImage imageNamed:@"meizi.jpg"];
+    CGFloat cameraBtnLength = 40;
+    self.imageV = [[UIImageView alloc]initWithFrame:CGRectMake(24, (_bottomContainerView.frame.size.height - downH - cameraBtnLength) / 2 + 80, cameraBtnLength, cameraBtnLength)];
+//    _imageV.image = [UIImage imageNamed:@"meizi.jpg"];
+    
 //    imageV.layer.masksToBounds = YES;
 //    imageV.layer.cornerRadius = 16;
-    imageV.userInteractionEnabled = YES;
-    [view addSubview:imageV];
+    _imageV.userInteractionEnabled = YES;
+    [self.viewBut addSubview:_imageV];
     
     UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-    [imageV addGestureRecognizer:tapImage];
+    [_imageV addGestureRecognizer:tapImage];
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissViewControllerAnimated:NO completion:nil];
+    
+    UIImage * image=[info objectForKey:@"UIImagePickerControllerEditedImage"];
+    
+       self.imageV.image = image;
+    
+
     
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap
@@ -285,7 +309,7 @@
         CGFloat theH = (!isHigherThaniPhone4_SC && i == 0 ? _bottomContainerView.frame.size.height : CAMERA_MENU_VIEW_HEIGH);
         UIView *parent = (!isHigherThaniPhone4_SC && i == 0 ? _bottomContainerView : _cameraMenuView);
         
-        UIButton * btn = [self buildButton:CGRectMake(eachW * i, 0, eachW, theH)
+        UIButton * btn = [self buildButton:CGRectMake(eachW * i+eachW/4+5,eachW/4 , eachW/2-15, theH/2)
                               normalImgStr:[normalArr objectAtIndex:i]
                            highlightImgStr:[highlightArr objectAtIndex:i]
                             selectedImgStr:[selectedArr objectAtIndex:i]
