@@ -67,7 +67,9 @@
 
 @property (nonatomic, strong) UIView *viewBut;
 @property (nonatomic, strong) UIImageView *imageV;
-@property (nonatomic, strong) ALAssetsLibrary *library;
+@property (nonatomic, strong) NSMutableArray *groupArray;
+@property (nonatomic, strong) ALAssetsGroup *group;
+@property (nonatomic, strong) NSMutableArray *imageArray;
 //@property (nonatomic) id runtimeErrorHandlingObserver;
 //@property (nonatomic) BOOL lockInterfaceRotation;
 
@@ -143,13 +145,6 @@
     }
 #endif
     
-    self.library = [[ALAssetsLibrary alloc] init];
-//    [self.library enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-//        if (group) {
-//            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
-//            [self.groupArr addObject:group];
-//        } failureBlock:^(NSError *error) {
-//        }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -231,6 +226,26 @@
 //    imageV.layer.cornerRadius = 16;
     _imageV.userInteractionEnabled = YES;
     [self.viewBut addSubview:_imageV];
+    
+    
+    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+    _groupArray=[[NSMutableArray alloc] initWithCapacity:1];
+    _imageArray = [NSMutableArray array];
+    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if (group) {
+            [_groupArray addObject:group];
+            
+            [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                if (result) {
+                    [_imageArray addObject:result];
+                    ALAsset *set = [_imageArray lastObject];
+                    _imageV.image=[UIImage imageWithCGImage: set.thumbnail];
+                }
+            }];
+        }
+    } failureBlock:^(NSError *error) {
+        NSLog(@"Group not found!\n");
+    }];
     
     UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     [_imageV addGestureRecognizer:tapImage];
