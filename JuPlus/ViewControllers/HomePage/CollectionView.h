@@ -15,4 +15,5 @@
 //是否为显示分享列表
 @property (nonatomic,assign)BOOL isShared;
 
+@property (nonatomic,strong)UIButton *switchBtn;
 @end

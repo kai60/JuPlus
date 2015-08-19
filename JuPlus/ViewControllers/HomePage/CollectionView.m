@@ -42,16 +42,29 @@
         footer = [ScrollRefreshViewFooter footer];
         footer.delegate = self;
         footer.scrollView = self.listTab;
-        
-        self.titleLabel.text = @"居+";
-        [self.rightBtn setTitle:@"切换" forState:UIControlStateNormal];
-        [self.rightBtn setHidden:NO];
         [self.navView setHidden:NO];
+
+        self.titleLabel.text = @"居+";
+        [self.rightBtn setTitle:@"分类" forState:UIControlStateNormal];
+        [self.rightBtn setHidden:NO];
+            [self.navView addSubview:self.switchBtn];
         [self startHomePageRequest];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadList object:nil];
     }
     return self;
 }
+-(UIButton *)switchBtn
+{
+    if(!_switchBtn)
+    {
+        _switchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _switchBtn.frame = CGRectMake(self.navView.width - 54.0f- 44.0f, 20.0f, 44.0f, 44.0f);
+        [_switchBtn setImage:[UIImage imageNamed:@"Icons_move_up"] forState:UIControlStateNormal];
+        [_switchBtn setImage:[UIImage imageNamed:@"Icons_move_down"] forState:UIControlStateSelected];
+    }
+    return _switchBtn;
+}
+
 -(UITableView *)listTab
 {
     if(!_listTab)

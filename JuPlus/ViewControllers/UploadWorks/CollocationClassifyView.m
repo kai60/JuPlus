@@ -1,39 +1,40 @@
 //
-//  ClassifyView.m
+//  CollocationClassifyView.m
 //  JuPlus
 //
-//  Created by 詹文豹 on 15/6/18.
+//  Created by admin on 15/8/19.
 //  Copyright (c) 2015年 居+. All rights reserved.
-//分类标签
+//
 
-#import "ClassifyView.h"
+#import "CollocationClassifyView.h"
+
 #import "JuPlusEnvironmentConfig.h"
 #import "HobbyItemBtn.h"
 #import <AFNetworking/AFNetworking.h>
 #import "ClassifyLabelsRequest.h"
 #import "ClassifyRespon.h"
-#import "SCGIFImageView.h"
 #import "UIButton+WebCache.h"
 
-@implementation ClassifyView
+@implementation CollocationClassifyView
 {
-    UIView *superView;
     
     NSMutableArray *buttonArray;
     
+    UIView *superView;
+
     //当只有一个选项可选中时
     HobbyItemBtn *selectedBtn;
     
     
 }
--(id)initWithFrame:(CGRect)frame andView:(UIView *)superV
+-(id)initWithFrame:(CGRect)frame andSuperView:(UIView *)v;
 {
-    superView = superV;
     self = [super initWithFrame:frame];
     if(self)
     {
+        superView = v;
+        self.alpha =  0;
         buttonArray = [[NSMutableArray alloc]init];
-        self.alpha = 0;
         [self uifig];
         [self setHidden:YES];
     }
@@ -53,26 +54,21 @@
 }
 -(void)fileData
 {
-    CGFloat spaceX = 10.0f;
-    CGFloat spaceY = 70.0f;
+    CGFloat spaceX = 20.0f;
+    CGFloat spaceY = 50.0f;
     CGFloat btnW = 70.0f;
     CGFloat space = (self.width - btnW*3 - spaceX*2)/2;
     CGFloat btnH = btnW;
-
+    
     for(int i=0;i<[self.dataArray count];i++)
     {
         ClassifyTagsDTO *tagDTO = [self.dataArray objectAtIndex:i];
-        HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX +self.width*(i/9)+(space+btnW)*(i%3),50.0f +spaceY + (spaceY+btnH)*((i/3)%3), btnW, btnH)];
+        HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX+self.width*(i/9)+(space+btnW)*(i%3),90.0f+spaceY+ (spaceY+btnH)*((i/3)%3), btnW, btnH)];
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = btnW/2;
         [btn.iconBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,tagDTO.imgUrl]] forState:UIControlStateNormal];
         [btn.iconBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,tagDTO.selImgUrl]] forState:UIControlStateSelected];
         btn.iconBtn.tag = [tagDTO.tagId integerValue];
-        if([tagDTO.tagId isEqualToString:[CommonUtil getUserDefaultsValueWithKey:LabelTag]])
-        {
-            btn.iconBtn.selected = YES;
-            selectedBtn = btn;
-        }
         [btn.iconBtn addTarget:self action:@selector(btnClick1:) forControlEvents:UIControlEventTouchUpInside];
         [buttonArray addObject:btn];
         [self.itemsScroll addSubview:btn];
@@ -81,145 +77,19 @@
     /*
      此通知作用：由于网络加载有时间延迟，只有在网络加载完成后调用showClassify才能完成缩放效果，因此此处加通知，当第一次打开应用的时候，如果labels未加载完成，则不触发九宫格显示效果
      */
-    [CommonUtil postNotification:ShowClassify Object:nil];
+    
 }
 -(void)showClassify
 {
     
     [self setHidden:NO];
     [self setVisualEffect];
-    CGFloat spaceX = 20.0f;
-    CGFloat spaceY = 50.0f;
-    CGFloat btnW = 70.0f;
-    CGFloat space = (self.width - btnW*3 - spaceX*2)/2;
-    CGFloat btnH = btnW;
-
     [UIView animateWithDuration:1.0f animations:^{
-        for(int i=0;i<[buttonArray count];i++)
-        {
-            HobbyItemBtn *btn = [buttonArray objectAtIndex:i];
-            btn.frame = CGRectMake(spaceX+self.width*(i/9)+(space+btnW)*(i%3),90.0f+spaceY+ (spaceY+btnH)*((i/3)%3), btnW, btnH);
-        }
-    
         //取到高斯模糊的背景view
         UIView *visual = [superView viewWithTag:VisualEffectTag];
         self.alpha = 1;
         if(visual!=nil)
             visual.alpha = 1;
-    } completion:^(BOOL finished) {
-        [CommonUtil setUserDefaultsValue:@"1" forKey:isShowClassify];
-    }];
-}
-//后台下发标签列表，统计用户的兴趣内容
--(void)startRequest
-{
-    ClassifyLabelsRequest *req = [[ClassifyLabelsRequest alloc]init];
-    ClassifyRespon *respon = [[ClassifyRespon alloc]init];
-    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
-        [self.dataArray addObjectsFromArray:respon.tagsArray];
-        [self fileData];
-    } failed:^(ErrorInfoDto *errorDTO) {
-        [self errorExp:errorDTO];
-    } showProgressView:NO with:self];
-}
-////允许多重选择的点击以及加载事件
-//-(void)btnClick:(UIButton *)sender
-//{
-//    if(!sender.selected)
-//    {
-//        sender.selected = YES;
-//        UIView *sup =  sender.superview;
-//        if([sup isKindOfClass:[HobbyItemBtn class]])
-//        {
-//            NSString* filePath = [[NSBundle mainBundle] pathForResource:@"checkmark" ofType:@"gif"];
-//          SCGIFImageView * selectedImage = [[SCGIFImageView alloc]initWithGIFFile:filePath withSeconds:0.5];
-//            selectedImage.frame = CGRectMake(sup.width - 16.0f, (sup.height - 16.0f)/2, 16.0f, 16.0f);
-//            [sup addSubview:selectedImage];
-//        }
-//        [self.selectArr addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
-//    }
-//    else
-//    {
-//        sender.selected =  NO;
-//        UIView *sup =  sender.superview;
-//        if([sup isKindOfClass:[HobbyItemBtn class]])
-//        {
-//            for(UIView *v in sup.subviews)
-//            {
-//                if([v isKindOfClass:[SCGIFImageView class]])
-//                {
-//                    [v removeFromSuperview];
-//                }
-//            }
-//        }
-//        [self.selectArr removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
-//    }
-//}
-////确认按钮
-//-(void)surePress:(UIButton *)sender
-//{
-//    NSLog(@"selArr = %@",self.selectArr);
-//    [self setHidden:YES];
-//    //[superView removeVisualEffect];
-//}
-//只可单选的点击事件以及提交按钮
--(void)btnClick1:(UIButton *)sender
-{
-    if(!sender.selected)
-    {
-        for (HobbyItemBtn *btn in buttonArray) {
-            if(btn.iconBtn.tag==sender.tag)
-            {
-                [btn.iconBtn setSelected:YES];
-                selectedBtn = btn;
-
-            }
-            else
-            {
-                [btn.iconBtn setSelected:NO];
-            }
-        }
-    }
-    else
-    {
-        sender.selected = NO;
-        selectedBtn =  nil;
-    }
-}
-//确认按钮
--(void)surePress1:(UIButton *)sender
-{
-    //如果是作品上传中的编辑效果图分类信息
-           if(IsNilOrNull(selectedBtn))
-        {
-        [CommonUtil removeUserDefaultsValue:LabelTag];
-        }
-        else
-        {
-        [CommonUtil setUserDefaultsValue:[NSString stringWithFormat:@"%ld",(long)selectedBtn.iconBtn.tag] forKey:LabelTag];
-    
-        }
-        [CommonUtil postNotification:ReloadList Object:nil];
-
-    CGFloat spaceX = 10.0f;
-    CGFloat spaceY = 70.0f;
-    CGFloat btnW = 70.0f;
-    CGFloat space = (self.width - btnW*3 - spaceX*2)/2;
-    CGFloat btnH = btnW;
-    UIView *visual = [superView viewWithTag:VisualEffectTag];
-    
-    [UIView animateWithDuration:1.0f animations:^{
-        for(int i=0;i<[buttonArray count];i++)
-        {
-            HobbyItemBtn *btn = [buttonArray objectAtIndex:i];
-            btn.frame =  CGRectMake(spaceX +self.width*(i/9)+(space +btnW)*(i%3),90.0f+spaceY - 40.0f+ (spaceY+btnH)*((i/3)%3), btnW, btnH);
-        }
-        self.alpha = 0;
-        if(visual!=nil)
-            visual.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self setHidden:YES];
-        [visual removeFromSuperview];
     }];
 }
 //设置view高斯模糊显示
@@ -247,12 +117,76 @@
     }
 }
 
+//后台下发标签列表，统计用户的兴趣内容
+-(void)startRequest
+{
+    ClassifyLabelsRequest *req = [[ClassifyLabelsRequest alloc]init];
+    ClassifyRespon *respon = [[ClassifyRespon alloc]init];
+    [HttpCommunication request:req getResponse:respon Success:^(JuPlusResponse *response) {
+        [self.dataArray addObjectsFromArray:respon.tagsArray];
+        [self fileData];
+    } failed:^(ErrorInfoDto *errorDTO) {
+        [self errorExp:errorDTO];
+    } showProgressView:NO with:self];
+}
+//只可单选的点击事件以及提交按钮
+-(void)btnClick1:(UIButton *)sender
+{
+    if(!sender.selected)
+    {
+        for (HobbyItemBtn *btn in buttonArray) {
+            if(btn.iconBtn.tag==sender.tag)
+            {
+                [btn.iconBtn setSelected:YES];
+                selectedBtn = btn;
+                
+            }
+            else
+            {
+                [btn.iconBtn setSelected:NO];
+            }
+        }
+    }
+    else
+    {
+        sender.selected = NO;
+        selectedBtn =  nil;
+    }
+}
+//确认按钮
+-(void)surePress1:(UIButton *)sender
+{
+    //如果是作品上传中的编辑效果图分类信息
+    
+        for (ClassifyTagsDTO *dto in self.dataArray) {
+            if ([dto.tagId intValue]==selectedBtn.iconBtn.tag) {
+                self.infoDTO = dto;
+            }
+        }
+        if (self.delegate&&[self.delegate respondsToSelector:@selector(reloadInfo:)]) {
+            if(IsNilOrNull(selectedBtn))
+            {
+                self.infoDTO = nil;
+            }
+            [self.delegate reloadInfo:self.infoDTO];
+        }
+    UIView *visual = [superView viewWithTag:VisualEffectTag];
+    [UIView animateWithDuration:1.0f animations:^{
+        self.alpha = 0;
+        if(visual!=nil)
+            visual.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self setHidden:YES];
+        [visual removeFromSuperview];
+    }];
+}
 #pragma uifig
 -(UIScrollView *)itemsScroll
 {
     if(!_itemsScroll)
     {
         _itemsScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.width, self.height)];
+        _itemsScroll.backgroundColor = [UIColor clearColor];
         _itemsScroll.pagingEnabled = YES;
     }
     return _itemsScroll;
@@ -278,14 +212,6 @@
         _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
     }
     return _dataArray;
-}
--(NSMutableArray *)selectArr
-{
-    if(!_selectArr)
-    {
-        _selectArr = [[NSMutableArray alloc]init];
-    }
-    return _selectArr;
 }
 
 -(void)uifig

@@ -166,17 +166,6 @@
         [self errorExp:errorDTO];
     } showProgressView:YES with:self.view];
    }
-#pragma mark --textField
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    
-
-}
-#pragma mark --textView
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-   
-}
 //退出键盘
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"])

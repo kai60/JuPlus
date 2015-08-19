@@ -47,16 +47,16 @@
     {
         pageNum = 1;
         self.dataArray = [[NSMutableArray alloc]init];
-        headView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 20.0f, SCREEN_WIDTH, 40.0f)];
-        headView.backgroundColor = [UIColor clearColor];
+        headView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, nav_height)];
+        headView.backgroundColor = RGBCOLOR(238, 238, 244);
         [self addSubview:headView];
         
         [headView addSubview:self.searchBar];
-        
-        UIView *top = [[UIView alloc]initWithFrame:CGRectMake(0.0f,headView.height - 1.0f, self.width, 1.0f)];
-        [top setBackgroundColor:Color_Gray_lines];
-        
-        [headView addSubview:top];
+//        
+//        UIView *top = [[UIView alloc]initWithFrame:CGRectMake(0.0f,headView.height - 1.0f, self.width, 1.0f)];
+//        [top setBackgroundColor:Color_Gray_lines];
+//        
+//        [headView addSubview:top];
         
         footer = [ScrollRefreshViewFooter footer];
         footer.delegate = self;
@@ -133,17 +133,38 @@
     if(!_searchBar)
     {
         
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 40.0f)];
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 20.0f, SCREEN_WIDTH, 44.0f)];
         _searchBar.delegate  = self;
         _searchBar.showsCancelButton = YES;
-        _searchBar.placeholder = @"搜索标签";
+        _searchBar.placeholder = @"请搜索或添加新标签";
+        [self resetSearchBar];
         _searchBar.returnKeyType = UIReturnKeySearch;
     }
     return _searchBar;
     
 }
 
-
+-(void)resetSearchBar
+{
+    NSArray *subs = ((UIView *)[self.searchBar.subviews lastObject]).subviews;
+    for (int i = 0; i < [subs count]; i++) {
+        UIView* subv = (UIView*)[subs objectAtIndex:i];
+        if ([subv isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
+        {
+            [subv removeFromSuperview];
+        }
+        if ([subv isKindOfClass:NSClassFromString(@"UINavigationButton")])
+        {
+            [((UIButton *)subv) setTitleColor:Color_Basic forState:UIControlStateNormal];
+        }
+        if ([subv isKindOfClass:NSClassFromString(@"UISearchBarTextField")])
+        {
+        
+            ((UITextField *)subv).borderStyle = UITextBorderStyleRoundedRect;
+        }
+        
+    }
+}
 #pragma mark --uifig
 -(UITableView *)searchResaultTab
 {
@@ -200,8 +221,15 @@
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     [self.superview bringSubviewToFront:self];
+    
+    if (IsArrEmpty(self.dataArray)) {
+        [self.coverView setHidden:NO];
+    }
+    else
+    {
+        [self.coverView setHidden:YES];
+    }
 
-    [self.coverView setHidden:NO];
     [self.searchBar setShowsCancelButton:YES animated:YES];
     
 }
@@ -210,7 +238,7 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     if (IsStrEmpty(searchText)) {
-        [self.coverView setHidden:NO];
+
     }
     else
     {
