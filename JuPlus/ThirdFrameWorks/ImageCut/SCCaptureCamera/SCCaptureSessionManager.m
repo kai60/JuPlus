@@ -537,9 +537,9 @@
     for (int i = 0; i < 4; i++) {
         CGRect frame = CGRectZero;
         if (i == 0 || i == 1) {//画横线
-            frame = CGRectMake(0, headHeight + (i + 1) * eachAreaLength, squareLength, 1);
+            frame = CGRectMake(0, headHeight + (i + 1) * eachAreaLength+60, squareLength, 1);
         } else {
-            frame = CGRectMake((i + 1 - 2) * eachAreaLength, headHeight, 1, squareLength);
+            frame = CGRectMake((i + 1 - 2) * eachAreaLength, headHeight+60, 1, squareLength);
         }
         [SCCommon drawALineWithFrame:frame andColor:[UIColor whiteColor] inLayer:_preview.layer];
     }

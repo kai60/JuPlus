@@ -41,7 +41,7 @@
 //    bottomContainerViewTypeAudio     =   1   //录音页面
 //} BottomContainerViewType;
 
-@interface SCCaptureCameraController ()<UIImagePickerControllerDelegate>
+@interface SCCaptureCameraController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     int alphaTimes;
     CGPoint currTouchPoint;
@@ -285,7 +285,7 @@
         CGFloat theH = (!isHigherThaniPhone4_SC && i == 0 ? _bottomContainerView.frame.size.height : CAMERA_MENU_VIEW_HEIGH);
         UIView *parent = (!isHigherThaniPhone4_SC && i == 0 ? _bottomContainerView : _cameraMenuView);
         
-        UIButton * btn = [self buildButton:CGRectMake(eachW * i, 0, eachW, theH)
+        UIButton * btn = [self buildButton:CGRectMake(eachW * i+eachW/4+5,eachW/4 , eachW/2-15, theH/2)
                               normalImgStr:[normalArr objectAtIndex:i]
                            highlightImgStr:[highlightArr objectAtIndex:i]
                             selectedImgStr:[selectedArr objectAtIndex:i]
