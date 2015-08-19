@@ -50,10 +50,13 @@
 
     [backV addSubview:self.tabBarV];
     
-    [self.tabBarV.logoBtn addTarget:self action:@selector(logoBtnClick) forControlEvents:UIControlEventTouchUpInside];
-
+    //跳转到carma
+    [self.tabBarV.logoBtn addTarget:self action:@selector(gotoCarma) forControlEvents:UIControlEventTouchUpInside];
     //原定筛选按钮
-    [self.collectionV.rightBtn addTarget:self action:@selector(reloadCollectionTab) forControlEvents:UIControlEventTouchUpInside];
+    [self.collectionV.rightBtn addTarget:self action:@selector(selectClick) forControlEvents:UIControlEventTouchUpInside];
+    //切换显示效果
+    [self.collectionV.switchBtn addTarget:self action:@selector(reloadCollectionTab) forControlEvents:UIControlEventTouchUpInside];
+    //个人中心
     [self.tabBarV.personBtn addTarget:self action:@selector(personBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.classifyV];
@@ -63,20 +66,6 @@
 
 }
 
--(void)addRightBtn
-{
-    [self.leftBtn setHidden:YES];
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(backV.width - 54.0f, 20, 44.0f, 44.0f);
-    [btn addTarget:self action:@selector(rightPress) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@"兴趣" forState:UIControlStateNormal];
-    [btn.titleLabel setFont:FontType(14.0f)];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    UIView *black = [[UIView alloc]initWithFrame:CGRectMake((btn.width - 15.0f)/2, 42.0f, 15.0f, 2.0f)];
-    [black setBackgroundColor:Color_Basic];
-    [btn addSubview:black];
-    [backV addSubview:btn];
-}
 //九宫格相关
 -(void)show
 {
@@ -136,41 +125,49 @@
     return _tabBarV;
 }
 #pragma mark --ClickMethod
--(void)logoBtnClick
+#pragma mark --一键切换显示方式
+-(void)reloadCollectionTab
 {
+    if(self.collectionV.isShared)
+    {
+        self.collectionV.isShared = NO;
+        self.collectionV.switchBtn.selected = NO;
+    }
+    else
+    {
+        self.collectionV.isShared = YES;
+        self.collectionV.switchBtn.selected = YES;
+        
+    }
+    [self.collectionV.listTab reloadData];
+}
 
-//    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:[[UIImage imageNamed:@"bg_upload"] addText:@"这仅仅是一个测试内容这仅仅是一个测试abc这仅仅是一个" andNickname:@"我是测试abc"] socialUIDelegate:self];        //设置分享内容和回调对象
-//    [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
-    
-   [self selectClick];
-    
-   
+//筛选按钮点击（跳转到九宫格）
+-(void)gotoCarma
+{
+    if ([CommonUtil isLogin]) {
+        
+        CameraViewController *ca = [[CameraViewController alloc]init];
+        [self.navigationController pushViewController:ca animated:YES];
+    }else{
+        
+        LoginViewController *log = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:log animated:YES];
+    }
+}
+-(void)selectClick
+{
+    [self.tabBarV.classifyBtn setSelected:YES];
+    [self.tabBarV.personBtn setSelected:NO];
+    [self changeTo:0];
+    [self.classifyV showClassify];
 }
 -(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
 {
     //微信分享纯图片，不需要文字信息
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
 }
-#pragma mark --一键切换显示方式
--(void)reloadCollectionTab
-{
-    if(self.collectionV.isShared)
-        self.collectionV.isShared = NO;
-    else
-    self.collectionV.isShared = YES;
-    [self.collectionV.listTab reloadData];
-}
 
-//筛选按钮点击（跳转到九宫格）
--(void)selectClick
-{
-    CameraViewController *ca = [[CameraViewController alloc]init];
-    [self.navigationController pushViewController:ca animated:YES];
-//    [self.tabBarV.classifyBtn setSelected:YES];
-//    [self.tabBarV.personBtn setSelected:NO];
-//    [self changeTo:0];
-//    [self.classifyV showClassify];
-}
 #pragma mark 视图切换
 -(void)showCurrentView:(JuPlusUIView *)view
 {

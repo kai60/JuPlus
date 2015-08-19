@@ -138,15 +138,25 @@ CGFloat RadiansToDegrees(CGFloat radians)
     CGImageRelease(cgImage);
     return newImage;
 }
-//压缩图片，发送数据
+//得到图片上传信息(压缩0.1)
 -(NSString *)getImageString
 {
-    NSData* pictureData = UIImageJPEGRepresentation(self,1.0);//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
-    //NSLog(@"调用了image@String方法");
-    //NSLog(@"%@这个值是什么实现的？",pictureData);
+    NSData *pictureData = UIImageJPEGRepresentation(self,0.1);//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
     NSString* pictureDataString = [pictureData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];//图片转码成为base64Encoding，
     //NSLog(@"%@++++是空值么？",pictureDataString);
     //NSLog(@"base64转码，的实验");
+    return pictureDataString;
+}
+//压缩图片，发送数据
+-(NSString *)getPostImageString
+{
+  UIImage *scanImage = [self getScanImage:self];
+    NSData *pictureData = UIImageJPEGRepresentation(scanImage,1.0);//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
+        if (pictureData.length/1024>=1024) {
+            pictureData = UIImageJPEGRepresentation(scanImage,MIN((1024*1024)/pictureData.length, 0.5));//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
+        }
+    NSString* pictureDataString = [pictureData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];//图片转码成为base64Encoding，
+    //NSLog(@"%@++++是空值么？",pictureDataString);
     return pictureDataString;
     
 }

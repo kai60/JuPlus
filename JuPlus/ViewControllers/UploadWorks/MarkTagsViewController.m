@@ -12,13 +12,13 @@
 #import "MarkLabeiView.h"
 #import "UploadNotesViewController.h"
 #import "InfoChangeV.h"
-#import "ClassifyView.h"
+#import "CollocationClassifyView.h"
 #import "UMSocial.h"
 #import "UIScrollView+UITouch.h"
 #import "AddCollocationReq.h"
 #import "MyWorksListViewController.h"
 #import "ToastView.h"
-@interface MarkTagsViewController ()<UITextViewDelegate,ClassifyViewDelegate,UITextFieldDelegate,UMSocialUIDelegate,ToastViewDelegate>
+@interface MarkTagsViewController ()<UITextViewDelegate,CollocationClassifyViewDelegate,UITextFieldDelegate,UMSocialUIDelegate,ToastViewDelegate>
 {
     UIView *selectedView;
     
@@ -27,6 +27,8 @@
     UIImageView *remindBtn;
     //得到需要分享的图片
     UIImage *shareImage;
+    
+    NSArray *randomArray;
 }
 @property (nonatomic,strong)UIImageView *topImgView;
 
@@ -50,7 +52,7 @@
 
 @property (nonatomic,strong)UIButton *sureBtn;
 
-@property (nonatomic,strong)ClassifyView *classify;
+@property (nonatomic,strong)CollocationClassifyView *classify;
 
 @property (nonatomic,strong)ToastView *toast;
 
@@ -62,7 +64,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"添加标签";
-    
+
+    randomArray = [NSArray arrayWithObjects:@"世界上总有一半人不理解另一半人的快乐。",@"上帝会把我们身边最好的东西拿走，以提醒我们得到的太多！",@"有信心不一定会成功，没信心一定不会成功。",@"有人就有恩怨，有恩怨就有江湖。人就是江湖，你怎么退出？",@"最了解你的人不是你的朋友，而是你的敌人。",@"爱情这东西，时间很关键，认识得太早或太晚，都不行。",@"生命中充满了巧合，两条平行线也会有相交的一天。",@"我手上的爱情线、生命线和事业线，都是你的名字拼成的。",@"我情愿做个犯错的人，也不愿错过你？",@"只要两个相爱的人在一起，哪里都是天堂。",@"对爱的人说心里话，不要等太久。",@"为了记住你的笑容，我拼命按下心中的快门。", nil];
     self.tagsArray = [[NSMutableArray alloc]init];
 
     [self.view addSubview:self.backSCroll];
@@ -182,7 +185,7 @@
 {
     if(!_detailView)
     {
-        _detailView=[[UITextView alloc]initWithFrame:CGRectMake(10.0f, self.bottomView.bottom, 300.0f,30.0f)];
+        _detailView=[[UITextView alloc]initWithFrame:CGRectMake(10.0f, self.bottomView.bottom, 300.0f,50.0f)];
         _detailView.delegate=self;
         _detailView.backgroundColor=[UIColor whiteColor];
         [_detailView setEditable:YES];
@@ -192,6 +195,8 @@
         _detailView.layer.cornerRadius=5.0;
         _detailView.layer.masksToBounds=YES;
         _detailView.textColor= Color_Gray;
+        int a = arc4random()%[randomArray count];
+        _detailView.text = [randomArray objectAtIndex:a];
         _detailView.font=FontType(FontSize);
     }
     
@@ -206,7 +211,7 @@
         _countLabel.font=FontType(FontSize);
         _countLabel.textAlignment=NSTextAlignmentRight;
         _countLabel.textColor=Color_Gray;
-        _countLabel.text=@"0/26字";
+        _countLabel.text=[NSString stringWithFormat:@"%ld/26字",self.detailView.text.length];
         
     }
     return _countLabel;
@@ -222,6 +227,7 @@
         _placeholderLabel.textAlignment=NSTextAlignmentLeft;
         _placeholderLabel.textColor=Color_Gray;
         _placeholderLabel.text=@"请添加内容";
+        [_placeholderLabel setHidden:YES];
     }
     return _placeholderLabel;
 }
@@ -277,14 +283,12 @@
     }
     return _sureBtn;
 }
--(ClassifyView *)classify
+-(CollocationClassifyView *)classify
 {
     if(!_classify)
     {
-        _classify = [[ClassifyView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT) andView:self.sureBtn];
-        _classify.isEdit = YES;
+        _classify = [[CollocationClassifyView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT) andSuperView:self.topImgView];
         _classify.delegate = self;
-        _classify.backgroundColor = [UIColor whiteColor];
         [_classify setHidden:YES];
     }
     return _classify;
@@ -379,8 +383,8 @@
     [req setField:[CommonUtil getToken] forKey:TOKEN];
     [req setField:self.detailView.text forKey:@"explain"];
     [req setField:self.tagsArray forKey:@"productList"];
-    [req setField:[self.postImage getImageString] forKey:@"picContent"];
-    [req setField:[shareImage getImageString] forKey:@"sharePicContent"];
+    [req setField:[self.postImage getPostImageString] forKey:@"picContent"];
+    [req setField:[shareImage getPostImageString] forKey:@"sharePicContent"];
 
     [req setField:[NSString stringWithFormat:@"%ld",(long)self.clfyPickView.tag] forKey:@"tagIds"];
     JuPlusResponse *respon = [[JuPlusResponse alloc]init];

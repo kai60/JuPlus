@@ -74,5 +74,6 @@ JuPlus_EXTERN NSString     * EncodeStringFromDic(NSDictionary *dic, NSString *ke
 +(CGSize)getLabelSizeWithString:(NSString *)Str andLabelWidth:(CGFloat)width  andFont:(UIFont *)font;
 //根据label高度得到字符串占用宽度
 +(CGSize)getLabelSizeWithString:(NSString *)Str andLabelHeight:(CGFloat)height  andFont:(UIFont *)font;
+//----------------------------------------------------------------------------------------------
 
 @end
