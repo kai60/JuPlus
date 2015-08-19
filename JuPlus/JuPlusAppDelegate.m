@@ -38,6 +38,25 @@
     [self signUM];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    NSMutableArray *fontNames = [[NSMutableArray alloc] init];
+    
+    NSArray *fontFamilyNames = [UIFont familyNames];
+    
+    for (NSString *familyName in fontFamilyNames) {
+        
+        //        NSLog(@"Font Family Name = %@", familyName);
+        
+        NSArray *names = [UIFont fontNamesForFamilyName:familyName];
+        
+        //        NSLog(@"Font Names = %@", fontNames);
+        
+        [fontNames addObjectsFromArray:names];
+        
+    }
+    
+    NSLog(@"fontNames==%@",fontNames);
+    
 //#pragma mark --insertPush百度推送
 //    // iOS8 下需要使用新的 API
 ////    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {

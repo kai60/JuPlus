@@ -33,13 +33,12 @@
 #define TABBAR_HEIGHT 44.0f
 ////字体样式
 //#define FONTSTYLE @"Heiti SC"
-//方正幼线
-//#define FONTSTYLE @"FZYouXian-Z09S"
 //张海山1
 #define FONTSTYLE @"ZHSRXT--GBK1-0"
 //张海山2
 //#define FONTSTYLE @"ZHSRXT-GBK"
-
+//叶根友特楷
+//#define FONTSTYLE @"-"
 
 
 //基于给定字体样式的字体设置

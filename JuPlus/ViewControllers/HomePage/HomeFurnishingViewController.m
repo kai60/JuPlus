@@ -136,16 +136,23 @@
 #pragma mark --ClickMethod
 -(void)logoBtnClick
 {
-//    [[UMSocialScreenShoter screenShoter] getScreenShot];
-//    [self.navView setBackgroundColor:[UIColor colorWithPatternImage:[[UMSocialScreenShoter screenShoter] getScreenShot]]];
-    NSLog(@"九宫格");
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UM_APPKey shareText:@"测试" shareImage:[UIImage imageNamed:@"Icon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil] delegate:self];
 
-//    [self selectClick];
+//    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:[[UIImage imageNamed:@"bg_upload"] addText:@"这仅仅是一个测试内容这仅仅是一个测试abc这仅仅是一个" andNickname:@"我是测试abc"] socialUIDelegate:self];        //设置分享内容和回调对象
+//    [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
+    
+    [self selectClick];
    
 }
-
-
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+{
+    //微信分享纯图片，不需要文字信息
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
+}
+#pragma mark --一键切换显示方式
+-(void)reloadListTab
+{
+    
+}
 //筛选按钮点击（跳转到九宫格）
 -(void)selectClick
 {
