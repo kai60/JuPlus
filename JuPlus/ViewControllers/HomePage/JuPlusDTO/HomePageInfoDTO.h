@@ -23,6 +23,8 @@
 @property(nonatomic,strong)NSString *descripTxt;
 //家居布景大图
 @property(nonatomic,strong)NSString *collectionPic;
+//分享的大图
+@property(nonatomic,strong)NSString *sharePic;
 //价格
 @property(nonatomic,strong)NSString *price;
 //标签组

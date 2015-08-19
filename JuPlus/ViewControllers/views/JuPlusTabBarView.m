@@ -79,7 +79,7 @@
     
     self.logoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.logoBtn.frame = CGRectMake((self.width - 36.0f)/2, (self.height - 36.0f)/2, 36.0f, 36.0f);
-    [self.logoBtn setImage:[UIImage imageNamed:@"icons_logo"] forState:UIControlStateNormal];
+    [self.logoBtn setImage:[UIImage imageNamed:@"carma_shot"] forState:UIControlStateNormal];
    // [logoBtn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.logoBtn];
     [self setFirstRespon];

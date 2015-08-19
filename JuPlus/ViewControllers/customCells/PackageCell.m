@@ -24,11 +24,21 @@ CGFloat space = 10.0f;
 }
 -(void)uifig
 {
-    [self.contentView addSubview:self.topV];
-    [self.contentView addSubview:self.timeLabel];
-    [self.contentView addSubview:self.descripL];
+    [self.contentView addSubview:self.messView];
+    [self.messView addSubview:self.topV];
+    [self.messView addSubview:self.timeLabel];
+    [self.messView addSubview:self.descripL];
     [self.contentView addSubview:self.showImgV];
+    [self.contentView addSubview:self.bottomView];
    // [self.showImgV addSubview:self.priceV];
+}
+-(JuPlusUIView *)messView
+{
+    if(!_messView)
+    {
+        _messView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.contentView.width, 90.0f)];
+    }
+    return _messView;
 }
 -(PortraitView *)topV
 {
@@ -63,29 +73,77 @@ CGFloat space = 10.0f;
 {
     if(!_showImgV)
     {
-        _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.descripL.bottom+space, self.contentView.width, PICTURE_HEIGHT)];
+        _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.messView.bottom, self.contentView.width, PICTURE_HEIGHT)];
         [_showImgV setImage:[UIImage imageNamed:@"default_square"]];
         _showImgV.userInteractionEnabled = YES;
     }
     return _showImgV;
 }
-//cell数据加载
--(void)loadCellInfo:(HomePageInfoDTO *)homepageDTO
+-(JuPlusUIView *)bottomView
 {
-    [self.topV.portraitImgV setimageUrl:homepageDTO.portrait  placeholderImage:nil];
-    [self.topV.nikeNameL setText:homepageDTO.nikename];
-    [self.timeLabel setText:homepageDTO.uploadTime];
-    //[self.timeLabel setText:@"1小时前"];
-    [self.descripL setText:homepageDTO.descripTxt];
-    [self.showImgV setimageUrl:homepageDTO.collectionPic  placeholderImage:nil];
-    self.showImgV.alpha = 0;
-    [UIView animateWithDuration:1.0f animations:^{
-        self.showImgV.alpha = 1.0f;
-    }];
-    self.showImgV.tag = [homepageDTO.regNo intValue];
-    [self.topV.portraitImgV addTarget:self action:@selector(portraitImgVPress:) forControlEvents:UIControlEventTouchUpInside];
-    [self.priceV setPriceText:homepageDTO.price];
-    [self setTipsWithArray:homepageDTO.labelArray];
+    if (!_bottomView) {
+        _bottomView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.showImgV.bottom, self.contentView.width, 2.0f)];
+        _bottomView.backgroundColor = Color_Gray_lines;
+        [_bottomView setHidden:YES];
+    }
+    return _bottomView;
+}
+//cell数据加载
+-(void)loadCellInfo:(HomePageInfoDTO *)homepageDTO withShow:(BOOL)isShow
+{
+    if (isShow) {
+        //隐藏信息栏
+        [self.messView setHidden:YES];
+        //隐藏标签
+        for(UIView *sub in self.showImgV.subviews)
+        {
+            if ( [sub isKindOfClass:[LabelView class]]) {
+                [sub setHidden:YES];
+            }
+        }
+        [self.bottomView setHidden:NO];
+        self.messView.frame = CGRectMake(0.0f, 0.0f, self.contentView.width, 0.0f);
+        [self.showImgV setimageUrl:homepageDTO.sharePic  placeholderImage:nil];
+        [UIView animateWithDuration:ANIMATION animations:^{
+            self.showImgV.frame = CGRectMake(0.0f, 0.0f, self.contentView.width, PICTURE_HEIGHT);
+            self.bottomView.frame = CGRectMake(0.0f, self.showImgV.bottom, self.bottomView.width, self.bottomView.height);
+        }];
+    }
+    else
+    {
+        //显示信息栏
+        [self.messView setHidden:NO];
+        //显示标签
+        for(UIView *sub in self.showImgV.subviews)
+        {
+            if ( [sub isKindOfClass:[LabelView class]]) {
+                [sub setHidden:NO];
+            }
+        }
+        [self.showImgV setimageUrl:homepageDTO.collectionPic  placeholderImage:nil];
+        
+        [UIView animateWithDuration:ANIMATION animations:^{
+                self.messView.frame = CGRectMake(0.0f, 0.0f, self.contentView.width, 90.0f);
+                self.showImgV.frame = CGRectMake(0.0f, self.messView.bottom, self.contentView.width, PICTURE_HEIGHT);
+                self.bottomView.frame = CGRectMake(0.0f, self.showImgV.bottom, self.bottomView.width, self.bottomView.height);
+            }];
+        [self.topV.portraitImgV setimageUrl:homepageDTO.portrait  placeholderImage:nil];
+        [self.topV.nikeNameL setText:homepageDTO.nikename];
+        [self.timeLabel setText:homepageDTO.uploadTime];
+        [self.descripL setText:homepageDTO.descripTxt];
+        [self.showImgV setimageUrl:homepageDTO.collectionPic  placeholderImage:nil];
+        if (self.bottomView.hidden) {
+        self.showImgV.alpha = 0;
+        [UIView animateWithDuration:1.0f animations:^{
+            self.showImgV.alpha = 1.0f;
+        }];
+        }
+        [self.bottomView setHidden:YES];
+        self.showImgV.tag = [homepageDTO.regNo intValue];
+        [self setTipsWithArray:homepageDTO.labelArray];
+    }
+   //    [self.topV.portraitImgV addTarget:self action:@selector(portraitImgVPress:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.priceV setPriceText:homepageDTO.price];
     
 }
 -(void)portraitImgVPress:(UIButton *)sender

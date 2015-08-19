@@ -77,14 +77,15 @@
 }
 -(void)backPress:(UIButton *)sender
 {
-    NSArray *vcArr = [self.navigationController viewControllers];
-    for (UIViewController *vc in vcArr) {
-        if([vc isKindOfClass:[HomeFurnishingViewController class]])
-        {
-            [self.navigationController popToViewController:vc animated:YES];
-           // return;
-        }
-    }
+    [self.navigationController popToRootViewControllerAnimated:YES];
+//    NSArray *vcArr = [self.navigationController viewControllers];
+//    for (UIViewController *vc in vcArr) {
+//        if([vc isKindOfClass:[HomeFurnishingViewController class]])
+//        {
+//            [self.navigationController popToViewController:vc animated:YES];
+//            return;
+//        }
+//    }
 }
 #pragma mark --uifig
 -(UITableView *)listTab
