@@ -15,6 +15,4 @@
 @property (nonatomic, assign) BOOL isStatusBarHiddenBeforeShowCamera;
 
 @property(nonatomic,copy) NSString *lastChosenMediaType;
-
-+ (ALAssetsLibrary *)defaultAssetsLibrary;
 @end

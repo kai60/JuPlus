@@ -247,41 +247,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
     
 }
-+ (ALAssetsLibrary *)defaultAssetsLibrary {
-    
-    static dispatch_once_t pred = 0;
-    static ALAssetsLibrary *library = nil;
-    
-    dispatch_once(&pred, ^{
-        
-        library = [[ALAssetsLibrary alloc] init];
-    });
-    return library;
-}
-//遍历媒体库所有图片组
-//- (void )getAllPhotosGroup:(void(^)(NSMutableArray *groups,NSError *error))block {
-//    
-//    ALAssetsLibrary *assetsLibrary = [self.imageV defaultAssetsLibrary];
-//    
-//    __block NSMutableArray *groups = [NSMutableArray array];
-//    
-//    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll
-//                                 usingBlock:^(ALAssetsGroup *group, BOOL *stop)
-//     {
-//         if (group) {
-//             if ([group numberOfAssets] != 0 && [group posterImage]) {
-//                 [groups addObject:group];
-//             }
-//         }else{
-//             block(groups,nil);
-//         }
-//         
-//     }failureBlock:^(NSError *error)
-//     {
-//         block(nil,error);
-//     }];
-//    
-//}
 - (void)tapAction:(UITapGestureRecognizer *)tap
 {
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
