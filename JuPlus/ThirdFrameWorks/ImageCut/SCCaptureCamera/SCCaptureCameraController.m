@@ -244,8 +244,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
        self.imageV.image = image;
     
-
-    
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap
 {
