@@ -154,7 +154,7 @@
 #pragma mark --
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 201.0f;
+    return PICTURE_HEIGHT/2+41.0f;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

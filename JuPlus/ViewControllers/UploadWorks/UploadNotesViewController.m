@@ -68,7 +68,7 @@
 {
     if(!_detailView)
     {
-        _detailView=[[UILabel alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 300.0f,30.0f)];
+        _detailView=[[UILabel alloc]initWithFrame:CGRectMake(10.0f, 10.0f, SCREEN_WIDTH - 10.0f*2 ,30.0f)];
         _detailView.text = self.infoDTO.productName;
         _detailView.backgroundColor=[UIColor whiteColor];
         _detailView.layer.borderColor= [Color_Gray_lines CGColor];

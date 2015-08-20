@@ -14,7 +14,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        
+        CGRect frame = self.contentView.frame;
+        frame.size.width = SCREEN_WIDTH;
+        self.contentView.frame = frame;
         //  [self.contentView addSubview:self.backImage];
         
         self.back = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, PICTURE_HEIGHT/2)];
@@ -90,7 +92,7 @@
 {
     if(!_bottomView)
     {
-        _bottomView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.back.bottom, self.width, 36.0f)];
+        _bottomView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.back.bottom, self.contentView.width, 36.0f)];
         _bottomView.backgroundColor = Color_White;
     }
     return _bottomView;
@@ -116,7 +118,7 @@
     if(!_favBtn)
     {
         _favBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _favBtn.frame = CGRectMake(220.0f, 8.0f, 40.0f, 20.0f);
+        _favBtn.frame = CGRectMake(self.bottomView.width - 100.0f, 8.0f, 40.0f, 20.0f);
         [_favBtn setImage:[UIImage imageNamed:@"fav"] forState:UIControlStateNormal];
         [_favBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
         [_favBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0,0.0, 0.0, 20.0)];
@@ -131,7 +133,7 @@
     if(!_payBtn)
     {
         _payBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _payBtn.frame = CGRectMake(270.0f, 8.0f, 40.0f, 20.0f);
+        _payBtn.frame = CGRectMake(self.bottomView.width - 50.0f, 8.0f, 40.0f, 20.0f);
         [_payBtn setImage:[UIImage imageNamed:@"pay"] forState:UIControlStateNormal];
         [_payBtn setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 20.0)];
         [_payBtn setTitleColor:Color_Basic forState:UIControlStateNormal];
