@@ -23,6 +23,9 @@
     {
         space = 10.0f;
         labelH = 30.0f;
+        CGRect frame = self.contentView.frame;
+        frame.size.width = SCREEN_WIDTH;
+        self.contentView.frame = frame;
         [self.contentView addSubview:self.topView];
         [self.contentView addSubview:self.nameL];
         [self.contentView addSubview:self.mobileL];

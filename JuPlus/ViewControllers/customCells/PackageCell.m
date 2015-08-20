@@ -17,6 +17,9 @@ CGFloat space = 10.0f;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
+        CGRect frame = self.contentView.frame;
+        frame.size.width = SCREEN_WIDTH;
+        self.contentView.frame = frame;
         self.contentView.backgroundColor = [UIColor whiteColor];
         [self uifig];
     }

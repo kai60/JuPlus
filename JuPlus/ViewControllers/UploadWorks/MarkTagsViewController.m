@@ -185,7 +185,7 @@
 {
     if(!_detailView)
     {
-        _detailView=[[UITextView alloc]initWithFrame:CGRectMake(10.0f, self.bottomView.bottom, 300.0f,50.0f)];
+        _detailView=[[UITextView alloc]initWithFrame:CGRectMake(10.0f, self.bottomView.bottom,SCREEN_WIDTH - 10.0f*2,50.0f)];
         _detailView.delegate=self;
         _detailView.backgroundColor=[UIColor whiteColor];
         [_detailView setEditable:YES];
