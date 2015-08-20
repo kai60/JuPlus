@@ -9,28 +9,32 @@
 #ifndef FurnHouse_JuPlusEnvironmentConfig_h
 #define FurnHouse_JuPlusEnvironmentConfig_h
 
+//==========================版本内容适配===============================
 // 可读的版本号，类似1.0.0
 #define VERSION_STRING @"1.0"
 // 内部版本号，用于和后台匹配接口信息
 #define VERSION_INT 1
+//系统版本
+#define  VERSION [[UIDevice currentDevice].systemVersion doubleValue]
 //APP更新地址
 #define APP_URL @""
 #pragma globalConfig
+//
 #define nav_height 64.0f
 #define view_height [UIScreen mainScreen].bounds.size.height - nav_height
-
+//==========================屏幕宽高适配===============================
 //屏幕宽、高（用于适配不同机型）
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-//系统版本
-#define  VERSION [[UIDevice currentDevice].systemVersion doubleValue]
-#define PICTURE_HEIGHT 320.0f
+//图片高度
+#define PICTURE_HEIGHT [UIScreen mainScreen].bounds.size.width
 //用于下拉加载更多的每页数据数
 #define PAGESIZE @"10"
 
 #define ANIMATION 0.3
 
 #define TABBAR_HEIGHT 44.0f
+//==========================字体相关================================
 ////字体样式
 //#define FONTSTYLE @"Heiti SC"
 //张海山1
@@ -43,10 +47,13 @@
 
 //基于给定字体样式的字体设置
 #define FontType(_ref) [UIFont fontWithName:FONTSTYLE size:(_ref)]
+
 //常用字体大小
 #define FontSize 14.0f
 #define FontMinSize 12.0f
 #define FontMaxSize 16.0f
+
+//=======================================================================
 // 连接超时时间，秒
 #define CONNECT_TIMEOUT 30
 // 数据等待超时时间，秒
@@ -65,7 +72,8 @@
 #define WeiChatAppSecret @"60bfbcc61019e15292ea0dd7bd1f0546"
 
 #define WeiChatShareUrl @"www.jujiax.com"
-//qq
+
+//=======================================================================
 //测试环境
 #ifdef kDevTest
 //网络请求IP地址
