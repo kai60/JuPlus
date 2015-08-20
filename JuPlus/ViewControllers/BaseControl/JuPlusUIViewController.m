@@ -127,6 +127,10 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:path]];
     }
 }
+- (BOOL)prefersStatusBarHidden
+{
+    return NO;//隐藏为YES，显示为NO
+}
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];

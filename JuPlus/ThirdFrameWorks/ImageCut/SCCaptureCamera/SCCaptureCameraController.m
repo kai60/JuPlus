@@ -23,7 +23,7 @@
 #define SWITCH_SHOW_DEFAULT_IMAGE_FOR_NONE_CAMERA   1   //没有拍照功能的设备，是否给一张默认图片体验一下
 
 //height
-#define CAMERA_TOPVIEW_HEIGHT   44  //title
+#define CAMERA_TOPVIEW_HEIGHT   104  //title
 #define CAMERA_MENU_VIEW_HEIGH  44  //menu
 
 //color
@@ -46,6 +46,7 @@
 {
     int alphaTimes;
     CGPoint currTouchPoint;
+    BOOL isHiddenStatusBar;
 }
 
 @property (nonatomic, strong) SCCaptureSessionManager *captureManager;
@@ -85,8 +86,8 @@
         // Custom initialization
         alphaTimes = -1;
         currTouchPoint = CGPointZero;
-        
         _cameraBtnSet = [[NSMutableSet alloc] init];
+        
     }
     return self;
 }
@@ -94,6 +95,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
     
     //navigation bar
@@ -117,14 +119,15 @@
     //session manager
     SCCaptureSessionManager *manager = [[SCCaptureSessionManager alloc] init];
     
-    //AvcaptureManager
+
+    //AvcaptureManager（添加相机按钮的可视范围）
     if (CGRectEqualToRect(_previewRect, CGRectZero)) {
-        self.previewRect = CGRectMake(0, 0, SC_APP_SIZE.width, SC_APP_SIZE.width + CAMERA_TOPVIEW_HEIGHT);
+        self.previewRect = CGRectMake(0, 0.0f, SC_APP_SIZE.width, SCREEN_WIDTH+CAMERA_TOPVIEW_HEIGHT);
     }
     [manager configureWithParentLayer:self.view previewRect:_previewRect];
     self.captureManager = manager;
-    
     [self addTopViewWithText:@" "];
+
     [self addbottomContainerView];
     [self addCameraMenuView];
     [self addFocusView];
@@ -135,20 +138,25 @@
     
 #if SWITCH_SHOW_DEFAULT_IMAGE_FOR_NONE_CAMERA
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [SVProgressHUD showErrorWithStatus:@"设备不支持拍照功能，给个妹纸给你喵喵T_T"];
+        [SVProgressHUD showErrorWithStatus:@"设备不支持拍照功能T_T"];
         
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, CAMERA_TOPVIEW_HEIGHT+60, self.view.frame.size.width, self.view.frame.size.width)];
         imgView.clipsToBounds = YES;
         imgView.contentMode = UIViewContentModeScaleAspectFill;
-        imgView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"meizi" ofType:@"jpg"]];
+        //imgView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"meizi" ofType:@"jpg"]];
         [self.view addSubview:imgView];
     }
 #endif
     
 }
-
+#pragma mark --控制是否显示状态栏
 - (void)viewWillAppear:(BOOL)animated {
+   
     [super viewWillAppear:animated];
+}
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;//隐藏为YES，显示为NO
 }
 
 - (void)didReceiveMemoryWarning
@@ -184,14 +192,15 @@
         CGRect topFrame = CGRectMake(0, 0, SC_APP_SIZE.width, CAMERA_TOPVIEW_HEIGHT);
         
         UIView *tView = [[UIView alloc] initWithFrame:topFrame];
-        //tView.backgroundColor = [UIColor clearColor];
+        tView.backgroundColor = [UIColor blackColor];
+        //tView.alpha = 0.4f;
         [self.view addSubview:tView];
         self.topContainerView = tView;
         
-        UIView *emptyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, topFrame.size.width, topFrame.size.height)];
-        emptyView.backgroundColor = [UIColor blackColor];
-        emptyView.alpha = 0.4f;
-        [_topContainerView addSubview:emptyView];
+//        UIView *emptyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, topFrame.size.width, topFrame.size.height)];
+//        emptyView.backgroundColor = [UIColor blackColor];
+//        emptyView.alpha = 0.4f;
+//        [_topContainerView addSubview:emptyView];
         
 //        topFrame.origin.x += 10;
 //        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, topFrame.size.height)];
@@ -208,7 +217,7 @@
 - (void)addbottomContainerView {
     
     CGFloat bottomY = _captureManager.previewLayer.frame.origin.y + _captureManager.previewLayer.frame.size.height;
-    CGRect bottomFrame = CGRectMake(0, bottomY, SC_APP_SIZE.width, SC_APP_SIZE.height - bottomY);
+    CGRect bottomFrame = CGRectMake(0, bottomY, SCREEN_WIDTH, SCREEN_HEIGHT - bottomY);
     
     
     //在view上加一个查看相册的按钮
@@ -217,9 +226,8 @@
     [self.view addSubview:_viewBut];
     self.bottomContainerView = _viewBut;
     
-    CGFloat downH = (isHigherThaniPhone4_SC ? CAMERA_MENU_VIEW_HEIGH : 0);
     CGFloat cameraBtnLength = 40;
-    self.imageV = [[UIImageView alloc]initWithFrame:CGRectMake(24, (_bottomContainerView.frame.size.height - downH - cameraBtnLength) / 2 + 80, cameraBtnLength, cameraBtnLength)];
+    self.imageV = [[UIImageView alloc]initWithFrame:CGRectMake(24, _bottomContainerView.height-50.0f, cameraBtnLength, cameraBtnLength)];
 //    _imageV.image = [UIImage imageNamed:@"meizi.jpg"];
     
 //    imageV.layer.masksToBounds = YES;
@@ -281,9 +289,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 - (void)addCameraMenuView {
     
     //拍照按钮
-    CGFloat downH = (isHigherThaniPhone4_SC ? CAMERA_MENU_VIEW_HEIGH : 0);
-    CGFloat cameraBtnLength = 90;
-    [self buildButton:CGRectMake((SC_APP_SIZE.width - cameraBtnLength) / 2, (_bottomContainerView.frame.size.height - downH - cameraBtnLength) / 2 + 80, cameraBtnLength, cameraBtnLength)
+    CGFloat cameraBtnLength = 68.0f;
+    [self buildButton:CGRectMake((SC_APP_SIZE.width - cameraBtnLength) / 2, _bottomContainerView.height  - cameraBtnLength, cameraBtnLength, cameraBtnLength)
          normalImgStr:@"Btn_shot"
       highlightImgStr:@"Btn_shot_click"
        selectedImgStr:@""
@@ -320,9 +327,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     for (int i = 0; i < actionArr.count; i++) {
         
         CGFloat theH = (!isHigherThaniPhone4_SC && i == 0 ? _bottomContainerView.frame.size.height : CAMERA_MENU_VIEW_HEIGH);
-        UIView *parent = (!isHigherThaniPhone4_SC && i == 0 ? _bottomContainerView : _cameraMenuView);
+        UIView *parent = _cameraMenuView;
         
-        UIButton * btn = [self buildButton:CGRectMake(eachW * i+eachW/4+5,eachW/4 , eachW/2-15, theH/2)
+        UIButton * btn = [self buildButton:CGRectMake(eachW * i+eachW/4+5,10.0f , eachW/2-15, theH/2)
                               normalImgStr:[normalArr objectAtIndex:i]
                            highlightImgStr:[highlightArr objectAtIndex:i]
                             selectedImgStr:[selectedArr objectAtIndex:i]
@@ -376,12 +383,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 //拍完照后的遮罩
 - (void)addCameraCover {
     UIView *upView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SC_APP_SIZE.width, 0)];
-    upView.backgroundColor = [UIColor blackColor];
+    //upView.backgroundColor = [UIColor blackColor];
+    upView.backgroundColor = Color_Gray;
+
     [self.view addSubview:upView];
     self.doneCameraUpView = upView;
     
     UIView *downView = [[UIView alloc] initWithFrame:CGRectMake(0, _bottomContainerView.frame.origin.y, SC_APP_SIZE.width, 0)];
-    downView.backgroundColor = [UIColor blackColor];
+    downView.backgroundColor = Color_Gray;
     [self.view addSubview:downView];
     self.doneCameraDownView = downView;
 }
@@ -390,13 +399,23 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     [UIView animateWithDuration:0.38f animations:^{
         CGRect upFrame = _doneCameraUpView.frame;
-        upFrame.size.height = (toShow ? SC_APP_SIZE.width / 2 + CAMERA_TOPVIEW_HEIGHT : 0);
+        upFrame.origin.y = (toShow ?self.topContainerView.bottom:0);
+        upFrame.size.height = (toShow ? SCREEN_WIDTH / 2  : 0);
         _doneCameraUpView.frame = upFrame;
         
         CGRect downFrame = _doneCameraDownView.frame;
-        downFrame.origin.y = (toShow ? SC_APP_SIZE.width / 2 + CAMERA_TOPVIEW_HEIGHT : _bottomContainerView.frame.origin.y);
-        downFrame.size.height = (toShow ? SC_APP_SIZE.width / 2 : 0);
+        downFrame.origin.y = (toShow ? SCREEN_WIDTH / 2 + CAMERA_TOPVIEW_HEIGHT : _bottomContainerView.frame.origin.y);
+        downFrame.size.height = (toShow ? SCREEN_WIDTH / 2 : 0);
         _doneCameraDownView.frame = downFrame;
+
+//        CGRect upFrame = _doneCameraUpView.frame;
+//        upFrame.size.height = (toShow ? SC_APP_SIZE.width / 2 + CAMERA_TOPVIEW_HEIGHT : 0);
+//        _doneCameraUpView.frame = upFrame;
+//        
+//        CGRect downFrame = _doneCameraDownView.frame;
+//        downFrame.origin.y = (toShow ? SC_APP_SIZE.width / 2 + CAMERA_TOPVIEW_HEIGHT : _bottomContainerView.frame.origin.y);
+//        downFrame.size.height = (toShow ? SC_APP_SIZE.width / 2 : 0);
+//        _doneCameraDownView.frame = downFrame;
     }];
 }
 
@@ -539,7 +558,7 @@ void c_slideAlpha() {
     [self showCameraCover:YES];
     
     __block UIActivityIndicatorView *actiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    actiView.center = CGPointMake(self.view.center.x, self.view.center.y - CAMERA_TOPVIEW_HEIGHT);
+    actiView.center = CGPointMake(self.view.center.x, self.view.center.y );
     [actiView startAnimating];
     [self.view addSubview:actiView];
     

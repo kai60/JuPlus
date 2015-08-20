@@ -231,21 +231,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
-CG_INLINE CGRect
-
-CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
-{
-    CGRect rect;
-    int countX = SCREEN_WIDTH/320.0f;
-    int countY = SCREEN_HEIGHT/568.0f;
-    rect.origin.x = x * countX;
-    rect.origin.y = y * countY;
-    
-    rect.size.width = width * countX;
-    rect.size.height = height * countY;
-    
-    return rect;
-}
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
