@@ -21,8 +21,14 @@
 #import "UINavigationController+RadialTransaction.h"
 #import "DesignerDetailViewController.h"
 #import "ZoomImageViewController.h"
-@interface PackageViewController ()
+#import "ToastView.h"
+#import "UMSocial.h"
+@interface PackageViewController ()<ToastViewDelegate,UMSocialUIDelegate>
 #define space 10.0f
+@property (nonatomic,strong)ToastView *toast;
+
+@property (nonatomic,strong)UIView *backView;
+
 //购买
 @property (nonatomic,strong)UIButton *placeOrderBtn;
 //套餐详情
@@ -55,6 +61,7 @@
 {
     PackageReq *req;
     PackageRespon *respon;
+    UIImage *shareImage;
     CGFloat rectW1;
     CGFloat rectW2;
 }
@@ -64,7 +71,9 @@
     self.titleLabel.text = @"套餐介绍";
     rectW1 = (SCREEN_WIDTH - space*3)/2;
     rectW2 = (SCREEN_WIDTH - space*4)/3;
-
+    [self.rightBtn setHidden:NO];
+    [self.rightBtn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.backScroll];
     [self.backScroll addSubview:self.packageImageV];
     [self.packageImageV addSubview:self.favBtn];
@@ -118,6 +127,25 @@
     }
 }
 #pragma mark --uifig
+-(ToastView *)toast
+{
+    if(!_toast)
+    {
+        _toast = [[ToastView alloc]initWithFrame:CGRectMake(35.0f, (SCREEN_HEIGHT - 300.0f)/2, SCREEN_WIDTH - 70.0f, 300.0f)];
+        _toast.delegate = self;
+    }
+    return _toast;
+}
+-(UIView *)backView
+{
+    if(!_backView)
+    {
+        _backView = [[UIView alloc]initWithFrame:self.view.bounds];
+        _backView.backgroundColor = RGBACOLOR(0, 0, 0, 0.7);
+    }
+    return _backView;
+}
+
 -(UIButton *)placeOrderBtn
 {
     if(!_placeOrderBtn)
@@ -303,6 +331,7 @@
 
 -(void)fileData
 {
+    shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,respon.shareImgUrl]]]];
     //是否收藏
     if([respon.isFav intValue]==1)
     {
@@ -483,6 +512,52 @@
     }
 }
 #pragma mark --buttonPress 
+#pragma mark --toastView
+-(void)Method:(NSInteger)tag
+{
+    //分享到微信好友
+    if (tag==ShareToWechatSession) {
+        [self shareToUM:UMShareToWechatSession];
+    }
+    //分享到朋友圈
+    else if(tag==ShareToWechatTimeline)
+    {
+        [self shareToUM:UMShareToWechatTimeline];
+    }
+    else
+    {
+        [self hiddenToastView];
+    }
+    
+}
+//调用分享到朋友圈、微信好友
+-(void)shareToUM:(NSString *)shareMehtod
+{
+    
+    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:shareImage socialUIDelegate:self];        //设置分享内容和回调对象
+    [UMSocialSnsPlatformManager getSocialPlatformWithName:shareMehtod].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
+}
+//弹出分享界面
+-(void)addToastView
+{
+    UIWindow*  Hywindow = [[[UIApplication sharedApplication] delegate] window];
+    [Hywindow addSubview:self.backView];
+    [self.backView addSubview:self.toast];
+    [self.backView setHidden:YES];
+}
+-(void)showToastView
+{
+    [self.backView setHidden:NO];
+}
+-(void)hiddenToastView
+{
+    [self.backView setHidden:YES];
+}
+-(void)sharePress:(UIButton *)sender
+{
+    [self showToastView];
+    
+}
 -(void)designerPress:(UIButton *)sender
 {
 //    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];

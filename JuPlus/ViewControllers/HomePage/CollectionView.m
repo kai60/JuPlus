@@ -49,7 +49,7 @@
         [self.rightBtn setHidden:NO];
             [self.navView addSubview:self.switchBtn];
         [self startHomePageRequest];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadList object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFromClassify) name:ReloadList object:nil];
     }
     return self;
 }
@@ -101,6 +101,11 @@
     [self startHomePageRequest];
 }
 #pragma mark --request
+-(void)reloadFromClassify
+{
+    pageNum = 1;
+    [self startHomePageRequest];
+}
 -(void)startHomePageRequest
 {
     collReq = [[CollocationReq alloc]init];

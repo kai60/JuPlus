@@ -39,7 +39,7 @@ CGFloat space = 10.0f;
 {
     if(!_messView)
     {
-        _messView = [[JuPlusUIView alloc]initWithFrame:CGRectMake1(0.0f, 0.0f, self.contentView.width, 90.0f)];
+        _messView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.contentView.width, 90.0f)];
     }
     return _messView;
 }
@@ -47,7 +47,7 @@ CGFloat space = 10.0f;
 {
     if(!_topV)
     {
-        _topV = [[PortraitView alloc]initWithFrame:CGRectMake1(space, space, self.contentView.width - space*2, 40.0f)];        
+        _topV = [[PortraitView alloc]initWithFrame:CGRectMake(space, space, self.contentView.width - space*2, 40.0f)];        
     }
     return _topV;
 }
@@ -55,7 +55,7 @@ CGFloat space = 10.0f;
 {
     if(!_timeLabel)
     {
-        _timeLabel = [[JuPlusUILabel alloc]initWithFrame:CGRectMake1(self.contentView.width - 80.0f, space*2, 60.0f, 20.0f)];
+        _timeLabel = [[JuPlusUILabel alloc]initWithFrame:CGRectMake(self.contentView.width - 80.0f, space*2, 60.0f, 20.0f)];
         [_timeLabel setTextAlignment:NSTextAlignmentRight];
         [_timeLabel setFont:FontType(12.0f)];
         [_timeLabel setTextColor:Color_Gray];
@@ -66,7 +66,7 @@ CGFloat space = 10.0f;
 {
     if(!_descripL)
     {
-        _descripL = [[UILabel alloc]initWithFrame:CGRectMake1(space, self.topV.bottom+space, self.topV.width, 20.0f)];
+        _descripL = [[UILabel alloc]initWithFrame:CGRectMake(space, self.topV.bottom+space, self.topV.width, 20.0f)];
         _descripL.textColor = [UIColor grayColor];
         [_descripL setFont:FontType(12.0f)];
     }
@@ -76,7 +76,7 @@ CGFloat space = 10.0f;
 {
     if(!_showImgV)
     {
-        _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake1(0.0f, self.messView.bottom, self.contentView.width, PICTURE_HEIGHT)];
+        _showImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.messView.bottom, self.contentView.width, PICTURE_HEIGHT)];
         [_showImgV setImage:[UIImage imageNamed:@"default_square"]];
         _showImgV.userInteractionEnabled = YES;
     }
@@ -85,7 +85,7 @@ CGFloat space = 10.0f;
 -(JuPlusUIView *)bottomView
 {
     if (!_bottomView) {
-        _bottomView = [[JuPlusUIView alloc]initWithFrame:CGRectMake1(0.0f, self.showImgV.bottom, self.contentView.width, 2.0f)];
+        _bottomView = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f, self.showImgV.bottom, self.contentView.width, 2.0f)];
         _bottomView.backgroundColor = Color_Gray_lines;
         [_bottomView setHidden:YES];
     }
@@ -105,11 +105,11 @@ CGFloat space = 10.0f;
             }
         }
         [self.bottomView setHidden:NO];
-        self.messView.frame = CGRectMake1(0.0f, 0.0f, self.contentView.width, 0.0f);
+        self.messView.frame = CGRectMake(0.0f, 0.0f, self.contentView.width, 0.0f);
         [self.showImgV setimageUrl:homepageDTO.sharePic  placeholderImage:nil];
         [UIView animateWithDuration:ANIMATION animations:^{
-            self.showImgV.frame = CGRectMake1(0.0f, 0.0f, self.contentView.width, PICTURE_HEIGHT);
-            self.bottomView.frame = CGRectMake1(0.0f, self.showImgV.bottom, self.bottomView.width, self.bottomView.height);
+            self.showImgV.frame = CGRectMake(0.0f, 0.0f, self.contentView.width, PICTURE_HEIGHT);
+            self.bottomView.frame = CGRectMake(0.0f, self.showImgV.bottom, self.bottomView.width, self.bottomView.height);
         }];
     }
     else
@@ -126,9 +126,9 @@ CGFloat space = 10.0f;
         [self.showImgV setimageUrl:homepageDTO.collectionPic  placeholderImage:nil];
         
         [UIView animateWithDuration:ANIMATION animations:^{
-                self.messView.frame = CGRectMake1(0.0f, 0.0f, self.contentView.width, 90.0f);
-                self.showImgV.frame = CGRectMake1(0.0f, self.messView.bottom, self.contentView.width, PICTURE_HEIGHT);
-                self.bottomView.frame = CGRectMake1(0.0f, self.showImgV.bottom, self.bottomView.width, self.bottomView.height);
+                self.messView.frame = CGRectMake(0.0f, 0.0f, self.contentView.width, 90.0f);
+                self.showImgV.frame = CGRectMake(0.0f, self.messView.bottom, self.contentView.width, PICTURE_HEIGHT);
+                self.bottomView.frame = CGRectMake(0.0f, self.showImgV.bottom, self.bottomView.width, self.bottomView.height);
             }];
         [self.topV.portraitImgV setimageUrl:homepageDTO.portrait  placeholderImage:nil];
         [self.topV.nikeNameL setText:homepageDTO.nikename];
@@ -176,11 +176,11 @@ CGFloat space = 10.0f;
         CGSize size = [CommonUtil getLabelSizeWithString:dto.productName andLabelHeight:20.0f andFont:FontType(12.0f)];
         LabelView *la;
         if ([dto.direction floatValue]==1) {
-             la = [[LabelView alloc]initWithFrame:CGRectMake1(orignX, orignY, size.width +15.0f, 50.0f) andDirect:dto.direction];
+             la = [[LabelView alloc]initWithFrame:CGRectMake(orignX, orignY, size.width +15.0f, 50.0f) andDirect:dto.direction];
         }
         else
         {
-            la = [[LabelView alloc]initWithFrame:CGRectMake1(orignX - size.width - 15.0f, orignY, size.width +15.0f, 50.0f) andDirect:dto.direction];
+            la = [[LabelView alloc]initWithFrame:CGRectMake(orignX - size.width - 15.0f, orignY, size.width +15.0f, 50.0f) andDirect:dto.direction];
 
         }
        
@@ -188,24 +188,6 @@ CGFloat space = 10.0f;
         [la showText:dto.productName];
         [self.showImgV addSubview:la];
     }
-}
-
-CG_INLINE CGRect
-
-CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
-{
-
-    
-    CGRect rect;
-    int countX = SCREEN_WIDTH/320;
-    int countY = SCREEN_HEIGHT/568;
-    rect.origin.x = x * countX;
-    rect.origin.y = y * countY;
-    
-    rect.size.width = width * countX;
-    rect.size.height = height * countY;
-    
-    return rect;
 }
 
 @end

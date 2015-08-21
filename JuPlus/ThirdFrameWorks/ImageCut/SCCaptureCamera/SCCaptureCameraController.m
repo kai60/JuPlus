@@ -122,16 +122,17 @@
 
     //AvcaptureManager（添加相机按钮的可视范围）
     if (CGRectEqualToRect(_previewRect, CGRectZero)) {
-        self.previewRect = CGRectMake(0, 0.0f, SC_APP_SIZE.width, SCREEN_WIDTH+CAMERA_TOPVIEW_HEIGHT);
+        self.previewRect = CGRectMake(0, 0, SC_APP_SIZE.width, SCREEN_WIDTH+CAMERA_TOPVIEW_HEIGHT);
     }
     [manager configureWithParentLayer:self.view previewRect:_previewRect];
     self.captureManager = manager;
-    [self addTopViewWithText:@" "];
 
     [self addbottomContainerView];
-    [self addCameraMenuView];
     [self addFocusView];
     [self addCameraCover];
+    [self addTopViewWithText:@" "];
+    [self addCameraMenuView];
+
     [self addPinchGesture];
     
     [_captureManager.session startRunning];
@@ -197,18 +198,6 @@
         [self.view addSubview:tView];
         self.topContainerView = tView;
         
-//        UIView *emptyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, topFrame.size.width, topFrame.size.height)];
-//        emptyView.backgroundColor = [UIColor blackColor];
-//        emptyView.alpha = 0.4f;
-//        [_topContainerView addSubview:emptyView];
-        
-//        topFrame.origin.x += 10;
-//        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, topFrame.size.height)];
-//        lbl.backgroundColor = [UIColor yellowColor];
-//        lbl.textColor = [UIColor whiteColor];
-//        lbl.font = [UIFont systemFontOfSize:25.f];
-//        [_topContainerView addSubview:lbl];
-//        self.topLbl = lbl;
     }
     _topLbl.text = text;
 }
@@ -219,71 +208,11 @@
     CGFloat bottomY = _captureManager.previewLayer.frame.origin.y + _captureManager.previewLayer.frame.size.height;
     CGRect bottomFrame = CGRectMake(0, bottomY, SCREEN_WIDTH, SCREEN_HEIGHT - bottomY);
     
-    
-    //在view上加一个查看相册的按钮
     self.viewBut = [[UIView alloc] initWithFrame:bottomFrame];
     self.viewBut.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_viewBut];
     self.bottomContainerView = _viewBut;
     
-    CGFloat cameraBtnLength = 40;
-    self.imageV = [[UIImageView alloc]initWithFrame:CGRectMake(24, _bottomContainerView.height-50.0f, cameraBtnLength, cameraBtnLength)];
-//    _imageV.image = [UIImage imageNamed:@"meizi.jpg"];
-    
-//    imageV.layer.masksToBounds = YES;
-//    imageV.layer.cornerRadius = 16;
-    _imageV.userInteractionEnabled = YES;
-    [self.viewBut addSubview:_imageV];
-    
-    
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    _groupArray=[[NSMutableArray alloc] initWithCapacity:1];
-    _imageArray = [NSMutableArray array];
-    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        if (group) {
-            [_groupArray addObject:group];
-            
-            [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                if (result) {
-                    [_imageArray addObject:result];
-                    ALAsset *set = [_imageArray lastObject];
-                    _imageV.image=[UIImage imageWithCGImage: set.thumbnail];
-                }
-            }];
-        }
-    } failureBlock:^(NSError *error) {
-        NSLog(@"Group not found!\n");
-    }];
-    
-    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-    [_imageV addGestureRecognizer:tapImage];
-    
-}
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [picker dismissViewControllerAnimated:NO completion:nil];
-    
-    UIImage * image=[info objectForKey:@"UIImagePickerControllerEditedImage"];
-    
-       self.imageV.image = image;
-    
-}
-- (void)tapAction:(UITapGestureRecognizer *)tap
-{
-    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary]) {
-        sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    //sourceType = UIImagePickerControllerSourceTypeCamera; //照相机
-//    sourceType = UIImagePickerControllerSourceTypePhotoLibrary; //相片库
-    sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum; //保存的相片
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing=YES;
-    picker.sourceType = sourceType;
-    [self presentViewController:picker animated:YES completion:nil];
-
 }
 //拍照菜单栏
 - (void)addCameraMenuView {
@@ -512,6 +441,11 @@ void c_slideAlpha() {
     alphaTimes = -1;
     
     UITouch *touch = [touches anyObject];
+    if (touch.view==self.cameraMenuView||touch.view==self.topContainerView) {
+        return;
+    }
+    else
+    {
     currTouchPoint = [touch locationInView:self.view];
     
     if (CGRectContainsPoint(_captureManager.previewLayer.bounds, currTouchPoint) == NO) {
@@ -541,6 +475,7 @@ void c_slideAlpha() {
         } completion:nil];
     }];
 #endif
+    }
 }
 
 #pragma mark -------------button actions---------------

@@ -52,7 +52,8 @@
         [self addSubview:headView];
         
         [headView addSubview:self.searchBar];
-//        
+        
+       //
 //        UIView *top = [[UIView alloc]initWithFrame:CGRectMake(0.0f,headView.height - 1.0f, self.width, 1.0f)];
 //        [top setBackgroundColor:Color_Gray_lines];
 //        
@@ -80,17 +81,20 @@
 -(void)startRequest
 {
     tagReq = [[RelatedTagsReq alloc]init];
+    tagRespon = [[RelatedTagsRespon alloc]init];
     NSString *urlStr = [NSString stringWithFormat:@"list?pageNum=%d&pageSize=%@&name=%@",pageNum,PAGESIZE,self.searchBar.text];
     [tagReq setField:urlStr forKey:@"FunctionName"];
-    tagRespon = [[RelatedTagsRespon alloc]init];
 
     [HttpCommunication request:tagReq getResponse:tagRespon Success:^(JuPlusResponse *response) {
         [self stopRefresh];
         if (pageNum==1) {
             [self.dataArray removeAllObjects];
+            if(tagRespon.tagsArray.count==0)
+            {
             LabelDTO *dto = [[LabelDTO alloc]init];
             dto.productName = [NSString stringWithFormat:@"添加标签：%@",self.searchBar.text];
             [self.dataArray addObject:dto];
+            }
         }
         [self.dataArray addObjectsFromArray:tagRespon.tagsArray];
                [self.searchResaultTab reloadData];

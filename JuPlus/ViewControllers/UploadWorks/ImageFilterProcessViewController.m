@@ -37,7 +37,7 @@
     rootImageView.image = currentImage;
     [self.view addSubview:rootImageView];
     
-    NSArray *arr = [NSArray arrayWithObjects:@"原图",@"LOMO",@"黑白",@"复古",@"哥特",@"锐色",@"淡雅",@"酒红",@"青柠",@"浪漫",@"光晕",@"蓝调",@"梦幻",@"夜色", nil];
+    NSArray *arr = [NSArray arrayWithObjects:@"原图",@"LOMO",@"复古",@"哥特",@"淡雅",@"酒红",@"青柠",@"浪漫",@"光晕",@"蓝调",@"梦幻",@"夜色", nil];
     scrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, rootImageView.bottom, SCREEN_WIDTH, SCREEN_HEIGHT - TABBAR_HEIGHT - rootImageView.bottom)];
     scrollerView.backgroundColor = [UIColor whiteColor];
     scrollerView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
@@ -143,62 +143,52 @@
             break;
         case 2:
         {
-           image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_heibai];
+            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_huajiu];
         }
             break;
         case 3:
         {
-            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_huajiu];
+            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_gete];
         }
             break;
         case 4:
         {
-            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_gete];
+            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_danya];
         }
             break;
         case 5:
         {
-            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_ruise];
+            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_jiuhong];
         }
             break;
         case 6:
         {
-            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_danya];
+            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_qingning];
         }
             break;
         case 7:
         {
-            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_jiuhong];
+            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_langman];
         }
             break;
         case 8:
         {
-            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_qingning];
-        }
-            break;
-        case 9:
-        {
-            image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_langman];
-        }
-            break;
-        case 10:
-        {
             image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_guangyun];
         }
             break;
-        case 11:
+        case 9:
         {
             image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_landiao];
             
         }
             break;
-        case 12:
+        case 10:
         {
             image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_menghuan];
         
         }
             break;
-        case 13:
+        case 11:
         {
             image = [ImageUtil imageWithImage:currentImage withColorMatrix:colormatrix_yese];
             

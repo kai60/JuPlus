@@ -19,6 +19,8 @@
 @property(nonatomic,strong)NSString *price;
 //套餐图
 @property(nonatomic,strong)NSString *imgUrl;
+
+@property(nonatomic,strong)NSString *shareImgUrl;
 //单品列表（包括单品图片和单品的标签内容）
 @property(nonatomic,strong)NSMutableArray *labelArray;
 //头像

@@ -185,13 +185,7 @@
             self.collectionV.frame = CGRectMake(-SCREEN_WIDTH, 0.0f, SCREEN_WIDTH,view.height);
 
     } completion:^(BOOL finished) {
-        
-//        for (JuPlusUIView *vi in self.viewArray) {
-//            if(vi!=view)
-//            {
-//                vi.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, vi.height);
-//            }
-//        }
+    
     }];
     }
     else
@@ -240,8 +234,12 @@
         ((UIButton *)[self.tabBarV.buttonArr firstObject]).selected = YES;
     [self showCurrentView:self.collectionV];
     }
-    
-
+    else
+    {
+        if (self.centerV) {
+            [self.centerV startHomePageRequest];
+        }
+    }
     [UIView animateWithDuration:ANIMATION animations:^{
         self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT - 49.0f, SCREEN_WIDTH, 49.0f);
     }];

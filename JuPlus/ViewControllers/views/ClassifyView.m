@@ -189,7 +189,7 @@
 //确认按钮
 -(void)surePress1:(UIButton *)sender
 {
-    //如果是作品上传中的编辑效果图分类信息
+    //如果为选中任何内容
            if(IsNilOrNull(selectedBtn))
         {
         [CommonUtil removeUserDefaultsValue:LabelTag];

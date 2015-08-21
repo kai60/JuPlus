@@ -19,4 +19,5 @@
 @property(nonatomic,assign)CGRect popSize;
 
 @property(nonatomic,assign)BOOL isAnimation;
+
 @end

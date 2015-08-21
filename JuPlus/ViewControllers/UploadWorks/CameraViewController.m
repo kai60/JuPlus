@@ -34,10 +34,10 @@
     {
         _backImage = [UIButton buttonWithType:UIButtonTypeCustom];
         _backImage.clipsToBounds = YES;
-        _backImage.contentMode = UIViewContentModeScaleAspectFill;
-        [_backImage setImage:[UIImage imageNamed:@"bg_upload"] forState:UIControlStateNormal];
-        [_backImage setImage:[UIImage imageNamed:@"bg_upload"] forState:UIControlStateHighlighted];
         _backImage.frame = CGRectMake(0, self.navView.bottom, SCREEN_WIDTH, PICTURE_HEIGHT);
+        _backImage.contentMode = UIViewContentModeScaleAspectFill;
+        [_backImage setImage:[UIImage imageNamed:@"bg_upload.jpg"] forState:UIControlStateNormal];
+        [_backImage setImage:[UIImage imageNamed:@"bg_upload.jpg"] forState:UIControlStateHighlighted];
         [_backImage addTarget:self action:@selector(showActionSheet:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backImage;

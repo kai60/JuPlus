@@ -69,7 +69,7 @@
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetNickname) name:ResetNickName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPortrait) name:ResetPortrait object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadPerson object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadPerson object:nil];
 
 }
 -(void)resetNickname
