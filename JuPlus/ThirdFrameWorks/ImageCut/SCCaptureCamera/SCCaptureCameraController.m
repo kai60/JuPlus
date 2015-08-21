@@ -12,7 +12,6 @@
 #import "SVProgressHUD.h"
 
 #import "SCNavigationController.h"
-#import <AssetsLibrary/AssetsLibrary.h>
 
 //static void * CapturingStillImageContext = &CapturingStillImageContext;
 //static void * RecordingContext = &RecordingContext;
@@ -67,10 +66,8 @@
 @property (nonatomic, strong) SCSlider *scSlider;
 
 @property (nonatomic, strong) UIView *viewBut;
-@property (nonatomic, strong) UIImageView *imageV;
-@property (nonatomic, strong) NSMutableArray *groupArray;
-@property (nonatomic, strong) ALAssetsGroup *group;
-@property (nonatomic, strong) NSMutableArray *imageArray;
+
+
 //@property (nonatomic) id runtimeErrorHandlingObserver;
 //@property (nonatomic) BOOL lockInterfaceRotation;
 
@@ -212,6 +209,7 @@
     self.viewBut.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_viewBut];
     self.bottomContainerView = _viewBut;
+    
     
 }
 //拍照菜单栏
