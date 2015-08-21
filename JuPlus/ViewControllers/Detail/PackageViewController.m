@@ -71,6 +71,8 @@
     self.titleLabel.text = @"套餐介绍";
     rectW1 = (SCREEN_WIDTH - space*3)/2;
     rectW2 = (SCREEN_WIDTH - space*4)/3;
+    [self.rightBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [self.rightBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateSelected];
     [self.rightBtn setHidden:NO];
     [self.rightBtn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -88,6 +90,7 @@
     [self.secBackScroll addSubview:self.relativedView];
     [self.relativedView addSubview:self.relativedScroll];
     [self.view addSubview:self.placeOrderBtn];
+    [self addToastView];
     // Do any additional setup after loading the view.
     //自定义转场动画
     [self.leftBtn setHidden:YES];
@@ -131,7 +134,8 @@
 {
     if(!_toast)
     {
-        _toast = [[ToastView alloc]initWithFrame:CGRectMake(35.0f, (SCREEN_HEIGHT - 300.0f)/2, SCREEN_WIDTH - 70.0f, 300.0f)];
+        CGFloat toastH = (SCREEN_WIDTH - 84.0f)+95.0f;
+        _toast = [[ToastView alloc]initWithFrame:CGRectMake(40.0f, (SCREEN_HEIGHT - toastH)/2, SCREEN_WIDTH - 80.0f, toastH) title:nil];
         _toast.delegate = self;
     }
     return _toast;
@@ -141,11 +145,13 @@
     if(!_backView)
     {
         _backView = [[UIView alloc]initWithFrame:self.view.bounds];
+        _backView.userInteractionEnabled = YES;
         _backView.backgroundColor = RGBACOLOR(0, 0, 0, 0.7);
+        UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hiddenToastView)];
+        [_backView addGestureRecognizer:ges];
     }
     return _backView;
 }
-
 -(UIButton *)placeOrderBtn
 {
     if(!_placeOrderBtn)
@@ -317,6 +323,7 @@
 #pragma mark --dataRequest
 -(void)startRequest
 {
+    
     req = [[PackageReq alloc]init];
     [req setField:self.regNo forKey:@"collocateNo"];
     [req setField:[CommonUtil getToken] forKey:TOKEN];
@@ -332,6 +339,7 @@
 -(void)fileData
 {
     shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,respon.shareImgUrl]]]];
+    [self.toast showShareView:shareImage];
     //是否收藏
     if([respon.isFav intValue]==1)
     {
@@ -537,6 +545,20 @@
     [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:shareImage socialUIDelegate:self];        //设置分享内容和回调对象
     [UMSocialSnsPlatformManager getSocialPlatformWithName:shareMehtod].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
 }
+#pragma mark --UM_Delegate
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+{
+    //微信分享纯图片，不需要文字信息
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
+}
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //如果分享成功，回调方法
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        //
+        [self hiddenToastView];
+    }
+}
 //弹出分享界面
 -(void)addToastView
 {
@@ -632,7 +654,7 @@
     imageView.clipsToBounds = YES;
     imageView.userInteractionEnabled = NO;
     CGRect frameInSuperview = [sender convertRect:sender.frame toView:self.view];
-    frameInSuperview.origin.x = sender.origin.x +self.relativedScroll.contentOffset.x;
+    frameInSuperview.origin.x = sender.origin.x - self.relativedScroll.contentOffset.x;
     frameInSuperview.origin.y -=10.0f;
     imageView.frame = frameInSuperview;
     [backV addSubview:imageView];
@@ -693,6 +715,12 @@
 {
     if([CommonUtil isLogin])
     {
+        if([respon.status intValue]!=3)
+        {
+            [self showAlertView:@"该套餐中含有未审核的单品" withTag:0];
+        }
+        else
+        {
         PlaceOrderViewController *order = [[PlaceOrderViewController alloc]init];
         NSMutableArray *regArr = [[NSMutableArray alloc]init];
         for (int i=0; i<[respon.labelArray count]; i++) {
@@ -709,6 +737,7 @@
         }
         order.regArray = regArr;
         [self.navigationController pushViewController:order animated:YES];
+        }
     }
     else
     {
@@ -716,13 +745,13 @@
     }
 
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:ANIMATION animations:^{
         self.secBackScroll.alpha = 1;
         self.designIcon.alpha = 1;
-
     }];
 }
 -(void)viewWillDisppear:(BOOL)animated

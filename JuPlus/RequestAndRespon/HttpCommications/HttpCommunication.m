@@ -232,9 +232,10 @@
     {
         return nil;
     }
-    JuPlusLoadingView *autoyol=[[JuPlusLoadingView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, view.width, view.height)];
-    [autoyol showActivityViewFrame:view.frame AndTag:view.tag];
-    [view addSubview:autoyol];
+    JuPlusLoadingView *loading=[[JuPlusLoadingView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, view.width, view.height)];
+    //loading.backgroundColor = Color_Black;
+    [loading showActivityViewFrame:view.frame AndTag:view.tag];
+    [view addSubview:loading];
     return view;
 }
 

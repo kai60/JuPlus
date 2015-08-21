@@ -16,4 +16,5 @@
 @property (nonatomic,assign)BOOL isShared;
 
 @property (nonatomic,strong)UIButton *switchBtn;
+
 @end

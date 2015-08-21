@@ -23,4 +23,6 @@
 @property(nonatomic,strong)NSString *price;
 //是否收藏过
 @property(nonatomic,strong)NSString *isFav;
+
+@property(nonatomic,strong)NSString *status;
 @end

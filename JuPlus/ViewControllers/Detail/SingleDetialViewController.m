@@ -307,7 +307,13 @@
 {
     if([CommonUtil isLogin])
     {
-    PlaceOrderViewController *order = [[PlaceOrderViewController alloc]init];
+        if([detailRespon.status intValue]!=3)
+        {
+            [self showAlertView:@"该单品尚未通过审核" withTag:0];
+        }
+        else
+        {
+        PlaceOrderViewController *order = [[PlaceOrderViewController alloc]init];
         productOrderDTO *singleDTO = [[productOrderDTO alloc]init];
         singleDTO.productNo = self.singleId;
         singleDTO.regNo = self.regNo;
@@ -317,6 +323,7 @@
         singleDTO.countNum = @"1";
         order.regArray = [NSArray arrayWithObjects:singleDTO, nil];
       [self.navigationController pushViewController:order animated:YES];
+        }
     }
     else
     {

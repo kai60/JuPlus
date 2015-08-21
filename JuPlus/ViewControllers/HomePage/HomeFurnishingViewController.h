@@ -24,4 +24,7 @@
 @property(nonatomic,strong)JuPlusTabBarView *tabBarV;
 //分类信息控制，显示主界面隐藏其余
 @property(nonatomic,strong)NSMutableArray *viewArray;
+
+@property (nonatomic,strong)UIImageView *remindView;
+
 @end

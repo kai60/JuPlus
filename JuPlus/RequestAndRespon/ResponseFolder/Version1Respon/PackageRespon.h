@@ -33,4 +33,6 @@
 @property(nonatomic,strong)NSString *content;
 //相关列表
 @property(nonatomic,strong)NSArray *packageList;
+//套餐状态
+@property(nonatomic,strong)NSString *status;
 @end

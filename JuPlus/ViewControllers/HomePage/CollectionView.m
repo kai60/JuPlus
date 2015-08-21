@@ -42,17 +42,20 @@
         footer = [ScrollRefreshViewFooter footer];
         footer.delegate = self;
         footer.scrollView = self.listTab;
+      
         [self.navView setHidden:NO];
 
         self.titleLabel.text = @"居+";
         [self.rightBtn setTitle:@"分类" forState:UIControlStateNormal];
         [self.rightBtn setHidden:NO];
             [self.navView addSubview:self.switchBtn];
+      
         [self startHomePageRequest];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFromClassify) name:ReloadList object:nil];
     }
     return self;
 }
+
 -(UIButton *)switchBtn
 {
     if(!_switchBtn)

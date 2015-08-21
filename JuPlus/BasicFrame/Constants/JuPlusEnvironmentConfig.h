@@ -11,9 +11,9 @@
 
 //==========================版本内容适配===============================
 // 可读的版本号，类似1.0.0
-#define VERSION_STRING @"1.0"
+#define VERSION_STRING @"1.1"
 // 内部版本号，用于和后台匹配接口信息
-#define VERSION_INT 1
+#define VERSION_INT 2
 //系统版本
 #define  VERSION [[UIDevice currentDevice].systemVersion doubleValue]
 //APP更新地址
@@ -28,6 +28,10 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 //图片高度
 #define PICTURE_HEIGHT [UIScreen mainScreen].bounds.size.width
+
+#define iphone5 SCREEN_HEIGHT==568.0f
+#define iphone6 SCREEN_HEIGHT==667.0f
+#define iphone6P SCREEN_HEIGHT==736.0f
 //用于下拉加载更多的每页数据数
 #define PAGESIZE @"10"
 

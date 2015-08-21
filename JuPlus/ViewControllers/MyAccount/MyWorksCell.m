@@ -52,7 +52,7 @@
 {
     if(!_backImage)
     {
-        _backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, -80.0f, SCREEN_WIDTH, PICTURE_HEIGHT)];
+        _backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, -PICTURE_HEIGHT/4, SCREEN_WIDTH, PICTURE_HEIGHT)];
         _backImage.backgroundColor = [UIColor blueColor];
         [_backImage setImage:[UIImage imageNamed:@"default_square"]];
         

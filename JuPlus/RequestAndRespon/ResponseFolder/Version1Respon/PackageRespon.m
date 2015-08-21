@@ -17,7 +17,8 @@
 
     self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"totalPrice"]];
     self.imgUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"coverUrl"]];
-    self.shareImgUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"shareImageUrl"]];
+    self.shareImgUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"sharePicUrl"]];
+    self.status = [NSString stringWithFormat:@"%@",[dict objectForKey:@"status"]];
     self.designer = [NSString stringWithFormat:@"%@",[dict objectForKey:@"nickname"]];
     self.portraitUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"portraitPath"]];
     self.address = [NSString stringWithFormat:@"%@",[dict objectForKey:@"visitAddress"]];

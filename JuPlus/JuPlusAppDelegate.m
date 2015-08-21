@@ -20,6 +20,11 @@
 
 /* */
 @interface JuPlusAppDelegate ()
+{
+    UIImageView *bottom;
+    UIImageView *left;
+    UIImageView *right;
+}
 @property(nonatomic,strong)HomeFurnishingViewController *home;
 @end
 
@@ -28,11 +33,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    sleep(1);//设置启动页面时间
+   // sleep(1);//设置启动页面时间
 #pragma mark --UM sign
-    [self signUM];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = Color_White;
+    [self loadAnimationView];
+
+    [self signUM];
+
 //    NSMutableArray *fontNames = [[NSMutableArray alloc] init];
 //    
 //    NSArray *fontFamilyNames = [UIFont familyNames];
@@ -90,19 +99,80 @@
 
     
     // Override point for customization after application launch.
-    //程序第一次启动
-//    if([CommonUtil getUserDefaultsValueWithKey:GetAppVerson]==nil||(![[CommonUtil getUserDefaultsValueWithKey:GetAppVerson] isEqualToString:VERSION_STRING]))
-//    {
-//        //版本更新或者第一次运行走引导页
-//        [self runGuideMethod];
-//    }
-//    else
-//    {
-        //正常流程
-        [self runNormalMethod];
-//    }
     [self.window makeKeyAndVisible];
+    
     return YES;
+}
+-(void)loadAnimationView
+{
+    bottom = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    if (iphone5) {
+        bottom.image = [UIImage imageNamed:@"Default-568h"];
+    }else if(iphone6){
+        bottom.image = [UIImage imageNamed:@"Default-667"];
+    }else if(iphone6P){
+        bottom.image = [UIImage imageNamed:@"Default-736"];
+    }else{
+        bottom.image = [UIImage imageNamed:@"Default"];
+    }
+    //添加到场景
+    [self.window addSubview:bottom];
+    //放到最顶层;
+    [self.window bringSubviewToFront:left];    //设置一个图片;
+    left = [[UIImageView alloc] initWithFrame:CGRectMake(60.0f,SCREEN_HEIGHT/2+55.0f, 25.0f, 55.0f)];
+    left.image = [UIImage imageNamed:@"Default_left"];
+    //添加到场景
+    [self.window addSubview:left];
+    //放到最顶层;
+    [self.window bringSubviewToFront:left];
+    
+    right = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2,SCREEN_HEIGHT/2, 25.0f, 55.0f)];
+    right.image = [UIImage imageNamed:@"Default_right"];
+    right.alpha = 0.0f;
+    //添加到场景
+    [self.window addSubview:right];
+    //放到最顶层;
+    [self.window bringSubviewToFront:right];
+    
+   [UIView animateWithDuration:1.5f animations:^{
+       right.alpha = 1.0f;
+       left.frame = CGRectMake(SCREEN_WIDTH/2 - 25.0f, left.top, left.width, left.height);
+   } completion:^(BOOL finished) {
+       
+       [self performSelector:@selector(goNext) withObject:nil afterDelay:1.0];
+       
+   }];
+}
+-(void)goNext
+{
+    [UIView animateWithDuration:1.0f animations:^{
+        left.alpha = 0.0f;
+        right.alpha = 0.0f;
+        bottom.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        self.window.backgroundColor = [UIColor clearColor];
+        [left removeFromSuperview];
+        [right removeFromSuperview];
+        [bottom removeFromSuperview];
+        //程序第一次启动
+            if([CommonUtil getUserDefaultsValueWithKey:GetAppVerson]==nil||(![[CommonUtil getUserDefaultsValueWithKey:GetAppVerson] isEqualToString:VERSION_STRING]))
+            {
+                //版本更新或者第一次运行走引导页
+                [self runGuideMethod];
+                [CommonUtil setUserDefaultsValue:VERSION_STRING forKey:GetAppVerson];
+            }
+            else
+            {
+       // 正常流程
+                [self runNormalMethod];
+            }
+
+    }];
+    
+}
+-(void)startupAnimationDone
+{
+    [self.window removeAllSubviews];
 }
 -(void)signUM
 {
@@ -129,23 +199,6 @@
 //正常打开首页
 -(void)runNormalMethod
 {
-//    JuPlusTabBarController *tab = [[JuPlusTabBarController alloc]init];
-////    
-//    DiscoveryViewController *dis = [[DiscoveryViewController alloc]init];
-//    CollocationViewController *collocation = [[CollocationViewController alloc]init];
-//    ClassificationViewController *class = [[ClassificationViewController alloc]init];
-//    MyAccountViewController *myacc = [[MyAccountViewController alloc]init];
-//    NSArray *viewCtrls = @[dis,collocation,class,myacc];
-//    NSMutableArray *navCtrls = [[NSMutableArray alloc] init];
-//    
-//    for(int i=0; i<4 ; i++) {
-//        //取得视图控制器
-//        BaseViewController *viewCtrl = viewCtrls[i];
-//        //创建导航控制器
-//        JuPlusNavigationController *navCtrl = [[JuPlusNavigationController alloc] initWithRootViewController:viewCtrl];
-//        [navCtrls addObject:navCtrl];
-//    }
-//    tab.viewControllers = viewCtrls;
     self.home = [[HomeFurnishingViewController alloc]init];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.home];
     self.window.rootViewController = nav;

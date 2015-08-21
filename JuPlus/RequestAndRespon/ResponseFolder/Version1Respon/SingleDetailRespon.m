@@ -18,6 +18,6 @@
     self.proName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"name"]];
     self.price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"price"]];
     self.isFav = [NSString stringWithFormat:@"%@",[dict objectForKey:@"isFavourite"]];
-
+    self.status = [NSString stringWithFormat:@"%@",[dict objectForKey:@"status"]];
 }
 @end

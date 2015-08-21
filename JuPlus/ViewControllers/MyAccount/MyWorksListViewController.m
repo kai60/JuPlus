@@ -144,7 +144,6 @@
         [self.dataArray addObjectsFromArray:respon.myworkArray];
         [self.listTab reloadData];
         [self stopReresh];
-        NSLog(@"~~~~~~~~%d",(int)self.dataArray.count);
         
     } failed:^(ErrorInfoDto *errorDTO) {
         [self errorExp:errorDTO];

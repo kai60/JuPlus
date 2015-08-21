@@ -61,9 +61,27 @@
     
     [self.view addSubview:self.classifyV];
     [self.classifyV setHidden:YES];
-    //检测是否第一次加载
-    [self checkSections];
-
+    
+     if (IsStrEmpty([CommonUtil getUserDefaultsValueWithKey:isShowClassify])) {
+    [backV addSubview:self.remindView];
+     }
+}
+-(void)hiddenRemind
+{
+    [self.remindView removeFromSuperview];
+}
+-(UIImageView *)remindView
+{
+    if (!_remindView) {
+        _remindView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _remindView.backgroundColor = RGBACOLOR(0, 0, 0, 0.6);
+        [_remindView setImage:[UIImage imageNamed:@"remind_collocation"]];
+        _remindView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hiddenRemind)];
+        [_remindView addGestureRecognizer:tap];
+        [CommonUtil setUserDefaultsValue:@"1" forKey:isShowClassify];
+    }
+    return _remindView;
 }
 
 //九宫格相关
@@ -71,17 +89,7 @@
 {
    [self.classifyV showClassify];
 }
--(void)checkSections
-{
-    if(IsStrEmpty([CommonUtil getUserDefaultsValueWithKey:isShowClassify]))
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:ShowClassify object:nil];
-    }
-    else
-    {
-        
-    }
-}
+
 //标签选择界面
 -(ClassifyView *)classifyV
 {

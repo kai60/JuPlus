@@ -253,7 +253,8 @@
 {
     if(!_toast)
     {
-        _toast = [[ToastView alloc]initWithFrame:CGRectMake(35.0f, (SCREEN_HEIGHT - 300.0f)/2, SCREEN_WIDTH - 70.0f, 300.0f)];
+        CGFloat toastH = (SCREEN_WIDTH - 84.0f)+95.0f;
+        _toast = [[ToastView alloc]initWithFrame:CGRectMake(40.0f, (SCREEN_HEIGHT - toastH)/2, SCREEN_WIDTH - 80.0f, toastH) title:@"发布成功"];
         _toast.delegate = self;
     }
     return _toast;
@@ -263,7 +264,11 @@
         if(!_backView)
         {
             _backView = [[UIView alloc]initWithFrame:self.view.bounds];
+            _backView.userInteractionEnabled = YES;
             _backView.backgroundColor = RGBACOLOR(0, 0, 0, 0.7);
+            UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hiddenToastView)];
+            [_backView addGestureRecognizer:ges];
+
         }
     return _backView;
 }
@@ -372,6 +377,7 @@
     else
     {
         shareImage = [self.postImage addText:self.detailView.text andNickname:[JuPlusUserInfoCenter sharedInstance].userInfo.nickname];
+        [self.toast showShareView:shareImage];
         [self getTagsArray];
         [self postData];
     }

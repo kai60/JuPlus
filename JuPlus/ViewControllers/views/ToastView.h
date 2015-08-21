@@ -25,11 +25,15 @@ typedef enum{
 
 @property (nonatomic,strong)UILabel *titleLabel;
 
-@property (nonatomic,strong)UILabel *textLabel;
-
 @property (nonatomic,strong)UIButton *sureBtn;
 
 @property (nonatomic,strong)NSMutableArray *buttonArr;
 
 @property (nonatomic,assign)id<ToastViewDelegate>delegate;
+
+-(id)initWithFrame:(CGRect)frame title:(NSString *)title;
+
+-(void)showShareView:(UIImage *)image;
+
+
 @end
