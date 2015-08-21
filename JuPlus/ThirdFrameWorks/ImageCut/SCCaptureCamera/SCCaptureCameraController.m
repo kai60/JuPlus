@@ -12,7 +12,6 @@
 #import "SVProgressHUD.h"
 
 #import "SCNavigationController.h"
-#import <AssetsLibrary/AssetsLibrary.h>
 
 //static void * CapturingStillImageContext = &CapturingStillImageContext;
 //static void * RecordingContext = &RecordingContext;
@@ -67,10 +66,8 @@
 @property (nonatomic, strong) SCSlider *scSlider;
 
 @property (nonatomic, strong) UIView *viewBut;
-@property (nonatomic, strong) UIImageView *imageV;
-@property (nonatomic, strong) NSMutableArray *groupArray;
-@property (nonatomic, strong) ALAssetsGroup *group;
-@property (nonatomic, strong) NSMutableArray *imageArray;
+
+
 //@property (nonatomic) id runtimeErrorHandlingObserver;
 //@property (nonatomic) BOOL lockInterfaceRotation;
 
@@ -226,46 +223,6 @@
     [self.view addSubview:_viewBut];
     self.bottomContainerView = _viewBut;
     
-    CGFloat cameraBtnLength = 40;
-    self.imageV = [[UIImageView alloc]initWithFrame:CGRectMake(24, _bottomContainerView.height-50.0f, cameraBtnLength, cameraBtnLength)];
-//    _imageV.image = [UIImage imageNamed:@"meizi.jpg"];
-    
-//    imageV.layer.masksToBounds = YES;
-//    imageV.layer.cornerRadius = 16;
-    _imageV.userInteractionEnabled = YES;
-    [self.viewBut addSubview:_imageV];
-    
-    
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    _groupArray=[[NSMutableArray alloc] initWithCapacity:1];
-    _imageArray = [NSMutableArray array];
-    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        if (group) {
-            [_groupArray addObject:group];
-            
-            [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                if (result) {
-                    [_imageArray addObject:result];
-                    ALAsset *set = [_imageArray lastObject];
-                    _imageV.image=[UIImage imageWithCGImage: set.thumbnail];
-                }
-            }];
-        }
-    } failureBlock:^(NSError *error) {
-        NSLog(@"Group not found!\n");
-    }];
-    
-    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-    [_imageV addGestureRecognizer:tapImage];
-    
-}
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [picker dismissViewControllerAnimated:NO completion:nil];
-    
-    UIImage * image=[info objectForKey:@"UIImagePickerControllerEditedImage"];
-    
-       self.imageV.image = image;
     
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap
