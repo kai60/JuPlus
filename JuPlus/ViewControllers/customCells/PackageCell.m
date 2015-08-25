@@ -145,17 +145,18 @@ CGFloat space = 10.0f;
         self.showImgV.tag = [homepageDTO.regNo intValue];
         [self setTipsWithArray:homepageDTO.labelArray];
     }
-   //    [self.topV.portraitImgV addTarget:self action:@selector(portraitImgVPress:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.priceV setPriceText:homepageDTO.price];
+       [self.topV.portraitImgV addTarget:self action:@selector(portraitImgVPress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.priceV setPriceText:homepageDTO.price];
     
 }
+//推出设计师
 -(void)portraitImgVPress:(UIButton *)sender
 {
-//    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
-//    UIViewController *vc = [self getSuperViewController];
-//    [vc.navigationController.view.layer addAnimation:[self getPushTransition] forKey:nil];
-//    [vc.navigationController pushViewController:design animated:NO];
-    
+    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
+    UIViewController *vc = [self getSuperViewController];
+    [vc.navigationController.view.layer addAnimation:[self getPushTransition] forKey:nil];
+    [vc.navigationController pushViewController:design animated:NO];
+   
 }
 -(void)setTipsWithArray:(NSArray *)tipsArray
 {
