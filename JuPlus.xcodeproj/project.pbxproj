@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37B40A5C1B8C4BA400AC37E3 /* DesignerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B40A5B1B8C4BA400AC37E3 /* DesignerHeaderView.m */; };
 		466F060A1B82EB2700DB0E03 /* shot_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 466F06091B82EB2700DB0E03 /* shot_h@2x.png */; };
 		466F060C1B82EB2C00DB0E03 /* shot_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 466F060B1B82EB2C00DB0E03 /* shot_h.png */; };
 		467251011B7B1AB800558648 /* MyworkslistReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251001B7B1AB800558648 /* MyworkslistReq.m */; };
 		467251071B7B1C2D00558648 /* MyworkslistRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251061B7B1C2D00558648 /* MyworkslistRespon.m */; };
 		46811E051B7C69BD00F84B5F /* MyDeleteReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 46811E041B7C69BD00F84B5F /* MyDeleteReq.m */; };
+		4698D8C61B8C17DD006F7C0E /* DesignerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4698D8C51B8C17DD006F7C0E /* DesignerCell.m */; };
+		4698D8C91B8C368C006F7C0E /* DesignerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4698D8C81B8C368C006F7C0E /* DesignerDTO.m */; };
+		4698D8CB1B8C64EB006F7C0E /* psb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4698D8CA1B8C64EB006F7C0E /* psb.png */; };
 		46B3FFA01B7D923B00FCBF98 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FF9F1B7D923B00FCBF98 /* delete@2x.png */; };
 		46B3FFA21B7D924100FCBF98 /* fav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA11B7D924100FCBF98 /* fav@2x.png */; };
 		46B3FFA41B7D924600FCBF98 /* pay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA31B7D924600FCBF98 /* pay@2x.png */; };
@@ -358,6 +362,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37B40A5A1B8C4BA400AC37E3 /* DesignerHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerHeaderView.h; sourceTree = "<group>"; };
+		37B40A5B1B8C4BA400AC37E3 /* DesignerHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerHeaderView.m; sourceTree = "<group>"; };
 		466F06091B82EB2700DB0E03 /* shot_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot_h@2x.png"; sourceTree = "<group>"; };
 		466F060B1B82EB2C00DB0E03 /* shot_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot_h.png; sourceTree = "<group>"; };
 		467250FF1B7B1AB800558648 /* MyworkslistReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyworkslistReq.h; sourceTree = "<group>"; };
@@ -366,6 +372,11 @@
 		467251061B7B1C2D00558648 /* MyworkslistRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyworkslistRespon.m; sourceTree = "<group>"; };
 		46811E031B7C69BD00F84B5F /* MyDeleteReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDeleteReq.h; sourceTree = "<group>"; };
 		46811E041B7C69BD00F84B5F /* MyDeleteReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDeleteReq.m; sourceTree = "<group>"; };
+		4698D8C41B8C17DD006F7C0E /* DesignerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerCell.h; sourceTree = "<group>"; };
+		4698D8C51B8C17DD006F7C0E /* DesignerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerCell.m; sourceTree = "<group>"; };
+		4698D8C71B8C368C006F7C0E /* DesignerDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerDTO.h; sourceTree = "<group>"; };
+		4698D8C81B8C368C006F7C0E /* DesignerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerDTO.m; sourceTree = "<group>"; };
+		4698D8CA1B8C64EB006F7C0E /* psb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = psb.png; sourceTree = "<group>"; };
 		46B3FF9F1B7D923B00FCBF98 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		46B3FFA11B7D924100FCBF98 /* fav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav@2x.png"; sourceTree = "<group>"; };
 		46B3FFA31B7D924600FCBF98 /* pay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay@2x.png"; sourceTree = "<group>"; };
@@ -1341,6 +1352,13 @@
 				84D4860F1B4D0DF200AD0CCF /* OrderListViewController.m */,
 				84D6F51F1B4E478E006E9893 /* OrderDetailViewController.h */,
 				84D6F5201B4E478E006E9893 /* OrderDetailViewController.m */,
+				4698D8C41B8C17DD006F7C0E /* DesignerCell.h */,
+				4698D8C51B8C17DD006F7C0E /* DesignerCell.m */,
+				4698D8CA1B8C64EB006F7C0E /* psb.png */,
+				4698D8C71B8C368C006F7C0E /* DesignerDTO.h */,
+				4698D8C81B8C368C006F7C0E /* DesignerDTO.m */,
+				37B40A5A1B8C4BA400AC37E3 /* DesignerHeaderView.h */,
+				37B40A5B1B8C4BA400AC37E3 /* DesignerHeaderView.m */,
 				8461567F1B4FC35400F4AAA2 /* DesignerDetailViewController.h */,
 				846156801B4FC35400F4AAA2 /* DesignerDetailViewController.m */,
 				846156861B4FC4A200F4AAA2 /* AppointViewController.h */,
@@ -2213,6 +2231,7 @@
 				84FCB1391B67578E00D00081 /* 3.png in Resources */,
 				84FCB13A1B67578E00D00081 /* 4.png in Resources */,
 				84FCB13D1B67578E00D00081 /* 7.png in Resources */,
+				4698D8CB1B8C64EB006F7C0E /* psb.png in Resources */,
 				84E40D1F1B65E1BD00FB63AE /* back@2x.png in Resources */,
 				84EAFFDA1B7C890A006B55BC /* share_bg@2x.png in Resources */,
 				84EE1F851B6F0FEC00141434 /* tag_carmera@2x.png in Resources */,
@@ -2354,6 +2373,7 @@
 				84E672801B6B47DB00CFD1A2 /* SCNavigationController.m in Sources */,
 				84E814D51B56124700921332 /* PlaceOrderRespon.m in Sources */,
 				84D689131B4BBBC600E91423 /* PersonCenterView.m in Sources */,
+				37B40A5C1B8C4BA400AC37E3 /* DesignerHeaderView.m in Sources */,
 				84829FB21B42839A001D807F /* bignum.c in Sources */,
 				84CC250C1B43CA0100BE342E /* SingleDetailReq.m in Sources */,
 				84E16FE11B54BB1500588D2B /* GetAddressListReq.m in Sources */,
@@ -2437,6 +2457,7 @@
 				84829FBA1B42839A001D807F /* rsa.c in Sources */,
 				9C7C3F8C1B29596300D8F29B /* UIColor+JuPlusColor.m in Sources */,
 				84E814D41B56124700921332 /* PersonCenterRespon.m in Sources */,
+				4698D8C91B8C368C006F7C0E /* DesignerDTO.m in Sources */,
 				84A8AFF31B5CFE9C00B25196 /* ForgetPwdViewController.m in Sources */,
 				9C7C3F951B295F7100D8F29B /* CommonUtil.m in Sources */,
 				9C5863B21B3931EA008BB5AD /* PortraitView.m in Sources */,
@@ -2496,6 +2517,7 @@
 				84EBAA881B7DF923006E1148 /* JuPlusTabBarController.m in Sources */,
 				8481E2741B60F4D100CB89C6 /* PostPortraitRespon.m in Sources */,
 				84E814E11B5635F000921332 /* MyFavourCell.m in Sources */,
+				4698D8C61B8C17DD006F7C0E /* DesignerCell.m in Sources */,
 				84829FB71B42839A001D807F /* md5.c in Sources */,
 				849728381B68CE9400EF17CC /* VIPhotoView.m in Sources */,
 				84E672AA1B6B755300CFD1A2 /* ImageCropper.m in Sources */,

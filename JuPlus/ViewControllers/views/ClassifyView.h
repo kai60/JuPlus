@@ -25,6 +25,7 @@
 @property (nonatomic,strong)NSMutableArray *selectArr;
 
 @property (nonatomic,strong)ClassifyTagsDTO *infoDTO;
+
 -(id)initWithFrame:(CGRect)frame andView:(UIView *)superV;
 
 -(void)showClassify;
