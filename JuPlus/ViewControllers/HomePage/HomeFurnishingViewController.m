@@ -14,8 +14,11 @@
 #import "BasicUIViewController.h"
 #import "CameraViewController.h"
 #import <CoreText/CoreText.h>
+#import "DesignerMapView.h"
 @interface HomeFurnishingViewController()<UMSocialUIDelegate>
-
+{
+    DesignerMapView *design;
+}
 @end
 
 @implementation HomeFurnishingViewController
@@ -40,30 +43,33 @@
     backV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f,0.0f, SCREEN_WIDTH, self.view.height)];
     [self.view addSubview:backV];
     
-    [backV addSubview:self.centerV];
+//    design = [[DesignerMapView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
+//    [backV addSubview:design];
+    
+    [backV addSubview:self.personCenterV];
     
     [backV addSubview:self.collectionV];
 
     
     [self.viewArray addObject:self.collectionV];
-    [self.viewArray addObject:self.centerV];
+    [self.viewArray addObject:self.personCenterV];
 
     [backV addSubview:self.tabBarV];
     
     //跳转到carma
     [self.tabBarV.logoBtn addTarget:self action:@selector(gotoCarma) forControlEvents:UIControlEventTouchUpInside];
     //原定筛选按钮
-    [self.collectionV.rightBtn addTarget:self action:@selector(selectClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.collectionV.rightBtn addTarget:self action:@selector(classifyBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     //切换显示效果
     [self.collectionV.switchBtn addTarget:self action:@selector(reloadCollectionTab) forControlEvents:UIControlEventTouchUpInside];
-    //个人中心
-    [self.tabBarV.personBtn addTarget:self action:@selector(personBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    //个人中心
+//    [self.tabBarV.personBtn addTarget:self action:@selector(personBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.classifyV];
     [self.classifyV setHidden:YES];
     
      if (IsStrEmpty([CommonUtil getUserDefaultsValueWithKey:isShowClassify])) {
-    [backV addSubview:self.remindView];
+         [backV addSubview:self.remindView];
      }
 }
 -(void)hiddenRemind
@@ -112,14 +118,14 @@
     return _collectionV;
 }
 //个人中心
--(PersonCenterView *)centerV
+-(PersonCenterView *)personCenterV
 {
-    if(!_centerV)
+    if(!_personCenterV)
     {
-        _centerV = [[PersonCenterView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _personCenterV = [[PersonCenterView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT)];
         
     }
-    return _centerV;
+    return _personCenterV;
 }
 -(JuPlusTabBarView *)tabBarV
 {
@@ -163,11 +169,8 @@
         [self.navigationController pushViewController:log animated:YES];
     }
 }
--(void)selectClick
+-(void)classifyBtnPress:(UIButton *)sender
 {
-    [self.tabBarV.classifyBtn setSelected:YES];
-    [self.tabBarV.personBtn setSelected:NO];
-    [self changeTo:0];
     [self.classifyV showClassify];
 }
 -(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
@@ -188,7 +191,7 @@
         [view startHomePageRequest];
         view.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH,view.height);
         if(view==self.collectionV)
-            self.centerV.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH,view.height);
+            self.personCenterV.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH,view.height);
         else
             self.collectionV.frame = CGRectMake(-SCREEN_WIDTH, 0.0f, SCREEN_WIDTH,view.height);
 
@@ -207,7 +210,7 @@
     {
         [self.tabBarV resetButtonArray];
         [self.tabBarV.personBtn setSelected:YES];
-        [self showCurrentView:self.centerV];
+        [self showCurrentView:self.personCenterV];
     }
     else
     {
@@ -219,9 +222,26 @@
 #pragma mark --tabBarDelegate
 -(void)changeTo:(NSInteger)tag
 {
+    //点击首页
     if(tag==0)
     {
         [self showCurrentView:self.collectionV];
+    }
+    //点击个人中心
+    else
+    {
+        if([CommonUtil isLogin])
+        {
+            [self.tabBarV resetButtonArray];
+            [self.tabBarV.personBtn setSelected:YES];
+            [self showCurrentView:self.personCenterV];
+        }
+        else
+        {
+            LoginViewController *log = [[LoginViewController alloc]init];
+            [self.navigationController pushViewController:log animated:YES];
+        }
+
     }
 
 }
@@ -244,8 +264,8 @@
     }
     else
     {
-        if (self.centerV) {
-            [self.centerV startHomePageRequest];
+        if (self.personCenterV) {
+            [self.personCenterV startHomePageRequest];
         }
     }
     [UIView animateWithDuration:ANIMATION animations:^{

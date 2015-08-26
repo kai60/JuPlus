@@ -76,7 +76,9 @@
 #define WeiChatAppSecret @"60bfbcc61019e15292ea0dd7bd1f0546"
 
 #define WeiChatShareUrl @"www.jujiax.com"
-
+//=======================================================================
+//地图相关key
+#define AMap_Key @"7c69922b6529b508b04254881b926f92"
 //=======================================================================
 //测试环境
 #ifdef kDevTest

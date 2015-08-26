@@ -294,6 +294,9 @@
 		84E81AB31B5F8577007E3B9B /* PackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E81AB11B5F8577007E3B9B /* PackageCell.m */; };
 		84E8EDA81B5CC6C900A7420C /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8EDA71B5CC6C900A7420C /* MyInfoViewController.m */; };
 		84E8EDAE1B5CCE6500A7420C /* JuPlusUserInfoCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8EDAD1B5CCE6500A7420C /* JuPlusUserInfoCenter.m */; };
+		84E9DFF41B8C4AB90052050D /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E9DFF31B8C4AB90052050D /* libstdc++.6.0.9.dylib */; };
+		84E9DFF71B8C4EA20052050D /* DesignerMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9DFF61B8C4EA20052050D /* DesignerMapView.m */; };
+		84E9DFFA1B8C64B30052050D /* JuPlusGetLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9DFF91B8C64B30052050D /* JuPlusGetLocation.m */; };
 		84EA42711B834653009F8107 /* carma_shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EA42701B834653009F8107 /* carma_shot@2x.png */; };
 		84EAFFD81B7C83B7006B55BC /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EAFFD71B7C83B7006B55BC /* ToastView.m */; };
 		84EAFFDA1B7C890A006B55BC /* share_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EAFFD91B7C890A006B55BC /* share_bg@2x.png */; };
@@ -826,6 +829,11 @@
 		84E8EDA71B5CC6C900A7420C /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoViewController.m; sourceTree = "<group>"; };
 		84E8EDAC1B5CCE6500A7420C /* JuPlusUserInfoCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JuPlusUserInfoCenter.h; path = JuPlus/ViewControllers/MyAccount/JuPlusUserInfoCenter.h; sourceTree = SOURCE_ROOT; };
 		84E8EDAD1B5CCE6500A7420C /* JuPlusUserInfoCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JuPlusUserInfoCenter.m; path = JuPlus/ViewControllers/MyAccount/JuPlusUserInfoCenter.m; sourceTree = SOURCE_ROOT; };
+		84E9DFF31B8C4AB90052050D /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		84E9DFF51B8C4EA20052050D /* DesignerMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerMapView.h; sourceTree = "<group>"; };
+		84E9DFF61B8C4EA20052050D /* DesignerMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerMapView.m; sourceTree = "<group>"; };
+		84E9DFF81B8C64B30052050D /* JuPlusGetLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JuPlusGetLocation.h; path = JuPlus/ViewControllers/HomePage/HomePageViews/JuPlusGetLocation.h; sourceTree = SOURCE_ROOT; };
+		84E9DFF91B8C64B30052050D /* JuPlusGetLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JuPlusGetLocation.m; path = JuPlus/ViewControllers/HomePage/HomePageViews/JuPlusGetLocation.m; sourceTree = SOURCE_ROOT; };
 		84EA42701B834653009F8107 /* carma_shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carma_shot@2x.png"; sourceTree = "<group>"; };
 		84EAFFD61B7C83B7006B55BC /* ToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
 		84EAFFD71B7C83B7006B55BC /* ToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
@@ -934,6 +942,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E9DFF41B8C4AB90052050D /* libstdc++.6.0.9.dylib in Frameworks */,
 				46EA34AF1B84549F002095C9 /* AssetsLibrary.framework in Frameworks */,
 				84EF22D21B7B538800CEEE47 /* CoreText.framework in Frameworks */,
 				84E7DE3A1B732A5400956CCE /* libc++.dylib in Frameworks */,
@@ -1376,6 +1385,8 @@
 				84D6890E1B4BB44700E91423 /* CollectionView.m */,
 				84D689111B4BBBC600E91423 /* PersonCenterView.h */,
 				84D689121B4BBBC600E91423 /* PersonCenterView.m */,
+				84E9DFF51B8C4EA20052050D /* DesignerMapView.h */,
+				84E9DFF61B8C4EA20052050D /* DesignerMapView.m */,
 			);
 			path = HomePageViews;
 			sourceTree = "<group>";
@@ -1915,6 +1926,8 @@
 				84E8EDAD1B5CCE6500A7420C /* JuPlusUserInfoCenter.m */,
 				84A8AFE51B5CEA4200B25196 /* UserInfoDTO.h */,
 				84A8AFE61B5CEA4200B25196 /* UserInfoDTO.m */,
+				84E9DFF81B8C64B30052050D /* JuPlusGetLocation.h */,
+				84E9DFF91B8C64B30052050D /* JuPlusGetLocation.m */,
 			);
 			path = GlobalData;
 			sourceTree = "<group>";
@@ -2052,6 +2065,7 @@
 		E73E3BE362588C83AF8352D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84E9DFF31B8C4AB90052050D /* libstdc++.6.0.9.dylib */,
 				46EA34AE1B84549F002095C9 /* AssetsLibrary.framework */,
 				84EF22D11B7B538800CEEE47 /* CoreText.framework */,
 				84E7DE391B732A5400956CCE /* libc++.dylib */,
@@ -2351,6 +2365,7 @@
 				9C7C3FAA1B296CAD00D8F29B /* ClassificationViewController.m in Sources */,
 				9C7C3F8F1B29596300D8F29B /* JuPlusAppDelegate.m in Sources */,
 				84E16FE71B54BC2000588D2B /* AddressDTO.m in Sources */,
+				84E9DFFA1B8C64B30052050D /* JuPlusGetLocation.m in Sources */,
 				84CC24DE1B43C04F00BE342E /* UIImageView+JuPlusUIImageView.m in Sources */,
 				84D6F5271B4E5840006E9893 /* DeleteFavReq.m in Sources */,
 				84CC25051B43CA0100BE342E /* ServerException.m in Sources */,
@@ -2392,6 +2407,7 @@
 				84A8AFE71B5CEA4200B25196 /* UserInfoDTO.m in Sources */,
 				84E4321F1B7895DD00AABF3F /* UIScrollView+UITouch.m in Sources */,
 				846156721B4F68CD00F4AAA2 /* PackageViewController.m in Sources */,
+				84E9DFF71B8C4EA20052050D /* DesignerMapView.m in Sources */,
 				84CE18651B46732A00B103F4 /* LoginReq.m in Sources */,
 				84E814D61B56124700921332 /* PostOrderRespon.m in Sources */,
 				84EF22C61B7AF3D100CEEE47 /* MyWorksDTO.m in Sources */,
