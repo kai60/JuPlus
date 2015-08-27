@@ -15,6 +15,7 @@
 #import "PackageViewController.h"
 #import "CameraViewController.h"
 #import "HomeFurnishingViewController.h"
+#import "FavViewController.h"
 @interface MyWorksListViewController ()<UITableViewDelegate,UITableViewDataSource,ScrollRefreshViewDegegate>
 
 {
@@ -173,11 +174,18 @@
     self.dto = [self.dataArray objectAtIndex:indexPath.row];
     [cell fileData:_dto];
     
-    // 按钮方法
+    //收藏按钮
+    [cell.favBtn addTarget:self action:@selector(favBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    //按钮方法
     [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-
     return cell;
+}
+//收藏按钮方法
+- (void)favBtnClick:(UIButton *)button
+{
+    FavViewController *favVC = [[FavViewController alloc]init];
+    favVC.favId = [NSString stringWithFormat:@"%ld",button.tag];
+    [self.navigationController pushViewController:favVC animated:YES];
 }
 - (void)deleteBtnClick:(UIButton *)button
 {

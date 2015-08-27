@@ -7,6 +7,7 @@
 //
 
 #import "DesignerCell.h"
+#import "DesignerDTO.h"
 @interface DesignerCell ()
 {
     CGFloat labelH;
@@ -21,47 +22,58 @@
         labelH = 30;
         CGRect frame = self.contentView.frame;
         frame.size.width = SCREEN_HEIGHT;
-        [self.contentView addSubview:self.image];
-        [self.image addSubview:self.label];
+        [self.contentView addSubview:self.coverUrlImage];
+        [self.coverUrlImage addSubview:self.simpleLabel];
         
-        UIView *coverV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0, self.image.width, PICTURE_HEIGHT/2-2)];
+        UIView *coverV = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0, self.coverUrlImage.width, PICTURE_HEIGHT/2-2)];
         coverV.backgroundColor = RGBACOLOR(137, 83, 41, 0.2);
-        [self.image addSubview:coverV];
+        [self.coverUrlImage addSubview:coverV];
         
-        UILabel *moneyV = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*2/5, PICTURE_HEIGHT/4, SCREEN_WIDTH/5, 20)];
-        moneyV.backgroundColor = RGBACOLOR(255, 255, 255, 0.8);
-        moneyV.textAlignment = NSTextAlignmentCenter;
-        moneyV.textColor = Color_Basic;
-        moneyV.text = @"$2333";
-        moneyV.font = FontType(FontSize);
-        [self.image addSubview:moneyV];
-        [moneyV addSubview:self.labelMoney];
-        
+           
     }
     return self;
 }
-- (UIImageView *)image
+
+- (UIImageView *)coverUrlImage
 {
-    if (!_image) {
-        _image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, PICTURE_HEIGHT / 2 - 2)]; // 留出两个像素的白边
+    if (!_coverUrlImage) {
+        _coverUrlImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, PICTURE_HEIGHT / 2 - 2)]; // 留出两个像素的白边
 //        _image.image = [UIImage imageNamed:@"psb.png"];
-        [_image setBackgroundColor:Color_Basic];
+        [_coverUrlImage setBackgroundColor:Color_Basic];
     }
-    return _image;
+    return _coverUrlImage;
 }
-- (UILabel *)label
+- (UILabel *)simpleLabel
 {
-    if (!_label) {
-        _label = [[UILabel alloc]initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, labelH)];
-        _label.textAlignment = NSTextAlignmentCenter;
-//        [_label setFont:FontType(FontMaxSize)];
-        [_label setFont:[UIFont fontWithName:@"Helvetica-Bold" size:FontMaxSize]];
-        _label.numberOfLines = 0;
-        _label.textColor = Color_White;
-        _label.text = @"这里会有一些标题之类的东西";
+    if (!_simpleLabel) {
+        _simpleLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/5, 40, SCREEN_WIDTH*3/5, labelH)];
+        _simpleLabel.textAlignment = NSTextAlignmentCenter;
+        [_simpleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:FontMaxSize]];
+//        _simpleLabel.font = FontType(FontMaxSize);
+        _simpleLabel.numberOfLines = 0;
+        _simpleLabel.textColor = Color_White;
         
     }
-    return _label;
+    return _simpleLabel;
+}
+- (UILabel *)totalPriceLabel
+{
+    if (!_totalPriceLabel) {
+        self.totalPriceLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*2/5, PICTURE_HEIGHT/4, SCREEN_WIDTH/5, 20)];
+        self.totalPriceLabel.backgroundColor = RGBACOLOR(255, 255, 255, 0.8);
+        self.totalPriceLabel.textAlignment = NSTextAlignmentCenter;
+        self.totalPriceLabel.textColor = Color_Basic;
+        self.totalPriceLabel.font = FontType(FontSize);
+        [self.coverUrlImage addSubview:self.totalPriceLabel];
+    }
+    return _totalPriceLabel;
+}
+- (void)fileData:(DesignerDTO *)dto
+{
+    [self.coverUrlImage setimageUrl:dto.coverUrl placeholderImage:nil];
+    [self.simpleLabel setText:dto.simpleExplain];
+    [self.totalPriceLabel setText:dto.totalPrice];
+    
 }
 - (void)awakeFromNib {
     // Initialization code

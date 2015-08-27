@@ -10,4 +10,12 @@
 
 @implementation DesignerDTO
 
+- (void)loadDTO:(NSDictionary *)dict
+{
+    self.regNo = [NSString stringWithFormat:@"%@",[dict objectForKey:@"regNo"]];
+    self.coverUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"coverUrl"]];
+    self.simpleExplain = [NSString stringWithFormat:@"%@",[dict objectForKey:@"simpleExplain"]];
+    self.totalPrice = [NSString stringWithFormat:@"%@",[dict objectForKey:@"totalPrice"]];
+}
+
 @end

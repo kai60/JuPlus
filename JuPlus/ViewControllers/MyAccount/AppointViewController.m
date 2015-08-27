@@ -16,15 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 20.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 20.0f)];
-    [img setImage:[UIImage imageNamed:@"2"]];
-    [self.view addSubview:img];
-    
-    
-    UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
-    back.frame = CGRectMake(0.0f, 0.0f, 60.0f, 60.0f);
-    [back addTarget:self action:@selector(backPress) forControlEvents:UIControlEventTouchUpInside];
-    // Do any additional setup after loading the view.
+    [self.titleLabel setText:@"预约设计师"];
+
 }
 -(void)backPress
 {
