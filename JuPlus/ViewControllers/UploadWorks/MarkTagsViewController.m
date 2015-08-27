@@ -65,7 +65,7 @@
     [super viewDidLoad];
     self.titleLabel.text = @"添加标签";
 
-    randomArray = [NSArray arrayWithObjects:@"世界上总有一半人不理解另一半人的快乐。",@"上帝会把我们身边最好的东西拿走，以提醒我们得到的太多！",@"有信心不一定会成功，没信心一定不会成功。",@"有人就有恩怨，有恩怨就有江湖。人就是江湖，你怎么退出？",@"最了解你的人不是你的朋友，而是你的敌人。",@"爱情这东西，时间很关键，认识得太早或太晚，都不行。",@"生命中充满了巧合，两条平行线也会有相交的一天。",@"我手上的爱情线、生命线和事业线，都是你的名字拼成的。",@"我情愿做个犯错的人，也不愿错过你？",@"只要两个相爱的人在一起，哪里都是天堂。",@"对爱的人说心里话，不要等太久。",@"为了记住你的笑容，我拼命按下心中的快门。", nil];
+    randomArray = [NSArray arrayWithObjects:@"世界上总有一半人不理解另一半人的快乐。",@"上帝会把我们身边最好的东西拿走，以提醒我们得到的太多！",@"有信心不一定会成功，没信心一定不会成功。",@"有人就有恩怨，有恩怨就有江湖。人就是江湖，怎么退出？",@"最了解你的人不是你的朋友，而是你的敌人。",@"爱情这东西时间很关键，认识得太早或太晚，都不行。",@"生命中充满了巧合，两条平行线也会有相交的一天。",@"我手上的爱情线、生命线和事业线，都是你的名字拼成的。",@"我情愿做个犯错的人，也不愿错过你？",@"只要两个相爱的人在一起，哪里都是天堂。",@"对爱的人说心里话，不要等太久。",@"为了记住你的笑容，我拼命按下心中的快门。", nil];
     self.tagsArray = [[NSMutableArray alloc]init];
 
     [self.view addSubview:self.backSCroll];
@@ -266,11 +266,16 @@
             _backView = [[UIView alloc]initWithFrame:self.view.bounds];
             _backView.userInteractionEnabled = YES;
             _backView.backgroundColor = RGBACOLOR(0, 0, 0, 0.7);
-            UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hiddenToastView)];
+            UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
             [_backView addGestureRecognizer:ges];
 
         }
     return _backView;
+}
+-(void)tapGes
+{
+    [self hiddenToastView];
+    [self gotoWorksList];
 }
 -(UIButton *)sureBtn
 {
@@ -426,7 +431,7 @@
     }
     else
         [self.placeholderLabel setHidden:NO];
-    self.countLabel.text = [NSString stringWithFormat:@"%lu/140字",(unsigned long)textView.text.length];
+    self.countLabel.text = [NSString stringWithFormat:@"%lu/126字",(unsigned long)textView.text.length];
     
 }
 

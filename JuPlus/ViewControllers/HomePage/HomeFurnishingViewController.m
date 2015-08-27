@@ -18,6 +18,8 @@
 @interface HomeFurnishingViewController()<UMSocialUIDelegate>
 {
     DesignerMapView *design;
+    
+    BOOL isShowMap;
 }
 @end
 
@@ -43,9 +45,6 @@
     backV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f,0.0f, SCREEN_WIDTH, self.view.height)];
     [self.view addSubview:backV];
     
-//    design = [[DesignerMapView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
-//    [backV addSubview:design];
-    
     [backV addSubview:self.personCenterV];
     
     [backV addSubview:self.collectionV];
@@ -56,15 +55,9 @@
 
     [backV addSubview:self.tabBarV];
     
-    //跳转到carma
-    [self.tabBarV.logoBtn addTarget:self action:@selector(gotoCarma) forControlEvents:UIControlEventTouchUpInside];
     //原定筛选按钮
     [self.collectionV.rightBtn addTarget:self action:@selector(classifyBtnPress:) forControlEvents:UIControlEventTouchUpInside];
-    //切换显示效果
-    [self.collectionV.switchBtn addTarget:self action:@selector(reloadCollectionTab) forControlEvents:UIControlEventTouchUpInside];
-//    //个人中心
-//    [self.tabBarV.personBtn addTarget:self action:@selector(personBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
+    //个人中心
     [self.view addSubview:self.classifyV];
     [self.classifyV setHidden:YES];
     
@@ -139,21 +132,24 @@
     return _tabBarV;
 }
 #pragma mark --ClickMethod
-#pragma mark --一键切换显示方式
 -(void)reloadCollectionTab
 {
-    if(self.collectionV.isShared)
-    {
-        self.collectionV.isShared = NO;
-        self.collectionV.switchBtn.selected = NO;
+    //点击切换按钮，查看是否显示当前页面，如果不是当前页面，则切回到collectionView
+    if (!self.collectionV.listTab.hidden) {
+        if(self.collectionV.isShared)
+        {
+            self.collectionV.isShared = NO;
+            self.tabBarV.collocationBtn.selected = NO;
+        }
+        else
+        {
+            self.collectionV.isShared = YES;
+            self.tabBarV.collocationBtn.selected = YES;
+            
+        }
+        [self.collectionV.listTab reloadData];
+    }else{
     }
-    else
-    {
-        self.collectionV.isShared = YES;
-        self.collectionV.switchBtn.selected = YES;
-        
-    }
-    [self.collectionV.listTab reloadData];
 }
 
 //筛选按钮点击（跳转到九宫格）
@@ -204,36 +200,25 @@
     
     }
 }
--(void)personBtnClick:(UIButton *)sender
-{
-    if([CommonUtil isLogin])
-    {
-        [self.tabBarV resetButtonArray];
-        [self.tabBarV.personBtn setSelected:YES];
-        [self showCurrentView:self.personCenterV];
-    }
-    else
-    {
-        LoginViewController *log = [[LoginViewController alloc]init];
-        [self.navigationController pushViewController:log animated:YES];
-    }
-
-}
 #pragma mark --tabBarDelegate
+//点击事件的代理
 -(void)changeTo:(NSInteger)tag
 {
     //点击首页
-    if(tag==0)
+    /*
+    */
+    if(tag==ShowCollocation)
     {
-        [self showCurrentView:self.collectionV];
+        if (self.collectionV.origin.x!=0) {
+            [self showCurrentView:self.collectionV];
+        }else
+            [self reloadCollectionTab];
     }
     //点击个人中心
-    else
+    else if(tag==ShowPerson)
     {
         if([CommonUtil isLogin])
         {
-            [self.tabBarV resetButtonArray];
-            [self.tabBarV.personBtn setSelected:YES];
             [self showCurrentView:self.personCenterV];
         }
         else
@@ -242,6 +227,10 @@
             [self.navigationController pushViewController:log animated:YES];
         }
 
+    }
+    else
+    {
+        [self gotoCarma];
     }
 
 }

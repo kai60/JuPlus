@@ -67,16 +67,17 @@
 //从字典里拿数据
 JuPlus_EXTERN NSString* EncodeStringFromDic(NSDictionary *dic, NSString *key)
 {
-    id temp = [dic objectForKey:key];
-    if ([temp isKindOfClass:[NSString class]])
-    {
-        return temp;
-    }
-    else if ([temp isKindOfClass:[NSNumber class]])
-    {
-        return [temp stringValue];
-    }
-    return nil;
+//    id temp = [dic objectForKey:key];
+//    if ([temp isKindOfClass:[NSString class]])
+//    {
+//        return temp;
+//    }
+//    else if ([temp isKindOfClass:[NSNumber class]])
+//    {
+//        return [temp stringValue];
+//    }
+//    return nil;
+    return [NSString stringWithFormat:@"%@",[dic objectForKey:key]];
 }
 
 @end

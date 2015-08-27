@@ -7,6 +7,11 @@
 //自定义tabBar，实现不同界面之间切换效果
 
 #import "JuPlusUIView.h"
+typedef enum{
+    ShowCollocation = 1,  //显示套餐列表
+    ShowPerson , //显示个人中心
+    GoCarma,
+} TabBarTag;
 
 @protocol TabBarViewDelegate <NSObject>
 
@@ -21,7 +26,7 @@
 //个人
 @property(nonatomic,strong)UIButton *personBtn;
 
-@property(nonatomic,strong)UIButton *classifyBtn;
+@property(nonatomic,strong)UIButton *collocationBtn;
 
 @property(nonatomic,strong)    UIButton *logoBtn;
 

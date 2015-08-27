@@ -9,6 +9,7 @@
 #import "JuPlusUIView.h"
 #import <AMapSearchKit/AMapSearchAPI.h>
 #import <MAMapKit/MAMapKit.h>
+#import "DesignerAnno.h"
 @interface DesignerMapView : JuPlusUIView
 
 -(id)initWithFrame:(CGRect)frame;

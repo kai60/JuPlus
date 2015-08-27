@@ -17,7 +17,7 @@
 #import "UMSocialQQHandler.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "MobClick.h"
-
+#import <MAMapKit/MAMapKit.h>
 /* */
 @interface JuPlusAppDelegate ()
 {
@@ -39,7 +39,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = Color_White;
     [self loadAnimationView];
-
+    //注册地图
+    [MAMapServices sharedServices].apiKey = AMap_Key;
     [self signUM];
 
 //    NSMutableArray *fontNames = [[NSMutableArray alloc] init];
