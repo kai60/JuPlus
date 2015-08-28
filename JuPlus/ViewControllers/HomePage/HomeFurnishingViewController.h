@@ -17,7 +17,7 @@
 //分类界面
 @property (nonatomic,strong)ClassifyView *classifyV;
 //个人中心界面
-@property (nonatomic,strong)PersonCenterView *centerV;
+@property (nonatomic,strong)PersonCenterView *personCenterV;
 //搭配界面
 @property (nonatomic,strong)CollectionView *collectionV;
 //底部标签栏

@@ -42,14 +42,21 @@
         footer = [ScrollRefreshViewFooter footer];
         footer.delegate = self;
         footer.scrollView = self.listTab;
-      
+        
+        self.listTab.tableHeaderView = self.headerView;
+        
         [self.navView setHidden:NO];
 
         self.titleLabel.text = @"居+";
         [self.rightBtn setTitle:@"分类" forState:UIControlStateNormal];
         [self.rightBtn setHidden:NO];
-            [self.navView addSubview:self.switchBtn];
-      
+        [self.navView addSubview:self.switchBtn];
+       self.design = [[DesignerMapView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
+        //切换显示效果
+        [self.switchBtn addTarget:self action:@selector(switchBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.design];
+        [self.design setHidden:YES];
+        
         [self startHomePageRequest];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFromClassify) name:ReloadList object:nil];
     }
@@ -79,6 +86,14 @@
     }
     return _listTab;
 }
+-(UIScrollView *)headerView
+{
+    if(!_headerView)
+    {
+        _headerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 120*(SCREEN_WIDTH/320.0f)+2.0f)];
+    }
+    return _headerView;
+}
 #pragma mark --refresh
 -(void)refreshViewBeginRefreshing:(ScrollRefreshView *)refreshView
 {
@@ -103,6 +118,22 @@
     }
     [self startHomePageRequest];
 }
+#pragma mark --一键切换显示方式
+//地图模式切换
+-(void)switchBtnPress:(UIButton *)sender
+{
+    if (!self.isShowMap) {
+        [self.design setHidden:NO];
+        [self.listTab setHidden:YES];
+        self.isShowMap = YES;
+    }else{
+        [self.design setHidden:YES];
+        [self.listTab setHidden:NO];
+        self.isShowMap = NO;
+    }
+    
+}
+
 #pragma mark --request
 -(void)reloadFromClassify
 {
@@ -117,6 +148,18 @@
     NSString *reqUrl = [NSString stringWithFormat:@"list?pageNum=%d&pageSize=%@&tagId=%@",pageNum,PAGESIZE,tagId?tagId:@"0"];
     [collReq setField:reqUrl forKey:@"FunctionName"];
     [HttpCommunication request:collReq getResponse:collRespon Success:^(JuPlusResponse *response) {
+        for (int i=0; i<1; i++) {
+            UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(i*self.headerView.width, 0.0f, self.headerView.width, self.headerView.height - 2.0f)];
+            [img setImage:[UIImage imageNamed:@"banner@3x.jpg"]];
+            [self.headerView addSubview:img];
+        }
+        //添加分割线
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0.0f, _headerView.height - 2.0f, SCREEN_WIDTH, 2.0f)];
+        self.headerView.contentSize = CGSizeMake(SCREEN_WIDTH*1, self.headerView.height);
+        
+        [line setBackgroundColor:Color_Gray];
+        [_headerView addSubview:line];
+
         totalCount = [collRespon.count intValue];
         if (pageNum==1) {
             [self.listTab setContentOffset:CGPointMake(0.0f, 0.0f)];

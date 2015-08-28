@@ -46,9 +46,9 @@
       
     //NSArray *nameArr = [NSArray arrayWithObjects:@"    ", nil];
     NSArray *bgImageArr = [NSArray arrayWithObjects:@"bar_bg_left",@"bar_bg_right", nil];
-    NSArray *imgArrNormal = [NSArray arrayWithObjects:@"icons_01_unsel",@"icons_02_unsel", nil];
+    NSArray *imgArrNormal = [NSArray arrayWithObjects:@"icons_up",@"icons_Person", nil];
 
-    NSArray *imgArrSel = [NSArray arrayWithObjects:@"icons_01_sel",@"icons_02_sel", nil];
+    NSArray *imgArrSel = [NSArray arrayWithObjects:@"icons_down",@"icons_Person", nil];
     for (int i=0; i<[imgArrNormal count]; i++) {
         
         UIImageView *bottom = [[UIImageView alloc]initWithFrame:CGRectMake((self.width - 85.0f)*i, 0.0f, 85.0f, 49.0f)];
@@ -60,25 +60,21 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake((bottom.width - normalW)/2 - 5.0f +10.0f*i, (bottom.height - normalW)/2+5.0f, normalW, normalW);
         [btn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//        [btn setTitleColor:Color_Black forState:UIControlStateNormal];
-//        [btn setTitleColor:Color_Basic forState:UIControlStateSelected];
-//        [btn setTitle:@"" forState:UIControlStateNormal];
-//        [btn.titleLabel setFont:FontType(14.0f)];
-//          [btn setTitle:[nameArr objectAtIndex:i] forState:UIControlStateSelected];
         [btn setImage:[UIImage imageNamed:[imgArrNormal objectAtIndex:i]] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:[imgArrSel objectAtIndex:i]] forState:UIControlStateSelected];
-        btn.tag = i;
+        btn.tag = i+1;
         [buttonArr addObject:btn];
         [bottom addSubview:btn];
-        if(i==1)
+        if(btn.tag==2)
             self.personBtn = btn;
         else
-            self.classifyBtn = btn;
+            self.collocationBtn = btn;
         
     }
     
     self.logoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.logoBtn.frame = CGRectMake((self.width - 36.0f)/2, (self.height - 36.0f)/2, 36.0f, 36.0f);
+    self.logoBtn.tag = GoCarma;
     [self.logoBtn setImage:[UIImage imageNamed:@"carma_shot"] forState:UIControlStateNormal];
     [self addSubview:self.logoBtn];
     [self setFirstRespon];
@@ -88,45 +84,13 @@
     UIButton *btn = ((UIButton *)[buttonArr firstObject]);
     [btn setSelected:YES];
 }
+//按钮点击事件
 -(void)buttonPressed:(UIButton *)sender
 {
     
-    if(!sender.selected)
+    if(self.delegate&&[self.delegate respondsToSelector:@selector(changeTo:)])
     {
-        self.selectedBtn.selected = NO;
-        sender.selected = YES;
-        [self.personBtn setSelected:NO];
-        for(int i=0;i<[buttonArr count];i++)
-        {
-            UIButton *btn = [buttonArr objectAtIndex:i];
-            if(sender.tag==btn.tag)
-            {
-                if(self.delegate&&[self.delegate respondsToSelector:@selector(changeTo:)])
-                {
-                    [self.delegate changeTo:sender.tag];
-                }
-//                [UIView animateWithDuration:1.0f animations:^{
-//                    btn.frame = CGRectMake(sender.left, sender.top, selectedW, sender.height);
-//                }];
-            }
-            else
-            {
-                btn.selected = NO;
-//                if(i==0)
-//                {
-//                    btn.frame = CGRectMake(0.0f, 0.0f, normalW, normalW);
-//                }
-//                else
-//                {
-//                    CGFloat orignX = ((UIButton *)[buttonArr objectAtIndex:i-1]).right;
-//                    btn.frame = CGRectMake(orignX, btn.top, normalW, normalW);
-//                }
-            }
-        }
-    }
-    else
-    {
-        
+        [self.delegate changeTo:sender.tag];
     }
 }
 -(void)resetButtonArray
