@@ -7,7 +7,7 @@
 //
 
 #import "MyWorksCell.h"
-
+#import "MyWorksDTO.h"
 @implementation MyWorksCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -84,7 +84,7 @@
         _dateLabel.backgroundColor = RGBCOLOR(137, 83, 41);
         _dateLabel.alpha = ALPHLA_BUTTON;
         _dateLabel.textColor = Color_White;
-        _dateLabel.font = [UIFont systemFontOfSize:12];
+        _dateLabel.font = [UIFont systemFontOfSize:FontSize];
     }
     return _dateLabel;
 }
@@ -167,7 +167,7 @@
     [self.favBtn setTitle:dto.favCount forState:UIControlStateNormal];
     [self.payBtn setTitle:dto.payCount forState:UIControlStateNormal];
     [self.backImage setimageUrl:dto.coverUrl placeholderImage:nil];
-
+    self.favBtn.tag = [dto.regNo intValue];
     
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

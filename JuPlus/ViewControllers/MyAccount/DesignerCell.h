@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DesignerDTO.h"
 @interface DesignerCell : UITableViewCell
 
-@property (nonatomic, strong)UIImageView *image;
-@property (nonatomic, strong)UILabel *label;
-@property (nonatomic, strong)UILabel *labelMoney;
-
+@property (nonatomic, strong)UIImageView *coverUrlImage;
+@property (nonatomic, strong)UILabel * simpleLabel;
+@property (nonatomic, strong)UILabel *totalPriceLabel;
+- (void)fileData:(DesignerDTO *)dto;
 @end

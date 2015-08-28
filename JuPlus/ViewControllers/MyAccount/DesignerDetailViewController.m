@@ -10,10 +10,22 @@
 #import "AppointViewController.h"
 #import "DesignerCell.h"
 #import "DesignerHeaderView.h"
-@interface DesignerDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+#import "AppointViewController.h"
+#import "DesignerRequest.h"
+#import "DesignerRespon.h"
+#import "DesignerDTO.h"
+#import "PackageViewController.h"
+@interface DesignerDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ScrollRefreshViewDegegate>
+{
+    ScrollRefreshViewHeader *header;
+    ScrollRefreshViewFooter *footer;
+    ScrollRefreshView *selectView;
+    
+    int pageNum;
+    int allCount;
+    DesignerHeaderView *tableHeader;
+}
 
-@property (nonatomic,strong)UITableView *tableV;
-@property (nonatomic, strong)NSMutableArray *detailArray;
 @property (nonatomic,strong)UIButton *appointmentBtn;
 @end
 
@@ -21,10 +33,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self.titleLabel setText:@"stella"];
+    
+    pageNum = 1;
+    [self.titleLabel setText:@"设计师"];
+   
+    self.dataArray = [[NSMutableArray alloc]init];
+    [self startRequestDes];
     [self createTable];
-    [self.view addSubview:self.appointmentBtn];
+    
+
+    //上拉刷新
+    header = [ScrollRefreshViewHeader header];
+    header.delegate = self;
+    header.scrollView = self.tableV;
+    //下拉加载
+    footer = [ScrollRefreshViewFooter footer];
+    footer.delegate = self;
+    footer.scrollView = self.tableV;
     // Do any additional setup after loading the view.
 }
 - (void)createTable
@@ -35,14 +60,76 @@
     self.tableV.separatorStyle = 0; // 去掉分割线
     
     // 初始化tableHeaderView
-    DesignerHeaderView *tableHeader = [[DesignerHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, PICTURE_HEIGHT /2-40)];
+    tableHeader = [[DesignerHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, PICTURE_HEIGHT /2-40)];
     self.tableV.tableHeaderView = tableHeader;
     
     [self.view addSubview:self.tableV];
 }
+#pragma mark --refreshDelegate
+-(void)refreshViewBeginRefreshing:(ScrollRefreshView *)refreshView
+{
+    selectView = refreshView;
+    //下拉刷新
+    if(refreshView.viewType == RefreshViewTypeHeader)
+    {
+        pageNum = 1;
+        //下拉刷新则重载上拉加载更多选项
+        [footer setState:RefreshStateNormal withAnimate:NO];
+    }
+    //上拉加载更多
+    else
+    {
+        if([self.dataArray count]>=allCount)
+        {
+            //显示无更多内容
+            [refreshView setState:RefreshStateALL withAnimate:YES];
+            return;
+        }
+        pageNum++;
+    }
+    
+    [self startRequestDes];
+}
+-(void)stopReresh
+{
+    [selectView endRefreshing];
+}
+//网络请求
+- (void)startRequestDes
+{
+    DesignerRequest *designerReq = [[DesignerRequest alloc]init];
+    [designerReq setField:[NSString stringWithFormat:@"%d",pageNum] forKey:PageNum];
+    [designerReq setField:PAGESIZE forKey:PageSize];
+    [designerReq setField:self.userId forKey:@"memNo"];
+    //NSLog(@"---------%@", self.userId);
+    DesignerRespon * respon = [[DesignerRespon alloc]init];
+    [HttpCommunication request:designerReq getResponse:respon Success:^(JuPlusResponse *response) {
+    allCount = [respon.count integerValue];
+    if (pageNum == 1) {
+        [self.dataArray removeAllObjects];
+    }
+        
+        [tableHeader.personHeadImageView setimageUrl:respon.portraitPath placeholderImage:nil];
+        [tableHeader.detail setText:respon.nickname];
+        [self.dataArray addObjectsFromArray:respon.designerArray];
+        //判断是否可以预约设计师
+        if ([respon.orderFlag intValue]== 0) {
+            NSLog(@"%@",respon.orderFlag);
+        }else if ([respon.orderFlag intValue] == 1){
+            [self.view addSubview:self.appointmentBtn];
+        }
+        [self.tableV reloadData];
+        [self stopReresh];
+    
+    } failed:^(ErrorInfoDto *errorDTO) {
+        [self errorExp:errorDTO];
+        [self stopReresh];
+    } showProgressView:YES with:self.view];
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -51,12 +138,18 @@
     if (!cell) {
         cell = [[DesignerCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:str];
     }
-    
+    self.dto = [self.dataArray objectAtIndex:indexPath.row];
+    [cell fileData:_dto];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
    return PICTURE_HEIGHT / 2;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PackageViewController *packVC = [[PackageViewController alloc]init];
+    [self.navigationController pushViewController:packVC animated:YES];
 }
 -(UIButton *)appointmentBtn
 {
@@ -67,6 +160,7 @@
         [_appointmentBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_appointmentBtn setTitle:@"预约设计师" forState:UIControlStateNormal];
         [_appointmentBtn setBackgroundColor:Color_Pink];
+        _appointmentBtn.font = FontType(FontSize);
         _appointmentBtn.alpha = ALPHLA_BUTTON;
         [_appointmentBtn addTarget:self action:@selector(appointment) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -74,7 +168,8 @@
 }
 - (void)appointment
 {
-    
+    AppointViewController *appVC = [[AppointViewController alloc]init];
+    [self.navigationController pushViewController:appVC animated:YES];
 }
 -(void)nextPress
 {

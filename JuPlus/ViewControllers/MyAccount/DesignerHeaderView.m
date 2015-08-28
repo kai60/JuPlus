@@ -7,7 +7,7 @@
 //
 
 #import "DesignerHeaderView.h"
-
+#import "DesignerDTO.h"
 @implementation DesignerHeaderView
 
 /*
@@ -25,17 +25,15 @@
         self.personHeadImageView = [[UIImageView alloc] init];
         self.personHeadImageView.frame = CGRectMake(SCREEN_WIDTH / 2 - PICTURE_HEIGHT / 10, 18, PICTURE_HEIGHT / 5, PICTURE_HEIGHT / 5);
         self.personHeadImageView.backgroundColor = Color_Gray_lines;
-        self.personHeadImageView.image = [UIImage imageNamed:@"touxiang"];
         // 设置圆角
         self.personHeadImageView.layer.masksToBounds = YES;
         self.personHeadImageView.layer.cornerRadius = PICTURE_HEIGHT / 10;
         [self addSubview:self.personHeadImageView];
         
-//        self.detail = [[UILabel alloc] initWithFrame:CGRectMake(0, 24 + PICTURE_HEIGHT / 4 + 30, SCREEN_WIDTH, 20)];
-//        self.detail.text = @"啊!逗比~";
-//        self.detail.textAlignment = NSTextAlignmentCenter;
-//        [self addSubview:self.detail];
-        
+        self.detail = [[UILabel alloc] initWithFrame:CGRectMake(0, 18 + PICTURE_HEIGHT / 5 +10 , SCREEN_WIDTH, 20)];
+        self.detail.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:self.detail];
+        self.detail.font = FontType(13);
     }
     return self;
 }
