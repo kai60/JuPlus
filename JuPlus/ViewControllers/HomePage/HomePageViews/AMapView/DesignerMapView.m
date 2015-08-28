@@ -14,6 +14,8 @@
 #import "MapCollocationDTO.h"
 #import "DesignerDetailViewController.h"
 #import "CollocationViewController.h"
+#import "DesignerDetailViewController.h"
+#import "PackageViewController.h"
 @interface DesignerMapView()<MAMapViewDelegate>
 {
     MAMapView *aMapView;
@@ -118,7 +120,19 @@ updatingLocation:(BOOL)updatingLocation
 //打开并制作气泡
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
 //点击大头针的点击事件
-    
+    DesignerAnno *ann = (DesignerAnno *)view;
+    //设计师
+    if (ann.type==1) {
+//        DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
+//        design.
+    }
+    //套餐
+    else
+    {
+        PackageViewController *pack = [[PackageViewController alloc]init];
+        pack.regNo = ann.regNo;
+        [[self getSuperViewController].navigationController pushViewController:pack animated:YES];
+    }
     //[self getSuperViewController].navigationController
 }
 //关闭气泡
@@ -135,7 +149,7 @@ updatingLocation:(BOOL)updatingLocation
         if (anno.type ==1) {
             [anno.topImg setimageUrl:anno.portraitPath placeholderImage:nil];
         }
-        
+        NSLog(@"lon = %.f",anno.coordinate.longitude);
         return anno;
     }
     return nil;

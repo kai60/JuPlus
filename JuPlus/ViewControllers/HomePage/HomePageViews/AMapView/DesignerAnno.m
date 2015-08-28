@@ -19,6 +19,7 @@
         self.portraitPath = imagePath;
         self.type = type;
         self.myCoordinate = coordinate;
+        self.backgroundColor = [UIColor redColor];
         [self addSubview:self.backImg];
         [self.backImg addSubview:self.topImg];
     }

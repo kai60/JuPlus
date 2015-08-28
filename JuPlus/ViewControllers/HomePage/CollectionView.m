@@ -48,7 +48,7 @@
         [self.navView setHidden:NO];
 
         self.titleLabel.text = @"居+";
-        [self.rightBtn setTitle:@"分类" forState:UIControlStateNormal];
+        [self.rightBtn setImage:[UIImage imageNamed:@"Icons_Classify"] forState:UIControlStateNormal];
         [self.rightBtn setHidden:NO];
         [self.navView addSubview:self.switchBtn];
        self.design = [[DesignerMapView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
@@ -68,7 +68,7 @@
     if(!_switchBtn)
     {
         _switchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _switchBtn.frame = CGRectMake(self.navView.width - 54.0f- 44.0f, 20.0f, 44.0f, 44.0f);
+        _switchBtn.frame = CGRectMake(self.navView.width - 44.0f - 44.0f, 20.0f, 44.0f, 44.0f);
         [_switchBtn setImage:[UIImage imageNamed:@"Icons_move_up"] forState:UIControlStateNormal];
         [_switchBtn setImage:[UIImage imageNamed:@"Icons_move_down"] forState:UIControlStateSelected];
     }

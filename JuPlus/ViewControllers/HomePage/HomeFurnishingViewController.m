@@ -55,7 +55,7 @@
 
     [backV addSubview:self.tabBarV];
     
-    //原定筛选按钮
+    //原定标签选择按钮
     [self.collectionV.rightBtn addTarget:self action:@selector(classifyBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     //个人中心
     [self.view addSubview:self.classifyV];

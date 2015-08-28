@@ -67,8 +67,7 @@
     if(!_rightBtn)
     {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightBtn.frame = CGRectMake(self.navView.width - 54.0f, statusY, 44.0f, 44.0f);
-        [_rightBtn setImage:[UIImage imageNamed:@"Icons_classify"] forState:UIControlStateNormal];
+        _rightBtn.frame = CGRectMake(self.navView.width - 44.0f, statusY, 44.0f, 44.0f);
     }
     return _rightBtn;
 }

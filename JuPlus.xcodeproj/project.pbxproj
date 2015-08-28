@@ -156,7 +156,6 @@
 		84E1912C1B84259300C77265 /* CollocationClassifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E1912B1B84259300C77265 /* CollocationClassifyView.m */; };
 		84E1912F1B8431BA00C77265 /* Icons_move_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E1912D1B8431BA00C77265 /* Icons_move_down@2x.png */; };
 		84E191301B8431BA00C77265 /* Icons_move_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E1912E1B8431BA00C77265 /* Icons_move_up@2x.png */; };
-		84E191321B843F0B00C77265 /* Icons_classify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E191311B843F0B00C77265 /* Icons_classify@2x.png */; };
 		84E1EC951B579AF700DABA36 /* AAPTransitionDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E1EC901B579AF600DABA36 /* AAPTransitionDirector.m */; };
 		84E1EC961B579AF700DABA36 /* UINavigationController+RadialTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E1EC921B579AF600DABA36 /* UINavigationController+RadialTransaction.m */; };
 		84E1EC971B579AF700DABA36 /* UIView+Radial.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E1EC941B579AF700DABA36 /* UIView+Radial.m */; };
@@ -305,6 +304,7 @@
 		84EF22C91B7AFBED00CEEE47 /* MyWorksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF22C81B7AFBED00CEEE47 /* MyWorksListViewController.m */; };
 		84EF22CE1B7B18D400CEEE47 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84EF22CB1B7B18D400CEEE47 /* libMobClickLibrary.a */; };
 		84EF22D21B7B538800CEEE47 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84EF22D11B7B538800CEEE47 /* CoreText.framework */; };
+		84EF7EB11B9003D300F6756C /* Icons_Classify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EF7EB01B9003D300F6756C /* Icons_Classify@2x.png */; };
 		84F0277D1B81D377004FF997 /* icon_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F0277C1B81D377004FF997 /* icon_sign@2x.png */; };
 		84F027811B81E9D2004FF997 /* zqljyb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84F027801B81E9D2004FF997 /* zqljyb.ttf */; };
 		84F0D11F1B7057BC00F56D5A /* MarkLabeiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D11E1B7057BC00F56D5A /* MarkLabeiView.m */; };
@@ -612,7 +612,6 @@
 		84E1912B1B84259300C77265 /* CollocationClassifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollocationClassifyView.m; sourceTree = "<group>"; };
 		84E1912D1B8431BA00C77265 /* Icons_move_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icons_move_down@2x.png"; sourceTree = "<group>"; };
 		84E1912E1B8431BA00C77265 /* Icons_move_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icons_move_up@2x.png"; sourceTree = "<group>"; };
-		84E191311B843F0B00C77265 /* Icons_classify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icons_classify@2x.png"; sourceTree = "<group>"; };
 		84E1EC8F1B579AF600DABA36 /* AAPTransitionDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPTransitionDirector.h; sourceTree = "<group>"; };
 		84E1EC901B579AF600DABA36 /* AAPTransitionDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPTransitionDirector.m; sourceTree = "<group>"; };
 		84E1EC911B579AF600DABA36 /* UINavigationController+RadialTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+RadialTransaction.h"; sourceTree = "<group>"; };
@@ -854,6 +853,7 @@
 		84EF22CC1B7B18D400CEEE47 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		84EF22CD1B7B18D400CEEE47 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		84EF22D11B7B538800CEEE47 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		84EF7EB01B9003D300F6756C /* Icons_Classify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icons_Classify@2x.png"; sourceTree = "<group>"; };
 		84F0277C1B81D377004FF997 /* icon_sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_sign@2x.png"; sourceTree = "<group>"; };
 		84F027801B81E9D2004FF997 /* zqljyb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = zqljyb.ttf; sourceTree = "<group>"; };
 		84F0D11D1B7057BC00F56D5A /* MarkLabeiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkLabeiView.h; sourceTree = "<group>"; };
@@ -1614,7 +1614,6 @@
 				844545A71B8478EF00C47CCB /* remin_Tag@2x.png */,
 				844545A81B8478EF00C47CCB /* Icons_Delete@2x.png */,
 				844545A91B8478EF00C47CCB /* search_Tags@2x.png */,
-				84E191311B843F0B00C77265 /* Icons_classify@2x.png */,
 				84E1912D1B8431BA00C77265 /* Icons_move_down@2x.png */,
 				84E1912E1B8431BA00C77265 /* Icons_move_up@2x.png */,
 				84F0277C1B81D377004FF997 /* icon_sign@2x.png */,
@@ -1880,6 +1879,7 @@
 		84F0E8531B8DAA5A0035FFFD /* Version3_designer */ = {
 			isa = PBXGroup;
 			children = (
+				84EF7EB01B9003D300F6756C /* Icons_Classify@2x.png */,
 				8432BB7E1B8EFEFD006A5A4B /* icons_Person@2x.png */,
 				8432BB7A1B8EFEF6006A5A4B /* icons_down@2x.png */,
 				8432BB7B1B8EFEF6006A5A4B /* icons_up@2x.png */,
@@ -2289,6 +2289,7 @@
 				84E40D431B663A8400FB63AE /* icons_01_sel@2x.png in Resources */,
 				84520A641B86F7E900E7BC4E /* yd2@2x.jpg in Resources */,
 				84520A681B8706B400E7BC4E /* Default_left@2x.png in Resources */,
+				84EF7EB11B9003D300F6756C /* Icons_Classify@2x.png in Resources */,
 				84E2E0631B53C327007F2585 /* icons_add@2x.png in Resources */,
 				84E7DE031B7326C200956CCE /* UMSCommentInputController.xib in Resources */,
 				84E672651B6B47DB00CFD1A2 /* camera_line@2x.png in Resources */,
@@ -2341,7 +2342,6 @@
 				84E7DE2F1B7326E700956CCE /* WeiboSDK.bundle in Resources */,
 				84520A6B1B8711B900E7BC4E /* Default-736@3x.png in Resources */,
 				8481E26A1B608EF100CB89C6 /* becomeDesigner@2x.png in Resources */,
-				84E191321B843F0B00C77265 /* Icons_classify@2x.png in Resources */,
 				84DAFFA01B4A3B72008418D0 /* Default-667@2x.png in Resources */,
 				844545AB1B8478EF00C47CCB /* Icons_Delete@2x.png in Resources */,
 				84E7DE041B7326C200956CCE /* UMSCommentInputControlleriPad.xib in Resources */,
