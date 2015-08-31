@@ -10,7 +10,7 @@
 typedef enum{
     ShowCollocation = 1,  //显示套餐列表
     ShowPerson , //显示个人中心
-    GoCarma,
+    GoToCarma,
 } TabBarTag;
 
 @protocol TabBarViewDelegate <NSObject>
