@@ -48,7 +48,8 @@
         [self.navView setHidden:NO];
 
         self.titleLabel.text = @"居+";
-        [self.rightBtn setImage:[UIImage imageNamed:@"Icons_Classify"] forState:UIControlStateNormal];
+        [self.rightBtn setImage:[UIImage imageNamed:@"icons_Classify"] forState:UIControlStateNormal];
+        self.rightBtn.frame = CGRectMake(self.navView.width - 88.0f, self.rightBtn.top, self.rightBtn.width, self.rightBtn.height);
         [self.rightBtn setHidden:NO];
         [self.navView addSubview:self.switchBtn];
        self.design = [[DesignerMapView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
@@ -68,9 +69,9 @@
     if(!_switchBtn)
     {
         _switchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _switchBtn.frame = CGRectMake(self.navView.width - 44.0f - 44.0f, 20.0f, 44.0f, 44.0f);
-        [_switchBtn setImage:[UIImage imageNamed:@"Icons_move_up"] forState:UIControlStateNormal];
-        [_switchBtn setImage:[UIImage imageNamed:@"Icons_move_down"] forState:UIControlStateSelected];
+        _switchBtn.frame = CGRectMake(self.navView.width - 44.0f, 20.0f, 44.0f, 44.0f);
+        [_switchBtn setImage:[UIImage imageNamed:@"icons_map"] forState:UIControlStateNormal];
+        [_switchBtn setImage:[UIImage imageNamed:@"icons_home"] forState:UIControlStateSelected];
     }
     return _switchBtn;
 }
@@ -123,10 +124,30 @@
 -(void)switchBtnPress:(UIButton *)sender
 {
     if (!self.isShowMap) {
+        
+        self.design.alpha = 0;
         [self.design setHidden:NO];
-        [self.listTab setHidden:YES];
-        self.isShowMap = YES;
+        [UIView animateWithDuration:ANIMATION animations:^{
+            self.listTab.alpha = 0.0f;
+            self.design.alpha = 1.0f;
+            self.switchBtn.selected = YES;
+        } completion:^(BOOL finished) {
+            self.isShowMap = YES;
+            [self.listTab setHidden:YES];
+        }];
+        
     }else{
+        self.listTab.alpha = 0;
+        [self.listTab setHidden:NO];
+        [UIView animateWithDuration:ANIMATION animations:^{
+            self.listTab.alpha = 1.0f;
+            self.design.alpha = 0.0f;
+            self.switchBtn.selected = NO;
+        } completion:^(BOOL finished) {
+            self.isShowMap = NO;
+            [self.design setHidden:YES];
+        }];
+
         [self.design setHidden:YES];
         [self.listTab setHidden:NO];
         self.isShowMap = NO;

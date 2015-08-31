@@ -15,13 +15,16 @@
     if(self = [super init])
     {
 
+        //设置self的起始点没有意义，因为它总是以撒点的经纬度为中心点
+        self.frame = CGRectMake(0, 0.0f, 30.0f, 80.0f);
         self.myCoordinate = coordinate;
         self.portraitPath = imagePath;
         self.type = type;
         self.myCoordinate = coordinate;
-        self.backgroundColor = [UIColor redColor];
         [self addSubview:self.backImg];
+        //self.backgroundColor = [UIColor redColor];
         [self.backImg addSubview:self.topImg];
+        [self.backImg addSubview:self.btn];
     }
     return self;
 }
@@ -29,21 +32,40 @@
 {
     if(!_backImg)
     {
-        _backImg = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 40.0f)];
+        _backImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0.0f, 30.0f, 40.0f)];
         if (self.type==1) {
             [_backImg setImage:[UIImage imageNamed:@"designer_map"]];
 
         }else
         [_backImg setImage:[UIImage imageNamed:@"collocation_map"]];
+        _backImg.userInteractionEnabled = YES;
 
     }
     return _backImg;
 }
+-(UIButton *)btn
+{
+    if(!_btn)
+    {
+        _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btn.frame = CGRectMake(0.0f, 0.0f, self.backImg.width, self.backImg.height);
+        [_btn addTarget:self action:@selector(btnPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _btn;
+}
+-(void)btnPress:(UIButton *)sender
+{
+    if (self.annoDelegate&&[self.annoDelegate respondsToSelector:@selector(annoPress:)]) {
+        [self.annoDelegate annoPress:sender];
+    }
+}
 -(UIImageView *)topImg
 {
     if (!_topImg) {
-        _topImg = [[UIImageView alloc]initWithFrame:CGRectMake(1.0f, 5.0f, self.backImg.width - 2.0f, self.backImg.height - 10.0f)];
+        _topImg = [[UIImageView alloc]initWithFrame:CGRectMake(3.0f, 8.5f, self.backImg.width - 6.0f, 24.0f)];
         _topImg.layer.masksToBounds = YES;
+        _topImg.userInteractionEnabled = YES;
         _topImg.layer.cornerRadius = _topImg.width/2;
     }
     return _topImg;
@@ -52,6 +74,10 @@
 -(CLLocationCoordinate2D )coordinate
 {
     return _myCoordinate;
+}
+-(NSString *)title
+{
+    return @" ";
 }
 /*
 // Only override drawRect: if you perform custom drawing.

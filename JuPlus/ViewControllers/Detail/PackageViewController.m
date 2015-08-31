@@ -68,7 +68,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLabel.text = @"套餐介绍";
+    self.titleLabel.frame = CGRectMake(50.0f, self.titleLabel.top, self.navView.width - 100.0f, self.titleLabel.height);
     rectW1 = (SCREEN_WIDTH - space*3)/2;
     rectW2 = (SCREEN_WIDTH - space*4)/3;
     [self.rightBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
@@ -83,7 +83,8 @@
 
     [self.backScroll addSubview:self.secBackScroll];
     [self.view addSubview:self.designIcon];
-    [self.secBackScroll addSubview:self.nameLabel];
+    //设计师名称注释，删除
+    //[self.secBackScroll addSubview:self.nameLabel];
     [self.secBackScroll addSubview:self.addressView];
     [self.secBackScroll addSubview:self.displayView];
     [self.secBackScroll addSubview:self.productListV];
@@ -226,21 +227,21 @@
     return _secBackScroll;
 }
 
--(UILabel *)nameLabel
-{
-    if(!_nameLabel)
-    {
-        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(space, 0.0f, self.backScroll.width - space*2, 40.0f)];
-        [_nameLabel setFont:FontType(FontSize)];
-        [_nameLabel setTextColor:Color_Basic];
-        _nameLabel.textAlignment = NSTextAlignmentCenter;
-        
-        UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.nameLabel.height - 1.0f, _nameLabel.width, 1.0f)];
-        v.backgroundColor = Color_Gray_lines;
-        [_nameLabel addSubview:v];
-    }
-    return _nameLabel;
-}
+//-(UILabel *)nameLabel
+//{
+//    if(!_nameLabel)
+//    {
+//        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(space, 0.0f, self.backScroll.width - space*2, 40.0f)];
+//        [_nameLabel setFont:FontType(FontSize)];
+//        [_nameLabel setTextColor:Color_Basic];
+//        _nameLabel.textAlignment = NSTextAlignmentCenter;
+//        
+//        UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.nameLabel.height - 1.0f, _nameLabel.width, 1.0f)];
+//        v.backgroundColor = Color_Gray_lines;
+//        [_nameLabel addSubview:v];
+//    }
+//    return _nameLabel;
+//}
 -(UIButton *)designIcon
 {
     if(!_designIcon)
@@ -260,20 +261,26 @@
 {
     if(!_addressView)
     {
-        _addressView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, self.nameLabel.bottom, self.backScroll.width, 70.0f)];
-        _addressView.headerL.text = @"线下体验店";
+        _addressView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.backScroll.width, 70.0f)];
+        _addressView.headerL.text = @"做客地址";
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, _addressView.width, _addressView.height);
+        [btn addTarget:self action:@selector(addressPress:) forControlEvents:UIControlEventTouchUpInside];
         [_addressView addSubview:btn];
     }
     return _addressView;
+}
+//点击做客地址，弹出预约
+-(void)addressPress:(UIButton *)sender
+{
+    
 }
 -(InfoDisplayView *)displayView
 {
     if(!_displayView)
     {
         _displayView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, self.addressView.bottom, self.backScroll.width, 70.0f)];
-        _displayView.headerL.text = @"简装介绍";
+        _displayView.headerL.text = @"产品理念";
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, _addressView.width, _addressView.height);
@@ -352,7 +359,7 @@
     //加标签
     [self fileLabels];
     //设计师
-    [self.nameLabel setText:[NSString stringWithFormat:@"设计师 %@",respon.designer]];
+    [self.titleLabel setText:[NSString stringWithFormat:@"%@ 的作品",respon.designer]];
     [self.designIcon setimageUrl:respon.portraitUrl placeholderImage:nil];
     //地址
     [self.addressView.textL setText:respon.address];
