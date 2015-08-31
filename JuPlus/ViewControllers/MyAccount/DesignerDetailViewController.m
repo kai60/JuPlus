@@ -7,14 +7,14 @@
 //
 
 #import "DesignerDetailViewController.h"
-#import "AppointViewController.h"
 #import "DesignerCell.h"
 #import "DesignerHeaderView.h"
-#import "AppointViewController.h"
 #import "DesignerRequest.h"
 #import "DesignerRespon.h"
 #import "DesignerDTO.h"
 #import "PackageViewController.h"
+#import "AppointRequest.h"
+#import "AppointRespon.h"
 @interface DesignerDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ScrollRefreshViewDegegate>
 {
     ScrollRefreshViewHeader *header;
@@ -40,7 +40,7 @@
     self.dataArray = [[NSMutableArray alloc]init];
     [self startRequestDes];
     [self createTable];
-    
+    [self.view addSubview:self.appointmentBtn];
 
     //上拉刷新
     header = [ScrollRefreshViewHeader header];
@@ -112,12 +112,12 @@
         [tableHeader.personHeadImageView setimageUrl:respon.portraitPath placeholderImage:nil];
         [tableHeader.detail setText:respon.nickname];
         [self.dataArray addObjectsFromArray:respon.designerArray];
-        //判断是否可以预约设计师
-        if ([respon.orderFlag intValue]== 0) {
-            NSLog(@"%@",respon.orderFlag);
-        }else if ([respon.orderFlag intValue] == 1){
-            [self.view addSubview:self.appointmentBtn];
-        }
+//        //判断是否可以预约设计师
+//        if ([respon.orderFlag intValue]== 0) {
+//            NSLog(@"%@",respon.orderFlag);
+//        }else if ([respon.orderFlag intValue] == 1){
+//            [self.view addSubview:self.appointmentBtn];
+//        }
         [self.tableV reloadData];
         [self stopReresh];
     
@@ -160,7 +160,7 @@
         [_appointmentBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_appointmentBtn setTitle:@"预约设计师" forState:UIControlStateNormal];
         [_appointmentBtn setBackgroundColor:Color_Pink];
-        _appointmentBtn.font = FontType(FontSize);
+        _appointmentBtn.titleLabel.font = FontType(FontSize);
         _appointmentBtn.alpha = ALPHLA_BUTTON;
         [_appointmentBtn addTarget:self action:@selector(appointment) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -168,13 +168,25 @@
 }
 - (void)appointment
 {
-    AppointViewController *appVC = [[AppointViewController alloc]init];
-    [self.navigationController pushViewController:appVC animated:YES];
+    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"您是否确定预约" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alt.tag = 10;
+    [alt show];
 }
--(void)nextPress
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    AppointViewController *app = [[AppointViewController alloc]init];
-    [self.navigationController pushViewController:app animated:YES];
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
+    if (alertView.tag == 10){
+        if (buttonIndex == 1) {
+          //网络请求
+            
+        }
+    }
+}
+- (void)appoin
+{
+    UIAlertView *aler = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"恭喜您已预约成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"我知道了", nil];
+    [aler show];
+    
 }
 -(void)backPress
 {

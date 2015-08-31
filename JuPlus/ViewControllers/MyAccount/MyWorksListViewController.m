@@ -202,6 +202,7 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
     if(buttonIndex == 1){
 //       NSLog(@"%ld", (long)self.index);
         

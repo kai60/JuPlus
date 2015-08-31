@@ -19,15 +19,16 @@
 		46956E421B8D5E88005C72C9 /* FavRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46956E411B8D5E88005C72C9 /* FavRequest.m */; };
 		46956E451B8D5EB8005C72C9 /* FavDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46956E441B8D5EB8005C72C9 /* FavDTO.m */; };
 		46956E481B8D5F0C005C72C9 /* FavRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 46956E471B8D5F0C005C72C9 /* FavRespon.m */; };
-		46956E4B1B8D6459005C72C9 /* AppointRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46956E4A1B8D6459005C72C9 /* AppointRequest.m */; };
-		46956E4E1B8D648E005C72C9 /* AppointRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 46956E4D1B8D648E005C72C9 /* AppointRespon.m */; };
-		46956E511B8D64C1005C72C9 /* AppointDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46956E501B8D64C1005C72C9 /* AppointDTO.m */; };
 		46956E541B8D658E005C72C9 /* FavCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46956E531B8D658E005C72C9 /* FavCell.m */; };
 		4698D8C61B8C17DD006F7C0E /* DesignerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4698D8C51B8C17DD006F7C0E /* DesignerCell.m */; };
 		46B3FFA01B7D923B00FCBF98 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FF9F1B7D923B00FCBF98 /* delete@2x.png */; };
 		46B3FFA21B7D924100FCBF98 /* fav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA11B7D924100FCBF98 /* fav@2x.png */; };
 		46B3FFA41B7D924600FCBF98 /* pay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA31B7D924600FCBF98 /* pay@2x.png */; };
 		46E07B061B8EEF2700E6D016 /* MyWorksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B051B8EEF2700E6D016 /* MyWorksCell.m */; };
+		46E07B091B9043AA00E6D016 /* AppointRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B081B9043AA00E6D016 /* AppointRequest.m */; };
+		46E07B0C1B9043B900E6D016 /* AppointRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B0B1B9043B900E6D016 /* AppointRespon.m */; };
+		46E07B0F1B9046FF00E6D016 /* AppointDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B0E1B9046FF00E6D016 /* AppointDTO.m */; };
+		46E07B131B90476600E6D016 /* DesignerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B121B90476600E6D016 /* DesignerDTO.m */; };
 		46EA34A91B842A1D002095C9 /* Btn_shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34A81B842A1D002095C9 /* Btn_shot@2x.png */; };
 		46EA34AB1B842A23002095C9 /* Btn_shot_click@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34AA1B842A23002095C9 /* Btn_shot_click@2x.png */; };
 		46EA34AD1B842A8E002095C9 /* close_cha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34AC1B842A8E002095C9 /* close_cha@2x.png */; };
@@ -55,7 +56,6 @@
 		846156781B4F779E00F4AAA2 /* InfoDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156771B4F779E00F4AAA2 /* InfoDisplayView.m */; };
 		8461567B1B4FA77700F4AAA2 /* UILabel+JuPlusUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461567A1B4FA77700F4AAA2 /* UILabel+JuPlusUILabel.m */; };
 		846156811B4FC35400F4AAA2 /* DesignerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156801B4FC35400F4AAA2 /* DesignerDetailViewController.m */; };
-		846156881B4FC4A200F4AAA2 /* AppointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846156871B4FC4A200F4AAA2 /* AppointViewController.m */; };
 		847C5EFF1B395B0D00706638 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847C5EFE1B395B0D00706638 /* LoginViewController.m */; };
 		847C5F021B395CE600706638 /* JuPlusTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 847C5F011B395CE600706638 /* JuPlusTextField.m */; };
 		8481E26A1B608EF100CB89C6 /* becomeDesigner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481E2691B608EF100CB89C6 /* becomeDesigner@2x.png */; };
@@ -294,7 +294,6 @@
 		84E81AB31B5F8577007E3B9B /* PackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E81AB11B5F8577007E3B9B /* PackageCell.m */; };
 		84E8EDA81B5CC6C900A7420C /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8EDA71B5CC6C900A7420C /* MyInfoViewController.m */; };
 		84E8EDAE1B5CCE6500A7420C /* JuPlusUserInfoCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8EDAD1B5CCE6500A7420C /* JuPlusUserInfoCenter.m */; };
-		84E9954F1B8EB0C700C3A4FD /* DesignerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9954E1B8EB0C700C3A4FD /* DesignerDTO.m */; };
 		84E9DFF41B8C4AB90052050D /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E9DFF31B8C4AB90052050D /* libstdc++.6.0.9.dylib */; };
 		84E9DFFA1B8C64B30052050D /* JuPlusGetLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9DFF91B8C64B30052050D /* JuPlusGetLocation.m */; };
 		84EA42711B834653009F8107 /* carma_shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EA42701B834653009F8107 /* carma_shot@2x.png */; };
@@ -406,21 +405,23 @@
 		46956E441B8D5EB8005C72C9 /* FavDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavDTO.m; sourceTree = "<group>"; };
 		46956E461B8D5F0C005C72C9 /* FavRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavRespon.h; sourceTree = "<group>"; };
 		46956E471B8D5F0C005C72C9 /* FavRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavRespon.m; sourceTree = "<group>"; };
-		46956E491B8D6459005C72C9 /* AppointRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointRequest.h; sourceTree = "<group>"; };
-		46956E4A1B8D6459005C72C9 /* AppointRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointRequest.m; sourceTree = "<group>"; };
-		46956E4C1B8D648E005C72C9 /* AppointRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointRespon.h; sourceTree = "<group>"; };
-		46956E4D1B8D648E005C72C9 /* AppointRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointRespon.m; sourceTree = "<group>"; };
-		46956E4F1B8D64C1005C72C9 /* AppointDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointDTO.h; sourceTree = "<group>"; };
-		46956E501B8D64C1005C72C9 /* AppointDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointDTO.m; sourceTree = "<group>"; };
 		46956E521B8D658E005C72C9 /* FavCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavCell.h; sourceTree = "<group>"; };
 		46956E531B8D658E005C72C9 /* FavCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavCell.m; sourceTree = "<group>"; };
 		4698D8C41B8C17DD006F7C0E /* DesignerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerCell.h; sourceTree = "<group>"; };
 		4698D8C51B8C17DD006F7C0E /* DesignerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerCell.m; sourceTree = "<group>"; };
 		4698D8C81B8C368C006F7C0E /* DesignerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerDTO.m; sourceTree = "<group>"; };
+
 		46B3FF9F1B7D923B00FCBF98 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		46B3FFA11B7D924100FCBF98 /* fav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav@2x.png"; sourceTree = "<group>"; };
 		46B3FFA31B7D924600FCBF98 /* pay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay@2x.png"; sourceTree = "<group>"; };
 		46E07B051B8EEF2700E6D016 /* MyWorksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorksCell.m; sourceTree = "<group>"; };
+		46E07B071B9043AA00E6D016 /* AppointRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointRequest.h; sourceTree = "<group>"; };
+		46E07B081B9043AA00E6D016 /* AppointRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointRequest.m; sourceTree = "<group>"; };
+		46E07B0A1B9043B900E6D016 /* AppointRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointRespon.h; sourceTree = "<group>"; };
+		46E07B0B1B9043B900E6D016 /* AppointRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointRespon.m; sourceTree = "<group>"; };
+		46E07B0D1B9046FF00E6D016 /* AppointDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointDTO.h; sourceTree = "<group>"; };
+		46E07B0E1B9046FF00E6D016 /* AppointDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointDTO.m; sourceTree = "<group>"; };
+		46E07B121B90476600E6D016 /* DesignerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerDTO.m; sourceTree = "<group>"; };
 		46EA34A81B842A1D002095C9 /* Btn_shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_shot@2x.png"; sourceTree = "<group>"; };
 		46EA34AA1B842A23002095C9 /* Btn_shot_click@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_shot_click@2x.png"; sourceTree = "<group>"; };
 		46EA34AC1B842A8E002095C9 /* close_cha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_cha@2x.png"; sourceTree = "<group>"; };
@@ -456,8 +457,6 @@
 		8461567A1B4FA77700F4AAA2 /* UILabel+JuPlusUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+JuPlusUILabel.m"; sourceTree = "<group>"; };
 		8461567F1B4FC35400F4AAA2 /* DesignerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerDetailViewController.h; sourceTree = "<group>"; };
 		846156801B4FC35400F4AAA2 /* DesignerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerDetailViewController.m; sourceTree = "<group>"; };
-		846156861B4FC4A200F4AAA2 /* AppointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointViewController.h; sourceTree = "<group>"; };
-		846156871B4FC4A200F4AAA2 /* AppointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointViewController.m; sourceTree = "<group>"; };
 		847C5EFD1B395B0D00706638 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../HomePage/LoginViewController.h; sourceTree = "<group>"; };
 		847C5EFE1B395B0D00706638 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../HomePage/LoginViewController.m; sourceTree = "<group>"; };
 		847C5F001B395CE600706638 /* JuPlusTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuPlusTextField.h; sourceTree = "<group>"; };
@@ -853,7 +852,6 @@
 		84E8EDAC1B5CCE6500A7420C /* JuPlusUserInfoCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JuPlusUserInfoCenter.h; path = JuPlus/ViewControllers/MyAccount/JuPlusUserInfoCenter.h; sourceTree = SOURCE_ROOT; };
 		84E8EDAD1B5CCE6500A7420C /* JuPlusUserInfoCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JuPlusUserInfoCenter.m; path = JuPlus/ViewControllers/MyAccount/JuPlusUserInfoCenter.m; sourceTree = SOURCE_ROOT; };
 		84E9954D1B8EB0C700C3A4FD /* DesignerDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerDTO.h; sourceTree = "<group>"; };
-		84E9954E1B8EB0C700C3A4FD /* DesignerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerDTO.m; sourceTree = "<group>"; };
 		84E9DFF31B8C4AB90052050D /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		84E9DFF81B8C64B30052050D /* JuPlusGetLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JuPlusGetLocation.h; path = JuPlus/ViewControllers/HomePage/HomePageViews/JuPlusGetLocation.h; sourceTree = SOURCE_ROOT; };
 		84E9DFF91B8C64B30052050D /* JuPlusGetLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JuPlusGetLocation.m; path = JuPlus/ViewControllers/HomePage/HomePageViews/JuPlusGetLocation.m; sourceTree = SOURCE_ROOT; };
@@ -1407,8 +1405,6 @@
 		84D688F01B4B740000E91423 /* MyAccount */ = {
 			isa = PBXGroup;
 			children = (
-				84E9954D1B8EB0C700C3A4FD /* DesignerDTO.h */,
-				84E9954E1B8EB0C700C3A4FD /* DesignerDTO.m */,
 				847C5EFD1B395B0D00706638 /* LoginViewController.h */,
 				847C5EFE1B395B0D00706638 /* LoginViewController.m */,
 				84829F7D1B4274B7001D807F /* RegisterViewController.h */,
@@ -1419,15 +1415,14 @@
 				84D6F5201B4E478E006E9893 /* OrderDetailViewController.m */,
 				4698D8C41B8C17DD006F7C0E /* DesignerCell.h */,
 				4698D8C51B8C17DD006F7C0E /* DesignerCell.m */,
-				4698D8C81B8C368C006F7C0E /* DesignerDTO.m */,
+				84E9954D1B8EB0C700C3A4FD /* DesignerDTO.h */,
+				46E07B121B90476600E6D016 /* DesignerDTO.m */,
+				46E07B0D1B9046FF00E6D016 /* AppointDTO.h */,
+				46E07B0E1B9046FF00E6D016 /* AppointDTO.m */,
 				37B40A5A1B8C4BA400AC37E3 /* DesignerHeaderView.h */,
 				37B40A5B1B8C4BA400AC37E3 /* DesignerHeaderView.m */,
 				8461567F1B4FC35400F4AAA2 /* DesignerDetailViewController.h */,
 				846156801B4FC35400F4AAA2 /* DesignerDetailViewController.m */,
-				46956E4F1B8D64C1005C72C9 /* AppointDTO.h */,
-				46956E501B8D64C1005C72C9 /* AppointDTO.m */,
-				846156861B4FC4A200F4AAA2 /* AppointViewController.h */,
-				846156871B4FC4A200F4AAA2 /* AppointViewController.m */,
 				84E2E05B1B53BB52007F2585 /* AddressControlViewController.h */,
 				84E2E05C1B53BB52007F2585 /* AddressControlViewController.m */,
 				84E2E05E1B53C230007F2585 /* AddAddressViewController.h */,
@@ -1849,8 +1844,8 @@
 				46956E411B8D5E88005C72C9 /* FavRequest.m */,
 				46956E371B8D59A5005C72C9 /* DesignerRequest.h */,
 				46956E381B8D59A5005C72C9 /* DesignerRequest.m */,
-				46956E491B8D6459005C72C9 /* AppointRequest.h */,
-				46956E4A1B8D6459005C72C9 /* AppointRequest.m */,
+				46E07B071B9043AA00E6D016 /* AppointRequest.h */,
+				46E07B081B9043AA00E6D016 /* AppointRequest.m */,
 			);
 			path = Version2Req;
 			sourceTree = "<group>";
@@ -1868,8 +1863,8 @@
 				46956E471B8D5F0C005C72C9 /* FavRespon.m */,
 				46956E3A1B8D59F9005C72C9 /* DesignerRespon.h */,
 				46956E3B1B8D59F9005C72C9 /* DesignerRespon.m */,
-				46956E4C1B8D648E005C72C9 /* AppointRespon.h */,
-				46956E4D1B8D648E005C72C9 /* AppointRespon.m */,
+				46E07B0A1B9043B900E6D016 /* AppointRespon.h */,
+				46E07B0B1B9043B900E6D016 /* AppointRespon.m */,
 			);
 			path = Version2Respon;
 			sourceTree = "<group>";
@@ -2511,6 +2506,7 @@
 				847C5F021B395CE600706638 /* JuPlusTextField.m in Sources */,
 				84B9AD121B4534D5006CF63F /* UIButton+JuPlusUIButton.m in Sources */,
 				84F0E83D1B8D8F7A0035FFFD /* VerificationReq.m in Sources */,
+				46E07B091B9043AA00E6D016 /* AppointRequest.m in Sources */,
 				84E672801B6B47DB00CFD1A2 /* SCNavigationController.m in Sources */,
 				84F0E8351B8D8F7A0035FFFD /* CollocationReq.m in Sources */,
 				84E814D51B56124700921332 /* PlaceOrderRespon.m in Sources */,
@@ -2534,13 +2530,13 @@
 				8432BB791B8EE5EC006A5A4B /* MapCollocationDTO.m in Sources */,
 				84E672881B6B47DB00CFD1A2 /* DCTextView.m in Sources */,
 				84E814CF1B56124700921332 /* GetAddressRespon.m in Sources */,
-				46956E511B8D64C1005C72C9 /* AppointDTO.m in Sources */,
 				84DAFFBE1B4A5F05008418D0 /* LabelView.m in Sources */,
 				9CABB3D51B329786006AD405 /* ClassifyView.m in Sources */,
 				84E814CD1B56124700921332 /* ClassifyRespon.m in Sources */,
 				84F0D1241B706CBC00F56D5A /* RelatedTagsReq.m in Sources */,
 				84E1EC971B579AF700DABA36 /* UIView+Radial.m in Sources */,
 				84EF22C91B7AFBED00CEEE47 /* MyWorksListViewController.m in Sources */,
+				46E07B0F1B9046FF00E6D016 /* AppointDTO.m in Sources */,
 				84E2E06B1B53C7D8007F2585 /* AddressCell.m in Sources */,
 				84F0E81E1B8D88B20035FFFD /* productOrderDTO.m in Sources */,
 				9CABB3D91B329BD2006AD405 /* JuPlusUIView.m in Sources */,
@@ -2620,10 +2616,10 @@
 				84F0D11F1B7057BC00F56D5A /* MarkLabeiView.m in Sources */,
 				84E43D951B5E57CD00A7028D /* JuPlusGetPictureView.m in Sources */,
 				84CDD96C1B4E76B800C97F7B /* ScrollRefreshViewHeader.m in Sources */,
+				46E07B0C1B9043B900E6D016 /* AppointRespon.m in Sources */,
 				46956E391B8D59A5005C72C9 /* DesignerRequest.m in Sources */,
 				84E814D31B56124700921332 /* PackageRespon.m in Sources */,
 				46956E481B8D5F0C005C72C9 /* FavRespon.m in Sources */,
-				846156881B4FC4A200F4AAA2 /* AppointViewController.m in Sources */,
 				84CC24D81B43BE6300BE342E /* JuPlusUILabel.m in Sources */,
 				46956E421B8D5E88005C72C9 /* FavRequest.m in Sources */,
 				84E814DB1B56126B00921332 /* GetFavListRespon.m in Sources */,
@@ -2631,7 +2627,6 @@
 				84E16FED1B54ED1000588D2B /* DeleteAddressReq.m in Sources */,
 				84829F821B427887001D807F /* TimerButton.m in Sources */,
 				84F0D1271B706CD700F56D5A /* RelatedTagsRespon.m in Sources */,
-				46956E4E1B8D648E005C72C9 /* AppointRespon.m in Sources */,
 				84E1912C1B84259300C77265 /* CollocationClassifyView.m in Sources */,
 				84E672851B6B47DB00CFD1A2 /* DCFrameView.m in Sources */,
 				846156811B4FC35400F4AAA2 /* DesignerDetailViewController.m in Sources */,
@@ -2647,7 +2642,6 @@
 				84B06AF31B71EEF300BD6D18 /* PostViewController.m in Sources */,
 				84B06AF21B71EEF300BD6D18 /* MarkTagsViewController.m in Sources */,
 				84D486101B4D0DF200AD0CCF /* OrderListViewController.m in Sources */,
-				84E9954F1B8EB0C700C3A4FD /* DesignerDTO.m in Sources */,
 				84829FB51B42839A001D807F /* md2.c in Sources */,
 				8495ED271B414F7D004A0C41 /* JuPlusLoadingView.m in Sources */,
 				9C7C3F981B2961F000D8F29B /* GuideViewController.m in Sources */,
@@ -2656,6 +2650,7 @@
 				84E672871B6B47DB00CFD1A2 /* DCStatusBarOverlay.m in Sources */,
 				84DAFF9A1B4A2F2C008418D0 /* ReceiveMessageView.m in Sources */,
 				9C7C3FB11B296DFB00D8F29B /* JuPlusNavigationController.m in Sources */,
+				46E07B131B90476600E6D016 /* DesignerDTO.m in Sources */,
 				84A8AFEA1B5CF1A000B25196 /* ChangepwdReq.m in Sources */,
 				84E814D71B56124700921332 /* RegisterRespon.m in Sources */,
 				84F0E8391B8D8F7A0035FFFD /* PlaceOrderReq.m in Sources */,
@@ -2676,6 +2671,7 @@
 				849728381B68CE9400EF17CC /* VIPhotoView.m in Sources */,
 				84E672AA1B6B755300CFD1A2 /* ImageCropper.m in Sources */,
 				46956E4B1B8D6459005C72C9 /* AppointRequest.m in Sources */,
+
 				84D688F91B4B7EA000E91423 /* JuPlusTabBarView.m in Sources */,
 				84E16FF21B550AF400588D2B /* SetDefAddressReq.m in Sources */,
 				84B06AF11B71EEF300BD6D18 /* ImageFilterProcessViewController.m in Sources */,
