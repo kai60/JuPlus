@@ -23,7 +23,10 @@
 //价格
 @property(nonatomic,strong)PriceView *priceV;
 
--(void)loadCellInfo:(HomePageInfoDTO *)homepageDTO;
+@property(nonatomic,strong)JuPlusUIView *messView;
+
+@property (nonatomic,strong)JuPlusUIView *bottomView;
+-(void)loadCellInfo:(HomePageInfoDTO *)homepageDTO withShow:(BOOL)isShow;
 
 
 @end

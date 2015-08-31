@@ -9,36 +9,55 @@
 #ifndef FurnHouse_JuPlusEnvironmentConfig_h
 #define FurnHouse_JuPlusEnvironmentConfig_h
 
+//==========================版本内容适配===============================
 // 可读的版本号，类似1.0.0
-#define VERSION_STRING @"1.0"
+#define VERSION_STRING @"1.1"
 // 内部版本号，用于和后台匹配接口信息
-#define VERSION_INT 1
+#define VERSION_INT 2
+//系统版本
+#define  VERSION [[UIDevice currentDevice].systemVersion doubleValue]
 //APP更新地址
 #define APP_URL @""
 #pragma globalConfig
+//
 #define nav_height 64.0f
 #define view_height [UIScreen mainScreen].bounds.size.height - nav_height
-
+//==========================屏幕宽高适配===============================
 //屏幕宽、高（用于适配不同机型）
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-//系统版本
-#define  VERSION [[UIDevice currentDevice].systemVersion doubleValue]
-#define PICTURE_HEIGHT 320.0f
+//图片高度
+#define PICTURE_HEIGHT [UIScreen mainScreen].bounds.size.width
+
+#define iphone5 SCREEN_HEIGHT==568.0f
+#define iphone6 SCREEN_HEIGHT==667.0f
+#define iphone6P SCREEN_HEIGHT==736.0f
 //用于下拉加载更多的每页数据数
 #define PAGESIZE @"10"
 
 #define ANIMATION 0.3
 
 #define TABBAR_HEIGHT 44.0f
+//==========================字体相关================================
 ////字体样式
-#define FONTSTYLE @"Heiti SC"
+//#define FONTSTYLE @"Heiti SC"
+//张海山1
+#define FONTSTYLE @"ZHSRXT--GBK1-0"
+//张海山2
+//#define FONTSTYLE @"ZHSRXT-GBK"
+//叶根友特楷
+//#define FONTSTYLE @"-"
+
+
 //基于给定字体样式的字体设置
 #define FontType(_ref) [UIFont fontWithName:FONTSTYLE size:(_ref)]
+
 //常用字体大小
 #define FontSize 14.0f
 #define FontMinSize 12.0f
 #define FontMaxSize 16.0f
+
+//=======================================================================
 // 连接超时时间，秒
 #define CONNECT_TIMEOUT 30
 // 数据等待超时时间，秒
@@ -47,13 +66,25 @@
 //联系客服
 #define HELPTELEPHONE @"021-61138651"
 
+#pragma mark --社会化分享
+#define UM_APPKey @"55c2fa1067e58e7c850016e6"
+//新浪微博
+#define SinaAppKey @"34489026"
+#define SinaSecret @"efb2084c177517ea8fad51d9e3d7f47a"
+//微信分享
+#define WeiChatAppKey @"wxf4ab24a1fcf8de97"
+#define WeiChatAppSecret @"60bfbcc61019e15292ea0dd7bd1f0546"
 
+#define WeiChatShareUrl @"www.jujiax.com"
+//=======================================================================
+//地图相关key
+#define AMap_Key @"7c69922b6529b508b04254881b926f92"
+//=======================================================================
 //测试环境
 #ifdef kDevTest
 //网络请求IP地址
 #define FRONT_SERVER_URL @"http://121.40.237.195:8859"
 //#define FRONT_SERVER_URL @"http://192.168.0.112"
-
 //H5界面前缀地址
 #define FRONT_WEB_URL @""
 //图片的前置地址

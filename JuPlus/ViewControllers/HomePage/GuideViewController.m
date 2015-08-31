@@ -35,30 +35,25 @@
     sv.pagingEnabled = YES;               //控制翻动时是否整页翻动
     [self.view addSubview:sv];
     
-    CGFloat pageControlHeight = 30.0f;
-    pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0.0f, SCREEN_HEIGHT-30.0f, SCREEN_WIDTH, pageControlHeight)];
+    CGFloat pageControlHeight = 20.0f;
+    pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 100.0f)/2, SCREEN_HEIGHT-50.0f, 100.0f, pageControlHeight)];
+    pageControl.layer.masksToBounds = YES;
+    pageControl.layer.cornerRadius = 10.0f;
     pageControl.backgroundColor = [UIColor clearColor];
+    pageControl.pageIndicatorTintColor = RGBACOLOR(242, 114, 128, 0.4);
+    pageControl.currentPageIndicatorTintColor = Color_Pink;
     pageControl.userInteractionEnabled = NO;
     [self.view addSubview:pageControl];
     
-    NSArray *guideArr1 = [NSArray arrayWithObjects:@"yd1@2x",@"yd2@2x",@"yd3@2x",@"yd4@2x", nil];
-    NSArray *guideArr2 = [NSArray arrayWithObjects:@"yd1_5@2x",@"yd2_5@2x",@"yd3_5@2x",@"yd4_5@2x", nil];
+    NSArray *guideArr1 = [NSArray arrayWithObjects:@"yd1@2x.jpg",@"yd2@2x.jpg",@"yd3@2x.jpg", nil];
     sv.contentSize=CGSizeMake(SCREEN_WIDTH*[guideArr1 count]+0.5, SCREEN_HEIGHT);
     pageControl.numberOfPages = [guideArr1 count];
     
     
     for(int i=0;i<[guideArr1 count];i++)
     {
-        NSString *imageString;
-        if(SCREEN_HEIGHT<500.0f)
-        {
-            imageString = [guideArr1 objectAtIndex:i];
-        }
-        else
-        {
-            imageString = [guideArr2 objectAtIndex:i];
-            
-        }
+        NSString *imageString = [guideArr1 objectAtIndex:i];
+        
         UIImageView *guideImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:imageString]];
         guideImageView.frame = CGRectMake(SCREEN_WIDTH*i, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
         guideImageView.userInteractionEnabled=YES;
@@ -95,7 +90,7 @@
 }
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (scrollView.contentOffset.x>3*SCREEN_WIDTH) {
+    if (scrollView.contentOffset.x>2*SCREEN_WIDTH) {
         [self goMain];
     }
 }

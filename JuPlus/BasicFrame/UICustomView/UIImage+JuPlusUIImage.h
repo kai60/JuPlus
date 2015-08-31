@@ -26,6 +26,9 @@
 - (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
 //得到缩放的图片
 -(NSString *)getImageString;
-
+//得到固定尺寸的压缩图片上传
+-(NSString *)getPostImageString;
+//给图像绘制文字
+-(UIImage *)addText:(NSString *)text andNickname:(NSString *)name;
 
 @end

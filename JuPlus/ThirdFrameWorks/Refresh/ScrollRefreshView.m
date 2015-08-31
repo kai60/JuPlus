@@ -99,7 +99,6 @@
     label.textAlignment =NSTextAlignmentCenter;
     return label;
    
-    
 }
 #pragma mark 重写frame
 -(void)setFrame:(CGRect)frame

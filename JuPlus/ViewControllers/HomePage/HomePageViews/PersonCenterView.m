@@ -14,6 +14,8 @@
 #import "MyFavourViewController.h"
 #import "JuPlusUserInfoCenter.h"
 #import "MyInfoViewController.h"
+#import "CameraViewController.h"
+#import "MyWorksListViewController.h"
 @implementation PersonCenterView
 {
     PersonCenterReq *centerReq;
@@ -67,7 +69,7 @@
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetNickname) name:ResetNickName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPortrait) name:ResetPortrait object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadPerson object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadPerson object:nil];
 
 }
 -(void)resetNickname
@@ -154,9 +156,12 @@
 }
 -(void)uploadClick
 {
-    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"完成基础操作后成为居+搭配设计师" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-    alt.tag = 101;
-    [alt show];
+//    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"完成基础操作后成为居+搭配设计师" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+//    alt.tag = 101;
+//    [alt show];
+    CameraViewController *view = [[CameraViewController alloc]init];
+    [[self getSuperViewController].navigationController pushViewController:view animated:YES];
+    
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -183,7 +188,10 @@
     switch (sender.tag) {
         case 0:
         {
-            [self uploadClick];
+            //[self uploadClick];
+            MyWorksListViewController *myWorks = [[MyWorksListViewController alloc]init];
+            [[self getSuperViewController].navigationController pushViewController:myWorks animated:YES];
+            
         }
             break;
         case 1:
@@ -198,6 +206,7 @@
             //我的收藏
             MyFavourViewController *fav = [[MyFavourViewController alloc]init];
             [[self getSuperViewController].navigationController pushViewController:fav animated:YES];
+
         }
             break;
             

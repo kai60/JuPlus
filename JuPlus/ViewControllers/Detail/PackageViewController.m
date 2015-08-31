@@ -21,8 +21,14 @@
 #import "UINavigationController+RadialTransaction.h"
 #import "DesignerDetailViewController.h"
 #import "ZoomImageViewController.h"
-@interface PackageViewController ()
+#import "ToastView.h"
+#import "UMSocial.h"
+@interface PackageViewController ()<ToastViewDelegate,UMSocialUIDelegate>
 #define space 10.0f
+@property (nonatomic,strong)ToastView *toast;
+
+@property (nonatomic,strong)UIView *backView;
+
 //购买
 @property (nonatomic,strong)UIButton *placeOrderBtn;
 //套餐详情
@@ -55,16 +61,21 @@
 {
     PackageReq *req;
     PackageRespon *respon;
+    UIImage *shareImage;
     CGFloat rectW1;
     CGFloat rectW2;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLabel.text = @"套餐介绍";
+    self.titleLabel.frame = CGRectMake(50.0f, self.titleLabel.top, self.navView.width - 100.0f, self.titleLabel.height);
     rectW1 = (SCREEN_WIDTH - space*3)/2;
     rectW2 = (SCREEN_WIDTH - space*4)/3;
-
+    [self.rightBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [self.rightBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateSelected];
+    [self.rightBtn setHidden:NO];
+    [self.rightBtn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.backScroll];
     [self.backScroll addSubview:self.packageImageV];
     [self.packageImageV addSubview:self.favBtn];
@@ -72,13 +83,15 @@
 
     [self.backScroll addSubview:self.secBackScroll];
     [self.view addSubview:self.designIcon];
-    [self.secBackScroll addSubview:self.nameLabel];
+    //设计师名称注释，删除
+    //[self.secBackScroll addSubview:self.nameLabel];
     [self.secBackScroll addSubview:self.addressView];
     [self.secBackScroll addSubview:self.displayView];
     [self.secBackScroll addSubview:self.productListV];
     [self.secBackScroll addSubview:self.relativedView];
     [self.relativedView addSubview:self.relativedScroll];
     [self.view addSubview:self.placeOrderBtn];
+    [self addToastView];
     // Do any additional setup after loading the view.
     //自定义转场动画
     [self.leftBtn setHidden:YES];
@@ -104,7 +117,7 @@
         self.secBackScroll.alpha = 0;
         self.designIcon.alpha = 0;
     } completion:^(BOOL finished) {
-        [UIView  animateWithDuration:1.0f animations:^{
+        [UIView  animateWithDuration:0.5f animations:^{
             self.packageImageV.frame = newF;
         } completion:^(BOOL finished) {
             [self.navigationController popViewControllerAnimated:NO];
@@ -118,6 +131,28 @@
     }
 }
 #pragma mark --uifig
+-(ToastView *)toast
+{
+    if(!_toast)
+    {
+        CGFloat toastH = (SCREEN_WIDTH - 84.0f)+95.0f;
+        _toast = [[ToastView alloc]initWithFrame:CGRectMake(40.0f, (SCREEN_HEIGHT - toastH)/2, SCREEN_WIDTH - 80.0f, toastH) title:nil];
+        _toast.delegate = self;
+    }
+    return _toast;
+}
+-(UIView *)backView
+{
+    if(!_backView)
+    {
+        _backView = [[UIView alloc]initWithFrame:self.view.bounds];
+        _backView.userInteractionEnabled = YES;
+        _backView.backgroundColor = RGBACOLOR(0, 0, 0, 0.7);
+        UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hiddenToastView)];
+        [_backView addGestureRecognizer:ges];
+    }
+    return _backView;
+}
 -(UIButton *)placeOrderBtn
 {
     if(!_placeOrderBtn)
@@ -192,21 +227,21 @@
     return _secBackScroll;
 }
 
--(UILabel *)nameLabel
-{
-    if(!_nameLabel)
-    {
-        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(space, 0.0f, self.backScroll.width - space*2, 40.0f)];
-        [_nameLabel setFont:FontType(FontSize)];
-        [_nameLabel setTextColor:Color_Basic];
-        _nameLabel.textAlignment = NSTextAlignmentCenter;
-        
-        UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.nameLabel.height - 1.0f, _nameLabel.width, 1.0f)];
-        v.backgroundColor = Color_Gray_lines;
-        [_nameLabel addSubview:v];
-    }
-    return _nameLabel;
-}
+//-(UILabel *)nameLabel
+//{
+//    if(!_nameLabel)
+//    {
+//        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(space, 0.0f, self.backScroll.width - space*2, 40.0f)];
+//        [_nameLabel setFont:FontType(FontSize)];
+//        [_nameLabel setTextColor:Color_Basic];
+//        _nameLabel.textAlignment = NSTextAlignmentCenter;
+//        
+//        UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.nameLabel.height - 1.0f, _nameLabel.width, 1.0f)];
+//        v.backgroundColor = Color_Gray_lines;
+//        [_nameLabel addSubview:v];
+//    }
+//    return _nameLabel;
+//}
 -(UIButton *)designIcon
 {
     if(!_designIcon)
@@ -226,20 +261,26 @@
 {
     if(!_addressView)
     {
-        _addressView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, self.nameLabel.bottom, self.backScroll.width, 70.0f)];
-        _addressView.headerL.text = @"线下体验店";
+        _addressView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.backScroll.width, 70.0f)];
+        _addressView.headerL.text = @"做客地址";
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, _addressView.width, _addressView.height);
+        [btn addTarget:self action:@selector(addressPress:) forControlEvents:UIControlEventTouchUpInside];
         [_addressView addSubview:btn];
     }
     return _addressView;
+}
+//点击做客地址，弹出预约
+-(void)addressPress:(UIButton *)sender
+{
+    
 }
 -(InfoDisplayView *)displayView
 {
     if(!_displayView)
     {
         _displayView = [[InfoDisplayView alloc]initWithFrame:CGRectMake(0.0f, self.addressView.bottom, self.backScroll.width, 70.0f)];
-        _displayView.headerL.text = @"简装介绍";
+        _displayView.headerL.text = @"产品理念";
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, _addressView.width, _addressView.height);
@@ -289,6 +330,7 @@
 #pragma mark --dataRequest
 -(void)startRequest
 {
+    
     req = [[PackageReq alloc]init];
     [req setField:self.regNo forKey:@"collocateNo"];
     [req setField:[CommonUtil getToken] forKey:TOKEN];
@@ -303,6 +345,8 @@
 
 -(void)fileData
 {
+    shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,respon.shareImgUrl]]]];
+    [self.toast showShareView:shareImage];
     //是否收藏
     if([respon.isFav intValue]==1)
     {
@@ -315,7 +359,7 @@
     //加标签
     [self fileLabels];
     //设计师
-    [self.nameLabel setText:[NSString stringWithFormat:@"设计师 %@",respon.designer]];
+    [self.titleLabel setText:[NSString stringWithFormat:@"%@ 的作品",respon.designer]];
     [self.designIcon setimageUrl:respon.portraitUrl placeholderImage:nil];
     //地址
     [self.addressView.textL setText:respon.address];
@@ -483,6 +527,66 @@
     }
 }
 #pragma mark --buttonPress 
+#pragma mark --toastView
+-(void)Method:(NSInteger)tag
+{
+    //分享到微信好友
+    if (tag==ShareToWechatSession) {
+        [self shareToUM:UMShareToWechatSession];
+    }
+    //分享到朋友圈
+    else if(tag==ShareToWechatTimeline)
+    {
+        [self shareToUM:UMShareToWechatTimeline];
+    }
+    else
+    {
+        [self hiddenToastView];
+    }
+    
+}
+//调用分享到朋友圈、微信好友
+-(void)shareToUM:(NSString *)shareMehtod
+{
+    
+    [[UMSocialControllerService defaultControllerService] setShareText:nil shareImage:shareImage socialUIDelegate:self];        //设置分享内容和回调对象
+    [UMSocialSnsPlatformManager getSocialPlatformWithName:shareMehtod].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
+}
+#pragma mark --UM_Delegate
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+{
+    //微信分享纯图片，不需要文字信息
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
+}
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //如果分享成功，回调方法
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        //
+        [self hiddenToastView];
+    }
+}
+//弹出分享界面
+-(void)addToastView
+{
+    UIWindow*  Hywindow = [[[UIApplication sharedApplication] delegate] window];
+    [Hywindow addSubview:self.backView];
+    [self.backView addSubview:self.toast];
+    [self.backView setHidden:YES];
+}
+-(void)showToastView
+{
+    [self.backView setHidden:NO];
+}
+-(void)hiddenToastView
+{
+    [self.backView setHidden:YES];
+}
+-(void)sharePress:(UIButton *)sender
+{
+    [self showToastView];
+    
+}
 -(void)designerPress:(UIButton *)sender
 {
 //    DesignerDetailViewController *design = [[DesignerDetailViewController alloc]init];
@@ -557,13 +661,13 @@
     imageView.clipsToBounds = YES;
     imageView.userInteractionEnabled = NO;
     CGRect frameInSuperview = [sender convertRect:sender.frame toView:self.view];
-    frameInSuperview.origin.x = sender.origin.x +self.relativedScroll.contentOffset.x;
+    frameInSuperview.origin.x = sender.origin.x - self.relativedScroll.contentOffset.x;
     frameInSuperview.origin.y -=10.0f;
     imageView.frame = frameInSuperview;
     [backV addSubview:imageView];
     
     CGRect rect = imageView.frame;
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         imageView.frame = CGRectMake(0.0f, nav_height, PICTURE_HEIGHT, PICTURE_HEIGHT);
     } completion:^(BOOL finished) {
         PackageViewController *pack = [[PackageViewController alloc]init];
@@ -618,6 +722,12 @@
 {
     if([CommonUtil isLogin])
     {
+        if([respon.status intValue]!=3)
+        {
+            [self showAlertView:@"该套餐中含有未审核的单品" withTag:0];
+        }
+        else
+        {
         PlaceOrderViewController *order = [[PlaceOrderViewController alloc]init];
         NSMutableArray *regArr = [[NSMutableArray alloc]init];
         for (int i=0; i<[respon.labelArray count]; i++) {
@@ -634,6 +744,7 @@
         }
         order.regArray = regArr;
         [self.navigationController pushViewController:order animated:YES];
+        }
     }
     else
     {
@@ -641,13 +752,13 @@
     }
 
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:ANIMATION animations:^{
         self.secBackScroll.alpha = 1;
         self.designIcon.alpha = 1;
-
     }];
 }
 -(void)viewWillDisppear:(BOOL)animated

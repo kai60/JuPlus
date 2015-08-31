@@ -18,7 +18,7 @@
     NSMutableArray *dataArray;
     CollocationReq *collReq;
     CollectionRespon *collRespon;
-    ScrollRefreshViewHead *header;
+    ScrollRefreshViewHeader *header;
     ScrollRefreshViewFooter * footer;
     ScrollRefreshView *selectView;
     int pageNum;
@@ -35,7 +35,7 @@
         dataArray = [[NSMutableArray alloc]init];
         [self addSubview:self.listTab];
         pageNum = 1;
-        header = [ScrollRefreshViewHead header];
+        header = [ScrollRefreshViewHeader header];
         header.delegate = self;
         header.scrollView =  self.listTab;
         
@@ -43,15 +43,39 @@
         footer.delegate = self;
         footer.scrollView = self.listTab;
         
-        self.titleLabel.text = @"居+";
-        [self.rightBtn setTitle:@"筛选" forState:UIControlStateNormal];
-        [self.rightBtn setHidden:YES];
+        self.listTab.tableHeaderView = self.headerView;
+        
         [self.navView setHidden:NO];
+
+        self.titleLabel.text = @"居+";
+        [self.rightBtn setImage:[UIImage imageNamed:@"icons_Classify"] forState:UIControlStateNormal];
+        self.rightBtn.frame = CGRectMake(self.navView.width - 88.0f, self.rightBtn.top, self.rightBtn.width, self.rightBtn.height);
+        [self.rightBtn setHidden:NO];
+        [self.navView addSubview:self.switchBtn];
+       self.design = [[DesignerMapView alloc]initWithFrame:CGRectMake(0.0f, nav_height, SCREEN_WIDTH, view_height)];
+        //切换显示效果
+        [self.switchBtn addTarget:self action:@selector(switchBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.design];
+        [self.design setHidden:YES];
+        
         [self startHomePageRequest];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadList object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFromClassify) name:ReloadList object:nil];
     }
     return self;
 }
+
+-(UIButton *)switchBtn
+{
+    if(!_switchBtn)
+    {
+        _switchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _switchBtn.frame = CGRectMake(self.navView.width - 44.0f, 20.0f, 44.0f, 44.0f);
+        [_switchBtn setImage:[UIImage imageNamed:@"icons_map"] forState:UIControlStateNormal];
+        [_switchBtn setImage:[UIImage imageNamed:@"icons_home"] forState:UIControlStateSelected];
+    }
+    return _switchBtn;
+}
+
 -(UITableView *)listTab
 {
     if(!_listTab)
@@ -62,6 +86,14 @@
         _listTab.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _listTab;
+}
+-(UIScrollView *)headerView
+{
+    if(!_headerView)
+    {
+        _headerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 120*(SCREEN_WIDTH/320.0f)+2.0f)];
+    }
+    return _headerView;
 }
 #pragma mark --refresh
 -(void)refreshViewBeginRefreshing:(ScrollRefreshView *)refreshView
@@ -87,7 +119,48 @@
     }
     [self startHomePageRequest];
 }
+#pragma mark --一键切换显示方式
+//地图模式切换
+-(void)switchBtnPress:(UIButton *)sender
+{
+    if (!self.isShowMap) {
+        
+        self.design.alpha = 0;
+        [self.design setHidden:NO];
+        [UIView animateWithDuration:ANIMATION animations:^{
+            self.listTab.alpha = 0.0f;
+            self.design.alpha = 1.0f;
+            self.switchBtn.selected = YES;
+        } completion:^(BOOL finished) {
+            self.isShowMap = YES;
+            [self.listTab setHidden:YES];
+        }];
+        
+    }else{
+        self.listTab.alpha = 0;
+        [self.listTab setHidden:NO];
+        [UIView animateWithDuration:ANIMATION animations:^{
+            self.listTab.alpha = 1.0f;
+            self.design.alpha = 0.0f;
+            self.switchBtn.selected = NO;
+        } completion:^(BOOL finished) {
+            self.isShowMap = NO;
+            [self.design setHidden:YES];
+        }];
+
+        [self.design setHidden:YES];
+        [self.listTab setHidden:NO];
+        self.isShowMap = NO;
+    }
+    
+}
+
 #pragma mark --request
+-(void)reloadFromClassify
+{
+    pageNum = 1;
+    [self startHomePageRequest];
+}
 -(void)startHomePageRequest
 {
     collReq = [[CollocationReq alloc]init];
@@ -96,6 +169,18 @@
     NSString *reqUrl = [NSString stringWithFormat:@"list?pageNum=%d&pageSize=%@&tagId=%@",pageNum,PAGESIZE,tagId?tagId:@"0"];
     [collReq setField:reqUrl forKey:@"FunctionName"];
     [HttpCommunication request:collReq getResponse:collRespon Success:^(JuPlusResponse *response) {
+        for (int i=0; i<1; i++) {
+            UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(i*self.headerView.width, 0.0f, self.headerView.width, self.headerView.height - 2.0f)];
+            [img setImage:[UIImage imageNamed:@"banner@3x.jpg"]];
+            [self.headerView addSubview:img];
+        }
+        //添加分割线
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0.0f, _headerView.height - 2.0f, SCREEN_WIDTH, 2.0f)];
+        self.headerView.contentSize = CGSizeMake(SCREEN_WIDTH*1, self.headerView.height);
+        
+        [line setBackgroundColor:Color_Gray];
+        [_headerView addSubview:line];
+
         totalCount = [collRespon.count intValue];
         if (pageNum==1) {
             [self.listTab setContentOffset:CGPointMake(0.0f, 0.0f)];
@@ -115,6 +200,10 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.isShared) {
+        return PICTURE_HEIGHT+2.0f;
+    }
+    else
     return PICTURE_HEIGHT+90.0f;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -131,7 +220,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     HomePageInfoDTO *homePage = [dataArray objectAtIndex:indexPath.row];
-    [cell loadCellInfo:homePage];
+    [cell loadCellInfo:homePage withShow:self.isShared];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,7 +242,7 @@
     [backV addSubview:imageView];
 
     CGRect rect = imageView.frame;
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         imageView.frame = CGRectMake(0.0f, nav_height, SCREEN_WIDTH, PICTURE_HEIGHT);
     } completion:^(BOOL finished) {
         PackageViewController *pack = [[PackageViewController alloc]init];

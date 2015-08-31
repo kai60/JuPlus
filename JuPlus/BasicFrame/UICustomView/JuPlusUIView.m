@@ -67,12 +67,7 @@
     if(!_rightBtn)
     {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightBtn.frame = CGRectMake(self.navView.width - 54.0f, statusY, 44.0f, 44.0f);
-        [_rightBtn.titleLabel setFont:[UIFont fontWithName:FONTSTYLE size:FontSize]];
-        [_rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        UIView *black = [[UIView alloc]initWithFrame:CGRectMake((_rightBtn.width - 15.0f)/2, 42.0f, 15.0f, 2.0f)];
-        [black setBackgroundColor:Color_Basic];
-        [_rightBtn addSubview:black];
+        _rightBtn.frame = CGRectMake(self.navView.width - 44.0f, statusY, 44.0f, 44.0f);
     }
     return _rightBtn;
 }

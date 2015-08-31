@@ -9,6 +9,20 @@
 #import "HomeFurnishingViewController.h"
 #import "RegisterViewController.h"
 #import "LoginViewController.h"
+#import "UMSocial.h"
+#import "UMSocialScreenShoter.h"
+#import "BasicUIViewController.h"
+#import "CameraViewController.h"
+#import <CoreText/CoreText.h>
+#import "DesignerMapView.h"
+@interface HomeFurnishingViewController()<UMSocialUIDelegate>
+{
+    DesignerMapView *design;
+    
+    BOOL isShowMap;
+}
+@end
+
 @implementation HomeFurnishingViewController
 {
     JuPlusUIView *backV;
@@ -31,58 +45,50 @@
     backV = [[JuPlusUIView alloc]initWithFrame:CGRectMake(0.0f,0.0f, SCREEN_WIDTH, self.view.height)];
     [self.view addSubview:backV];
     
-    [backV addSubview:self.centerV];
+    [backV addSubview:self.personCenterV];
     
     [backV addSubview:self.collectionV];
 
     
     [self.viewArray addObject:self.collectionV];
-    [self.viewArray addObject:self.centerV];
+    [self.viewArray addObject:self.personCenterV];
 
     [backV addSubview:self.tabBarV];
     
-    [self.tabBarV.logoBtn addTarget:self action:@selector(logoBtnClick) forControlEvents:UIControlEventTouchUpInside];
-
-    //原定筛选按钮
-   // [self.collectionV.rightBtn addTarget:self action:@selector(selectClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.tabBarV.personBtn addTarget:self action:@selector(personBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
+    //原定标签选择按钮
+    [self.collectionV.rightBtn addTarget:self action:@selector(classifyBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    //个人中心
     [self.view addSubview:self.classifyV];
     [self.classifyV setHidden:YES];
-    //检测是否第一次加载
-    [self checkSections];
-
+    
+     if (IsStrEmpty([CommonUtil getUserDefaultsValueWithKey:isShowClassify])) {
+         [backV addSubview:self.remindView];
+     }
 }
--(void)addRightBtn
+-(void)hiddenRemind
 {
-    [self.leftBtn setHidden:YES];
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(backV.width - 54.0f, 20, 44.0f, 44.0f);
-    [btn addTarget:self action:@selector(rightPress) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@"兴趣" forState:UIControlStateNormal];
-    [btn.titleLabel setFont:FontType(14.0f)];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    UIView *black = [[UIView alloc]initWithFrame:CGRectMake((btn.width - 15.0f)/2, 42.0f, 15.0f, 2.0f)];
-    [black setBackgroundColor:Color_Basic];
-    [btn addSubview:black];
-    [backV addSubview:btn];
+    [self.remindView removeFromSuperview];
 }
+-(UIImageView *)remindView
+{
+    if (!_remindView) {
+        _remindView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _remindView.backgroundColor = RGBACOLOR(0, 0, 0, 0.6);
+        [_remindView setImage:[UIImage imageNamed:@"remind_collocation"]];
+        _remindView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hiddenRemind)];
+        [_remindView addGestureRecognizer:tap];
+        [CommonUtil setUserDefaultsValue:@"1" forKey:isShowClassify];
+    }
+    return _remindView;
+}
+
 //九宫格相关
 -(void)show
 {
-    [self.classifyV showClassify];
+   [self.classifyV showClassify];
 }
--(void)checkSections
-{
-    if(IsStrEmpty([CommonUtil getUserDefaultsValueWithKey:isShowClassify]))
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(show) name:ShowClassify object:nil];
-    }
-    else
-    {
-        
-    }
-}
+
 //标签选择界面
 -(ClassifyView *)classifyV
 {
@@ -105,14 +111,14 @@
     return _collectionV;
 }
 //个人中心
--(PersonCenterView *)centerV
+-(PersonCenterView *)personCenterV
 {
-    if(!_centerV)
+    if(!_personCenterV)
     {
-        _centerV = [[PersonCenterView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _personCenterV = [[PersonCenterView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT)];
         
     }
-    return _centerV;
+    return _personCenterV;
 }
 -(JuPlusTabBarView *)tabBarV
 {
@@ -126,19 +132,49 @@
     return _tabBarV;
 }
 #pragma mark --ClickMethod
--(void)logoBtnClick
+-(void)reloadCollectionTab
 {
-    NSLog(@"九宫格");
-    [self selectClick];
+    //点击切换按钮，查看是否显示当前页面，如果不是当前页面，则切回到collectionView
+    if (!self.collectionV.listTab.hidden) {
+        if(self.collectionV.isShared)
+        {
+            self.collectionV.isShared = NO;
+            self.tabBarV.collocationBtn.selected = NO;
+        }
+        else
+        {
+            self.collectionV.isShared = YES;
+            self.tabBarV.collocationBtn.selected = YES;
+            
+        }
+        [self.collectionV.listTab reloadData];
+    }else{
+    }
 }
+
 //筛选按钮点击（跳转到九宫格）
--(void)selectClick
+-(void)gotoCarma
 {
-    [self.tabBarV.classifyBtn setSelected:YES];
-    [self.tabBarV.personBtn setSelected:NO];
-    [self changeTo:0];
+    if ([CommonUtil isLogin]) {
+        
+        CameraViewController *ca = [[CameraViewController alloc]init];
+        [self.navigationController pushViewController:ca animated:YES];
+    }else{
+        
+        LoginViewController *log = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:log animated:YES];
+    }
+}
+-(void)classifyBtnPress:(UIButton *)sender
+{
     [self.classifyV showClassify];
 }
+-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+{
+    //微信分享纯图片，不需要文字信息
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
+}
+
 #pragma mark 视图切换
 -(void)showCurrentView:(JuPlusUIView *)view
 {
@@ -151,18 +187,12 @@
         [view startHomePageRequest];
         view.frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH,view.height);
         if(view==self.collectionV)
-            self.centerV.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH,view.height);
+            self.personCenterV.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH,view.height);
         else
             self.collectionV.frame = CGRectMake(-SCREEN_WIDTH, 0.0f, SCREEN_WIDTH,view.height);
 
     } completion:^(BOOL finished) {
-        
-//        for (JuPlusUIView *vi in self.viewArray) {
-//            if(vi!=view)
-//            {
-//                vi.frame = CGRectMake(SCREEN_WIDTH, 0.0f, SCREEN_WIDTH, vi.height);
-//            }
-//        }
+    
     }];
     }
     else
@@ -170,27 +200,37 @@
     
     }
 }
--(void)personBtnClick:(UIButton *)sender
+#pragma mark --tabBarDelegate
+//点击事件的代理
+-(void)changeTo:(NSInteger)tag
 {
-    if([CommonUtil isLogin])
+    //点击首页
+    /*
+    */
+    if(tag==ShowCollocation)
     {
-        [self.tabBarV resetButtonArray];
-        [self.tabBarV.personBtn setSelected:YES];
-        [self showCurrentView:self.centerV];
+        if (self.collectionV.origin.x!=0) {
+            [self showCurrentView:self.collectionV];
+        }else
+            [self reloadCollectionTab];
+    }
+    //点击个人中心
+    else if(tag==ShowPerson)
+    {
+        if([CommonUtil isLogin])
+        {
+            [self showCurrentView:self.personCenterV];
+        }
+        else
+        {
+            LoginViewController *log = [[LoginViewController alloc]init];
+            [self.navigationController pushViewController:log animated:YES];
+        }
+
     }
     else
     {
-        LoginViewController *log = [[LoginViewController alloc]init];
-        [self.navigationController pushViewController:log animated:YES];
-    }
-
-}
-#pragma mark --tabBarDelegate
--(void)changeTo:(NSInteger)tag
-{
-    if(tag==0)
-    {
-        [self showCurrentView:self.collectionV];
+        [self gotoCarma];
     }
 
 }
@@ -211,8 +251,12 @@
         ((UIButton *)[self.tabBarV.buttonArr firstObject]).selected = YES;
     [self showCurrentView:self.collectionV];
     }
-    
-
+    else
+    {
+        if (self.personCenterV) {
+            [self.personCenterV startHomePageRequest];
+        }
+    }
     [UIView animateWithDuration:ANIMATION animations:^{
         self.tabBarV.frame = CGRectMake(0.0f, SCREEN_HEIGHT - 49.0f, SCREEN_WIDTH, 49.0f);
     }];

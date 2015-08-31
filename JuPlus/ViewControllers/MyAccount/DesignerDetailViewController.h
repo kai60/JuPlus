@@ -6,8 +6,14 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
+#import "DesignerDTO.h"
+#import "DesignerCell.h"
+@interface DesignerDetailViewController : JuPlusUIViewController
+@property (nonatomic, strong)NSMutableArray *dataArray;
+@property (nonatomic, strong)DesignerDTO *dto;
+@property (nonatomic,strong)UITableView *tableV;
 
-@interface DesignerDetailViewController : BaseViewController
+@property (nonatomic, strong) NSString *userId;
 
 @end

@@ -254,7 +254,7 @@
     }
     else
     {
-        CGFloat upHeight = 50.0f;
+        CGFloat upHeight = 70.0f;
         //界面向上弹出的高度
         movementDistance = tag*upHeight+10.0f;
         const float movementDuration = 0.3f;

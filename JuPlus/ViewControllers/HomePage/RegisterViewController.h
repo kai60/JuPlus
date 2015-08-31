@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //注册界面
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 #import "TimerButton.h"
 #import "JuPlusTextField.h"
 #import "KeyBoardTopBar.h"
-@interface RegisterViewController : BaseViewController<UITextFieldDelegate,UIAlertViewDelegate,keyBoardTopBarDelegate>
+@interface RegisterViewController : JuPlusUIViewController<UITextFieldDelegate,UIAlertViewDelegate,keyBoardTopBarDelegate>
 {
     TimerButton *identifyButtom;
      KeyBoardTopBar *keyboardTopBar;

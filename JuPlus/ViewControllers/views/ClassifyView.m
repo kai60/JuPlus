@@ -12,7 +12,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import "ClassifyLabelsRequest.h"
 #import "ClassifyRespon.h"
-#import "ClassifyTagsDTO.h"
 #import "SCGIFImageView.h"
 #import "UIButton+WebCache.h"
 
@@ -57,14 +56,14 @@
     CGFloat spaceX = 10.0f;
     CGFloat spaceY = 70.0f;
     CGFloat btnW = 70.0f;
+    CGFloat orignY = self.height/2 - (btnW*1.5+spaceY);
     CGFloat space = (self.width - btnW*3 - spaceX*2)/2;
     CGFloat btnH = btnW;
 
     for(int i=0;i<[self.dataArray count];i++)
-//    for(int i=0;i<9;i++)
     {
         ClassifyTagsDTO *tagDTO = [self.dataArray objectAtIndex:i];
-        HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX +self.width*(i/9)+(space+btnW)*(i%3),50.0f +spaceY + (spaceY+btnH)*((i/3)%3), btnW, btnH)];
+        HobbyItemBtn *btn = [[HobbyItemBtn alloc]initWithFrame:CGRectMake(spaceX +self.width*(i/9)+(space+btnW)*(i%3),orignY + (spaceY+btnH)*((i/3)%3), btnW, btnH)];
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = btnW/2;
         [btn.iconBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",FRONT_PICTURE_URL,tagDTO.imgUrl]] forState:UIControlStateNormal];
@@ -93,6 +92,7 @@
     CGFloat spaceX = 20.0f;
     CGFloat spaceY = 50.0f;
     CGFloat btnW = 70.0f;
+    CGFloat orignY = self.height/2 - (btnW*1.5+spaceY);
     CGFloat space = (self.width - btnW*3 - spaceX*2)/2;
     CGFloat btnH = btnW;
 
@@ -100,7 +100,7 @@
         for(int i=0;i<[buttonArray count];i++)
         {
             HobbyItemBtn *btn = [buttonArray objectAtIndex:i];
-            btn.frame = CGRectMake(spaceX+self.width*(i/9)+(space+btnW)*(i%3),90.0f+spaceY+ (spaceY+btnH)*((i/3)%3), btnW, btnH);
+            btn.frame = CGRectMake(spaceX+self.width*(i/9)+(space+btnW)*(i%3),orignY + (spaceY+btnH)*((i/3)%3), btnW, btnH);
         }
     
         //取到高斯模糊的背景view
@@ -109,7 +109,7 @@
         if(visual!=nil)
             visual.alpha = 1;
     } completion:^(BOOL finished) {
-        [CommonUtil setUserDefaultsValue:@"1" forKey:isShowClassify];
+        
     }];
 }
 //后台下发标签列表，统计用户的兴趣内容
@@ -191,28 +191,31 @@
 //确认按钮
 -(void)surePress1:(UIButton *)sender
 {
-    
-    if(IsNilOrNull(selectedBtn))
-    {
+    //如果为选中任何内容
+           if(IsNilOrNull(selectedBtn))
+        {
         [CommonUtil removeUserDefaultsValue:LabelTag];
-    }
-    else
-    {
-        [CommonUtil setUserDefaultsValue:[NSString stringWithFormat:@"%ld",selectedBtn.iconBtn.tag] forKey:LabelTag];
+        }
+        else
+        {
+        [CommonUtil setUserDefaultsValue:[NSString stringWithFormat:@"%ld",(long)selectedBtn.iconBtn.tag] forKey:LabelTag];
     
-    }
+        }
+        [CommonUtil postNotification:ReloadList Object:nil];
+
     CGFloat spaceX = 10.0f;
     CGFloat spaceY = 70.0f;
     CGFloat btnW = 70.0f;
     CGFloat space = (self.width - btnW*3 - spaceX*2)/2;
     CGFloat btnH = btnW;
+    CGFloat orignY = self.height/2 - (btnW*1.5+spaceY);
     UIView *visual = [superView viewWithTag:VisualEffectTag];
     
     [UIView animateWithDuration:1.0f animations:^{
         for(int i=0;i<[buttonArray count];i++)
         {
             HobbyItemBtn *btn = [buttonArray objectAtIndex:i];
-            btn.frame =  CGRectMake(spaceX +self.width*(i/9)+(space +btnW)*(i%3),90.0f+spaceY - 40.0f+ (spaceY+btnH)*((i/3)%3), btnW, btnH);
+            btn.frame =  CGRectMake(spaceX +self.width*(i/9)+(space +btnW)*(i%3),orignY + (spaceY+btnH)*((i/3)%3), btnW, btnH);
         }
         self.alpha = 0;
         if(visual!=nil)
@@ -221,7 +224,6 @@
         [self setHidden:YES];
         [visual removeFromSuperview];
     }];
-    [CommonUtil postNotification:ReloadList Object:nil];
 }
 //设置view高斯模糊显示
 -(void)setVisualEffect

@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 居+. All rights reserved.
 //单品详情界面
 
-#import "BaseViewController.h"
+#import "JuPlusUIViewController.h"
 #import "RTLabel.h"
 #import "PriceView.h"
 #import "ImageScrollView.h"
-@interface SingleDetialViewController : BaseViewController<UIScrollViewDelegate>
+@interface SingleDetialViewController : JuPlusUIViewController<UIScrollViewDelegate>
 //单品对应id值
 @property (nonatomic,strong)NSString *singleId;
 //从套餐过来

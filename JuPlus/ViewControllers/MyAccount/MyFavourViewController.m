@@ -21,7 +21,7 @@
 
 @implementation MyFavourViewController
 {
-    ScrollRefreshViewHead *header;
+    ScrollRefreshViewHeader *header;
     ScrollRefreshViewFooter * footer;
     ScrollRefreshView *selectView;
     
@@ -41,7 +41,7 @@
     self.titleLabel.text = @"我的收藏";
     self.dataArray = [[NSMutableArray alloc]init];
     pageNum = 1;
-    header = [ScrollRefreshViewHead header];
+    header = [ScrollRefreshViewHeader header];
     header.delegate = self;
     header.scrollView = self.myFavTab;
     
@@ -128,6 +128,7 @@
     {
         cell = [[MyFavourCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:str];
     }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     MyFavourDTO *dto = [self.dataArray objectAtIndex:indexPath.row];
     [cell fileData:dto];
