@@ -149,6 +149,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PackageViewController *packVC = [[PackageViewController alloc]init];
+    DesignerDTO *dto = [self.dataArray objectAtIndex:indexPath.row ];
+    packVC.imgUrl = dto.coverUrl;
     [self.navigationController pushViewController:packVC animated:YES];
 }
 -(UIButton *)appointmentBtn
