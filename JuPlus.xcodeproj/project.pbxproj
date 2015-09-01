@@ -34,6 +34,7 @@
 		46E401971B95941700958571 /* per.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E401961B95941700958571 /* per.png */; };
 		46E401991B95942400958571 /* app.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E401981B95942400958571 /* app.png */; };
 		46E4019C1B95996200958571 /* MyAppointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E4019B1B95996200958571 /* MyAppointViewController.m */; };
+		46E4019E1B959CA500958571 /* bai.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E4019D1B959CA500958571 /* bai.png */; };
 		46EA34A91B842A1D002095C9 /* Btn_shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34A81B842A1D002095C9 /* Btn_shot@2x.png */; };
 		46EA34AB1B842A23002095C9 /* Btn_shot_click@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34AA1B842A23002095C9 /* Btn_shot_click@2x.png */; };
 		46EA34AD1B842A8E002095C9 /* close_cha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34AC1B842A8E002095C9 /* close_cha@2x.png */; };
@@ -429,10 +430,11 @@
 		46E07B0D1B9046FF00E6D016 /* AppointDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointDTO.h; sourceTree = "<group>"; };
 		46E07B0E1B9046FF00E6D016 /* AppointDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointDTO.m; sourceTree = "<group>"; };
 		46E07B121B90476600E6D016 /* DesignerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerDTO.m; sourceTree = "<group>"; };
-		46E401961B95941700958571 /* per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = per.png; sourceTree = "<group>"; };
-		46E401981B95942400958571 /* app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app.png; sourceTree = "<group>"; };
+		46E401961B95941700958571 /* per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = per.png; path = ../../ViewControllers/HomePage/HomePageViews/per.png; sourceTree = "<group>"; };
+		46E401981B95942400958571 /* app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app.png; path = ../../ViewControllers/HomePage/HomePageViews/app.png; sourceTree = "<group>"; };
 		46E4019A1B95996200958571 /* MyAppointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAppointViewController.h; sourceTree = "<group>"; };
 		46E4019B1B95996200958571 /* MyAppointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAppointViewController.m; sourceTree = "<group>"; };
+		46E4019D1B959CA500958571 /* bai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bai.png; path = ../../ViewControllers/HomePage/HomePageViews/bai.png; sourceTree = "<group>"; };
 		46EA34A81B842A1D002095C9 /* Btn_shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_shot@2x.png"; sourceTree = "<group>"; };
 		46EA34AA1B842A23002095C9 /* Btn_shot_click@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_shot_click@2x.png"; sourceTree = "<group>"; };
 		46EA34AC1B842A8E002095C9 /* close_cha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_cha@2x.png"; sourceTree = "<group>"; };
@@ -1479,8 +1481,6 @@
 				9CABB3D41B329786006AD405 /* ClassifyView.m */,
 				84D6890D1B4BB44700E91423 /* CollectionView.h */,
 				84D6890E1B4BB44700E91423 /* CollectionView.m */,
-				46E401961B95941700958571 /* per.png */,
-				46E401981B95942400958571 /* app.png */,
 				46C9AF571B94423300393060 /* PersonCell.h */,
 				46C9AF581B94423300393060 /* PersonCell.m */,
 				46C9AF5C1B94521600393060 /* PersonDTO.h */,
@@ -1958,6 +1958,9 @@
 				84F0E8541B8DAA720035FFFD /* collocation_map@2x.png */,
 				84F0E8551B8DAA720035FFFD /* designer_map@2x.png */,
 				8432BB801B8F030C006A5A4B /* banner@3x.jpg */,
+				46E4019D1B959CA500958571 /* bai.png */,
+				46E401961B95941700958571 /* per.png */,
+				46E401981B95942400958571 /* app.png */,
 			);
 			name = Version3_designer;
 			path = Version_designer;
@@ -2384,6 +2387,7 @@
 				84FCB13D1B67578E00D00081 /* 7.png in Resources */,
 				84E40D1F1B65E1BD00FB63AE /* back@2x.png in Resources */,
 				84EAFFDA1B7C890A006B55BC /* share_bg@2x.png in Resources */,
+				46E4019E1B959CA500958571 /* bai.png in Resources */,
 				84EE1F851B6F0FEC00141434 /* tag_carmera@2x.png in Resources */,
 				84E7DE071B7326C200956CCE /* UMSLoginViewController.xib in Resources */,
 				84E7DE021B7326C200956CCE /* UMSCommentDetailController.xib in Resources */,

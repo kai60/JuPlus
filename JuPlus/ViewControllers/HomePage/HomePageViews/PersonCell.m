@@ -22,7 +22,7 @@
         labelH = 30;
         CGRect frame = self.contentView.frame;
         frame.size.width = SCREEN_HEIGHT;
-        self.contentView.backgroundColor = RGBACOLOR(235.0f, 235.0f, 235.0f, 1);
+        self.contentView.backgroundColor = RGBACOLOR(235.0f, 235.0f, 235.0f, 0.8);
         [self.contentView addSubview:self.appointV];
         [self.appointV addSubview:self.appointLabel];
         [self.appointV addSubview:self.appImage];
@@ -30,11 +30,11 @@
     }
     return self;
 }
-- (UIView *)appointV
+- (UIImageView *)appointV
 {
     if (!_appointV) {
         _appointV = [[UIImageView alloc]initWithFrame:CGRectMake(12, 10, SCREEN_WIDTH-24, PICTURE_HEIGHT/4-8)];
-        _appointV.backgroundColor = Color_White;
+        _appointV.image = [UIImage imageNamed:@"bai"];
     }
     return _appointV;
 }

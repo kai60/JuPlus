@@ -102,7 +102,7 @@
     }
     if (indexPath.section ==0) {
         if (indexPath.row == 0) {
-            cell.appointLabel.text = @"成功搭配师";
+            cell.appointLabel.text = @"成为搭配师";
             cell.appImage.image = [UIImage imageNamed:@"per"];
         }
         if (indexPath.row == 1) {

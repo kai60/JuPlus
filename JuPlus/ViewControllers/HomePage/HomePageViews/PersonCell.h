@@ -12,7 +12,7 @@
 
 
 @property (nonatomic, strong)UILabel *appointLabel;
-@property (nonatomic, strong)UIView *appointV;
+@property (nonatomic, strong)UIImageView *appointV;
 @property (nonatomic, strong)UIImageView *appImage;
 
 @end
