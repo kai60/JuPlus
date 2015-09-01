@@ -16,11 +16,14 @@
 #import "MyInfoViewController.h"
 #import "CameraViewController.h"
 #import "MyWorksListViewController.h"
+#import "PersonCell.h"
 @implementation PersonCenterView
 {
     PersonCenterReq *centerReq;
     PersonCenterRespon *centerRespon;
+    
 }
+
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -70,7 +73,47 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetNickname) name:ResetNickName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPortrait) name:ResetPortrait object:nil];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startHomePageRequest) name:ReloadPerson object:nil];
+    [self addSubview:self.appointTable];
 
+}
+- (UITableView *)appointTable
+{
+    if (!_appointTable) {
+        
+        _appointTable = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, 200+nav_height, SCREEN_WIDTH, SCREEN_HEIGHT - 200) style:UITableViewStylePlain];
+        _appointTable.separatorStyle = 0;
+        _appointTable.dataSource = self;
+        _appointTable.delegate = self;
+    }
+    return _appointTable;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *str = @"str";
+    PersonCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
+    if (!cell) {
+        cell = [[PersonCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:str];
+    }
+    //预约设计师按钮
+//    [cell.designerBut addTarget:self action:@selector(designerBut:) forControlEvents:UIControlEventTouchUpInside];
+    return cell;
+}
+//预约设计师按钮方法
+//- (void)designerBut:(UIButton *)but
+//{
+//    
+//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return PICTURE_HEIGHT/2;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 -(void)resetNickname
 {
@@ -81,6 +124,7 @@
 {
     [self.portrait setimageUrl:[JuPlusUserInfoCenter sharedInstance].userInfo.portraitUrl placeholderImage:nil];
 }
+
 -(void)startHomePageRequest
 {
     centerReq = [[PersonCenterReq alloc]init];
@@ -142,27 +186,27 @@
     }
     return _nickLabel;
 }
--(UIButton *)uploadBtn
-{
-    if(!_uploadBtn)
-    {
-        _uploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _uploadBtn.frame = CGRectMake((SCREEN_WIDTH - 100.0f)/2, self.topView.bottom+50.0f, 100.0f, 100.0f) ;
-        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"becomeDesigner"] forState:UIControlStateNormal];
-        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"becomeDesigner"] forState:UIControlStateHighlighted];
-        [_uploadBtn addTarget:self action:@selector(uploadClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _uploadBtn;
-}
--(void)uploadClick
-{
-//    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"完成基础操作后成为居+搭配设计师" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-//    alt.tag = 101;
-//    [alt show];
-    CameraViewController *view = [[CameraViewController alloc]init];
-    [[self getSuperViewController].navigationController pushViewController:view animated:YES];
-    
-}
+//-(UIButton *)uploadBtn
+//{
+//    if(!_uploadBtn)
+//    {
+//        _uploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _uploadBtn.frame = CGRectMake((SCREEN_WIDTH - 100.0f)/2, self.topView.bottom+50.0f, 100.0f, 100.0f) ;
+//        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"becomeDesigner"] forState:UIControlStateNormal];
+//        [_uploadBtn setBackgroundImage:[UIImage imageNamed:@"becomeDesigner"] forState:UIControlStateHighlighted];
+//        [_uploadBtn addTarget:self action:@selector(uploadClick) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _uploadBtn;
+//}
+//-(void)uploadClick
+//{
+////    UIAlertView *alt = [[UIAlertView alloc]initWithTitle:Remind_Title message:@"完成基础操作后成为居+搭配设计师" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+////    alt.tag = 101;
+////    [alt show];
+//    CameraViewController *view = [[CameraViewController alloc]init];
+//    [[self getSuperViewController].navigationController pushViewController:view animated:YES];
+//    
+//}
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     //必须先走父类中的代理方法，以防止子类代理覆盖父类中的内容

@@ -38,7 +38,7 @@
 {
     if (!_coverUrlImage) {
         _coverUrlImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, PICTURE_HEIGHT / 2 - 2)]; // 留出两个像素的白边
-//        _image.image = [UIImage imageNamed:@"psb.png"];
+//        _coverUrlImage.image = [UIImage imageNamed:@"psb.png"];
 //        [_coverUrlImage setBackgroundColor:Color_Basic];
     }
     return _coverUrlImage;

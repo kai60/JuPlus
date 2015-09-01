@@ -8,15 +8,16 @@
 
 #import "JuPlusUIView.h"
 
-@interface PersonCenterView : JuPlusUIView
-//个人信息展示
+@interface PersonCenterView : JuPlusUIView<UITableViewDataSource,UITableViewDelegate>
+////个人信息展示
 @property(nonatomic,strong)JuPlusUIView *topView;
-
+//
 @property(nonatomic,strong)UIButton *portrait;
-
+//
 @property(nonatomic,strong)JuPlusUILabel *nickLabel;
-//存储作品数/买入/收藏
+////存储作品数/买入/收藏
 @property(nonatomic,strong)NSMutableArray *listArr;
-
+//
 @property (nonatomic,strong)UIButton *uploadBtn;
+@property (nonatomic ,strong)UITableView *appointTable;
 @end
