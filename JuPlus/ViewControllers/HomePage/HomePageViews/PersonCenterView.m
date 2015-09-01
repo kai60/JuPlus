@@ -17,6 +17,7 @@
 #import "CameraViewController.h"
 #import "MyWorksListViewController.h"
 #import "PersonCell.h"
+#import "MyAppointViewController.h"
 @implementation PersonCenterView
 {
     PersonCenterReq *centerReq;
@@ -82,6 +83,7 @@
         
         _appointTable = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, 200+nav_height, SCREEN_WIDTH, SCREEN_HEIGHT - 200) style:UITableViewStylePlain];
         _appointTable.separatorStyle = 0;
+        _appointTable.backgroundColor = RGBACOLOR(235.0f, 235.0f, 235.0f, 0.8);
         _appointTable.dataSource = self;
         _appointTable.delegate = self;
     }
@@ -89,7 +91,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -98,21 +100,32 @@
     if (!cell) {
         cell = [[PersonCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:str];
     }
-    //预约设计师按钮
-//    [cell.designerBut addTarget:self action:@selector(designerBut:) forControlEvents:UIControlEventTouchUpInside];
-    return cell;
+    if (indexPath.section ==0) {
+        if (indexPath.row == 0) {
+            cell.appointLabel.text = @"成功搭配师";
+            cell.appImage.image = [UIImage imageNamed:@"per"];
+        }
+        if (indexPath.row == 1) {
+            cell.appointLabel.text = @"我的预约";
+            cell.appImage.image = [UIImage imageNamed:@"app"];
+        }
+    }
+        return cell;
 }
-//预约设计师按钮方法
-//- (void)designerBut:(UIButton *)but
-//{
-//    
-//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return PICTURE_HEIGHT/2;
+    return PICTURE_HEIGHT/4;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        CameraViewController *view = [[CameraViewController alloc]init];
+        [[self getSuperViewController].navigationController pushViewController:view animated:YES];
+    }
+    if (indexPath.row == 1) {
+        MyAppointViewController *myapp = [[MyAppointViewController alloc]init];
+        [[self getSuperViewController].navigationController pushViewController:myapp animated:YES];
+    }
     
 }
 -(void)resetNickname

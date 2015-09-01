@@ -25,14 +25,15 @@
 		46B3FFA21B7D924100FCBF98 /* fav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA11B7D924100FCBF98 /* fav@2x.png */; };
 		46B3FFA41B7D924600FCBF98 /* pay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA31B7D924600FCBF98 /* pay@2x.png */; };
 		46C9AF591B94423300393060 /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C9AF581B94423300393060 /* PersonCell.m */; };
-		46C9AF5B1B944A0F00393060 /* psb8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46C9AF5A1B944A0F00393060 /* psb8.jpg */; };
 		46C9AF5E1B94521600393060 /* PersonDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C9AF5D1B94521600393060 /* PersonDTO.m */; };
 		46E07B061B8EEF2700E6D016 /* MyWorksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B051B8EEF2700E6D016 /* MyWorksCell.m */; };
 		46E07B091B9043AA00E6D016 /* AppointRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B081B9043AA00E6D016 /* AppointRequest.m */; };
 		46E07B0C1B9043B900E6D016 /* AppointRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B0B1B9043B900E6D016 /* AppointRespon.m */; };
 		46E07B0F1B9046FF00E6D016 /* AppointDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B0E1B9046FF00E6D016 /* AppointDTO.m */; };
 		46E07B131B90476600E6D016 /* DesignerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B121B90476600E6D016 /* DesignerDTO.m */; };
-		46E401951B95534B00958571 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46E401941B95534B00958571 /* 1.jpg */; };
+		46E401971B95941700958571 /* per.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E401961B95941700958571 /* per.png */; };
+		46E401991B95942400958571 /* app.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E401981B95942400958571 /* app.png */; };
+		46E4019C1B95996200958571 /* MyAppointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E4019B1B95996200958571 /* MyAppointViewController.m */; };
 		46EA34A91B842A1D002095C9 /* Btn_shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34A81B842A1D002095C9 /* Btn_shot@2x.png */; };
 		46EA34AB1B842A23002095C9 /* Btn_shot_click@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34AA1B842A23002095C9 /* Btn_shot_click@2x.png */; };
 		46EA34AD1B842A8E002095C9 /* close_cha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34AC1B842A8E002095C9 /* close_cha@2x.png */; };
@@ -418,7 +419,6 @@
 		46B3FFA31B7D924600FCBF98 /* pay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay@2x.png"; sourceTree = "<group>"; };
 		46C9AF571B94423300393060 /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
 		46C9AF581B94423300393060 /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
-		46C9AF5A1B944A0F00393060 /* psb8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = psb8.jpg; path = AMapView/psb8.jpg; sourceTree = "<group>"; };
 		46C9AF5C1B94521600393060 /* PersonDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDTO.h; sourceTree = "<group>"; };
 		46C9AF5D1B94521600393060 /* PersonDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDTO.m; sourceTree = "<group>"; };
 		46E07B051B8EEF2700E6D016 /* MyWorksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorksCell.m; sourceTree = "<group>"; };
@@ -429,7 +429,10 @@
 		46E07B0D1B9046FF00E6D016 /* AppointDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointDTO.h; sourceTree = "<group>"; };
 		46E07B0E1B9046FF00E6D016 /* AppointDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointDTO.m; sourceTree = "<group>"; };
 		46E07B121B90476600E6D016 /* DesignerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerDTO.m; sourceTree = "<group>"; };
-		46E401941B95534B00958571 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		46E401961B95941700958571 /* per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = per.png; sourceTree = "<group>"; };
+		46E401981B95942400958571 /* app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app.png; sourceTree = "<group>"; };
+		46E4019A1B95996200958571 /* MyAppointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAppointViewController.h; sourceTree = "<group>"; };
+		46E4019B1B95996200958571 /* MyAppointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAppointViewController.m; sourceTree = "<group>"; };
 		46EA34A81B842A1D002095C9 /* Btn_shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_shot@2x.png"; sourceTree = "<group>"; };
 		46EA34AA1B842A23002095C9 /* Btn_shot_click@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_shot_click@2x.png"; sourceTree = "<group>"; };
 		46EA34AC1B842A8E002095C9 /* close_cha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_cha@2x.png"; sourceTree = "<group>"; };
@@ -1476,14 +1479,16 @@
 				9CABB3D41B329786006AD405 /* ClassifyView.m */,
 				84D6890D1B4BB44700E91423 /* CollectionView.h */,
 				84D6890E1B4BB44700E91423 /* CollectionView.m */,
-				46E401941B95534B00958571 /* 1.jpg */,
-				46C9AF5A1B944A0F00393060 /* psb8.jpg */,
+				46E401961B95941700958571 /* per.png */,
+				46E401981B95942400958571 /* app.png */,
 				46C9AF571B94423300393060 /* PersonCell.h */,
 				46C9AF581B94423300393060 /* PersonCell.m */,
 				46C9AF5C1B94521600393060 /* PersonDTO.h */,
 				46C9AF5D1B94521600393060 /* PersonDTO.m */,
 				84D689111B4BBBC600E91423 /* PersonCenterView.h */,
 				84D689121B4BBBC600E91423 /* PersonCenterView.m */,
+				46E4019A1B95996200958571 /* MyAppointViewController.h */,
+				46E4019B1B95996200958571 /* MyAppointViewController.m */,
 			);
 			path = HomePageViews;
 			sourceTree = "<group>";
@@ -2321,7 +2326,6 @@
 				84FCB1371B67578E00D00081 /* 11.png in Resources */,
 				84DAFFAF1B4A4118008418D0 /* Icon@2x.png in Resources */,
 				84520A5E1B86CE3C00E7BC4E /* share@2x.png in Resources */,
-				46C9AF5B1B944A0F00393060 /* psb8.jpg in Resources */,
 				84EF7EB51B90363200F6756C /* icons_Classify@2x.png in Resources */,
 				84E672681B6B47DB00CFD1A2 /* close_cha.png in Resources */,
 				84EF7EB61B90363200F6756C /* icons_home@2x.png in Resources */,
@@ -2364,10 +2368,10 @@
 				84E672651B6B47DB00CFD1A2 /* camera_line@2x.png in Resources */,
 				84E6726E1B6B47DB00CFD1A2 /* flashing_off.png in Resources */,
 				84DAFFAB1B4A4118008418D0 /* Icon-50.png in Resources */,
+				46E401991B95942400958571 /* app.png in Resources */,
 				84EAFFDD1B7C908B006B55BC /* weichat_session@2x.png in Resources */,
 				84E43D8A1B5DF14A00A7028D /* default_rectangle@2x.png in Resources */,
 				84DAFFC21B4A62A6008418D0 /* labelLine@2x.png in Resources */,
-				46E401951B95534B00958571 /* 1.jpg in Resources */,
 				84F027811B81E9D2004FF997 /* zqljyb.ttf in Resources */,
 				84DAFFC71B4A793A008418D0 /* lineLabel@2x.png in Resources */,
 				8432BB7C1B8EFEF6006A5A4B /* icons_down@2x.png in Resources */,
@@ -2409,6 +2413,7 @@
 				84E40D2D1B6614A700FB63AE /* icons_logo@2x.png in Resources */,
 				84E40D461B663A8400FB63AE /* icons_02_unsel@2x.png in Resources */,
 				844545AC1B8478EF00C47CCB /* search_Tags@2x.png in Resources */,
+				46E401971B95941700958571 /* per.png in Resources */,
 				84E7DE2F1B7326E700956CCE /* WeiboSDK.bundle in Resources */,
 				84520A6B1B8711B900E7BC4E /* Default-736@3x.png in Resources */,
 				8481E26A1B608EF100CB89C6 /* becomeDesigner@2x.png in Resources */,
@@ -2627,6 +2632,7 @@
 				84E81AB31B5F8577007E3B9B /* PackageCell.m in Sources */,
 				84CC25081B43CA0100BE342E /* HttpCommunication.m in Sources */,
 				84E672831B6B47DB00CFD1A2 /* SCCommon.m in Sources */,
+				46E4019C1B95996200958571 /* MyAppointViewController.m in Sources */,
 				847C5EFF1B395B0D00706638 /* LoginViewController.m in Sources */,
 				84CC25071B43CA0100BE342E /* UnPackException.m in Sources */,
 				84F0E81C1B8D88B20035FFFD /* MyFavourDTO.m in Sources */,

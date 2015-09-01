@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PersonDTO.h"
+
 @interface PersonCell : UITableViewCell
 
-@property (nonatomic, strong)UIButton *designerBut;//预约设计师
+
 @property (nonatomic, strong)UILabel *appointLabel;
-@property (nonatomic, strong)UIImageView *appointImageUrl;
-@property (nonatomic, strong) UIImageView *personHeadImage; // 用户头像
-- (void)fileData:(PersonDTO *)dto;
+@property (nonatomic, strong)UIView *appointV;
+@property (nonatomic, strong)UIImageView *appImage;
+
 @end
