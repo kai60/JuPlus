@@ -7,7 +7,10 @@
 //
 
 #import "JuPlusUIViewController.h"
-
+#import "MyappointDTO.h"
 @interface MyAppointViewController : JuPlusUIViewController
+
+@property (nonatomic,strong)NSMutableArray *dataArray;
+@property (nonatomic, strong)MyappointDTO *dto;
 
 @end

@@ -12,6 +12,11 @@
 		466F060C1B82EB2C00DB0E03 /* shot_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 466F060B1B82EB2C00DB0E03 /* shot_h.png */; };
 		467251011B7B1AB800558648 /* MyworkslistReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251001B7B1AB800558648 /* MyworkslistReq.m */; };
 		467251071B7B1C2D00558648 /* MyworkslistRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 467251061B7B1C2D00558648 /* MyworkslistRespon.m */; };
+		467B28411B96916800DEEA8A /* MyEffectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467B28401B96916800DEEA8A /* MyEffectCell.m */; };
+		467B28441B9694AC00DEEA8A /* MyappointDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 467B28431B9694AC00DEEA8A /* MyappointDTO.m */; };
+		467B28471B96953E00DEEA8A /* MyappointRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 467B28461B96953E00DEEA8A /* MyappointRequest.m */; };
+		467B284A1B9695B800DEEA8A /* MyappointRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 467B28491B9695B800DEEA8A /* MyappointRespon.m */; };
+		467B284C1B96D04200DEEA8A /* designer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 467B284B1B96D04200DEEA8A /* designer@2x.png */; };
 		46811E051B7C69BD00F84B5F /* MyDeleteReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 46811E041B7C69BD00F84B5F /* MyDeleteReq.m */; };
 		46956E391B8D59A5005C72C9 /* DesignerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46956E381B8D59A5005C72C9 /* DesignerRequest.m */; };
 		46956E3C1B8D59F9005C72C9 /* DesignerRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 46956E3B1B8D59F9005C72C9 /* DesignerRespon.m */; };
@@ -25,16 +30,14 @@
 		46B3FFA21B7D924100FCBF98 /* fav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA11B7D924100FCBF98 /* fav@2x.png */; };
 		46B3FFA41B7D924600FCBF98 /* pay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B3FFA31B7D924600FCBF98 /* pay@2x.png */; };
 		46C9AF591B94423300393060 /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C9AF581B94423300393060 /* PersonCell.m */; };
-		46C9AF5E1B94521600393060 /* PersonDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C9AF5D1B94521600393060 /* PersonDTO.m */; };
 		46E07B061B8EEF2700E6D016 /* MyWorksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B051B8EEF2700E6D016 /* MyWorksCell.m */; };
 		46E07B091B9043AA00E6D016 /* AppointRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B081B9043AA00E6D016 /* AppointRequest.m */; };
-		46E07B0C1B9043B900E6D016 /* AppointRespon.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B0B1B9043B900E6D016 /* AppointRespon.m */; };
-		46E07B0F1B9046FF00E6D016 /* AppointDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B0E1B9046FF00E6D016 /* AppointDTO.m */; };
 		46E07B131B90476600E6D016 /* DesignerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E07B121B90476600E6D016 /* DesignerDTO.m */; };
 		46E401971B95941700958571 /* per.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E401961B95941700958571 /* per.png */; };
 		46E401991B95942400958571 /* app.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E401981B95942400958571 /* app.png */; };
 		46E4019C1B95996200958571 /* MyAppointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E4019B1B95996200958571 /* MyAppointViewController.m */; };
 		46E4019E1B959CA500958571 /* bai.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E4019D1B959CA500958571 /* bai.png */; };
+		46E401A11B95AB3200958571 /* MyAppointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E401A01B95AB3200958571 /* MyAppointCell.m */; };
 		46EA34A91B842A1D002095C9 /* Btn_shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34A81B842A1D002095C9 /* Btn_shot@2x.png */; };
 		46EA34AB1B842A23002095C9 /* Btn_shot_click@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34AA1B842A23002095C9 /* Btn_shot_click@2x.png */; };
 		46EA34AD1B842A8E002095C9 /* close_cha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA34AC1B842A8E002095C9 /* close_cha@2x.png */; };
@@ -397,6 +400,15 @@
 		467251001B7B1AB800558648 /* MyworkslistReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyworkslistReq.m; sourceTree = "<group>"; };
 		467251051B7B1C2D00558648 /* MyworkslistRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyworkslistRespon.h; sourceTree = "<group>"; };
 		467251061B7B1C2D00558648 /* MyworkslistRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyworkslistRespon.m; sourceTree = "<group>"; };
+		467B283F1B96916800DEEA8A /* MyEffectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEffectCell.h; sourceTree = "<group>"; };
+		467B28401B96916800DEEA8A /* MyEffectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEffectCell.m; sourceTree = "<group>"; };
+		467B28421B9694AC00DEEA8A /* MyappointDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyappointDTO.h; sourceTree = "<group>"; };
+		467B28431B9694AC00DEEA8A /* MyappointDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyappointDTO.m; sourceTree = "<group>"; };
+		467B28451B96953E00DEEA8A /* MyappointRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyappointRequest.h; sourceTree = "<group>"; };
+		467B28461B96953E00DEEA8A /* MyappointRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyappointRequest.m; sourceTree = "<group>"; };
+		467B28481B9695B800DEEA8A /* MyappointRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyappointRespon.h; sourceTree = "<group>"; };
+		467B28491B9695B800DEEA8A /* MyappointRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyappointRespon.m; sourceTree = "<group>"; };
+		467B284B1B96D04200DEEA8A /* designer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "designer@2x.png"; sourceTree = "<group>"; };
 		46811E031B7C69BD00F84B5F /* MyDeleteReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDeleteReq.h; sourceTree = "<group>"; };
 		46811E041B7C69BD00F84B5F /* MyDeleteReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDeleteReq.m; sourceTree = "<group>"; };
 		46956E371B8D59A5005C72C9 /* DesignerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerRequest.h; sourceTree = "<group>"; };
@@ -420,21 +432,17 @@
 		46B3FFA31B7D924600FCBF98 /* pay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay@2x.png"; sourceTree = "<group>"; };
 		46C9AF571B94423300393060 /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
 		46C9AF581B94423300393060 /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
-		46C9AF5C1B94521600393060 /* PersonDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDTO.h; sourceTree = "<group>"; };
-		46C9AF5D1B94521600393060 /* PersonDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDTO.m; sourceTree = "<group>"; };
 		46E07B051B8EEF2700E6D016 /* MyWorksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorksCell.m; sourceTree = "<group>"; };
 		46E07B071B9043AA00E6D016 /* AppointRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointRequest.h; sourceTree = "<group>"; };
 		46E07B081B9043AA00E6D016 /* AppointRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointRequest.m; sourceTree = "<group>"; };
-		46E07B0A1B9043B900E6D016 /* AppointRespon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointRespon.h; sourceTree = "<group>"; };
-		46E07B0B1B9043B900E6D016 /* AppointRespon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointRespon.m; sourceTree = "<group>"; };
-		46E07B0D1B9046FF00E6D016 /* AppointDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointDTO.h; sourceTree = "<group>"; };
-		46E07B0E1B9046FF00E6D016 /* AppointDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointDTO.m; sourceTree = "<group>"; };
 		46E07B121B90476600E6D016 /* DesignerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerDTO.m; sourceTree = "<group>"; };
 		46E401961B95941700958571 /* per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = per.png; path = ../../ViewControllers/HomePage/HomePageViews/per.png; sourceTree = "<group>"; };
 		46E401981B95942400958571 /* app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app.png; path = ../../ViewControllers/HomePage/HomePageViews/app.png; sourceTree = "<group>"; };
 		46E4019A1B95996200958571 /* MyAppointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAppointViewController.h; sourceTree = "<group>"; };
 		46E4019B1B95996200958571 /* MyAppointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAppointViewController.m; sourceTree = "<group>"; };
 		46E4019D1B959CA500958571 /* bai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bai.png; path = ../../ViewControllers/HomePage/HomePageViews/bai.png; sourceTree = "<group>"; };
+		46E4019F1B95AB3200958571 /* MyAppointCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAppointCell.h; sourceTree = "<group>"; };
+		46E401A01B95AB3200958571 /* MyAppointCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAppointCell.m; sourceTree = "<group>"; };
 		46EA34A81B842A1D002095C9 /* Btn_shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_shot@2x.png"; sourceTree = "<group>"; };
 		46EA34AA1B842A23002095C9 /* Btn_shot_click@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_shot_click@2x.png"; sourceTree = "<group>"; };
 		46EA34AC1B842A8E002095C9 /* close_cha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_cha@2x.png"; sourceTree = "<group>"; };
@@ -1430,8 +1438,6 @@
 				4698D8C51B8C17DD006F7C0E /* DesignerCell.m */,
 				84E9954D1B8EB0C700C3A4FD /* DesignerDTO.h */,
 				46E07B121B90476600E6D016 /* DesignerDTO.m */,
-				46E07B0D1B9046FF00E6D016 /* AppointDTO.h */,
-				46E07B0E1B9046FF00E6D016 /* AppointDTO.m */,
 				37B40A5A1B8C4BA400AC37E3 /* DesignerHeaderView.h */,
 				37B40A5B1B8C4BA400AC37E3 /* DesignerHeaderView.m */,
 				8461567F1B4FC35400F4AAA2 /* DesignerDetailViewController.h */,
@@ -1483,10 +1489,14 @@
 				84D6890E1B4BB44700E91423 /* CollectionView.m */,
 				46C9AF571B94423300393060 /* PersonCell.h */,
 				46C9AF581B94423300393060 /* PersonCell.m */,
-				46C9AF5C1B94521600393060 /* PersonDTO.h */,
-				46C9AF5D1B94521600393060 /* PersonDTO.m */,
 				84D689111B4BBBC600E91423 /* PersonCenterView.h */,
 				84D689121B4BBBC600E91423 /* PersonCenterView.m */,
+				46E4019F1B95AB3200958571 /* MyAppointCell.h */,
+				46E401A01B95AB3200958571 /* MyAppointCell.m */,
+				467B28421B9694AC00DEEA8A /* MyappointDTO.h */,
+				467B28431B9694AC00DEEA8A /* MyappointDTO.m */,
+				467B283F1B96916800DEEA8A /* MyEffectCell.h */,
+				467B28401B96916800DEEA8A /* MyEffectCell.m */,
 				46E4019A1B95996200958571 /* MyAppointViewController.h */,
 				46E4019B1B95996200958571 /* MyAppointViewController.m */,
 			);
@@ -1865,6 +1875,8 @@
 				46956E381B8D59A5005C72C9 /* DesignerRequest.m */,
 				46E07B071B9043AA00E6D016 /* AppointRequest.h */,
 				46E07B081B9043AA00E6D016 /* AppointRequest.m */,
+				467B28451B96953E00DEEA8A /* MyappointRequest.h */,
+				467B28461B96953E00DEEA8A /* MyappointRequest.m */,
 			);
 			path = Version2Req;
 			sourceTree = "<group>";
@@ -1882,8 +1894,8 @@
 				46956E471B8D5F0C005C72C9 /* FavRespon.m */,
 				46956E3A1B8D59F9005C72C9 /* DesignerRespon.h */,
 				46956E3B1B8D59F9005C72C9 /* DesignerRespon.m */,
-				46E07B0A1B9043B900E6D016 /* AppointRespon.h */,
-				46E07B0B1B9043B900E6D016 /* AppointRespon.m */,
+				467B28481B9695B800DEEA8A /* MyappointRespon.h */,
+				467B28491B9695B800DEEA8A /* MyappointRespon.m */,
 			);
 			path = Version2Respon;
 			sourceTree = "<group>";
@@ -1961,6 +1973,7 @@
 				46E4019D1B959CA500958571 /* bai.png */,
 				46E401961B95941700958571 /* per.png */,
 				46E401981B95942400958571 /* app.png */,
+				467B284B1B96D04200DEEA8A /* designer@2x.png */,
 			);
 			name = Version3_designer;
 			path = Version_designer;
@@ -2425,6 +2438,7 @@
 				844545AB1B8478EF00C47CCB /* Icons_Delete@2x.png in Resources */,
 				84E7DE041B7326C200956CCE /* UMSCommentInputControlleriPad.xib in Resources */,
 				84FCB1381B67578E00D00081 /* 2.png in Resources */,
+				467B284C1B96D04200DEEA8A /* designer@2x.png in Resources */,
 				84D485CA1B4CC52400AD0CCF /* plus_minus@2x.png in Resources */,
 				84E7DE321B7326E700956CCE /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				84E7DE001B7326C200956CCE /* UMSocialLocalizable.strings in Resources */,
@@ -2557,11 +2571,11 @@
 				84E814CF1B56124700921332 /* GetAddressRespon.m in Sources */,
 				84DAFFBE1B4A5F05008418D0 /* LabelView.m in Sources */,
 				9CABB3D51B329786006AD405 /* ClassifyView.m in Sources */,
+				467B284A1B9695B800DEEA8A /* MyappointRespon.m in Sources */,
 				84E814CD1B56124700921332 /* ClassifyRespon.m in Sources */,
 				84F0D1241B706CBC00F56D5A /* RelatedTagsReq.m in Sources */,
 				84E1EC971B579AF700DABA36 /* UIView+Radial.m in Sources */,
 				84EF22C91B7AFBED00CEEE47 /* MyWorksListViewController.m in Sources */,
-				46E07B0F1B9046FF00E6D016 /* AppointDTO.m in Sources */,
 				84E2E06B1B53C7D8007F2585 /* AddressCell.m in Sources */,
 				84F0E81E1B8D88B20035FFFD /* productOrderDTO.m in Sources */,
 				9CABB3D91B329BD2006AD405 /* JuPlusUIView.m in Sources */,
@@ -2599,13 +2613,13 @@
 				84829FBC1B42839A001D807F /* sha2.c in Sources */,
 				84E814D21B56124700921332 /* OrderListRespon.m in Sources */,
 				84D486161B4D27F600AD0CCF /* OrderListReq.m in Sources */,
-				46C9AF5E1B94521600393060 /* PersonDTO.m in Sources */,
 				84EE1F7E1B6F0CD400141434 /* ImageUtil.m in Sources */,
 				84CC25191B43EBA400BE342E /* KeyBoardTopBar.m in Sources */,
 				84829FB91B42839A001D807F /* my_rsa.c in Sources */,
 				84E672891B6B47DB00CFD1A2 /* UIView+DCAdditions.m in Sources */,
 				84E81AB21B5F8577007E3B9B /* OrderListCell.m in Sources */,
 				9C7C3F8B1B29596300D8F29B /* NSString+JuPlisString.m in Sources */,
+				46E401A11B95AB3200958571 /* MyAppointCell.m in Sources */,
 				84CE185D1B463F3E00B103F4 /* productView.m in Sources */,
 				84E6727F1B6B47DB00CFD1A2 /* SCCaptureSessionManager.m in Sources */,
 				84E8EDA81B5CC6C900A7420C /* MyInfoViewController.m in Sources */,
@@ -2643,7 +2657,6 @@
 				84F0D11F1B7057BC00F56D5A /* MarkLabeiView.m in Sources */,
 				84E43D951B5E57CD00A7028D /* JuPlusGetPictureView.m in Sources */,
 				84CDD96C1B4E76B800C97F7B /* ScrollRefreshViewHeader.m in Sources */,
-				46E07B0C1B9043B900E6D016 /* AppointRespon.m in Sources */,
 				46956E391B8D59A5005C72C9 /* DesignerRequest.m in Sources */,
 				84E814D31B56124700921332 /* PackageRespon.m in Sources */,
 				46956E481B8D5F0C005C72C9 /* FavRespon.m in Sources */,
@@ -2658,6 +2671,7 @@
 				84E672851B6B47DB00CFD1A2 /* DCFrameView.m in Sources */,
 				846156811B4FC35400F4AAA2 /* DesignerDetailViewController.m in Sources */,
 				9C7C3F531B2958F100D8F29B /* main.m in Sources */,
+				467B28471B96953E00DEEA8A /* MyappointRequest.m in Sources */,
 				46E07B061B8EEF2700E6D016 /* MyWorksCell.m in Sources */,
 				84829FBD1B42839A001D807F /* sha4.c in Sources */,
 				9CABB3DE1B32A97A006AD405 /* HobbyItemBtn.m in Sources */,
@@ -2667,6 +2681,7 @@
 				46C9AF591B94423300393060 /* PersonCell.m in Sources */,
 				84E432251B78A1F400AABF3F /* AddCollocationReq.m in Sources */,
 				84F0E84C1B8D99990035FFFD /* MapDesignerDTO.m in Sources */,
+				467B28411B96916800DEEA8A /* MyEffectCell.m in Sources */,
 				84B06AF31B71EEF300BD6D18 /* PostViewController.m in Sources */,
 				84B06AF21B71EEF300BD6D18 /* MarkTagsViewController.m in Sources */,
 				84D486101B4D0DF200AD0CCF /* OrderListViewController.m in Sources */,
@@ -2691,6 +2706,7 @@
 				84F0E8361B8D8F7A0035FFFD /* JuPlusRequest.m in Sources */,
 				8495ED2D1B4165E6004A0C41 /* RTLabel.m in Sources */,
 				84EBAA881B7DF923006E1148 /* JuPlusTabBarController.m in Sources */,
+				467B28441B9694AC00DEEA8A /* MyappointDTO.m in Sources */,
 				8481E2741B60F4D100CB89C6 /* PostPortraitRespon.m in Sources */,
 				84F0E8371B8D8F7A0035FFFD /* LoginReq.m in Sources */,
 				84E814E11B5635F000921332 /* MyFavourCell.m in Sources */,

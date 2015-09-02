@@ -119,10 +119,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
+         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         CameraViewController *view = [[CameraViewController alloc]init];
         [[self getSuperViewController].navigationController pushViewController:view animated:YES];
     }
     if (indexPath.row == 1) {
+         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         MyAppointViewController *myapp = [[MyAppointViewController alloc]init];
         [[self getSuperViewController].navigationController pushViewController:myapp animated:YES];
     }

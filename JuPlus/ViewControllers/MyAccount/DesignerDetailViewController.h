@@ -15,5 +15,5 @@
 @property (nonatomic,strong)UITableView *tableV;
 
 @property (nonatomic, strong) NSString *userId;
-
+@property (nonatomic, strong) NSString *orderFlag;
 @end

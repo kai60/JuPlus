@@ -18,4 +18,5 @@
 @property (nonatomic, strong) NSString * simpleExplain;
 //价格
 @property (nonatomic, strong) NSString *totalPrice;
+
 @end

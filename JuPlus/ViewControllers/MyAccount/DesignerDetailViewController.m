@@ -14,7 +14,6 @@
 #import "DesignerDTO.h"
 #import "PackageViewController.h"
 #import "AppointRequest.h"
-#import "AppointRespon.h"
 @interface DesignerDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ScrollRefreshViewDegegate>
 {
     ScrollRefreshViewHeader *header;
@@ -111,13 +110,16 @@
         
         [tableHeader.personHeadImageView setimageUrl:respon.portraitPath placeholderImage:nil];
         [tableHeader.detail setText:respon.nickname];
+        
+        //判断是否可以预约设计师
+        if ([respon.orderFlag integerValue] == 0) {
+            NSLog(@"+++++#####%@",respon.orderFlag);
+            self.appointmentBtn.hidden = YES;
+        }else if ([respon.orderFlag intValue] == 1){
+            [self appointmentBtn];
+        }
+        
         [self.dataArray addObjectsFromArray:respon.designerArray];
-//        //判断是否可以预约设计师
-//        if ([respon.orderFlag intValue]== 0) {
-//            NSLog(@"%@",respon.orderFlag);
-//        }else if ([respon.orderFlag intValue] == 1){
-//            [self.view addSubview:self.appointmentBtn];
-//        }
         [self.tableV reloadData];
         [self stopReresh];
     
@@ -165,6 +167,7 @@
         _appointmentBtn.titleLabel.font = FontType(FontSize);
         _appointmentBtn.alpha = ALPHLA_BUTTON;
         [_appointmentBtn addTarget:self action:@selector(appointment) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.appointmentBtn];
     }
     return _appointmentBtn;
 }
@@ -180,6 +183,16 @@
     if (alertView.tag == 10){
         if (buttonIndex == 1) {
           //网络请求
+            AppointRequest *appointReq = [[AppointRequest alloc]init];
+            [appointReq setField:self.userId forKey:@"objNo"];
+            [appointReq setField:[CommonUtil getToken] forKey:TOKEN];
+            [appointReq setField:@"1" forKey:@"objType"];
+            JuPlusResponse *respon = [[JuPlusResponse alloc]init];
+            [HttpCommunication request:appointReq getResponse:respon Success:^(JuPlusResponse *response) {
+               [self appoin];
+            } failed:^(ErrorInfoDto *errorDTO) {
+               [self errorExp:errorDTO];
+            } showProgressView:YES with:self.view];
             
         }
     }

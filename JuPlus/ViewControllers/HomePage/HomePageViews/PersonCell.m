@@ -56,6 +56,7 @@
     }
     return _appointLabel;
 }
+
 - (void)awakeFromNib {
     // Initialization code
 }

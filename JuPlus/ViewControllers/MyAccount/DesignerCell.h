@@ -13,5 +13,6 @@
 @property (nonatomic, strong)UIImageView *coverUrlImage;
 @property (nonatomic, strong)UILabel * simpleLabel;
 @property (nonatomic, strong)UILabel *totalPriceLabel;
+@property (nonatomic,strong)UIButton *appointmentBtn;
 - (void)fileData:(DesignerDTO *)dto;
 @end
